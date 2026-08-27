@@ -90,6 +90,10 @@ class FoundationContentTests(unittest.TestCase):
         text = path.read_text(encoding="utf-8")
         for term in ("机械结构", "电源", "传感器", "主控", "控制板", "电机"):
             self.assertIn(term, text)
+        self.assertIn("微控制器", text)
+        self.assertIn("底层反馈控制", text)
+        self.assertIn("串行通信", text)
+        self.assertIn("CAN（控制器局域网）", text)
         self.assertEqual(quality.check_foundation(path, 150_000), [])
 
     def test_chapter_2_builds_computer_vocabulary_before_ssh(self) -> None:
@@ -98,6 +102,7 @@ class FoundationContentTests(unittest.TestCase):
         for term in ("操作系统", "文件", "目录", "终端", "命令", "程序", "进程", "SSH"):
             self.assertIn(term, text)
         self.assertLess(text.index("终端"), text.index("SSH"))
+        self.assertIn("SSH（Secure Shell，安全远程登录协议）", text)
         self.assertEqual(quality.check_foundation(path, 150_000), [])
 
     def test_chapter_3_explains_ros2_through_nodes(self) -> None:

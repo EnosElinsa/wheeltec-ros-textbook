@@ -10,7 +10,17 @@ ROS 2 是正文默认环境。使用 ROS 1 旧设备时，请查看[ROS 1 兼容
 !!! warning "先保证安全"
     任何可能让机器人运动的测试，都应先清空周围区域并准备断电。烧录固件前必须确认控制板型号、备份出厂固件，并准备可用的恢复方式。
 
-## 从哪里开始
+## 第一次学习 ROS 2
+
+如果你还不了解机器人、Linux 或 ROS 2，请按顺序阅读第一篇的第 1～5 章。没有机器人或 ROS 2 环境时，使用每章的只读路线即可。
+
+1. [第 1 章：一台 ROS 机器人由什么组成](01-foundations/01-robot-components.md)
+2. [第 2 章：Ubuntu、终端与程序](01-foundations/02-ubuntu-terminal-programs.md)
+3. [第 3 章：ROS 2 解决什么问题](01-foundations/03-what-ros2-solves.md)
+4. [第 4 章：第一次观察 ROS 2](01-foundations/04-first-ros2-observation.md)
+5. [第 5 章：ROS 2 程序怎样协作](01-foundations/05-ros2-communication.md)
+
+## 按任务进入
 
 - 想先理解 ROS 2 的基本工作方式：从[第一篇：从零认识 ROS 机器人](01-foundations/index.md)开始。
 - 第一次使用机器人：从[识别你的机器人配置](02-bringup/06-identify-configuration.md)开始。

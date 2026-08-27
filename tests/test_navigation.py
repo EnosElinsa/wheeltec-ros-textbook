@@ -41,6 +41,22 @@ class NavigationTests(unittest.TestCase):
             if index < len(numbered) - 1:
                 self.assertIn((ROOT / numbered[index + 1]["path"]).resolve(), links, row["path"])
 
+    def test_engineering_chapter_does_not_require_a_later_chapter(self) -> None:
+        rows = quality.load_manifest(ROOT / "metadata" / "chapter-manifest.csv")
+        offenders: list[str] = []
+        pattern = re.compile(r"(?:已完成|完成|先完成|已经通过|先读|先阅读)第\s*(\d+)\s*章")
+        for row in rows:
+            if row["kind"] != "chapter":
+                continue
+            number = int(row["number"])
+            text = (ROOT / row["path"]).read_text(encoding="utf-8")
+            for match in pattern.finditer(text):
+                if int(match.group(1)) > number:
+                    offenders.append(
+                        f"{row['path']}: Chapter {number} requires Chapter {match.group(1)}"
+                    )
+        self.assertEqual(offenders, [])
+
     def test_public_copy_uses_nine_parts_and_no_legacy_labels(self) -> None:
         paths = sorted((ROOT / "docs").rglob("*.md"))
         paths.extend((ROOT / name) for name in ("README.md", "mkdocs.yml"))
@@ -71,6 +87,41 @@ class NavigationTests(unittest.TestCase):
         ):
             self.assertIn(path, combined)
         self.assertNotIn("00-ros2-theory", combined)
+        homepage = (ROOT / "docs" / "index.md").read_text(encoding="utf-8")
+        self.assertIn("## 第一次学习 ROS 2", homepage)
+        expected = [
+            "01-robot-components.md",
+            "02-ubuntu-terminal-programs.md",
+            "03-what-ros2-solves.md",
+            "04-first-ros2-observation.md",
+            "05-ros2-communication.md",
+        ]
+        positions = [homepage.index(item) for item in expected]
+        self.assertEqual(positions, sorted(positions))
+
+    def test_one_shot_migration_tools_are_not_shipped(self) -> None:
+        self.assertFalse((ROOT / "tools" / "rewrite_navigation.py").exists())
+        self.assertFalse((ROOT / "tools" / "renumber_textbook.py").exists())
+
+    def test_reading_paths_include_all_five_required_sequences(self) -> None:
+        text = (ROOT / "docs" / "reading-paths.md").read_text(encoding="utf-8")
+        for heading in (
+            "第一次学习 ROS 2",
+            "已熟悉 Linux，刚开始学 ROS 2",
+            "已熟悉 ROS 2，第一次接入机器人",
+            "建图与导航",
+            "R680 维护",
+        ):
+            self.assertIn(f"## {heading}", text)
+        for sequence in (
+            "1 → 2 → 3 → 4 → 5 → 6",
+            "3 → 4 → 5 → 18",
+            "6 → 7 → 8 → 9 → 10",
+            "3 → 4 → 5 → 18 → 25 → 26 → 27 → 28",
+            "6 → 17 → 42 → 43 → 45",
+        ):
+            self.assertIn(sequence, text)
+        self.assertGreaterEqual(text.count("前置知识"), 4)
 
 
 if __name__ == "__main__":

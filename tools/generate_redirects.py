@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import csv
 import html
+import json
 import os
 import posixpath
 import tempfile
@@ -29,6 +30,11 @@ def _path_error(value: str) -> str | None:
         return "must be a non-empty site-relative path"
     if "\\" in value or not value.endswith("/"):
         return "must use forward slashes and end with /"
+    if any(
+        not (character.isalnum() or character in "/._-")
+        for character in value
+    ):
+        return "contains characters outside the safe route alphabet"
     if any(part in {".", ".."} for part in PurePosixPath(value).parts):
         return "must not contain path traversal"
     return None
@@ -77,7 +83,12 @@ def render_redirect(source: str, target: str) -> str:
     if not relative.endswith("/"):
         relative += "/"
     escaped = html.escape(relative, quote=True)
-    js_target = relative.replace("\\", "\\\\").replace('"', '\\"')
+    js_target = (
+        json.dumps(relative, ensure_ascii=True)
+        .replace("<", "\\u003c")
+        .replace(">", "\\u003e")
+        .replace("&", "\\u0026")
+    )
     return f"""<!doctype html>
 <html lang="zh-CN">
 <head>
@@ -89,7 +100,7 @@ def render_redirect(source: str, target: str) -> str:
 <body>
   <p>页面已迁移到 <a href="{escaped}">{escaped}</a>。</p>
   <script>
-    location.replace("{js_target}" + location.search + location.hash);
+    location.replace({js_target} + location.search + location.hash);
   </script>
 </body>
 </html>

@@ -38,6 +38,19 @@ class RedirectTests(unittest.TestCase):
         messages = generate_redirects.validate_map(rows)
         self.assertEqual(len(messages), 2)
 
+    def test_map_rejects_html_script_breakout_and_control_characters(self) -> None:
+        rows = [
+            generate_redirects.Redirect("old/", "</script><script>alert(1)</script>/"),
+            generate_redirects.Redirect("other/", "new\npage/"),
+        ]
+        messages = generate_redirects.validate_map(rows)
+        self.assertEqual(len(messages), 2)
+
+    def test_rendered_javascript_cannot_contain_literal_script_end_tag(self) -> None:
+        html = generate_redirects.render_redirect("old/", "new</script>/")
+        self.assertEqual(html.lower().count("</script>"), 1)
+        self.assertNotIn("new</script>", html.lower())
+
     def test_rendered_redirect_preserves_query_and_hash(self) -> None:
         html = generate_redirects.render_redirect(
             "00-ros2-theory/t1-what-is-ros2/",
