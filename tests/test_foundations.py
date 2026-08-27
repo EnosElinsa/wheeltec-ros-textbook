@@ -93,24 +93,50 @@ class FoundationContentTests(unittest.TestCase):
         self.assertIn("微控制器", text)
         self.assertIn("底层反馈控制", text)
         self.assertIn("串行通信", text)
-        self.assertIn("CAN（控制器局域网）", text)
-        self.assertEqual(quality.check_foundation(path, 150_000), [])
+        self.assertIn("控制器局域网（Controller Area Network, CAN）", text)
+        self.assertEqual(quality.check_foundation(path, 150_000, 2), [])
 
     def test_chapter_2_builds_computer_vocabulary_before_ssh(self) -> None:
         path = ROOT / "docs" / "01-foundations" / "03-ubuntu-terminal-programs.md"
         text = path.read_text(encoding="utf-8")
         for term in ("操作系统", "文件", "目录", "终端", "命令", "程序", "进程", "SSH"):
             self.assertIn(term, text)
+        self.assertIn("操作系统（Operating System, OS）", text)
         self.assertLess(text.index("终端"), text.index("SSH"))
-        self.assertIn("SSH（Secure Shell，安全远程登录协议）", text)
-        self.assertEqual(quality.check_foundation(path, 150_000), [])
+        self.assertIn("安全外壳协议（Secure Shell, SSH）", text)
+        headings = re.findall(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE)
+        self.assertEqual(headings[:3], [
+            "3.1 主控首先是一台计算机",
+            "3.2 操作系统管理什么",
+            "3.3 文件与目录",
+        ])
+        self.assertEqual(quality.check_foundation(path, 150_000, 3), [])
 
-    def test_chapter_3_explains_ros2_through_nodes(self) -> None:
-        path = ROOT / "docs" / "01-foundations" / "03-what-ros2-solves.md"
+    def test_chapter_1_introduces_ros_identity_history_and_evolution(self) -> None:
+        path = ROOT / "docs" / "01-foundations" / "01-understanding-ros.md"
         text = path.read_text(encoding="utf-8")
-        for term in ("ROS 2", "节点", "一个大程序"):
+        for term in (
+            "机器人操作系统（Robot Operating System, ROS）",
+            "机器人操作系统 2（Robot Operating System 2, ROS 2）",
+            "2007", "STAIR", "Willow Garage", "2015", "Alpha 1",
+            "2017", "Ardent Apalone",
+        ):
             self.assertIn(term, text)
-        self.assertEqual(quality.check_foundation(path, 150_000), [])
+        headings = re.findall(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE)
+        self.assertEqual(headings, [
+            "1.1 从机器人软件的难题说起",
+            "1.2 ROS 的名称与定位",
+            "1.3 ROS 的发展历程",
+            "1.4 从 ROS 1 到 ROS 2",
+            "1.5 ROS 2 提供哪些基础能力",
+            "1.6 ROS 2 在机器人系统中的位置",
+            "1.7 本章小结",
+            "1.8 思考与练习",
+            "章节导航",
+        ])
+        self.assertNotIn("新概念", text)
+        self.assertNotIn("节点的英文是 Node", text)
+        self.assertEqual(quality.check_foundation(path, 150_000, 1), [])
 
     def test_chapter_4_has_executable_and_read_only_routes(self) -> None:
         path = ROOT / "docs" / "01-foundations" / "04-first-ros2-observation.md"
@@ -121,19 +147,39 @@ class FoundationContentTests(unittest.TestCase):
             "listener",
             "ros2 node list",
             "ros2 topic list",
-            "只读路线",
+            "代表性输出",
         ):
             self.assertIn(term, text)
-        self.assertEqual(quality.check_foundation(path, 150_000), [])
+        self.assertEqual(quality.check_foundation(path, 150_000, 4), [])
 
     def test_chapter_5_introduces_communication_types_in_order(self) -> None:
         path = ROOT / "docs" / "01-foundations" / "05-ros2-communication.md"
         text = path.read_text(encoding="utf-8")
-        positions = [text.index(term) for term in ("话题", "服务", "动作", "参数")]
+        headings = re.findall(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE)
+        positions = [headings.index(term) for term in (
+            "5.2 话题：持续发布的数据流",
+            "5.3 服务：一次请求与一次响应",
+            "5.4 动作：可以反馈和取消的耗时任务",
+            "5.5 参数：节点自己的配置",
+        )]
         self.assertEqual(positions, sorted(positions))
+        for term in (
+            "节点（Node）", "话题（Topic）", "发布者（Publisher）",
+            "订阅者（Subscriber）", "服务（Service）", "动作（Action）",
+            "参数（Parameter）",
+        ):
+            self.assertIn(term, text)
+        self.assertEqual(headings[:6], [
+            "5.1 节点：把任务拆成独立程序",
+            "5.2 话题：持续发布的数据流",
+            "5.3 服务：一次请求与一次响应",
+            "5.4 动作：可以反馈和取消的耗时任务",
+            "5.5 参数：节点自己的配置",
+            "5.6 从雷达到电机的数据链",
+        ])
         self.assertIn("雷达节点", text)
         self.assertIn("底盘节点", text)
-        self.assertEqual(quality.check_foundation(path, 150_000), [])
+        self.assertEqual(quality.check_foundation(path, 150_000, 5), [])
 
 
 if __name__ == "__main__":

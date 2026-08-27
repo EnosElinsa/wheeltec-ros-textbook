@@ -4,103 +4,77 @@ status: complete
 
 # 4. 第一次观察 ROS 2
 
-## 本章要回答的问题
+第 1 章介绍了 ROS 2 的定位，第 3 章介绍了主控上的终端。现在用 ROS 2 自带的 `talker` 和 `listener` 示例观察一条真实的数据链：一个节点发布消息，另一个节点订阅消息，第三个终端查询系统状态。
 
-节点和节点之间的数据在终端里是什么样子？怎样在不控制机器人运动的情况下，亲眼看到两个 ROS 2 节点交换消息？
+## 4.1 观察目标与准备
 
-本章使用 ROS 2 自带的 talker 和 listener 示例。它们只发送和接收文字，不需要 WHEELTEC 机器人，也不会操作电机。
-
-## 从一个具体场景开始
-
-想象两个人使用对讲机：一个人反复说出一句话，另一个人持续收听。ROS 2 自带的示例也采用这个结构：
+本次练习关注三个对象：**节点（Node）**、**话题（Topic）**和消息。`talker` 周期性发布文字，`listener` 订阅同一个话题并打印收到的内容。
 
 ```text
 talker 节点 → 文字消息 → listener 节点
 ```
 
-Talker 表示说话者，Listener 表示收听者。运行它们以后，我们可以从第三个终端查看系统中有哪些节点、有哪些数据通道，以及通道中正在传递什么。
+实验环境可以是安装了 ROS 2 的 Ubuntu 电脑或机器人主控。没有可用环境时，直接阅读命令后的代表性输出，并根据关系图完成练习。
 
-如果电脑没有安装 ROS 2，可以直接阅读示例输出和图示。后面的自检问题不要求实际执行命令。
+## 4.2 启动 talker
 
-## 新概念
-
-### 让当前终端认识 ROS 2 命令
-
-程序安装在电脑上，不代表新打开的终端已经知道到哪里寻找它。下面的命令把系统安装中的 ROS 2 命令位置加入当前终端环境：
-
-```bash
-source /opt/ros/<发行版>/setup.bash
-```
-
-把 `<发行版>` 换成实际名称，例如 `humble`。这条命令只影响当前终端；新开终端后需要重新执行。这里先把它理解为“准备当前终端”，更详细的环境组织方法留到开发篇。
-
-### 示例节点
-
-`demo_nodes_cpp` 是随 ROS 2 提供的一组 C++ 示例。`talker` 和 `listener` 是其中两个可执行示例，它们启动后会创建各自的节点。
-
-### 话题与消息
-
-Talker 不把文字直接发给某一个指定的程序，而是把消息发布到一个有名称的数据通道。ROS 2 把这种连续传递数据的通道称为话题。Listener 订阅同一个话题，因此能够收到消息。
-
-消息是一次实际传递的数据。话题像广播频道，消息像频道中一条条播出的内容。
-
-## 图示或逐步例子
-
-### 1. 在第一个终端启动 talker
+在第一个终端中加载 ROS 2 环境，再运行 C++ 示例包中的 `talker`：
 
 ```bash
 source /opt/ros/<发行版>/setup.bash
 ros2 run demo_nodes_cpp talker
 ```
 
-可能看到：
+`<发行版>` 替换为实际名称，例如 `humble`。代表性输出如下：
 
 ```text
 [talker]: Publishing: 'Hello World: 1'
 [talker]: Publishing: 'Hello World: 2'
 ```
 
-终端保持运行，说明 talker 正在不断发布消息。
+每出现一行，表示 `talker` 发布了一条新的文字消息。保持该终端运行，继续打开第二个终端。
 
-### 2. 在第二个终端启动 listener
+## 4.3 启动 listener
+
+在第二个终端中加载同一套 ROS 2 环境，并启动 `listener`：
 
 ```bash
 source /opt/ros/<发行版>/setup.bash
 ros2 run demo_nodes_cpp listener
 ```
 
-可能看到：
+代表性输出如下：
 
 ```text
 [listener]: I heard: [Hello World: 1]
 [listener]: I heard: [Hello World: 2]
 ```
 
-这表明 listener 收到了 talker 发布的消息。
+`listener` 能打印 `talker` 发送的内容，说明两个节点已经通过共同的话题建立了数据交换。
 
-### 3. 在第三个终端观察系统
+## 4.4 查看节点、话题与消息
 
-先准备终端，再列出节点：
+在第三个终端中加载环境。先查看当前运行的节点：
 
 ```bash
 source /opt/ros/<发行版>/setup.bash
 ros2 node list
 ```
 
-典型结果包含：
+典型输出包含：
 
 ```text
 /talker
 /listener
 ```
 
-查看话题名称：
+这条命令回答“有哪些节点正在运行”。接着查看话题名称：
 
 ```bash
 ros2 topic list
 ```
 
-典型结果会包含 `/chatter`。再读取一条消息：
+典型结果包含 `/chatter`。再读取该话题中的一条消息：
 
 ```bash
 ros2 topic echo --once /chatter
@@ -113,11 +87,24 @@ data: 'Hello World: 8'
 ---
 ```
 
-现在可以把命令和概念对应起来：`ros2 node list` 观察程序单元，`ros2 topic list` 观察数据通道，`ros2 topic echo` 观察通道中的消息。
+三条查询命令分别对应三个观察层次：
 
-### 只读路线
+| 命令 | 观察对象 | 结果含义 |
+|---|---|---|
+| `ros2 node list` | 节点 | 查看程序单元是否在线。 |
+| `ros2 topic list` | 话题 | 查看数据通道名称。 |
+| `ros2 topic echo --once /chatter` | 消息 | 读取通道中一次实际传递的数据。 |
 
-没有 ROS 2 环境时，根据上面的预期输出完成这张图：
+此时可以画出完整关系：
+
+```text
+/talker 节点
+  └─ 发布到 /chatter 话题
+       └─ 消息：Hello World
+            └─ 被 /listener 节点订阅
+```
+
+没有 ROS 2 环境时，可以直接根据上面的输出完成关系图：
 
 ```text
 节点：/talker
@@ -126,29 +113,22 @@ data: 'Hello World: 8'
             └─ 被节点 /listener 接收
 ```
 
-只要能解释图中四行的关系，就达到了本章目标。
+## 4.5 结束实验并解释现象
 
-## 可选实验
-
-完成上述实验后，按 `Ctrl+C` 分别结束 talker 和 listener。然后再次运行：
+在 `talker` 和 `listener` 终端分别按 `Ctrl+C`，再运行：
 
 ```bash
 ros2 node list
 ```
 
-比较结束前后的结果。节点随程序启动而出现，随程序结束而消失；话题列表中还可能存在系统使用的其他通道，不必在本章逐一解释。
+两个示例节点会从列表中消失。话题列表可能仍包含其他系统通道，因为 ROS 2 环境中还可能有别的程序在运行。这个现象说明：节点的出现和消失与承载它的进程状态有关。
 
-## 本章小结
+## 4.6 本章小结与练习
 
-Talker 和 listener 是两个节点。Talker 把文字消息发布到 `/chatter` 话题，listener 订阅该话题并接收消息。ROS 2 命令行工具可以观察节点、话题和消息，而不需要修改程序。
+`talker` 和 `listener` 是两个节点，`/chatter` 是它们使用的话题，`Hello World` 是传递的消息。ROS 2 命令行工具可以分别查询节点、话题和消息。
 
-## 自检问题
-
-1. Talker、listener、`/chatter` 和 `Hello World` 分别对应节点、话题还是消息？
-2. 为什么三个终端都要先准备 ROS 2 环境？
-3. `ros2 node list` 与 `ros2 topic list` 观察的对象有什么不同？
-4. 没有机器人时，为什么仍然可以完成这个实验？
+练习：解释下面四项分别属于节点、话题还是消息，并说明它们的连接关系：`/talker`、`/listener`、`/chatter`、`Hello World`。随后回答：为什么三个终端都要先执行 `source` 命令？
 
 ## 章节导航
 
-[上一章：ROS 2 解决什么问题](03-what-ros2-solves.md) · [返回本篇](index.md) · [下一章：ROS 2 程序怎样协作](05-ros2-communication.md)
+[上一章：Ubuntu、终端与程序](03-ubuntu-terminal-programs.md) · [返回本篇](index.md) · [下一章：ROS 2 程序怎样协作](05-ros2-communication.md)

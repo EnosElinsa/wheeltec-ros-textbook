@@ -22,16 +22,61 @@ REQUIRED_MANIFEST_COLUMNS = {
 }
 ALLOWED_STATUSES = {"draft", "complete"}
 ALLOWED_KINDS = {"foundation", "chapter", "appendix"}
-FOUNDATION_HEADINGS = [
-    "本章要回答的问题",
-    "从一个具体场景开始",
-    "新概念",
-    "图示或逐步例子",
-    "可选实验",
-    "本章小结",
-    "自检问题",
-    "章节导航",
-]
+FOUNDATION_HEADINGS = ["章节导航"]
+FOUNDATION_HEADINGS_BY_NUMBER = {
+    1: [
+        "1.1 从机器人软件的难题说起",
+        "1.2 ROS 的名称与定位",
+        "1.3 ROS 的发展历程",
+        "1.4 从 ROS 1 到 ROS 2",
+        "1.5 ROS 2 提供哪些基础能力",
+        "1.6 ROS 2 在机器人系统中的位置",
+        "1.7 本章小结",
+        "1.8 思考与练习",
+        "章节导航",
+    ],
+    2: [
+        "2.1 从一次避障过程看机器人系统",
+        "2.2 感知：传感器怎样描述环境",
+        "2.3 计算：主控怎样运行机器人程序",
+        "2.4 控制：控制板怎样执行速度目标",
+        "2.5 执行：电机与机械结构怎样产生运动",
+        "2.6 信息流与能量流",
+        "2.7 本章小结",
+        "2.8 观察练习",
+        "章节导航",
+    ],
+    3: [
+        "3.1 主控首先是一台计算机",
+        "3.2 操作系统管理什么",
+        "3.3 文件与目录",
+        "3.4 程序与进程",
+        "3.5 终端与命令",
+        "3.6 本地终端与远程终端",
+        "3.7 安全的观察命令",
+        "3.8 本章小结与练习",
+        "章节导航",
+    ],
+    4: [
+        "4.1 观察目标与准备",
+        "4.2 启动 talker",
+        "4.3 启动 listener",
+        "4.4 查看节点、话题与消息",
+        "4.5 结束实验并解释现象",
+        "4.6 本章小结与练习",
+        "章节导航",
+    ],
+    5: [
+        "5.1 节点：把任务拆成独立程序",
+        "5.2 话题：持续发布的数据流",
+        "5.3 服务：一次请求与一次响应",
+        "5.4 动作：可以反馈和取消的耗时任务",
+        "5.5 参数：节点自己的配置",
+        "5.6 从雷达到电机的数据链",
+        "5.7 本章小结与练习",
+        "章节导航",
+    ],
+}
 REQUIRED_CHAPTER_HEADINGS = [
     "本章目标",
     "适用范围",
@@ -135,14 +180,15 @@ def check_chapter(path: Path, size_limit: int) -> list[Issue]:
     return issues
 
 
-def check_foundation(path: Path, size_limit: int) -> list[Issue]:
+def check_foundation(path: Path, size_limit: int, number: int | None = None) -> list[Issue]:
     issues: list[Issue] = []
     relative = path.as_posix()
     if path.stat().st_size > size_limit:
         issues.append(Issue("error", relative, "file exceeds size limit"))
     text = path.read_text(encoding="utf-8")
     headings = set(re.findall(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE))
-    for heading in FOUNDATION_HEADINGS:
+    expected = FOUNDATION_HEADINGS_BY_NUMBER.get(number, FOUNDATION_HEADINGS)
+    for heading in expected:
         if heading not in headings:
             issues.append(Issue("error", relative, f"missing section: {heading}"))
     for category, pattern in FORBIDDEN_FOUNDATION_PATTERNS.items():
@@ -227,7 +273,7 @@ def check_all(root: Path, selected_paths: list[Path] | None = None) -> list[Issu
         if row and row["status"] == "complete":
             size_limit = int(row["size_limit_bytes"])
             if row["kind"] == "foundation":
-                issues.extend(check_foundation(path, size_limit))
+                issues.extend(check_foundation(path, size_limit, int(row["number"])))
             elif row["kind"] == "chapter":
                 issues.extend(check_chapter(path, size_limit))
             elif path.stat().st_size > size_limit:
