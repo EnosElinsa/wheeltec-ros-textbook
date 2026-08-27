@@ -62,6 +62,32 @@ ros2 action info <动作名>
 
 需要理解连接图时运行 `rqt_graph`，但不要用图中的连线替代消息内容和 QoS 检查。
 
+### 运行配套发布订阅实验
+
+先完成第 19 章的构建步骤。终端 A 运行 [C++ 示例](https://github.com/EnosElinsa/wheeltec-ros-textbook/tree/main/examples/ros2-pubsub/cpp_pubsub)发布者：
+
+```bash
+source ~/wheeltec_course_ws/install/setup.bash
+ros2 run cpp_pubsub talker
+```
+
+终端 B 运行 [Python 示例](https://github.com/EnosElinsa/wheeltec-ros-textbook/tree/main/examples/ros2-pubsub/py_pubsub)订阅者：
+
+```bash
+source ~/wheeltec_course_ws/install/setup.bash
+ros2 run py_pubsub listener
+```
+
+另开终端检查通信契约：
+
+```bash
+source ~/wheeltec_course_ws/install/setup.bash
+ros2 topic info /course/chatter --verbose
+ros2 topic echo /course/chatter --once
+```
+
+确认类型为 `std_msgs/msg/String`，并至少有一个发布者和一个订阅者。停止两个节点后，交换语言再运行一次；两种组合都能收到消息，说明接口兼容，而不是只有同一语言内部可用。
+
 ## 20.6 验收标准
 
 - 能从底盘节点找出订阅的速度话题和发布的里程计/IMU。

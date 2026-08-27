@@ -64,6 +64,27 @@ ros2 pkg prefix <包名>
 
 在新终端按固定顺序加载环境。不要在一个长期使用的终端中反复加载不同工作空间；残留的搜索路径会让回滚结果难以判断。
 
+### 构建配套发布订阅实验
+
+教材仓库提供两个独立功能包：[C++ 示例](https://github.com/EnosElinsa/wheeltec-ros-textbook/tree/main/examples/ros2-pubsub/cpp_pubsub)和 [Python 示例](https://github.com/EnosElinsa/wheeltec-ros-textbook/tree/main/examples/ros2-pubsub/py_pubsub)。把它们放进同一工作空间的 `src/` 后构建：
+
+```bash
+mkdir -p ~/wheeltec_course_ws/src
+cd ~/wheeltec_course_ws/src
+git clone --depth 1 https://github.com/EnosElinsa/wheeltec-ros-textbook.git
+cp -r wheeltec-ros-textbook/examples/ros2-pubsub/cpp_pubsub .
+cp -r wheeltec-ros-textbook/examples/ros2-pubsub/py_pubsub .
+cd ..
+source /opt/ros/$ROS_DISTRO/setup.bash
+rosdep install --from-paths src --ignore-src -r -y
+colcon build --packages-select cpp_pubsub py_pubsub
+source install/setup.bash
+ros2 pkg executables cpp_pubsub
+ros2 pkg executables py_pubsub
+```
+
+两个包都应列出 `talker` 和 `listener`。不要把教材仓库整体放进 `src/`；这里只复制两个功能包，避免文档目录参与包发现。
+
 ### 处理构建失败
 
 构建失败时先看第一条有效错误，再检查对应 `log/latest_build/<包名>/`。清理范围限定在出错包：

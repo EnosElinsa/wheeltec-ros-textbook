@@ -1,0 +1,46 @@
+name: Test ROS 2 examples
+
+on:
+  push:
+    paths:
+      - "examples/ros2-pubsub/**"
+      - ".github/workflows/test-ros2-examples.yml"
+  pull_request:
+    paths:
+      - "examples/ros2-pubsub/**"
+      - ".github/workflows/test-ros2-examples.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: ros:humble-ros-base-jammy
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Create isolated ROS 2 workspace
+        run: |
+          mkdir -p /tmp/wheeltec_course_ws/src
+          cp -r examples/ros2-pubsub/cpp_pubsub /tmp/wheeltec_course_ws/src/
+          cp -r examples/ros2-pubsub/py_pubsub /tmp/wheeltec_course_ws/src/
+
+      - name: Build packages
+        run: |
+          source /opt/ros/humble/setup.bash
+          cd /tmp/wheeltec_course_ws
+          colcon build --event-handlers console_direct+
+
+      - name: Run package tests
+        run: |
+          source /opt/ros/humble/setup.bash
+          source /tmp/wheeltec_course_ws/install/setup.bash
+          cd /tmp/wheeltec_course_ws
+          colcon test --event-handlers console_direct+
+          colcon test-result --verbose
