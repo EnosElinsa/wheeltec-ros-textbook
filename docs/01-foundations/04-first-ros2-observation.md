@@ -10,9 +10,7 @@ status: complete
 
 本次练习关注三个对象：**节点（Node）**、**话题（Topic）**和消息。`talker` 周期性发布文字，`listener` 订阅同一个话题并打印收到的内容。
 
-```text
-talker 节点 → 文字消息 → listener 节点
-```
+![talker 与 listener 的 ROS 2 通信](../assets/diagrams/talker-listener.svg)
 
 实验环境可以是安装了 ROS 2 的 Ubuntu 电脑或机器人主控。没有可用环境时，直接阅读命令后的代表性输出，并根据关系图完成练习。
 
@@ -95,23 +93,7 @@ data: 'Hello World: 8'
 | `ros2 topic list` | 话题 | 查看数据通道名称。 |
 | `ros2 topic echo --once /chatter` | 消息 | 读取通道中一次实际传递的数据。 |
 
-此时可以画出完整关系：
-
-```text
-/talker 节点
-  └─ 发布到 /chatter 话题
-       └─ 消息：Hello World
-            └─ 被 /listener 节点订阅
-```
-
-没有 ROS 2 环境时，可以直接根据上面的输出完成关系图：
-
-```text
-节点：/talker
-  └─ 发布到话题：/chatter
-       └─ 消息内容：Hello World
-            └─ 被节点 /listener 接收
-```
+上图把节点、话题和消息放在同一条通信链中。没有 ROS 2 环境时，可根据命令后的代表性输出核对这三者的对应关系。
 
 ## 4.5 结束实验并解释现象
 

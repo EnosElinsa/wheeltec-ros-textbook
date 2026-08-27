@@ -22,6 +22,8 @@ status: complete
 
 系统验收沿数据链从低到高进行：电源 → 底盘控制板 → 运动控制 → 反馈 → 主控通信 → 传感器 → TF → 建图/定位 → Nav2 → 应用。低层未通过时，高层结果没有解释力。
 
+![WHEELTEC 全系统验收流程](../assets/diagrams/system-acceptance-pipeline.svg)
+
 ## 46.5 操作步骤
 
 逐项填写：

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="robot-control-loop-title robot-control-loop-desc">
+  <title id="robot-control-loop-title">轮式机器人信息流与能量流</title>
+  <desc id="robot-control-loop-desc">图示展示环境信息经过传感器、主控和控制板到达电机，同时编码器和惯性传感器把反馈送回控制链。</desc>
+  <defs>
+    <marker id="robot-control-loop-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#4f5d75"/></marker>
+    <marker id="robot-control-loop-accent" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#eb6c36"/></marker>
+  </defs>
+  <rect width="1280" height="720" fill="#f5f5f5"/>
+  <text x="80" y="76" fill="#4f5d75" font-size="12" font-family="system-ui, sans-serif" letter-spacing="2">ROBOT SYSTEM · INFORMATION + ENERGY</text>
+  <text x="80" y="124" fill="#2d3142" font-size="28" font-weight="600" font-family="system-ui, sans-serif">一次避障如何变成一次减速</text>
+
+  <path d="M184 294H1096" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#robot-control-loop-arrow)"/>
+  <path d="M1096 484H184" fill="none" stroke="#eb6c36" stroke-width="1.2" stroke-dasharray="6,5" marker-end="url(#robot-control-loop-accent)"/>
+
+  <rect x="80" y="232" width="208" height="124" rx="8" fill="#ffffff" stroke="#4f5d75"/>
+  <rect x="332" y="232" width="208" height="124" rx="8" fill="#ffffff" stroke="#4f5d75"/>
+  <rect x="584" y="232" width="208" height="124" rx="8" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2"/>
+  <rect x="836" y="232" width="208" height="124" rx="8" fill="#ffffff" stroke="#4f5d75"/>
+  <rect x="1088" y="232" width="112" height="124" rx="8" fill="#ececec" stroke="#4f5d75"/>
+
+  <text x="104" y="264" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace" letter-spacing="2">INPUT</text>
+  <text x="104" y="304" fill="#2d3142" font-size="20" font-weight="600" font-family="system-ui, sans-serif">环境</text>
+  <text x="104" y="332" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">障碍物与路面</text>
+  <text x="356" y="264" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace" letter-spacing="2">SENSE</text>
+  <text x="356" y="304" fill="#2d3142" font-size="20" font-weight="600" font-family="system-ui, sans-serif">传感器</text>
+  <text x="356" y="332" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">雷达 · 相机 · IMU</text>
+  <text x="608" y="264" fill="#eb6c36" font-size="12" font-family="ui-monospace, monospace" letter-spacing="2">FOCAL · COMPUTE</text>
+  <text x="608" y="304" fill="#2d3142" font-size="20" font-weight="600" font-family="system-ui, sans-serif">主控与 ROS 2</text>
+  <text x="608" y="332" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">感知 · 规划 · 速度目标</text>
+  <text x="860" y="264" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace" letter-spacing="2">CONTROL</text>
+  <text x="860" y="304" fill="#2d3142" font-size="20" font-weight="600" font-family="system-ui, sans-serif">底盘控制板</text>
+  <text x="860" y="332" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">周期控制 · 反馈闭环</text>
+  <text x="1108" y="264" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace" letter-spacing="2">ACT</text>
+  <text x="1108" y="304" fill="#2d3142" font-size="20" font-weight="600" font-family="system-ui, sans-serif">电机</text>
+  <text x="1108" y="332" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">车轮</text>
+
+  <text x="80" y="430" fill="#eb6c36" font-size="12" font-family="ui-monospace, monospace" letter-spacing="2">FEEDBACK · RETURN PATH</text>
+  <text x="80" y="466" fill="#2d3142" font-size="20" font-weight="600" font-family="system-ui, sans-serif">编码器与惯性传感器把实际运动状态送回控制链</text>
+  <text x="80" y="520" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">信息流传递观测和目标；反馈流报告速度、里程与姿态；电池沿独立的能量流为各层供电。</text>
+
+  <line x1="80" y1="600" x2="1200" y2="600" stroke="rgba(45,49,66,0.12)"/>
+  <text x="80" y="636" fill="#4f5d75" font-size="12" font-family="ui-monospace, monospace">SOLID = information flow</text>
+  <text x="352" y="636" fill="#eb6c36" font-size="12" font-family="ui-monospace, monospace">DASHED = feedback flow</text>
+</svg>

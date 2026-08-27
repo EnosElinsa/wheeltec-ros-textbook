@@ -16,6 +16,9 @@ PROHIBITED_EDITORIAL_PATTERNS = {
     "filler emphasis": re.compile(r"重点是|需要注意的是"),
     "reader prediction": re.compile(r"你应该能|应能理解"),
     "inflated technical prose": re.compile(r"至关重要|完整体系|深入理解"),
+    "source-material framing": re.compile(
+        r"(?:资料中|资料包中|当前资料|随货资料|本机资料中|用户资料|原始资料)"
+    ),
 }
 
 

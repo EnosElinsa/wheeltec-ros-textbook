@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 560" role="img" aria-labelledby="talker-listener-title talker-listener-desc">
+  <title id="talker-listener-title">talker 与 listener 的 ROS 2 通信</title>
+  <desc id="talker-listener-desc">图示展示 talker 节点向 chatter 话题发布文字消息，listener 节点订阅并接收消息。</desc>
+  <defs>
+    <marker id="talker-listener-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#4f5d75"/></marker>
+    <marker id="talker-listener-accent" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#eb6c36"/></marker>
+  </defs>
+  <rect width="1280" height="560" fill="#f5f5f5"/>
+  <text x="80" y="76" fill="#4f5d75" font-size="12" font-family="system-ui, sans-serif" letter-spacing="2">FIRST OBSERVATION · ROS 2 TOPIC</text>
+  <text x="80" y="124" fill="#2d3142" font-size="28" font-weight="600" font-family="system-ui, sans-serif">一条消息如何从发布者到订阅者</text>
+  <path d="M352 292H520" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#talker-listener-arrow)"/>
+  <path d="M760 292H928" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#talker-listener-arrow)"/>
+  <rect x="80" y="220" width="272" height="144" rx="8" fill="#ffffff" stroke="#4f5d75"/>
+  <rect x="520" y="204" width="240" height="176" rx="8" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2"/>
+  <rect x="928" y="220" width="272" height="144" rx="8" fill="#ffffff" stroke="#4f5d75"/>
+  <text x="108" y="256" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace" letter-spacing="2">PUBLISHER</text>
+  <text x="108" y="300" fill="#2d3142" font-size="24" font-weight="600" font-family="system-ui, sans-serif">/talker</text>
+  <text x="108" y="332" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">周期发布 Hello World</text>
+  <text x="548" y="240" fill="#eb6c36" font-size="12" font-family="ui-monospace, monospace" letter-spacing="2">TOPIC · /chatter</text>
+  <text x="548" y="292" fill="#2d3142" font-size="24" font-weight="600" font-family="system-ui, sans-serif">文字消息</text>
+  <text x="548" y="328" fill="#4f5d75" font-size="16" font-family="ui-monospace, monospace">data: Hello World</text>
+  <text x="956" y="256" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace" letter-spacing="2">SUBSCRIBER</text>
+  <text x="956" y="300" fill="#2d3142" font-size="24" font-weight="600" font-family="system-ui, sans-serif">/listener</text>
+  <text x="956" y="332" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">订阅并打印消息</text>
+  <rect x="80" y="440" width="1120" height="1" fill="rgba(45,49,66,0.12)"/>
+  <text x="80" y="480" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">ros2 node list 查看两个节点；ros2 topic list 查看 /chatter；ros2 topic echo 读取消息内容。</text>
+</svg>

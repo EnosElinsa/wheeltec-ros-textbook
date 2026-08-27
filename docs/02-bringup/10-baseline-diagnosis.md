@@ -109,7 +109,7 @@ dmesg --ctime | tail -n 80
 
 ### 5. 第四层：启动 ROS 2 底层
 
-确认当前终端已加载正确 ROS 2 和工作空间，然后使用本机资料中匹配的 Launch 文件。常见出厂示例是：
+确认当前终端已加载正确 ROS 2 和工作空间，然后从当前功能包中选择与车型、主控和传感器匹配的 Launch 文件。常见启动形式是：
 
 ```bash
 ros2 launch turn_on_wheeltec_robot turn_on_wheeltec_robot.launch.py

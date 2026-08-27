@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="ros2-stm32-loop-title ros2-stm32-loop-desc">
+  <title id="ros2-stm32-loop-title">ROS 2 与 STM32 的闭环链路</title>
+  <desc id="ros2-stm32-loop-desc">图示展示速度命令从 ROS 2 经过串口或 CAN 到达 STM32 和电机，再由编码器与 IMU 经状态帧返回 ROS 2。</desc>
+  <defs>
+    <marker id="ros2-stm32-loop-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#4f5d75"/></marker>
+    <marker id="ros2-stm32-loop-accent" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#eb6c36"/></marker>
+  </defs>
+  <rect width="1280" height="720" fill="#f5f5f5"/>
+  <text x="80" y="76" fill="#4f5d75" font-size="12" font-family="system-ui, sans-serif" letter-spacing="2">ROS 2 ↔ STM32 · CLOSED LOOP</text>
+  <text x="80" y="124" fill="#2d3142" font-size="28" font-weight="600" font-family="system-ui, sans-serif">命令下行，状态上行</text>
+  <rect x="80" y="196" width="1120" height="164" rx="8" fill="#ffffff" stroke="#4f5d75"/>
+  <rect x="80" y="400" width="1120" height="164" rx="8" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2"/>
+  <text x="108" y="232" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace" letter-spacing="2">DOWNLINK · COMMAND</text>
+  <text x="108" y="270" fill="#2d3142" font-size="20" font-weight="600" font-family="system-ui, sans-serif">cmd_vel</text>
+  <path d="M208 264H292" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#ros2-stm32-loop-arrow)"/>
+  <rect x="292" y="232" width="184" height="72" rx="6" fill="#f5f5f5" stroke="#4f5d75"/><text x="316" y="262" fill="#2d3142" font-size="16" font-weight="600" font-family="system-ui, sans-serif">ROS 2 底盘节点</text><text x="316" y="286" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace">m/s · rad/s</text>
+  <path d="M476 264H560" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#ros2-stm32-loop-arrow)"/>
+  <rect x="560" y="232" width="184" height="72" rx="6" fill="#f5f5f5" stroke="#4f5d75"/><text x="584" y="262" fill="#2d3142" font-size="16" font-weight="600" font-family="system-ui, sans-serif">协议帧</text><text x="584" y="286" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace">serial · CAN</text>
+  <path d="M744 264H828" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#ros2-stm32-loop-arrow)"/>
+  <rect x="828" y="232" width="160" height="72" rx="6" fill="#f5f5f5" stroke="#4f5d75"/><text x="852" y="262" fill="#2d3142" font-size="16" font-weight="600" font-family="system-ui, sans-serif">STM32 控制</text><text x="852" y="286" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace">逆运动学 · PI</text>
+  <path d="M988 264H1072" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#ros2-stm32-loop-arrow)"/>
+  <rect x="1072" y="232" width="104" height="72" rx="6" fill="#ececec" stroke="#4f5d75"/><text x="1092" y="262" fill="#2d3142" font-size="16" font-weight="600" font-family="system-ui, sans-serif">电机</text><text x="1092" y="286" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace">PWM</text>
+  <text x="108" y="436" fill="#eb6c36" font-size="12" font-family="ui-monospace, monospace" letter-spacing="2">UPLINK · FEEDBACK</text>
+  <rect x="108" y="468" width="184" height="72" rx="6" fill="#ffffff" stroke="#eb6c36"/><text x="132" y="498" fill="#2d3142" font-size="16" font-weight="600" font-family="system-ui, sans-serif">编码器 + IMU</text><text x="132" y="522" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace">actual state</text>
+  <path d="M292 504H376" fill="none" stroke="#eb6c36" stroke-width="1.2" stroke-dasharray="6,5" marker-end="url(#ros2-stm32-loop-accent)"/>
+  <rect x="376" y="468" width="184" height="72" rx="6" fill="#ffffff" stroke="#eb6c36"/><text x="400" y="498" fill="#2d3142" font-size="16" font-weight="600" font-family="system-ui, sans-serif">STM32 状态帧</text><text x="400" y="522" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace">正运动学</text>
+  <path d="M560 504H644" fill="none" stroke="#eb6c36" stroke-width="1.2" stroke-dasharray="6,5" marker-end="url(#ros2-stm32-loop-accent)"/>
+  <rect x="644" y="468" width="184" height="72" rx="6" fill="#ffffff" stroke="#eb6c36"/><text x="668" y="498" fill="#2d3142" font-size="16" font-weight="600" font-family="system-ui, sans-serif">协议解析</text><text x="668" y="522" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace">units · signs</text>
+  <path d="M828 504H912" fill="none" stroke="#eb6c36" stroke-width="1.2" stroke-dasharray="6,5" marker-end="url(#ros2-stm32-loop-accent)"/>
+  <rect x="912" y="468" width="264" height="72" rx="6" fill="#ffffff" stroke="#eb6c36"/><text x="936" y="498" fill="#2d3142" font-size="16" font-weight="600" font-family="system-ui, sans-serif">odom · imu · tf</text><text x="936" y="522" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace">ROS 2 feedback</text>
+  <path d="M1088 360V400" fill="none" stroke="#eb6c36" stroke-width="1.2" stroke-dasharray="6,5" marker-end="url(#ros2-stm32-loop-accent)"/>
+</svg>

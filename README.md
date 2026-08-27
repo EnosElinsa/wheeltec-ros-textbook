@@ -46,5 +46,3 @@ python -m venv .venv
 这是非官方学习项目，不代表 WHEELTEC 官方文档。产品名称和商标归其权利人所有。
 
 涉及供电、接线、电机运动和固件烧录时，请先核对自己的机器人型号与控制板版本。第一次运动测试应架空轮子或清空周围区域，并准备随时断电。
-
-网站部署方法见[使用 GitHub Pages 发布教材](docs/09-deployment-maintenance/github-pages-deployment.md)。

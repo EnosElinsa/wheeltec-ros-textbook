@@ -54,7 +54,7 @@ ros2 topic info /cmd_vel --verbose
 ros2 run wheeltec_robot_keyboard wheeltec_keyboard
 ```
 
-保持终端焦点，根据当前终端提示使用按键。资料中的版本使用 `k` 停止，速度调整键包括 `q/z` 等；应以运行时提示为准。
+保持终端焦点，根据当前终端提示使用按键。常见版本使用 `k` 停止，速度调整键包括 `q/z` 等；实际按键以运行时提示为准。
 
 ### 4. 同时观察消息
 

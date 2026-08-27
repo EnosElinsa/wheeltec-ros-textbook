@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="ros2-data-chain-title ros2-data-chain-desc">
+  <title id="ros2-data-chain-title">ROS 2 从雷达到电机的数据链</title>
+  <desc id="ros2-data-chain-desc">图示展示雷达节点发布扫描消息，导航节点计算速度目标，底盘节点把目标交给控制板和电机。</desc>
+  <defs>
+    <marker id="ros2-data-chain-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#4f5d75"/></marker>
+    <marker id="ros2-data-chain-accent" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#eb6c36"/></marker>
+  </defs>
+  <rect width="1280" height="720" fill="#f5f5f5"/>
+  <text x="80" y="76" fill="#4f5d75" font-size="12" font-family="system-ui, sans-serif" letter-spacing="2">ROS 2 COMMUNICATION · DATA CHAIN</text>
+  <text x="80" y="124" fill="#2d3142" font-size="28" font-weight="600" font-family="system-ui, sans-serif">接口类型服务于不同的时间特征</text>
+  <text x="80" y="156" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">主数据链使用话题；耗时导航任务使用动作；配置值使用参数；一次性查询使用服务。</text>
+  <path d="M284 292H384" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#ros2-data-chain-arrow)"/>
+  <path d="M584 292H684" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#ros2-data-chain-arrow)"/>
+  <path d="M884 292H984" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#ros2-data-chain-arrow)"/>
+  <rect x="80" y="220" width="204" height="144" rx="8" fill="#ffffff" stroke="#4f5d75"/>
+  <rect x="384" y="220" width="200" height="144" rx="8" fill="#ffffff" stroke="#4f5d75"/>
+  <rect x="684" y="220" width="200" height="144" rx="8" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2"/>
+  <rect x="984" y="220" width="216" height="144" rx="8" fill="#ececec" stroke="#4f5d75"/>
+  <text x="104" y="256" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace" letter-spacing="2">SENSOR</text>
+  <text x="104" y="300" fill="#2d3142" font-size="20" font-weight="600" font-family="system-ui, sans-serif">雷达节点</text>
+  <text x="104" y="332" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">扫描消息</text>
+  <text x="408" y="256" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace" letter-spacing="2">PLAN</text>
+  <text x="408" y="300" fill="#2d3142" font-size="20" font-weight="600" font-family="system-ui, sans-serif">导航节点</text>
+  <text x="408" y="332" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">路径与速度</text>
+  <text x="708" y="256" fill="#eb6c36" font-size="12" font-family="ui-monospace, monospace" letter-spacing="2">CONTROL</text>
+  <text x="708" y="300" fill="#2d3142" font-size="20" font-weight="600" font-family="system-ui, sans-serif">底盘节点</text>
+  <text x="708" y="332" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">速度话题</text>
+  <text x="1008" y="256" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace" letter-spacing="2">ACTUATE</text>
+  <text x="1008" y="300" fill="#2d3142" font-size="20" font-weight="600" font-family="system-ui, sans-serif">控制板 → 电机</text>
+  <text x="1008" y="332" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">控制数据</text>
+  <text x="80" y="452" fill="#2d3142" font-size="20" font-weight="600" font-family="system-ui, sans-serif">四种接口的选择依据</text>
+  <rect x="80" y="484" width="250" height="112" rx="8" fill="#ffffff" stroke="#4f5d75"/>
+  <rect x="360" y="484" width="250" height="112" rx="8" fill="#ffffff" stroke="#4f5d75"/>
+  <rect x="640" y="484" width="250" height="112" rx="8" fill="#ffffff" stroke="#4f5d75"/>
+  <rect x="920" y="484" width="280" height="112" rx="8" fill="#ffffff" stroke="#4f5d75"/>
+  <text x="104" y="520" fill="#eb6c36" font-size="16" font-weight="600" font-family="system-ui, sans-serif">话题</text><text x="104" y="552" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">连续数据</text>
+  <text x="384" y="520" fill="#2d3142" font-size="16" font-weight="600" font-family="system-ui, sans-serif">服务</text><text x="384" y="552" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">一次请求与响应</text>
+  <text x="664" y="520" fill="#2d3142" font-size="16" font-weight="600" font-family="system-ui, sans-serif">动作</text><text x="664" y="552" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">进度、结果、取消</text>
+  <text x="944" y="520" fill="#2d3142" font-size="16" font-weight="600" font-family="system-ui, sans-serif">参数</text><text x="944" y="552" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">节点运行配置</text>
+</svg>

@@ -10,7 +10,7 @@ status: complete
 
 ## 41.2 适用范围
 
-ROS 2 TTS、多模态大模型交互和资料中的 OpenClaw 应用。外部 API、QQBot 等网络服务只作为可选入口。
+ROS 2 TTS、多模态大模型交互和 OpenClaw 应用。外部 API、QQBot 等网络服务只作为可选入口。
 
 ## 41.3 操作前检查
 
