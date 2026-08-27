@@ -12,7 +12,7 @@ ROS 2 是正文默认环境。使用 ROS 1 旧设备时，请查看[ROS 1 兼容
 
 ## 从哪里开始
 
-- 想先理解 ROS 2 的基本工作方式：从[第一篇：ROS 2 理论基础](01-foundations/index.md)开始。
+- 想先理解 ROS 2 的基本工作方式：从[第一篇：从零认识 ROS 机器人](01-foundations/index.md)开始。
 - 第一次使用机器人：从[识别你的机器人配置](02-bringup/06-identify-configuration.md)开始。
 - 已经能连接主控，准备做 ROS 2 开发：进入[ROS 2 环境与源码版本选择](04-ros2-development/18-environment-and-source-selection.md)。
 - 准备建图和导航：先完成[传感器自检](05-sensors-navigation/25-sensor-checks.md)。
