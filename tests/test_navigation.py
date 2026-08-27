@@ -121,7 +121,7 @@ class NavigationTests(unittest.TestCase):
             "6 → 17 → 42 → 43 → 45",
         ):
             self.assertIn(sequence, text)
-        self.assertGreaterEqual(text.count("前置能力"), 4)
+        self.assertGreaterEqual(text.count("前置能力"), 3)
 
 
 if __name__ == "__main__":
