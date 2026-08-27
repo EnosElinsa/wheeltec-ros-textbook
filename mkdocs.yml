@@ -28,9 +28,9 @@ nav:
   - 术语表: glossary.md
   - 第一篇 从零认识 ROS 机器人:
       - 本篇说明: 01-foundations/index.md
-      - 1 一台 ROS 机器人由什么组成: 01-foundations/01-robot-components.md
-      - 2 Ubuntu、终端与程序: 01-foundations/02-ubuntu-terminal-programs.md
-      - 3 ROS 2 解决什么问题: 01-foundations/03-what-ros2-solves.md
+      - 1 认识 ROS 与 ROS 2: 01-foundations/01-understanding-ros.md
+      - 2 一台 ROS 机器人如何工作: 01-foundations/02-robot-system-overview.md
+      - 3 Ubuntu、终端与程序: 01-foundations/03-ubuntu-terminal-programs.md
       - 4 第一次观察 ROS 2: 01-foundations/04-first-ros2-observation.md
       - 5 ROS 2 程序怎样协作: 01-foundations/05-ros2-communication.md
   - 第二篇 实机接入与首次启动:

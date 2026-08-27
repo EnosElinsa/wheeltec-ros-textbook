@@ -4,27 +4,33 @@ status: complete
 
 # 22. TF、URDF 与 RViz
 
-## 本章目标
+## 22.1 学习目标
 
 先验证机器人坐标树，再加载模型和 RViz。能够区分“模型不好看”和“传感器坐标关系错误”，并知道修改 URDF 后怎样证明运行系统使用了新模型。
 
-## 适用范围
+## 22.2 适用范围
 
 适用于 ROS 2 的 TF2、URDF/Xacro 和 `robot_state_publisher`。
 
-## 开始前检查
+## 22.3 操作前检查
 
 - 机器人静止，底盘与传感器节点已启动。
 - 记录传感器实际安装方向和高度。
 - 备份 URDF/Xacro、网格和模型 Launch。
 
-## 工作原理
+## 22.4 工作原理
+
+### 模型、坐标树与显示
 
 URDF 描述连杆和关节；`robot_state_publisher` 根据模型和关节状态发布 TF。导航通常要求 `map → odom → base_link → sensor` 链完整。RViz 只是显示客户端，红色报错反映的是上游坐标、话题或时间问题。
 
+### 静态与动态变换
+
 TF 记录坐标系之间的关系。传感器相对机身的安装位置通常不变，属于静态变换；车体相对里程计坐标会随运动更新，属于动态变换。每条动态变换都带时间戳，使用数据的节点需要在对应时刻找到完整的坐标关系。坐标系名称正确但时间范围不重叠，仍会出现变换查询失败。
 
-## 操作步骤
+## 22.5 操作步骤
+
+### 检查坐标树
 
 ```bash
 ros2 run tf2_tools view_frames
@@ -34,13 +40,17 @@ ros2 topic echo --once /robot_description
 
 `view_frames` 生成当前坐标树和时间统计；`tf2_echo` 持续显示两个坐标系之间的变换。先确认父子关系和时间戳，再判断数值是否符合实物安装。
 
+### 在 RViz 中观察
+
 在 RViz 中先把 Fixed Frame 设为当前确实存在的坐标系，再逐个添加 RobotModel、LaserScan、PointCloud2 或 Image。
+
+### 修改模型并验证
 
 修改 URDF 时先调整一个 link/joint，检查：父子关系、平移单位（米）、旋转单位（弧度）和网格路径。重新启动模型发布节点后，再用 `/robot_description` 和 TF 验证，而不是只刷新 RViz。
 
 主控和虚拟机各自保留模型副本时，两端必须同步；否则 RViz 可能显示旧模型而主控运行新坐标。
 
-## 结果验收
+## 22.6 验收标准
 
 - TF 树无断裂和循环。
 - `base_link` 到雷达、相机、IMU 的变换与实物方向一致。
@@ -48,7 +58,7 @@ ros2 topic echo --once /robot_description
 - RViz Fixed Frame 明确，模型和数据落在合理位置。
 - 修改后运行中的 `/robot_description` 已变化，并可恢复旧模型。
 
-## 常见故障与处理
+## 22.7 故障排查
 
 | 现象 | 检查 |
 |---|---|

@@ -80,16 +80,16 @@ class ManifestTests(unittest.TestCase):
 class ChapterQualityTests(unittest.TestCase):
     def test_valid_chapter_passes_schema_check(self) -> None:
         issues = quality.check_chapter(
-            ROOT / "tests" / "fixtures" / "valid-chapter.md", 150_000
+            ROOT / "tests" / "fixtures" / "valid-chapter.md", 150_000, 6
         )
         self.assertEqual(issues, [])
 
     def test_invalid_chapter_reports_missing_section_and_promotional_copy(self) -> None:
         issues = quality.check_chapter(
-            ROOT / "tests" / "fixtures" / "invalid-chapter.md", 150_000
+            ROOT / "tests" / "fixtures" / "invalid-chapter.md", 150_000, 6
         )
         messages = [issue.message for issue in issues]
-        self.assertIn("missing section: 结果验收", messages)
+        self.assertIn("missing section: 6.6 验收标准", messages)
         self.assertIn("supplier promotional copy is not allowed", messages)
 
     def test_broken_internal_markdown_link_is_reported(self) -> None:
@@ -101,7 +101,7 @@ class ChapterQualityTests(unittest.TestCase):
 
     def test_file_over_size_limit_is_reported(self) -> None:
         issues = quality.check_chapter(
-            ROOT / "tests" / "fixtures" / "valid-chapter.md", 100
+            ROOT / "tests" / "fixtures" / "valid-chapter.md", 100, 6
         )
         self.assertIn("file exceeds size limit", [issue.message for issue in issues])
 

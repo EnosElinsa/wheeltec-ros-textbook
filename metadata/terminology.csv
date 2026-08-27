@@ -1,0 +1,18 @@
+chinese,english,abbreviation,first_use,later_use
+机器人操作系统,Robot Operating System,ROS,机器人操作系统（Robot Operating System, ROS）,ROS
+机器人操作系统 2,Robot Operating System 2,ROS 2,机器人操作系统 2（Robot Operating System 2, ROS 2）,ROS 2
+操作系统,Operating System,OS,操作系统（Operating System, OS）,操作系统
+安全外壳协议,Secure Shell,SSH,安全外壳协议（Secure Shell, SSH）,SSH
+控制器局域网,Controller Area Network,CAN,控制器局域网（Controller Area Network, CAN）,CAN
+数据分发服务,Data Distribution Service,DDS,数据分发服务（Data Distribution Service, DDS）,DDS
+服务质量,Quality of Service,QoS,服务质量（Quality of Service, QoS）,QoS
+统一机器人描述格式,Unified Robot Description Format,URDF,统一机器人描述格式（Unified Robot Description Format, URDF）,URDF
+节点,Node,,节点（Node）,节点
+话题,Topic,,话题（Topic）,话题
+发布者,Publisher,,发布者（Publisher）,发布者
+订阅者,Subscriber,,订阅者（Subscriber）,订阅者
+服务,Service,,服务（Service）,服务
+动作,Action,,动作（Action）,动作
+参数,Parameter,,参数（Parameter）,参数
+工作空间,Workspace,,工作空间（Workspace）,工作空间
+功能包,Package,,功能包（Package）,功能包

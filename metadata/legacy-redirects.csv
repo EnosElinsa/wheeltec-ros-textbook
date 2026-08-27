@@ -1,6 +1,6 @@
 source,target
 00-ros2-theory/,01-foundations/
-00-ros2-theory/t1-what-is-ros2/,01-foundations/03-what-ros2-solves/
+00-ros2-theory/t1-what-is-ros2/,01-foundations/01-understanding-ros/
 00-ros2-theory/t2-graph-and-communication/,01-foundations/05-ros2-communication/
 00-ros2-theory/t3-workspace-package-runtime/,04-ros2-development/19-workspace-packages-build/
 00-ros2-theory/t4-time-qos-tf-diagnosis/,04-ros2-development/
@@ -55,3 +55,6 @@ source,target
 08-deployment-maintenance/41-system-acceptance/,09-deployment-maintenance/46-system-acceptance/
 08-deployment-maintenance/system-acceptance-checklist/,09-deployment-maintenance/system-acceptance-checklist/
 08-deployment-maintenance/42-github-pages-deployment/,09-deployment-maintenance/github-pages-deployment/
+01-foundations/01-robot-components/,01-foundations/02-robot-system-overview/
+01-foundations/02-ubuntu-terminal-programs/,01-foundations/03-ubuntu-terminal-programs/
+01-foundations/03-what-ros2-solves/,01-foundations/01-understanding-ros/
