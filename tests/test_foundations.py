@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import sys
 import unittest
 from pathlib import Path
@@ -76,6 +77,14 @@ class FoundationSchemaTests(unittest.TestCase):
 
 
 class FoundationContentTests(unittest.TestCase):
+    def test_reader_questions_have_documented_pass_results(self) -> None:
+        tasks = (ROOT / "tests" / "reader-tasks.md").read_text(encoding="utf-8")
+        results = (ROOT / "tests" / "reader-test-results.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertEqual(len(re.findall(r"^\d+\. ", tasks, re.MULTILINE)), 8)
+        self.assertEqual(results.count("| PASS |"), 8)
+
     def test_chapter_1_covers_visible_robot_components(self) -> None:
         path = ROOT / "docs" / "01-foundations" / "01-robot-components.md"
         text = path.read_text(encoding="utf-8")
