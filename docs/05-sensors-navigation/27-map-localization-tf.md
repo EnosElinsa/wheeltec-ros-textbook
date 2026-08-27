@@ -33,6 +33,8 @@ status: complete
 5. 记录 `/tf`、`/tf_static`、里程计和定位粒子/位姿话题。
 6. 若使用 EKF，确认它融合的传感器和输出坐标，不重复融合同一信息。
 
+使用录制数据复现 TF 问题时，参考 [ROS 1 Bag 离线传感器诊断](ros1-bag-offline-diagnostics.md)，分别检查 Bag 中的 `/tf`、里程计 `header.frame_id`、`child_frame_id` 和传感器 frame。`/tf` 存在不代表整条链连续。
+
 ## 27.6 验收标准
 
 - TF 链完整且无多个发布者争用。

@@ -67,6 +67,7 @@ nav:
   - 第五篇 传感器、建图与导航:
       - 本篇说明: 05-sensors-navigation/index.md
       - 25 传感器自检: 05-sensors-navigation/25-sensor-checks.md
+      - ROS 1 Bag 离线诊断: 05-sensors-navigation/ros1-bag-offline-diagnostics.md
       - 26 雷达与二维建图: 05-sensors-navigation/26-lidar-and-mapping.md
       - 27 地图、定位与 TF: 05-sensors-navigation/27-map-localization-tf.md
       - 28 Nav2 导航: 05-sensors-navigation/28-nav2-navigation.md
