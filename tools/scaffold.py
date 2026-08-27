@@ -8,6 +8,15 @@ from pathlib import Path
 
 
 VOLUME_TITLES = {
+    "01-foundations": "第一篇：从零认识 ROS 机器人",
+    "02-bringup": "第二篇：实机接入与首次启动",
+    "03-chassis-control": "第三篇：底盘控制与运动学",
+    "04-ros2-development": "第四篇：ROS 2 开发",
+    "05-sensors-navigation": "第五篇：传感器、建图与导航",
+    "06-stm32-firmware": "第六篇：STM32 与底盘固件",
+    "07-advanced-applications": "第七篇：高级应用",
+    "08-r680-platform": "第八篇：R680 平台",
+    "09-deployment-maintenance": "第九篇：部署、备份与维护",
     "00-ros2-theory": "卷零：ROS 2 理论基础",
     "01-bringup": "卷一：实机接入与首次启动",
     "02-chassis-control": "卷二：底盘控制与运动学",
@@ -34,7 +43,13 @@ def create_pages(rows: list[dict[str, str]], root: Path) -> list[Path]:
         target.write_text(_draft_page(row["title"]), encoding="utf-8")
         created.append(target)
 
-    volumes = sorted({row["volume"] for row in rows if row["kind"] in {"theory", "chapter"}})
+    volumes = sorted(
+        {
+            row["volume"]
+            for row in rows
+            if row["kind"] in {"theory", "foundation", "chapter"}
+        }
+    )
     for volume in volumes:
         target = root / "docs" / volume / "index.md"
         if target.exists():

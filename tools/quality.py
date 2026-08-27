@@ -19,7 +19,17 @@ REQUIRED_MANIFEST_COLUMNS = {
     "size_limit_bytes",
 }
 ALLOWED_STATUSES = {"draft", "complete"}
-ALLOWED_KINDS = {"theory", "chapter", "appendix"}
+ALLOWED_KINDS = {"theory", "foundation", "chapter", "appendix"}
+FOUNDATION_HEADINGS = [
+    "本章要回答的问题",
+    "从一个具体场景开始",
+    "新概念",
+    "图示或逐步例子",
+    "可选实验",
+    "本章小结",
+    "自检问题",
+    "章节导航",
+]
 REQUIRED_CHAPTER_HEADINGS = [
     "本章目标",
     "适用范围",
@@ -32,6 +42,12 @@ REQUIRED_CHAPTER_HEADINGS = [
 ]
 PROMOTIONAL_PATTERNS = ["推荐关注我们的公众号", "关注公众号", "获取更新资料"]
 UNFINISHED_PATTERNS = [r"\bTODO\b", r"\bTBD\b", r"\[待写\]", r"\[内容待补\]"]
+FORBIDDEN_FOUNDATION_PATTERNS = {
+    "later chapter prerequisite": r"(?:已读|先读|完成|先完成)第\s*(?:[6-9]|[1-3][0-9]|4[0-6])\s*章",
+    "advanced middleware jargon": r"\b(?:DDS|QoS|TF|colcon|Launch|Docker)\b",
+    "required SSH access": r"必须(?:使用|通过).*SSH",
+    "required robot runtime": r"(?:机器人|WHEELTEC).*(?:节点|系统).*已启动",
+}
 LINK_PATTERN = re.compile(r"!?\[[^\]]*\]\(([^)\r\n]+)\)")
 
 
@@ -73,16 +89,39 @@ def check_manifest(rows: list[dict[str, str]]) -> list[str]:
             errors.append(f"invalid size limit: {row.get('path', '')}")
 
     theory = [row for row in rows if row.get("kind") == "theory"]
+    foundations = [row for row in rows if row.get("kind") == "foundation"]
     chapters = [row for row in rows if row.get("kind") == "chapter"]
     appendices = [row for row in rows if row.get("kind") == "appendix"]
-    try:
-        chapter_numbers = [int(row["number"]) for row in chapters]
-    except (KeyError, ValueError):
-        chapter_numbers = []
-    if chapter_numbers != list(range(1, 42)):
-        errors.append("chapter numbers must be consecutive from 1 through 41")
-    if [row.get("number") for row in theory] != ["T1", "T2", "T3", "T4"]:
-        errors.append("theory pages must be ordered T1 through T4")
+    if theory:
+        try:
+            chapter_numbers = [int(row["number"]) for row in chapters]
+        except (KeyError, ValueError):
+            chapter_numbers = []
+        if foundations:
+            errors.append("legacy manifest cannot contain foundation rows")
+        if chapter_numbers != list(range(1, 42)):
+            errors.append("chapter numbers must be consecutive from 1 through 41")
+        if [row.get("number") for row in theory] != ["T1", "T2", "T3", "T4"]:
+            errors.append("theory pages must be ordered T1 through T4")
+    else:
+        try:
+            foundation_numbers = [int(row["number"]) for row in foundations]
+            chapter_numbers = [int(row["number"]) for row in chapters]
+            numbered_rows = [
+                int(row["number"])
+                for row in rows
+                if row.get("kind") in {"foundation", "chapter"}
+            ]
+        except (KeyError, ValueError):
+            foundation_numbers = []
+            chapter_numbers = []
+            numbered_rows = []
+        if foundation_numbers != list(range(1, 6)):
+            errors.append("foundation numbers must be consecutive from 1 through 5")
+        if chapter_numbers != list(range(6, 47)):
+            errors.append("engineering chapter numbers must be consecutive from 6 through 46")
+        if numbered_rows != list(range(1, 47)):
+            errors.append("all numbered pages must be ordered from 1 through 46")
     if [row.get("number") for row in appendices] != ["A", "B", "C"]:
         errors.append("public chapter manifest must contain appendices A through C")
     return errors
@@ -98,6 +137,28 @@ def check_chapter(path: Path, size_limit: int) -> list[Issue]:
     for heading in REQUIRED_CHAPTER_HEADINGS:
         if heading not in headings:
             issues.append(Issue("error", relative, f"missing section: {heading}"))
+    if any(pattern in text for pattern in PROMOTIONAL_PATTERNS):
+        issues.append(Issue("error", relative, "supplier promotional copy is not allowed"))
+    for pattern in UNFINISHED_PATTERNS:
+        if re.search(pattern, text, flags=re.IGNORECASE):
+            issues.append(Issue("error", relative, "unfinished-work marker is not allowed"))
+            break
+    return issues
+
+
+def check_foundation(path: Path, size_limit: int) -> list[Issue]:
+    issues: list[Issue] = []
+    relative = path.as_posix()
+    if path.stat().st_size > size_limit:
+        issues.append(Issue("error", relative, "file exceeds size limit"))
+    text = path.read_text(encoding="utf-8")
+    headings = set(re.findall(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE))
+    for heading in FOUNDATION_HEADINGS:
+        if heading not in headings:
+            issues.append(Issue("error", relative, f"missing section: {heading}"))
+    for category, pattern in FORBIDDEN_FOUNDATION_PATTERNS.items():
+        if re.search(pattern, text, flags=re.IGNORECASE):
+            issues.append(Issue("error", relative, category))
     if any(pattern in text for pattern in PROMOTIONAL_PATTERNS):
         issues.append(Issue("error", relative, "supplier promotional copy is not allowed"))
     for pattern in UNFINISHED_PATTERNS:
@@ -176,7 +237,9 @@ def check_all(root: Path, selected_paths: list[Path] | None = None) -> list[Issu
         row = manifest_by_path.get(relative)
         if row and row["status"] == "complete":
             size_limit = int(row["size_limit_bytes"])
-            if row["kind"] == "chapter":
+            if row["kind"] == "foundation":
+                issues.extend(check_foundation(path, size_limit))
+            elif row["kind"] == "chapter":
                 issues.extend(check_chapter(path, size_limit))
             elif path.stat().st_size > size_limit:
                 issues.append(Issue("error", relative, "file exceeds size limit"))
