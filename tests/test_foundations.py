@@ -75,5 +75,22 @@ class FoundationSchemaTests(unittest.TestCase):
         self.assertEqual(quality.check_manifest(rows), [])
 
 
+class FoundationContentTests(unittest.TestCase):
+    def test_chapter_1_covers_visible_robot_components(self) -> None:
+        path = ROOT / "docs" / "01-foundations" / "01-robot-components.md"
+        text = path.read_text(encoding="utf-8")
+        for term in ("机械结构", "电源", "传感器", "主控", "控制板", "电机"):
+            self.assertIn(term, text)
+        self.assertEqual(quality.check_foundation(path, 150_000), [])
+
+    def test_chapter_2_builds_computer_vocabulary_before_ssh(self) -> None:
+        path = ROOT / "docs" / "01-foundations" / "02-ubuntu-terminal-programs.md"
+        text = path.read_text(encoding="utf-8")
+        for term in ("操作系统", "文件", "目录", "终端", "命令", "程序", "进程", "SSH"):
+            self.assertIn(term, text)
+        self.assertLess(text.index("终端"), text.index("SSH"))
+        self.assertEqual(quality.check_foundation(path, 150_000), [])
+
+
 if __name__ == "__main__":
     unittest.main()
