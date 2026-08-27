@@ -48,6 +48,8 @@ ros2 param dump <节点名>
 
 车型、雷达、相机和串口参数要与第 6 章配置表对应。布尔值、数字和字符串保留正确 YAML 类型；缩进使用空格。
 
+需要把顶层入口继续追到 `base_serial.launch.py`、EKF、车型 URDF、雷达和相机分支时，使用 [`turn_on_wheeltec_robot` 源码与启动链导读](turn-on-wheeltec-robot-source-walkthrough.md)。导读中的结构是追踪方法，仍应以当前工作空间文件为准。
+
 ## 21.6 验收标准
 
 - 能从 Launch 入口追踪到实际参数文件。

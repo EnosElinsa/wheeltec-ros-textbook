@@ -63,6 +63,7 @@ nav:
       - 22 TF、URDF 与 RViz: 04-ros2-development/22-tf-urdf-rviz.md
       - 23 修改、编译与回滚: 04-ros2-development/23-modify-build-rollback.md
       - 24 开机启动与进程: 04-ros2-development/24-autostart-and-processes.md
+      - turn_on_wheeltec_robot 源码导读: 04-ros2-development/turn-on-wheeltec-robot-source-walkthrough.md
   - 第五篇 传感器、建图与导航:
       - 本篇说明: 05-sensors-navigation/index.md
       - 25 传感器自检: 05-sensors-navigation/25-sensor-checks.md
