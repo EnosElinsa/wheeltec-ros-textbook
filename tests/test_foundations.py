@@ -82,8 +82,10 @@ class FoundationContentTests(unittest.TestCase):
         results = (ROOT / "tests" / "reader-test-results.md").read_text(
             encoding="utf-8"
         )
-        self.assertEqual(len(re.findall(r"^\d+\. ", tasks, re.MULTILINE)), 8)
-        self.assertEqual(results.count("| PASS |"), 8)
+        self.assertEqual(len(re.findall(r"^\d+\. ", tasks, re.MULTILINE)), 10)
+        self.assertEqual(results.count("| PASS |"), 10)
+        for section in ("1.2", "1.3", "1.4", "1.6", "2.1", "3.3", "4.4", "5.6"):
+            self.assertIn(section, results)
 
     def test_chapter_1_covers_visible_robot_components(self) -> None:
         path = ROOT / "docs" / "01-foundations" / "02-robot-system-overview.md"

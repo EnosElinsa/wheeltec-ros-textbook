@@ -157,9 +157,9 @@ def compare_protected_content(
     for old, new in zip(before, after):
         path = new.path
         for label, old_value, new_value in (
-            ("fenced code", old.fenced_code_sha256, new.fenced_code_sha256),
-            ("tables", old.table_sha256, new.table_sha256),
-            ("safety admonitions", old.safety_admonition_sha256, new.safety_admonition_sha256),
+            ("fenced code", tuple(old.fenced_code_sha256), tuple(new.fenced_code_sha256)),
+            ("tables", tuple(old.table_sha256), tuple(new.table_sha256)),
+            ("safety admonitions", tuple(old.safety_admonition_sha256), tuple(new.safety_admonition_sha256)),
         ):
             if old_value != new_value:
                 differences.append(f"{path}: {label} changed")
@@ -206,8 +206,20 @@ def main() -> int:
         return 0
 
     baseline_data = json.loads(args.baseline.read_text(encoding="utf-8"))
-    before = [ProtectedContent(**item) for item in baseline_data]
-    after = [extract_protected_content(path) for path in _iter_paths(args.paths)]
+    selected = _iter_paths(args.paths)
+    selected_paths = {path.as_posix() for path in selected}
+    before = [
+        ProtectedContent(
+            path=item["path"],
+            fenced_code_sha256=tuple(item["fenced_code_sha256"]),
+            table_sha256=tuple(item["table_sha256"]),
+            safety_admonition_sha256=tuple(item["safety_admonition_sha256"]),
+            validation_marker_count=item["validation_marker_count"],
+        )
+        for item in baseline_data
+        if item["path"] in selected_paths
+    ]
+    after = [extract_protected_content(path) for path in selected]
     differences = compare_protected_content(before, after)
     for difference in differences:
         print(difference)

@@ -284,6 +284,7 @@ def check_all(root: Path, selected_paths: list[Path] | None = None) -> list[Issu
         if relative.endswith("/index.md") and relative != "docs/index.md" and path.stat().st_size > 30_000:
             issues.append(Issue("error", relative, "file exceeds size limit"))
         issues.extend(check_links(path, root / "docs"))
+        issues.extend(check_editorial_style(path))
 
     complete_paths = [
         root / row["path"]
@@ -311,10 +312,7 @@ def main() -> int:
     args = parser.parse_args()
 
     issues = check_all(args.root, args.paths)
-    if args.editorial_strict:
-        files = _markdown_files(args.root.resolve(), args.paths)
-        for path in files:
-            issues.extend(check_editorial_style(path))
+    # Kept as a compatibility flag; editorial hard failures are now always enabled.
     for issue in issues:
         print(f"{issue.severity.upper()} {issue.path}: {issue.message}")
     errors = [issue for issue in issues if issue.severity == "error"]
