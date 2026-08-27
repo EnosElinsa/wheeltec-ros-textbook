@@ -22,6 +22,8 @@ status: complete
 
 URDF 描述连杆和关节；`robot_state_publisher` 根据模型和关节状态发布 TF。导航通常要求 `map → odom → base_link → sensor` 链完整。RViz 只是显示客户端，红色报错反映的是上游坐标、话题或时间问题。
 
+TF 记录坐标系之间的关系。传感器相对机身的安装位置通常不变，属于静态变换；车体相对里程计坐标会随运动更新，属于动态变换。每条动态变换都带时间戳，使用数据的节点需要在对应时刻找到完整的坐标关系。坐标系名称正确但时间范围不重叠，仍会出现变换查询失败。
+
 ## 操作步骤
 
 ```bash
@@ -29,6 +31,8 @@ ros2 run tf2_tools view_frames
 ros2 run tf2_ros tf2_echo base_link <传感器坐标系>
 ros2 topic echo --once /robot_description
 ```
+
+`view_frames` 生成当前坐标树和时间统计；`tf2_echo` 持续显示两个坐标系之间的变换。先确认父子关系和时间戳，再判断数值是否符合实物安装。
 
 在 RViz 中先把 Fixed Frame 设为当前确实存在的坐标系，再逐个添加 RobotModel、LaserScan、PointCloud2 或 Image。
 

@@ -20,7 +20,9 @@ status: complete
 
 ## 工作原理
 
-`map` 是全局稳定坐标，`odom` 保持局部连续但会漂移，`base_link` 随机器人运动。定位系统估计 `map → odom`，底盘里程计提供 `odom → base_link`。两条职责混在一个节点里，容易造成 TF 冲突。
+移动机器人常用的完整链路是 `map → odom → base_link → sensor`。`map` 是全局稳定坐标，`odom` 保持局部连续但会漂移，`base_link` 随机器人运动，最后一级表示雷达、相机等传感器相对机身的安装位置。
+
+定位系统估计 `map → odom`，底盘里程计提供 `odom → base_link`，静态发布器或机器人模型提供 `base_link → sensor`。三段关系由不同来源负责；同一段出现多个发布者时会造成坐标跳变和冲突。
 
 ## 操作步骤
 

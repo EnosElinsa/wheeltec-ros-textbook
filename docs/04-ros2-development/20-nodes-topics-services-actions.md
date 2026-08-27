@@ -25,6 +25,8 @@ ROS 2 正文环境。ROS 1 对应命令见附录 A。
 
 接口类型规定消息字段。名字相同但类型不同的接口不能直接通信。ROS 2 还受 Domain ID、DDS 实现和 QoS 影响。
 
+话题的发布者和订阅者还要满足通信策略。`reliability` 表示是否要求可靠送达，`history` 表示怎样保存历史消息，`depth` 表示队列最多保留多少条。节点和话题都能列出来，只能证明发现过程基本成功；发布者与订阅者的策略不兼容时，订阅端仍可能收不到数据。
+
 ## 操作步骤
 
 ```bash
@@ -41,6 +43,8 @@ ros2 action list -t
 ros2 topic info /cmd_vel --verbose
 ros2 interface show geometry_msgs/msg/Twist
 ```
+
+在 `--verbose` 输出中逐个比较发布者和订阅者的类型、`reliability`、`history` 与 `depth`。先记录两端当前值，再决定是否需要修改配置。
 
 对传感器先看频率，再看单条内容：
 
