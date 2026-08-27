@@ -1,0 +1,97 @@
+site_name: WHEELTEC ROS 工程教材
+docs_dir: docs
+site_dir: site
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.sections
+    - navigation.path
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+plugins:
+  - search:
+      lang:
+        - zh
+        - en
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+strict: true
+nav:
+  - 首页: index.md
+  - 阅读路径: reading-paths.md
+  - 术语表: glossary.md
+  - 卷零 ROS 2 理论基础:
+      - 本卷说明: 00-ros2-theory/index.md
+      - T1 ROS 2 是什么: 00-ros2-theory/t1-what-is-ros2.md
+      - T2 系统图与通信模型: 00-ros2-theory/t2-graph-and-communication.md
+      - T3 工作空间、功能包与运行时: 00-ros2-theory/t3-workspace-package-runtime.md
+      - T4 时间、QoS、TF 与诊断: 00-ros2-theory/t4-time-qos-tf-diagnosis.md
+  - 卷一 实机接入与首次启动:
+      - 本卷说明: 01-bringup/index.md
+      - 1 识别机器人配置: 01-bringup/01-identify-configuration.md
+      - 2 电源与接线安全: 01-bringup/02-power-and-wiring.md
+      - 3 首次上电: 01-bringup/03-first-power-on.md
+      - 4 连接主控: 01-bringup/04-connect-controller.md
+      - 5 基线诊断: 01-bringup/05-baseline-diagnosis.md
+  - 卷二 底盘控制与运动学:
+      - 本卷说明: 02-chassis-control/index.md
+      - 6 坐标系与底盘类型: 02-chassis-control/06-coordinate-frames-and-chassis.md
+      - 7 遥控底盘: 02-chassis-control/07-remote-control.md
+      - 8 键盘与 cmd_vel: 02-chassis-control/08-keyboard-and-cmd-vel.md
+      - 9 串口协议: 02-chassis-control/09-serial-protocol.md
+      - 10 CAN 协议: 02-chassis-control/10-can-protocol.md
+      - 11 里程计、编码器、IMU 与 PID: 02-chassis-control/11-odometry-encoder-imu-pid.md
+      - 12 标定与底盘故障: 02-chassis-control/12-calibration-and-faults.md
+  - 卷三 ROS 2 开发主线:
+      - 本卷说明: 03-ros2-development/index.md
+      - 13 环境与源码选择: 03-ros2-development/13-environment-and-source-selection.md
+      - 14 工作空间、功能包与构建: 03-ros2-development/14-workspace-packages-build.md
+      - 15 节点、话题、服务与动作: 03-ros2-development/15-nodes-topics-services-actions.md
+      - 16 Launch 与参数: 03-ros2-development/16-launch-and-parameters.md
+      - 17 TF、URDF 与 RViz: 03-ros2-development/17-tf-urdf-rviz.md
+      - 18 修改、编译与回滚: 03-ros2-development/18-modify-build-rollback.md
+      - 19 开机启动与进程: 03-ros2-development/19-autostart-and-processes.md
+  - 卷四 传感器、建图与导航:
+      - 本卷说明: 04-sensors-navigation/index.md
+      - 20 传感器自检: 04-sensors-navigation/20-sensor-checks.md
+      - 21 雷达与二维建图: 04-sensors-navigation/21-lidar-and-mapping.md
+      - 22 地图、定位与 TF: 04-sensors-navigation/22-map-localization-tf.md
+      - 23 Nav2 导航: 04-sensors-navigation/23-nav2-navigation.md
+      - 24 多点、路径与探索: 04-sensors-navigation/24-waypoints-path-exploration.md
+      - 25 摄像头与 OpenCV: 04-sensors-navigation/25-camera-opencv-images.md
+      - 26 相机标定: 04-sensors-navigation/26-camera-calibration.md
+      - 27 视觉应用: 04-sensors-navigation/27-vision-applications.md
+  - 卷五 STM32 与底盘固件:
+      - 本卷说明: 05-stm32-firmware/index.md
+      - 28 固件架构与 FreeRTOS: 05-stm32-firmware/28-firmware-architecture-freertos.md
+      - 29 初始化、车型与接口: 05-stm32-firmware/29-hardware-init-model-interfaces.md
+      - 30 电机控制与 PID: 05-stm32-firmware/30-motor-control-pid.md
+      - 31 编译、烧录与回滚: 05-stm32-firmware/31-build-flash-rollback.md
+      - 32 ROS 2 与 STM32 联调: 05-stm32-firmware/32-ros2-stm32-integration.md
+  - 卷六 高级应用:
+      - 本卷说明: 06-advanced-applications/index.md
+      - 33 Gazebo 仿真: 06-advanced-applications/33-gazebo-simulation.md
+      - 34 多机与 Qt: 06-advanced-applications/34-multi-robot-and-qt.md
+      - 35 毫米波、人体与深度学习: 06-advanced-applications/35-mmwave-human-deep-learning.md
+      - 36 语音、AI 与 OpenClaw: 06-advanced-applications/36-voice-ai-openclaw.md
+  - 卷七 R680 平台实践:
+      - 本卷说明: 07-r680-platform/index.md
+      - 37 R680 硬件、接线与 OLED: 07-r680-platform/37-r680-hardware-wiring-oled.md
+      - 38 R680 调试、源码与固件: 07-r680-platform/38-r680-debug-source-firmware.md
+  - 卷八 部署、备份与维护:
+      - 本卷说明: 08-deployment-maintenance/index.md
+      - 39 网络、Docker 与镜像: 08-deployment-maintenance/39-network-docker-images.md
+      - 40 日志、备份、升级与恢复: 08-deployment-maintenance/40-logs-backup-upgrade-recovery.md
+      - 41 全系统验收: 08-deployment-maintenance/41-system-acceptance.md
+      - 验收记录表: 08-deployment-maintenance/system-acceptance-checklist.md
+      - GitHub Pages 发布指南: 08-deployment-maintenance/42-github-pages-deployment.md
+  - 附录:
+      - A ROS 1 维护: appendices/a-ros1-maintenance.md
+      - B 平台矩阵: appendices/b-platform-matrix.md
+      - C 软件与工具: appendices/c-software-tools.md
