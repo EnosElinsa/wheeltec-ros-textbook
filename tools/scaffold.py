@@ -17,15 +17,6 @@ VOLUME_TITLES = {
     "07-advanced-applications": "第七篇：高级应用",
     "08-r680-platform": "第八篇：R680 平台",
     "09-deployment-maintenance": "第九篇：部署、备份与维护",
-    "00-ros2-theory": "卷零：ROS 2 理论基础",
-    "01-bringup": "卷一：实机接入与首次启动",
-    "02-chassis-control": "卷二：底盘控制与运动学",
-    "03-ros2-development": "卷三：ROS 2 开发主线",
-    "04-sensors-navigation": "卷四：传感器、建图与导航",
-    "05-stm32-firmware": "卷五：STM32 与底盘固件",
-    "06-advanced-applications": "卷六：高级应用",
-    "07-r680-platform": "卷七：R680 平台实践",
-    "08-deployment-maintenance": "卷八：部署、备份与维护",
 }
 
 
@@ -47,7 +38,7 @@ def create_pages(rows: list[dict[str, str]], root: Path) -> list[Path]:
         {
             row["volume"]
             for row in rows
-            if row["kind"] in {"theory", "foundation", "chapter"}
+            if row["kind"] in {"foundation", "chapter"}
         }
     )
     for volume in volumes:

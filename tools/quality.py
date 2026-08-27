@@ -19,7 +19,7 @@ REQUIRED_MANIFEST_COLUMNS = {
     "size_limit_bytes",
 }
 ALLOWED_STATUSES = {"draft", "complete"}
-ALLOWED_KINDS = {"theory", "foundation", "chapter", "appendix"}
+ALLOWED_KINDS = {"foundation", "chapter", "appendix"}
 FOUNDATION_HEADINGS = [
     "本章要回答的问题",
     "从一个具体场景开始",
@@ -88,40 +88,27 @@ def check_manifest(rows: list[dict[str, str]]) -> list[str]:
         except ValueError:
             errors.append(f"invalid size limit: {row.get('path', '')}")
 
-    theory = [row for row in rows if row.get("kind") == "theory"]
     foundations = [row for row in rows if row.get("kind") == "foundation"]
     chapters = [row for row in rows if row.get("kind") == "chapter"]
     appendices = [row for row in rows if row.get("kind") == "appendix"]
-    if theory:
-        try:
-            chapter_numbers = [int(row["number"]) for row in chapters]
-        except (KeyError, ValueError):
-            chapter_numbers = []
-        if foundations:
-            errors.append("legacy manifest cannot contain foundation rows")
-        if chapter_numbers != list(range(1, 42)):
-            errors.append("chapter numbers must be consecutive from 1 through 41")
-        if [row.get("number") for row in theory] != ["T1", "T2", "T3", "T4"]:
-            errors.append("theory pages must be ordered T1 through T4")
-    else:
-        try:
-            foundation_numbers = [int(row["number"]) for row in foundations]
-            chapter_numbers = [int(row["number"]) for row in chapters]
-            numbered_rows = [
-                int(row["number"])
-                for row in rows
-                if row.get("kind") in {"foundation", "chapter"}
-            ]
-        except (KeyError, ValueError):
-            foundation_numbers = []
-            chapter_numbers = []
-            numbered_rows = []
-        if foundation_numbers != list(range(1, 6)):
-            errors.append("foundation numbers must be consecutive from 1 through 5")
-        if chapter_numbers != list(range(6, 47)):
-            errors.append("engineering chapter numbers must be consecutive from 6 through 46")
-        if numbered_rows != list(range(1, 47)):
-            errors.append("all numbered pages must be ordered from 1 through 46")
+    try:
+        foundation_numbers = [int(row["number"]) for row in foundations]
+        chapter_numbers = [int(row["number"]) for row in chapters]
+        numbered_rows = [
+            int(row["number"])
+            for row in rows
+            if row.get("kind") in {"foundation", "chapter"}
+        ]
+    except (KeyError, ValueError):
+        foundation_numbers = []
+        chapter_numbers = []
+        numbered_rows = []
+    if foundation_numbers != list(range(1, 6)):
+        errors.append("foundation numbers must be consecutive from 1 through 5")
+    if chapter_numbers != list(range(6, 47)):
+        errors.append("engineering chapter numbers must be consecutive from 6 through 46")
+    if numbered_rows != list(range(1, 47)):
+        errors.append("all numbered pages must be ordered from 1 through 46")
     if [row.get("number") for row in appendices] != ["A", "B", "C"]:
         errors.append("public chapter manifest must contain appendices A through C")
     return errors

@@ -1,49 +1,50 @@
-﻿kind,number,volume,path,title,status,size_limit_bytes
-theory,T1,00-ros2-theory,docs/00-ros2-theory/t1-what-is-ros2.md,ROS 2 是什么,complete,150000
-theory,T2,00-ros2-theory,docs/00-ros2-theory/t2-graph-and-communication.md,ROS 2 系统图与通信模型,complete,150000
-theory,T3,00-ros2-theory,docs/00-ros2-theory/t3-workspace-package-runtime.md,工作空间、功能包与运行时环境,complete,150000
-theory,T4,00-ros2-theory,docs/00-ros2-theory/t4-time-qos-tf-diagnosis.md,时间、QoS、TF 与实机诊断,complete,150000
-chapter,1,01-bringup,docs/01-bringup/01-identify-configuration.md,识别你的机器人配置,complete,150000
-chapter,2,01-bringup,docs/01-bringup/02-power-and-wiring.md,电源、供电与接线安全,complete,150000
-chapter,3,01-bringup,docs/01-bringup/03-first-power-on.md,首次上电与基线检查,complete,150000
-chapter,4,01-bringup,docs/01-bringup/04-connect-controller.md,连接主控：显示器、SSH 与远程桌面,complete,150000
-chapter,5,01-bringup,docs/01-bringup/05-baseline-diagnosis.md,第一次功能验收与问题分层,complete,150000
-chapter,6,02-chassis-control,docs/02-chassis-control/06-coordinate-frames-and-chassis.md,坐标系与底盘类型,complete,150000
-chapter,7,02-chassis-control,docs/02-chassis-control/07-remote-control.md,遥控底盘：APP、PS2 与航模遥控,complete,150000
-chapter,8,02-chassis-control,docs/02-chassis-control/08-keyboard-and-cmd-vel.md,键盘与 ROS 2 速度控制,complete,150000
-chapter,9,02-chassis-control,docs/02-chassis-control/09-serial-protocol.md,串口通信协议,complete,150000
-chapter,10,02-chassis-control,docs/02-chassis-control/10-can-protocol.md,CAN 通信协议,complete,150000
-chapter,11,02-chassis-control,docs/02-chassis-control/11-odometry-encoder-imu-pid.md,里程计、编码器、IMU 与 PID,complete,150000
-chapter,12,02-chassis-control,docs/02-chassis-control/12-calibration-and-faults.md,直线纠偏、转向标定和常见底盘故障,complete,150000
-chapter,13,03-ros2-development,docs/03-ros2-development/13-environment-and-source-selection.md,ROS 2 环境与源码版本选择,complete,150000
-chapter,14,03-ros2-development,docs/03-ros2-development/14-workspace-packages-build.md,工作空间、功能包与构建,complete,150000
-chapter,15,03-ros2-development,docs/03-ros2-development/15-nodes-topics-services-actions.md,节点、话题、服务与动作,complete,150000
-chapter,16,03-ros2-development,docs/03-ros2-development/16-launch-and-parameters.md,Launch、参数与运行配置,complete,150000
-chapter,17,03-ros2-development,docs/03-ros2-development/17-tf-urdf-rviz.md,TF、URDF 与 RViz,complete,150000
-chapter,18,03-ros2-development,docs/03-ros2-development/18-modify-build-rollback.md,修改、编译并回滚机器人源码,complete,150000
-chapter,19,03-ros2-development,docs/03-ros2-development/19-autostart-and-processes.md,开机启动与进程管理,complete,150000
-chapter,20,04-sensors-navigation,docs/04-sensors-navigation/20-sensor-checks.md,传感器自检,complete,150000
-chapter,21,04-sensors-navigation,docs/04-sensors-navigation/21-lidar-and-mapping.md,激光雷达与二维建图,complete,150000
-chapter,22,04-sensors-navigation,docs/04-sensors-navigation/22-map-localization-tf.md,地图保存、定位与坐标验证,complete,150000
-chapter,23,04-sensors-navigation,docs/04-sensors-navigation/23-nav2-navigation.md,Nav2 导航,complete,150000
-chapter,24,04-sensors-navigation,docs/04-sensors-navigation/24-waypoints-path-exploration.md,多点导航、路径跟踪与自主探索,complete,150000
-chapter,25,04-sensors-navigation,docs/04-sensors-navigation/25-camera-opencv-images.md,摄像头、OpenCV 与图像话题,complete,150000
-chapter,26,04-sensors-navigation,docs/04-sensors-navigation/26-camera-calibration.md,相机内参与坐标标定,complete,150000
-chapter,27,04-sensors-navigation,docs/04-sensors-navigation/27-vision-applications.md,视觉跟随、巡线、KCF、AR 标签与网页视频,complete,150000
-chapter,28,05-stm32-firmware,docs/05-stm32-firmware/28-firmware-architecture-freertos.md,固件架构与 FreeRTOS 任务,complete,150000
-chapter,29,05-stm32-firmware,docs/05-stm32-firmware/29-hardware-init-model-interfaces.md,硬件初始化、车型选择与接口,complete,150000
-chapter,30,05-stm32-firmware,docs/05-stm32-firmware/30-motor-control-pid.md,电机控制与 PID 实现,complete,150000
-chapter,31,05-stm32-firmware,docs/05-stm32-firmware/31-build-flash-rollback.md,修改、编译、烧录与回滚固件,complete,150000
-chapter,32,05-stm32-firmware,docs/05-stm32-firmware/32-ros2-stm32-integration.md,ROS 2 与 STM32 联调,complete,150000
-chapter,33,06-advanced-applications,docs/06-advanced-applications/33-gazebo-simulation.md,仿真与 Gazebo,complete,150000
-chapter,34,06-advanced-applications,docs/06-advanced-applications/34-multi-robot-and-qt.md,多机编队与 Qt 控制界面,complete,150000
-chapter,35,06-advanced-applications,docs/06-advanced-applications/35-mmwave-human-deep-learning.md,毫米波雷达、人体跟踪与深度学习,complete,150000
-chapter,36,06-advanced-applications,docs/06-advanced-applications/36-voice-ai-openclaw.md,语音、多模态 AI 与 OpenClaw,complete,150000
-chapter,37,07-r680-platform,docs/07-r680-platform/37-r680-hardware-wiring-oled.md,R680 硬件、接线与 OLED 状态,complete,150000
-chapter,38,07-r680-platform,docs/07-r680-platform/38-r680-debug-source-firmware.md,R680 底盘调试、源码与固件维护,complete,150000
-chapter,39,08-deployment-maintenance,docs/08-deployment-maintenance/39-network-docker-images.md,网络、Docker、系统镜像与主控差异,complete,150000
-chapter,40,08-deployment-maintenance,docs/08-deployment-maintenance/40-logs-backup-upgrade-recovery.md,日志、备份、升级与恢复,complete,150000
-chapter,41,08-deployment-maintenance,docs/08-deployment-maintenance/41-system-acceptance.md,全系统验收清单,complete,150000
+kind,number,volume,path,title,status,size_limit_bytes
+foundation,1,01-foundations,docs/01-foundations/01-robot-components.md,一台 ROS 机器人由什么组成,complete,150000
+foundation,2,01-foundations,docs/01-foundations/02-ubuntu-terminal-programs.md,Ubuntu、终端与程序,complete,150000
+foundation,3,01-foundations,docs/01-foundations/03-what-ros2-solves.md,ROS 2 解决什么问题,complete,150000
+foundation,4,01-foundations,docs/01-foundations/04-first-ros2-observation.md,第一次观察 ROS 2,complete,150000
+foundation,5,01-foundations,docs/01-foundations/05-ros2-communication.md,ROS 2 程序怎样协作,complete,150000
+chapter,6,02-bringup,docs/02-bringup/06-identify-configuration.md,识别你的机器人配置,complete,150000
+chapter,7,02-bringup,docs/02-bringup/07-power-and-wiring.md,电源、供电与接线安全,complete,150000
+chapter,8,02-bringup,docs/02-bringup/08-first-power-on.md,首次上电与基线检查,complete,150000
+chapter,9,02-bringup,docs/02-bringup/09-connect-controller.md,连接主控：显示器、SSH 与远程桌面,complete,150000
+chapter,10,02-bringup,docs/02-bringup/10-baseline-diagnosis.md,第一次功能验收与问题分层,complete,150000
+chapter,11,03-chassis-control,docs/03-chassis-control/11-coordinate-frames-and-chassis.md,坐标系与底盘类型,complete,150000
+chapter,12,03-chassis-control,docs/03-chassis-control/12-remote-control.md,遥控底盘：APP、PS2 与航模遥控,complete,150000
+chapter,13,03-chassis-control,docs/03-chassis-control/13-keyboard-and-cmd-vel.md,键盘与 ROS 2 速度控制,complete,150000
+chapter,14,03-chassis-control,docs/03-chassis-control/14-serial-protocol.md,串口通信协议,complete,150000
+chapter,15,03-chassis-control,docs/03-chassis-control/15-can-protocol.md,CAN 通信协议,complete,150000
+chapter,16,03-chassis-control,docs/03-chassis-control/16-odometry-encoder-imu-pid.md,里程计、编码器、IMU 与 PID,complete,150000
+chapter,17,03-chassis-control,docs/03-chassis-control/17-calibration-and-faults.md,直线纠偏、转向标定和常见底盘故障,complete,150000
+chapter,18,04-ros2-development,docs/04-ros2-development/18-environment-and-source-selection.md,ROS 2 环境与源码版本选择,complete,150000
+chapter,19,04-ros2-development,docs/04-ros2-development/19-workspace-packages-build.md,工作空间、功能包与构建,complete,150000
+chapter,20,04-ros2-development,docs/04-ros2-development/20-nodes-topics-services-actions.md,节点、话题、服务与动作,complete,150000
+chapter,21,04-ros2-development,docs/04-ros2-development/21-launch-and-parameters.md,Launch、参数与运行配置,complete,150000
+chapter,22,04-ros2-development,docs/04-ros2-development/22-tf-urdf-rviz.md,TF、URDF 与 RViz,complete,150000
+chapter,23,04-ros2-development,docs/04-ros2-development/23-modify-build-rollback.md,修改、编译并回滚机器人源码,complete,150000
+chapter,24,04-ros2-development,docs/04-ros2-development/24-autostart-and-processes.md,开机启动与进程管理,complete,150000
+chapter,25,05-sensors-navigation,docs/05-sensors-navigation/25-sensor-checks.md,传感器自检,complete,150000
+chapter,26,05-sensors-navigation,docs/05-sensors-navigation/26-lidar-and-mapping.md,激光雷达与二维建图,complete,150000
+chapter,27,05-sensors-navigation,docs/05-sensors-navigation/27-map-localization-tf.md,地图保存、定位与坐标验证,complete,150000
+chapter,28,05-sensors-navigation,docs/05-sensors-navigation/28-nav2-navigation.md,Nav2 导航,complete,150000
+chapter,29,05-sensors-navigation,docs/05-sensors-navigation/29-waypoints-path-exploration.md,多点导航、路径跟踪与自主探索,complete,150000
+chapter,30,05-sensors-navigation,docs/05-sensors-navigation/30-camera-opencv-images.md,摄像头、OpenCV 与图像话题,complete,150000
+chapter,31,05-sensors-navigation,docs/05-sensors-navigation/31-camera-calibration.md,相机内参与坐标标定,complete,150000
+chapter,32,05-sensors-navigation,docs/05-sensors-navigation/32-vision-applications.md,视觉跟随、巡线、KCF、AR 标签与网页视频,complete,150000
+chapter,33,06-stm32-firmware,docs/06-stm32-firmware/33-firmware-architecture-freertos.md,固件架构与 FreeRTOS 任务,complete,150000
+chapter,34,06-stm32-firmware,docs/06-stm32-firmware/34-hardware-init-model-interfaces.md,硬件初始化、车型选择与接口,complete,150000
+chapter,35,06-stm32-firmware,docs/06-stm32-firmware/35-motor-control-pid.md,电机控制与 PID 实现,complete,150000
+chapter,36,06-stm32-firmware,docs/06-stm32-firmware/36-build-flash-rollback.md,修改、编译、烧录与回滚固件,complete,150000
+chapter,37,06-stm32-firmware,docs/06-stm32-firmware/37-ros2-stm32-integration.md,ROS 2 与 STM32 联调,complete,150000
+chapter,38,07-advanced-applications,docs/07-advanced-applications/38-gazebo-simulation.md,仿真与 Gazebo,complete,150000
+chapter,39,07-advanced-applications,docs/07-advanced-applications/39-multi-robot-and-qt.md,多机编队与 Qt 控制界面,complete,150000
+chapter,40,07-advanced-applications,docs/07-advanced-applications/40-mmwave-human-deep-learning.md,毫米波雷达、人体跟踪与深度学习,complete,150000
+chapter,41,07-advanced-applications,docs/07-advanced-applications/41-voice-ai-openclaw.md,语音、多模态 AI 与 OpenClaw,complete,150000
+chapter,42,08-r680-platform,docs/08-r680-platform/42-r680-hardware-wiring-oled.md,R680 硬件、接线与 OLED 状态,complete,150000
+chapter,43,08-r680-platform,docs/08-r680-platform/43-r680-debug-source-firmware.md,R680 底盘调试、源码与固件维护,complete,150000
+chapter,44,09-deployment-maintenance,docs/09-deployment-maintenance/44-network-docker-images.md,网络、Docker、系统镜像与主控差异,complete,150000
+chapter,45,09-deployment-maintenance,docs/09-deployment-maintenance/45-logs-backup-upgrade-recovery.md,日志、备份、升级与恢复,complete,150000
+chapter,46,09-deployment-maintenance,docs/09-deployment-maintenance/46-system-acceptance.md,全系统验收清单,complete,150000
 appendix,A,appendices,docs/appendices/a-ros1-maintenance.md,ROS 1 兼容与旧设备维护,complete,150000
 appendix,B,appendices,docs/appendices/b-platform-matrix.md,车型、主控与控制板矩阵,complete,150000
 appendix,C,appendices,docs/appendices/c-software-tools.md,软件、驱动与工具索引,complete,150000

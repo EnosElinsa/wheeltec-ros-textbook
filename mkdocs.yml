@@ -26,71 +26,72 @@ nav:
   - 首页: index.md
   - 阅读路径: reading-paths.md
   - 术语表: glossary.md
-  - 卷零 ROS 2 理论基础:
-      - 本卷说明: 00-ros2-theory/index.md
-      - T1 ROS 2 是什么: 00-ros2-theory/t1-what-is-ros2.md
-      - T2 系统图与通信模型: 00-ros2-theory/t2-graph-and-communication.md
-      - T3 工作空间、功能包与运行时: 00-ros2-theory/t3-workspace-package-runtime.md
-      - T4 时间、QoS、TF 与诊断: 00-ros2-theory/t4-time-qos-tf-diagnosis.md
-  - 卷一 实机接入与首次启动:
-      - 本卷说明: 01-bringup/index.md
-      - 1 识别机器人配置: 01-bringup/01-identify-configuration.md
-      - 2 电源与接线安全: 01-bringup/02-power-and-wiring.md
-      - 3 首次上电: 01-bringup/03-first-power-on.md
-      - 4 连接主控: 01-bringup/04-connect-controller.md
-      - 5 基线诊断: 01-bringup/05-baseline-diagnosis.md
-  - 卷二 底盘控制与运动学:
-      - 本卷说明: 02-chassis-control/index.md
-      - 6 坐标系与底盘类型: 02-chassis-control/06-coordinate-frames-and-chassis.md
-      - 7 遥控底盘: 02-chassis-control/07-remote-control.md
-      - 8 键盘与 cmd_vel: 02-chassis-control/08-keyboard-and-cmd-vel.md
-      - 9 串口协议: 02-chassis-control/09-serial-protocol.md
-      - 10 CAN 协议: 02-chassis-control/10-can-protocol.md
-      - 11 里程计、编码器、IMU 与 PID: 02-chassis-control/11-odometry-encoder-imu-pid.md
-      - 12 标定与底盘故障: 02-chassis-control/12-calibration-and-faults.md
-  - 卷三 ROS 2 开发主线:
-      - 本卷说明: 03-ros2-development/index.md
-      - 13 环境与源码选择: 03-ros2-development/13-environment-and-source-selection.md
-      - 14 工作空间、功能包与构建: 03-ros2-development/14-workspace-packages-build.md
-      - 15 节点、话题、服务与动作: 03-ros2-development/15-nodes-topics-services-actions.md
-      - 16 Launch 与参数: 03-ros2-development/16-launch-and-parameters.md
-      - 17 TF、URDF 与 RViz: 03-ros2-development/17-tf-urdf-rviz.md
-      - 18 修改、编译与回滚: 03-ros2-development/18-modify-build-rollback.md
-      - 19 开机启动与进程: 03-ros2-development/19-autostart-and-processes.md
-  - 卷四 传感器、建图与导航:
-      - 本卷说明: 04-sensors-navigation/index.md
-      - 20 传感器自检: 04-sensors-navigation/20-sensor-checks.md
-      - 21 雷达与二维建图: 04-sensors-navigation/21-lidar-and-mapping.md
-      - 22 地图、定位与 TF: 04-sensors-navigation/22-map-localization-tf.md
-      - 23 Nav2 导航: 04-sensors-navigation/23-nav2-navigation.md
-      - 24 多点、路径与探索: 04-sensors-navigation/24-waypoints-path-exploration.md
-      - 25 摄像头与 OpenCV: 04-sensors-navigation/25-camera-opencv-images.md
-      - 26 相机标定: 04-sensors-navigation/26-camera-calibration.md
-      - 27 视觉应用: 04-sensors-navigation/27-vision-applications.md
-  - 卷五 STM32 与底盘固件:
-      - 本卷说明: 05-stm32-firmware/index.md
-      - 28 固件架构与 FreeRTOS: 05-stm32-firmware/28-firmware-architecture-freertos.md
-      - 29 初始化、车型与接口: 05-stm32-firmware/29-hardware-init-model-interfaces.md
-      - 30 电机控制与 PID: 05-stm32-firmware/30-motor-control-pid.md
-      - 31 编译、烧录与回滚: 05-stm32-firmware/31-build-flash-rollback.md
-      - 32 ROS 2 与 STM32 联调: 05-stm32-firmware/32-ros2-stm32-integration.md
-  - 卷六 高级应用:
-      - 本卷说明: 06-advanced-applications/index.md
-      - 33 Gazebo 仿真: 06-advanced-applications/33-gazebo-simulation.md
-      - 34 多机与 Qt: 06-advanced-applications/34-multi-robot-and-qt.md
-      - 35 毫米波、人体与深度学习: 06-advanced-applications/35-mmwave-human-deep-learning.md
-      - 36 语音、AI 与 OpenClaw: 06-advanced-applications/36-voice-ai-openclaw.md
-  - 卷七 R680 平台实践:
-      - 本卷说明: 07-r680-platform/index.md
-      - 37 R680 硬件、接线与 OLED: 07-r680-platform/37-r680-hardware-wiring-oled.md
-      - 38 R680 调试、源码与固件: 07-r680-platform/38-r680-debug-source-firmware.md
-  - 卷八 部署、备份与维护:
-      - 本卷说明: 08-deployment-maintenance/index.md
-      - 39 网络、Docker 与镜像: 08-deployment-maintenance/39-network-docker-images.md
-      - 40 日志、备份、升级与恢复: 08-deployment-maintenance/40-logs-backup-upgrade-recovery.md
-      - 41 全系统验收: 08-deployment-maintenance/41-system-acceptance.md
-      - 验收记录表: 08-deployment-maintenance/system-acceptance-checklist.md
-      - GitHub Pages 发布指南: 08-deployment-maintenance/42-github-pages-deployment.md
+  - 第一篇 从零认识 ROS 机器人:
+      - 本篇说明: 01-foundations/index.md
+      - 1 一台 ROS 机器人由什么组成: 01-foundations/01-robot-components.md
+      - 2 Ubuntu、终端与程序: 01-foundations/02-ubuntu-terminal-programs.md
+      - 3 ROS 2 解决什么问题: 01-foundations/03-what-ros2-solves.md
+      - 4 第一次观察 ROS 2: 01-foundations/04-first-ros2-observation.md
+      - 5 ROS 2 程序怎样协作: 01-foundations/05-ros2-communication.md
+  - 第二篇 实机接入与首次启动:
+      - 本篇说明: 02-bringup/index.md
+      - 6 识别机器人配置: 02-bringup/06-identify-configuration.md
+      - 7 电源与接线安全: 02-bringup/07-power-and-wiring.md
+      - 8 首次上电: 02-bringup/08-first-power-on.md
+      - 9 连接主控: 02-bringup/09-connect-controller.md
+      - 10 基线诊断: 02-bringup/10-baseline-diagnosis.md
+  - 第三篇 底盘控制与运动学:
+      - 本篇说明: 03-chassis-control/index.md
+      - 11 坐标系与底盘类型: 03-chassis-control/11-coordinate-frames-and-chassis.md
+      - 12 遥控底盘: 03-chassis-control/12-remote-control.md
+      - 13 键盘与 cmd_vel: 03-chassis-control/13-keyboard-and-cmd-vel.md
+      - 14 串口协议: 03-chassis-control/14-serial-protocol.md
+      - 15 CAN 协议: 03-chassis-control/15-can-protocol.md
+      - 16 里程计、编码器、IMU 与 PID: 03-chassis-control/16-odometry-encoder-imu-pid.md
+      - 17 标定与底盘故障: 03-chassis-control/17-calibration-and-faults.md
+  - 第四篇 ROS 2 开发:
+      - 本篇说明: 04-ros2-development/index.md
+      - 18 环境与源码选择: 04-ros2-development/18-environment-and-source-selection.md
+      - 19 工作空间、功能包与构建: 04-ros2-development/19-workspace-packages-build.md
+      - 20 节点、话题、服务与动作: 04-ros2-development/20-nodes-topics-services-actions.md
+      - 21 Launch 与参数: 04-ros2-development/21-launch-and-parameters.md
+      - 22 TF、URDF 与 RViz: 04-ros2-development/22-tf-urdf-rviz.md
+      - 23 修改、编译与回滚: 04-ros2-development/23-modify-build-rollback.md
+      - 24 开机启动与进程: 04-ros2-development/24-autostart-and-processes.md
+  - 第五篇 传感器、建图与导航:
+      - 本篇说明: 05-sensors-navigation/index.md
+      - 25 传感器自检: 05-sensors-navigation/25-sensor-checks.md
+      - 26 雷达与二维建图: 05-sensors-navigation/26-lidar-and-mapping.md
+      - 27 地图、定位与 TF: 05-sensors-navigation/27-map-localization-tf.md
+      - 28 Nav2 导航: 05-sensors-navigation/28-nav2-navigation.md
+      - 29 多点、路径与探索: 05-sensors-navigation/29-waypoints-path-exploration.md
+      - 30 摄像头与 OpenCV: 05-sensors-navigation/30-camera-opencv-images.md
+      - 31 相机标定: 05-sensors-navigation/31-camera-calibration.md
+      - 32 视觉应用: 05-sensors-navigation/32-vision-applications.md
+  - 第六篇 STM32 与底盘固件:
+      - 本篇说明: 06-stm32-firmware/index.md
+      - 33 固件架构与 FreeRTOS: 06-stm32-firmware/33-firmware-architecture-freertos.md
+      - 34 初始化、车型与接口: 06-stm32-firmware/34-hardware-init-model-interfaces.md
+      - 35 电机控制与 PID: 06-stm32-firmware/35-motor-control-pid.md
+      - 36 编译、烧录与回滚: 06-stm32-firmware/36-build-flash-rollback.md
+      - 37 ROS 2 与 STM32 联调: 06-stm32-firmware/37-ros2-stm32-integration.md
+  - 第七篇 高级应用:
+      - 本篇说明: 07-advanced-applications/index.md
+      - 38 Gazebo 仿真: 07-advanced-applications/38-gazebo-simulation.md
+      - 39 多机与 Qt: 07-advanced-applications/39-multi-robot-and-qt.md
+      - 40 毫米波、人体与深度学习: 07-advanced-applications/40-mmwave-human-deep-learning.md
+      - 41 语音、AI 与 OpenClaw: 07-advanced-applications/41-voice-ai-openclaw.md
+  - 第八篇 R680 平台:
+      - 本篇说明: 08-r680-platform/index.md
+      - 42 R680 硬件、接线与 OLED: 08-r680-platform/42-r680-hardware-wiring-oled.md
+      - 43 R680 调试、源码与固件: 08-r680-platform/43-r680-debug-source-firmware.md
+  - 第九篇 部署、备份与维护:
+      - 本篇说明: 09-deployment-maintenance/index.md
+      - 44 网络、Docker 与镜像: 09-deployment-maintenance/44-network-docker-images.md
+      - 45 日志、备份、升级与恢复: 09-deployment-maintenance/45-logs-backup-upgrade-recovery.md
+      - 46 全系统验收: 09-deployment-maintenance/46-system-acceptance.md
+      - 验收记录表: 09-deployment-maintenance/system-acceptance-checklist.md
+      - GitHub Pages 发布指南: 09-deployment-maintenance/github-pages-deployment.md
   - 附录:
       - A ROS 1 维护: appendices/a-ros1-maintenance.md
       - B 平台矩阵: appendices/b-platform-matrix.md
