@@ -77,16 +77,17 @@ FOUNDATION_HEADINGS_BY_NUMBER = {
         "章节导航",
     ],
 }
-REQUIRED_CHAPTER_HEADINGS = [
-    "本章目标",
-    "适用范围",
-    "开始前检查",
-    "工作原理",
-    "操作步骤",
-    "结果验收",
-    "常见故障与处理",
-    "章节导航",
-]
+def expected_engineering_headings(number: int) -> list[str]:
+    return [
+        f"{number}.1 学习目标",
+        f"{number}.2 适用范围",
+        f"{number}.3 操作前检查",
+        f"{number}.4 工作原理",
+        f"{number}.5 操作步骤",
+        f"{number}.6 验收标准",
+        f"{number}.7 故障排查",
+        "章节导航",
+    ]
 PROMOTIONAL_PATTERNS = ["推荐关注我们的公众号", "关注公众号", "获取更新资料"]
 UNFINISHED_PATTERNS = [r"\bTODO\b", r"\bTBD\b", r"\[待写\]", r"\[内容待补\]"]
 FORBIDDEN_FOUNDATION_PATTERNS = {
@@ -161,14 +162,14 @@ def check_manifest(rows: list[dict[str, str]]) -> list[str]:
     return errors
 
 
-def check_chapter(path: Path, size_limit: int) -> list[Issue]:
+def check_chapter(path: Path, size_limit: int, number: int = 6) -> list[Issue]:
     issues: list[Issue] = []
     relative = path.as_posix()
     if path.stat().st_size > size_limit:
         issues.append(Issue("error", relative, "file exceeds size limit"))
     text = path.read_text(encoding="utf-8")
-    headings = set(re.findall(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE))
-    for heading in REQUIRED_CHAPTER_HEADINGS:
+    headings = re.findall(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE)
+    for heading in expected_engineering_headings(number):
         if heading not in headings:
             issues.append(Issue("error", relative, f"missing section: {heading}"))
     if any(pattern in text for pattern in PROMOTIONAL_PATTERNS):
@@ -275,7 +276,7 @@ def check_all(root: Path, selected_paths: list[Path] | None = None) -> list[Issu
             if row["kind"] == "foundation":
                 issues.extend(check_foundation(path, size_limit, int(row["number"])))
             elif row["kind"] == "chapter":
-                issues.extend(check_chapter(path, size_limit))
+                issues.extend(check_chapter(path, size_limit, int(row["number"])))
             elif path.stat().st_size > size_limit:
                 issues.append(Issue("error", relative, "file exceeds size limit"))
         if relative == "docs/index.md" and path.stat().st_size > 20_000:

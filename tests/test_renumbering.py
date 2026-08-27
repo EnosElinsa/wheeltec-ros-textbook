@@ -79,6 +79,16 @@ class RenumberingTests(unittest.TestCase):
             )
             self.assertRegex(h1, rf"^# {number}\.\s+")
 
+    def test_engineering_chapters_use_numbered_task_sections(self) -> None:
+        rows = quality.load_manifest(ROOT / "metadata" / "chapter-manifest.csv")
+        for row in rows:
+            if row["kind"] != "chapter":
+                continue
+            number = int(row["number"])
+            text = (ROOT / row["path"]).read_text(encoding="utf-8")
+            headings = re.findall(r"^##\s+(.+?)\s*$", text, re.MULTILINE)
+            self.assertEqual(headings, quality.expected_engineering_headings(number))
+
     def test_no_engineering_page_remains_in_old_part_directories(self) -> None:
         old_directories = (
             "01-bringup",

@@ -90,9 +90,9 @@ class NavigationTests(unittest.TestCase):
         homepage = (ROOT / "docs" / "index.md").read_text(encoding="utf-8")
         self.assertIn("## 第一次学习 ROS 2", homepage)
         expected = [
-            "01-robot-components.md",
-            "02-ubuntu-terminal-programs.md",
-            "03-what-ros2-solves.md",
+            "01-understanding-ros.md",
+            "02-robot-system-overview.md",
+            "03-ubuntu-terminal-programs.md",
             "04-first-ros2-observation.md",
             "05-ros2-communication.md",
         ]
@@ -115,13 +115,13 @@ class NavigationTests(unittest.TestCase):
             self.assertIn(f"## {heading}", text)
         for sequence in (
             "1 → 2 → 3 → 4 → 5 → 6",
-            "3 → 4 → 5 → 18",
+            "1 → 4 → 5 → 18",
             "6 → 7 → 8 → 9 → 10",
-            "3 → 4 → 5 → 18 → 25 → 26 → 27 → 28",
+            "1 → 4 → 5 → 18 → 25 → 26 → 27 → 28",
             "6 → 17 → 42 → 43 → 45",
         ):
             self.assertIn(sequence, text)
-        self.assertGreaterEqual(text.count("前置知识"), 4)
+        self.assertGreaterEqual(text.count("前置能力"), 4)
 
 
 if __name__ == "__main__":

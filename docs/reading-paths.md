@@ -1,38 +1,38 @@
 # 阅读路径
 
-先确定要完成的工作，再从对应路径进入。箭头表示建议的阅读顺序，不是必须完成的实机操作。
+根据当前目标选择一条路径。箭头表示知识或操作的先后关系。
 
 ## 第一次学习 ROS 2
 
-适合没有机器人、Linux 或 ROS 2 经验的读者。前五章可以使用只读路线；第 6 章开始才进入实机接入。
+适合第一次接触机器人、Linux 和 ROS 2 的读者。第 1～5 章建立基础概念，第 6 章开始接入实机。
 
 ```text
 1 → 2 → 3 → 4 → 5 → 6
 ```
 
-1. [第 1 章：一台 ROS 机器人由什么组成](01-foundations/01-robot-components.md)
-2. [第 2 章：Ubuntu、终端与程序](01-foundations/02-ubuntu-terminal-programs.md)
-3. [第 3 章：ROS 2 解决什么问题](01-foundations/03-what-ros2-solves.md)
+1. [第 1 章：认识 ROS 与 ROS 2](01-foundations/01-understanding-ros.md)
+2. [第 2 章：一台 ROS 机器人如何工作](01-foundations/02-robot-system-overview.md)
+3. [第 3 章：Ubuntu、终端与程序](01-foundations/03-ubuntu-terminal-programs.md)
 4. [第 4 章：第一次观察 ROS 2](01-foundations/04-first-ros2-observation.md)
 5. [第 5 章：ROS 2 程序怎样协作](01-foundations/05-ros2-communication.md)
 6. [第 6 章：识别机器人配置](02-bringup/06-identify-configuration.md)
 
 ## 已熟悉 Linux，刚开始学 ROS 2
 
-前置知识：会打开终端、执行命令并阅读文字输出；不要求已经连接机器人。
+前置能力：会打开终端、执行命令并阅读文字输出。
 
 ```text
-3 → 4 → 5 → 18
+1 → 4 → 5 → 18
 ```
 
-1. [第 3 章：ROS 2 解决什么问题](01-foundations/03-what-ros2-solves.md)
+1. [第 1 章：认识 ROS 与 ROS 2](01-foundations/01-understanding-ros.md)
 2. [第 4 章：第一次观察 ROS 2](01-foundations/04-first-ros2-observation.md)
 3. [第 5 章：ROS 2 程序怎样协作](01-foundations/05-ros2-communication.md)
 4. [第 18 章：环境与源码选择](04-ros2-development/18-environment-and-source-selection.md)
 
 ## 已熟悉 ROS 2，第一次接入机器人
 
-前置知识：理解节点、话题和基本观察命令；如果还不了解这些概念，请先读第一篇。
+前置能力：能够解释节点、话题和消息，并会使用基本观察命令。需要补充这些概念时，可先读第一篇。
 
 ```text
 6 → 7 → 8 → 9 → 10
@@ -46,13 +46,13 @@
 
 ## 建图与导航
 
-前置知识：完成第一篇，能解释节点、话题和消息；开始实机操作前，还要完成第 6～10 章的安全接入检查。
+前置能力：能够解释节点、话题和消息，并已按第 6～10 章完成安全接入检查。
 
 ```text
-3 → 4 → 5 → 18 → 25 → 26 → 27 → 28
+1 → 4 → 5 → 18 → 25 → 26 → 27 → 28
 ```
 
-1. [第 3 章：ROS 2 解决什么问题](01-foundations/03-what-ros2-solves.md)
+1. [第 1 章：认识 ROS 与 ROS 2](01-foundations/01-understanding-ros.md)
 2. [第 4 章：第一次观察 ROS 2](01-foundations/04-first-ros2-observation.md)
 3. [第 5 章：ROS 2 程序怎样协作](01-foundations/05-ros2-communication.md)
 4. [第 18 章：环境与源码选择](04-ros2-development/18-environment-and-source-selection.md)
