@@ -82,4 +82,4 @@ colcon build --packages-select <包名> --cmake-clean-cache
 
 ## 章节导航
 
-[上一章：环境与源码版本选择](13-environment-and-source-selection.md) · [返回本卷](index.md) · [下一章：节点、话题、服务与动作](15-nodes-topics-services-actions.md)
+[上一章：ROS 2 环境与源码版本选择](18-environment-and-source-selection.md) · [返回本篇](index.md) · [下一章：节点、话题、服务与动作](20-nodes-topics-services-actions.md)

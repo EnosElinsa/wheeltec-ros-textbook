@@ -14,7 +14,7 @@ status: complete
 
 ## 开始前检查
 
-- 第 25 章图像话题稳定，第 26 章在需要测量位置时已标定。
+- 第 30 章图像话题稳定，第 31 章在需要测量位置时已标定。
 - 底盘低速控制和停止链已通过。
 - 首次测试架空轮子或留出足够空间。
 
@@ -51,4 +51,4 @@ status: complete
 
 ## 章节导航
 
-[上一章：相机内参与坐标标定](26-camera-calibration.md) · [返回本卷](index.md) · [下一卷：固件架构与 FreeRTOS](../05-stm32-firmware/28-firmware-architecture-freertos.md)
+[上一章：相机内参与坐标标定](31-camera-calibration.md) · [返回本篇](index.md) · [下一章：固件架构与 FreeRTOS 任务](../06-stm32-firmware/33-firmware-architecture-freertos.md)

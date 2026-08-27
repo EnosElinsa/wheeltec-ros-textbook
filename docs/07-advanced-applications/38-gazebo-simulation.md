@@ -49,4 +49,4 @@ Gazebo 用物理模型近似底盘和传感器。它适合检查节点连接和�
 
 ## 章节导航
 
-[返回本卷](index.md) · [下一章：多机编队与 Qt](34-multi-robot-and-qt.md)
+[上一章：ROS 2 与 STM32 联调](../06-stm32-firmware/37-ros2-stm32-integration.md) · [返回本篇](index.md) · [下一章：多机编队与 Qt 控制界面](39-multi-robot-and-qt.md)

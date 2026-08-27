@@ -72,7 +72,7 @@ cat /etc/os-release
 printenv ROS_DISTRO
 ```
 
-如果 `ROS_DISTRO` 没有输出，不要立即判断“没有安装 ROS”。它也可能只是当前终端尚未加载 ROS 环境。第 13 章会进一步检查环境脚本和工作空间。
+如果 `ROS_DISTRO` 没有输出，不要立即判断“没有安装 ROS”。它也可能只是当前终端尚未加载 ROS 环境。第 18 章会进一步检查环境脚本和工作空间。
 
 ### 3. 识别底盘控制板
 
@@ -143,4 +143,4 @@ find "$HOME" -path '*turn_on_wheeltec_robot/config/wheeltec_params.yaml' 2>/dev/
 
 ## 章节导航
 
-[返回本卷](index.md) · [下一章：电源、供电与接线安全](02-power-and-wiring.md)
+[上一章：ROS 2 程序怎样协作](../01-foundations/05-ros2-communication.md) · [返回本篇](index.md) · [下一章：电源、供电与接线安全](07-power-and-wiring.md)

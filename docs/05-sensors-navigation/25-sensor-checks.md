@@ -68,4 +68,4 @@ ros2 topic echo --once <话题名>
 
 ## 章节导航
 
-[返回本卷](index.md) · [下一章：激光雷达与二维建图](21-lidar-and-mapping.md)
+[上一章：开机启动与进程管理](../04-ros2-development/24-autostart-and-processes.md) · [返回本篇](index.md) · [下一章：激光雷达与二维建图](26-lidar-and-mapping.md)

@@ -52,4 +52,4 @@ WHEELTEC STM32 底盘固件。不同控制板的外设和任务名会变化，�
 
 ## 章节导航
 
-[返回本卷](index.md) · [下一章：硬件初始化、车型选择与接口](29-hardware-init-model-interfaces.md)
+[上一章：视觉跟随、巡线、KCF、AR 标签与网页视频](../05-sensors-navigation/32-vision-applications.md) · [返回本篇](index.md) · [下一章：硬件初始化、车型选择与接口](34-hardware-init-model-interfaces.md)

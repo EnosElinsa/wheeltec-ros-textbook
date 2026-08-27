@@ -50,4 +50,4 @@ ROS 2 多机器人编队与资料中的 Qt 控制包。
 
 ## 章节导航
 
-[上一章：Gazebo](33-gazebo-simulation.md) · [返回本卷](index.md) · [下一章：毫米波雷达、人体跟踪与深度学习](35-mmwave-human-deep-learning.md)
+[上一章：仿真与 Gazebo](38-gazebo-simulation.md) · [返回本篇](index.md) · [下一章：毫米波雷达、人体跟踪与深度学习](40-mmwave-human-deep-learning.md)

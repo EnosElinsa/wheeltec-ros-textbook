@@ -50,4 +50,4 @@ AI 适合把自然语言转换成高层意图，例如“去实验室门口”�
 
 ## 章节导航
 
-[上一章：毫米波雷达、人体跟踪与深度学习](35-mmwave-human-deep-learning.md) · [返回本卷](index.md) · [下一卷：R680 硬件、接线与 OLED](../07-r680-platform/37-r680-hardware-wiring-oled.md)
+[上一章：毫米波雷达、人体跟踪与深度学习](40-mmwave-human-deep-learning.md) · [返回本篇](index.md) · [下一章：R680 硬件、接线与 OLED 状态](../08-r680-platform/42-r680-hardware-wiring-oled.md)

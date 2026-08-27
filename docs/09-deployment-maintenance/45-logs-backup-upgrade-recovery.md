@@ -14,7 +14,7 @@ status: complete
 
 ## 开始前检查
 
-- 第 41 章验收已经通过或已记录基线失败项。
+- 第 46 章验收已经通过或已记录基线失败项。
 - 备份介质容量、校验方式和存放位置明确。
 - 升级窗口内有人能执行急停、断电和本地恢复。
 
@@ -72,4 +72,4 @@ baseline/
 
 ## 章节导航
 
-[上一章：网络、Docker、系统镜像与主控差异](39-network-docker-images.md) · [返回本卷](index.md) · [下一章：全系统验收](41-system-acceptance.md)
+[上一章：网络、Docker、系统镜像与主控差异](44-network-docker-images.md) · [返回本篇](index.md) · [下一章：全系统验收清单](46-system-acceptance.md)

@@ -151,4 +151,4 @@ Talker 和 listener 是两个节点。Talker 把文字消息发布到 `/chatter`
 
 ## 章节导航
 
-[上一章：ROS 2 解决什么问题](03-what-ros2-solves.md) · [返回第一篇](index.md) · [下一章：ROS 2 程序怎样协作](05-ros2-communication.md)
+[上一章：ROS 2 解决什么问题](03-what-ros2-solves.md) · [返回本篇](index.md) · [下一章：ROS 2 程序怎样协作](05-ros2-communication.md)

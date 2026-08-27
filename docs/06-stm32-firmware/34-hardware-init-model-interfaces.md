@@ -53,4 +53,4 @@ R680 C50C 的 TYPE 可由车型选择电位器决定，并在重新上电后生�
 
 ## 章节导航
 
-[上一章：固件架构与 FreeRTOS](28-firmware-architecture-freertos.md) · [返回本卷](index.md) · [下一章：电机控制与 PID](30-motor-control-pid.md)
+[上一章：固件架构与 FreeRTOS 任务](33-firmware-architecture-freertos.md) · [返回本篇](index.md) · [下一章：电机控制与 PID 实现](35-motor-control-pid.md)

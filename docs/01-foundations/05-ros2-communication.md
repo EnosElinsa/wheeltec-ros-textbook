@@ -96,4 +96,4 @@ status: complete
 
 ## 章节导航
 
-[上一章：第一次观察 ROS 2](04-first-ros2-observation.md) · [返回第一篇](index.md) · 第二篇：实机接入与首次启动
+[上一章：第一次观察 ROS 2](04-first-ros2-observation.md) · [返回本篇](index.md) · [下一章：识别你的机器人配置](../02-bringup/06-identify-configuration.md)

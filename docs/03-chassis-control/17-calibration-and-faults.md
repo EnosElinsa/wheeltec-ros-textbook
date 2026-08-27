@@ -92,4 +92,4 @@ R680 纠偏资料中的系数以 50 为中值，范围 0–100：增大使底盘
 
 ## 章节导航
 
-[上一章：里程计、编码器、IMU 与 PID](11-odometry-encoder-imu-pid.md) · [返回本卷](index.md) · [下一卷：ROS 2 环境与源码版本选择](../03-ros2-development/13-environment-and-source-selection.md)
+[上一章：里程计、编码器、IMU 与 PID](16-odometry-encoder-imu-pid.md) · [返回本篇](index.md) · [下一章：ROS 2 环境与源码版本选择](../04-ros2-development/18-environment-and-source-selection.md)

@@ -31,8 +31,9 @@ class PublicSiteHygieneTests(unittest.TestCase):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("https://enoselinsa.github.io/wheeltec-ros-textbook/", readme)
         self.assertIn("## 教材结构", readme)
-        self.assertIn("卷零", readme)
-        self.assertIn("卷八", readme)
+        self.assertIn("第一篇", readme)
+        self.assertIn("第九篇", readme)
+        self.assertNotIn("卷零", readme)
         self.assertIn("## 本地预览", readme)
 
     def test_internal_reference_files_are_not_public(self) -> None:

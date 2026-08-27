@@ -83,4 +83,4 @@ for byte in frame_without_checksum_and_tail:
 
 ## 章节导航
 
-[上一章：键盘与 ROS 2 速度控制](08-keyboard-and-cmd-vel.md) · [返回本卷](index.md) · [下一章：CAN 通信协议](10-can-protocol.md)
+[上一章：键盘与 ROS 2 速度控制](13-keyboard-and-cmd-vel.md) · [返回本篇](index.md) · [下一章：CAN 通信协议](15-can-protocol.md)

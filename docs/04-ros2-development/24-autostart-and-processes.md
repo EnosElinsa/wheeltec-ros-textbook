@@ -62,4 +62,4 @@ exec ros2 launch <包名> <launch文件>
 
 ## 章节导航
 
-[上一章：修改、编译并回滚机器人源码](18-modify-build-rollback.md) · [返回本卷](index.md) · [下一卷：传感器自检](../04-sensors-navigation/20-sensor-checks.md)
+[上一章：修改、编译并回滚机器人源码](23-modify-build-rollback.md) · [返回本篇](index.md) · [下一章：传感器自检](../05-sensors-navigation/25-sensor-checks.md)

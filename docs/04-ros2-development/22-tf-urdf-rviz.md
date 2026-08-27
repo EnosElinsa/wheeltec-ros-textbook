@@ -59,4 +59,4 @@ ros2 topic echo --once /robot_description
 
 ## 章节导航
 
-[上一章：Launch、参数与运行配置](16-launch-and-parameters.md) · [返回本卷](index.md) · [下一章：修改、编译并回滚机器人源码](18-modify-build-rollback.md)
+[上一章：Launch、参数与运行配置](21-launch-and-parameters.md) · [返回本篇](index.md) · [下一章：修改、编译并回滚机器人源码](23-modify-build-rollback.md)

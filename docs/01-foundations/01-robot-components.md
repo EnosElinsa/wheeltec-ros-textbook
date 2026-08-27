@@ -98,4 +98,4 @@ status: complete
 
 ## 章节导航
 
-[返回第一篇](index.md) · [下一章：Ubuntu、终端与程序](02-ubuntu-terminal-programs.md)
+[返回本篇](index.md) · [下一章：Ubuntu、终端与程序](02-ubuntu-terminal-programs.md)

@@ -15,7 +15,7 @@ status: complete
 ## 开始前检查
 
 - 已记录主控型号、Ubuntu、ROS 发行版和存储介质。
-- 已完成第 4 章的 SSH 入口。
+- 已完成第 9 章的 SSH 入口。
 - 不在生产环境直接切换网络或覆盖镜像。
 
 ## 工作原理
@@ -57,4 +57,4 @@ docker inspect <容器名>
 
 ## 章节导航
 
-[返回本卷](index.md) · [下一章：日志、备份、升级与恢复](40-logs-backup-upgrade-recovery.md)
+[上一章：R680 底盘调试、源码与固件维护](../08-r680-platform/43-r680-debug-source-firmware.md) · [返回本篇](index.md) · [下一章：日志、备份、升级与恢复](45-logs-backup-upgrade-recovery.md)

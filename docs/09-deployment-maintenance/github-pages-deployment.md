@@ -82,4 +82,4 @@ git push
 
 ## 章节导航
 
-[上一章：全系统验收](41-system-acceptance.md) · [返回本卷](index.md) · [返回教材首页](../index.md)
+[上一章：全系统验收](46-system-acceptance.md) · [返回本篇](index.md) · [返回教材首页](../index.md)

@@ -57,4 +57,4 @@ $$
 
 ## 章节导航
 
-[上一章：硬件初始化、车型选择与接口](29-hardware-init-model-interfaces.md) · [返回本卷](index.md) · [下一章：修改、编译、烧录与回滚固件](31-build-flash-rollback.md)
+[上一章：硬件初始化、车型选择与接口](34-hardware-init-model-interfaces.md) · [返回本篇](index.md) · [下一章：修改、编译、烧录与回滚固件](36-build-flash-rollback.md)

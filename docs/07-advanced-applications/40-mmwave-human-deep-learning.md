@@ -49,4 +49,4 @@ status: complete
 
 ## 章节导航
 
-[上一章：多机编队与 Qt](34-multi-robot-and-qt.md) · [返回本卷](index.md) · [下一章：语音、多模态 AI 与 OpenClaw](36-voice-ai-openclaw.md)
+[上一章：多机编队与 Qt 控制界面](39-multi-robot-and-qt.md) · [返回本篇](index.md) · [下一章：语音、多模态 AI 与 OpenClaw](41-voice-ai-openclaw.md)

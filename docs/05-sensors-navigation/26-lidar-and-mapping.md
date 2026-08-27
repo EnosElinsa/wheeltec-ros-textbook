@@ -14,7 +14,7 @@ status: complete
 
 ## 开始前检查
 
-- 第 20 章雷达扫描频率稳定。
+- 第 25 章雷达扫描频率稳定。
 - `odom → base_link → laser` TF 连续且方向正确。
 - 轮径、轮距和里程计方向已核对。
 - 场地允许低速完整覆盖。
@@ -53,4 +53,4 @@ status: complete
 
 ## 章节导航
 
-[上一章：传感器自检](20-sensor-checks.md) · [返回本卷](index.md) · [下一章：地图保存、定位与坐标验证](22-map-localization-tf.md)
+[上一章：传感器自检](25-sensor-checks.md) · [返回本篇](index.md) · [下一章：地图保存、定位与坐标验证](27-map-localization-tf.md)

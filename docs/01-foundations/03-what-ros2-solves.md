@@ -104,4 +104,4 @@ ROS 2 为传递的数据规定类型。类型会说明数据有哪些字段，�
 
 ## 章节导航
 
-[上一章：Ubuntu、终端与程序](02-ubuntu-terminal-programs.md) · [返回第一篇](index.md) · [下一章：第一次观察 ROS 2](04-first-ros2-observation.md)
+[上一章：Ubuntu、终端与程序](02-ubuntu-terminal-programs.md) · [返回本篇](index.md) · [下一章：第一次观察 ROS 2](04-first-ros2-observation.md)

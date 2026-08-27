@@ -57,4 +57,4 @@ ros2 topic echo --once <camera_info话题>
 
 ## 章节导航
 
-[上一章：多点导航、路径跟踪与自主探索](24-waypoints-path-exploration.md) · [返回本卷](index.md) · [下一章：相机内参与坐标标定](26-camera-calibration.md)
+[上一章：多点导航、路径跟踪与自主探索](29-waypoints-path-exploration.md) · [返回本篇](index.md) · [下一章：相机内参与坐标标定](31-camera-calibration.md)

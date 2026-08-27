@@ -65,4 +65,4 @@ cmd_vel
 
 ## 章节导航
 
-[上一章：修改、编译、烧录与回滚固件](31-build-flash-rollback.md) · [返回本卷](index.md) · [下一卷：仿真与 Gazebo](../06-advanced-applications/33-gazebo-simulation.md)
+[上一章：修改、编译、烧录与回滚固件](36-build-flash-rollback.md) · [返回本篇](index.md) · [下一章：仿真与 Gazebo](../07-advanced-applications/38-gazebo-simulation.md)

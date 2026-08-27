@@ -14,7 +14,7 @@ ROS 2 多点导航、路径跟踪和 RRT/前沿探索类功能。具体包和消
 
 ## 开始前检查
 
-- 第 23 章单目标导航稳定。
+- 第 28 章单目标导航稳定。
 - 取消动作和急停已经验证。
 - 地图边界与禁行区明确。
 
@@ -48,4 +48,4 @@ ROS 2 多点导航、路径跟踪和 RRT/前沿探索类功能。具体包和消
 
 ## 章节导航
 
-[上一章：Nav2 导航](23-nav2-navigation.md) · [返回本卷](index.md) · [下一章：摄像头、OpenCV 与图像话题](25-camera-opencv-images.md)
+[上一章：Nav2 导航](28-nav2-navigation.md) · [返回本篇](index.md) · [下一章：摄像头、OpenCV 与图像话题](30-camera-opencv-images.md)

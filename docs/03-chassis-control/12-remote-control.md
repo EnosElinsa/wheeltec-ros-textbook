@@ -83,4 +83,4 @@ status: complete
 
 ## 章节导航
 
-[上一章：坐标系与底盘类型](06-coordinate-frames-and-chassis.md) · [返回本卷](index.md) · [下一章：键盘与 ROS 2 速度控制](08-keyboard-and-cmd-vel.md)
+[上一章：坐标系与底盘类型](11-coordinate-frames-and-chassis.md) · [返回本篇](index.md) · [下一章：键盘与 ROS 2 速度控制](13-keyboard-and-cmd-vel.md)

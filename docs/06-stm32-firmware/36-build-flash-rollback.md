@@ -55,4 +55,4 @@ status: complete
 
 ## 章节导航
 
-[上一章：电机控制与 PID](30-motor-control-pid.md) · [返回本卷](index.md) · [下一章：ROS 2 与 STM32 联调](32-ros2-stm32-integration.md)
+[上一章：电机控制与 PID 实现](35-motor-control-pid.md) · [返回本篇](index.md) · [下一章：ROS 2 与 STM32 联调](37-ros2-stm32-integration.md)

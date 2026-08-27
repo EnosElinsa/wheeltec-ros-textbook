@@ -86,4 +86,4 @@ IMU 能提供角速度和加速度，但积分会累积零偏；轮式里程计�
 
 ## 章节导航
 
-[上一章：CAN 通信协议](10-can-protocol.md) · [返回本卷](index.md) · [下一章：标定与底盘故障](12-calibration-and-faults.md)
+[上一章：CAN 通信协议](15-can-protocol.md) · [返回本篇](index.md) · [下一章：直线纠偏、转向标定和常见底盘故障](17-calibration-and-faults.md)

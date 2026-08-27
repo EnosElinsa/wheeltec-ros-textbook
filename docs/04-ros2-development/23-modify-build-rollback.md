@@ -10,7 +10,7 @@ status: complete
 
 ## 适用范围
 
-ROS 2 参数、Launch、Python 和 C/C++ 功能包。固件修改见卷五。
+ROS 2 参数、Launch、Python 和 C/C++ 功能包。固件修改见第六篇。
 
 ## 开始前检查
 
@@ -71,4 +71,4 @@ ros2 pkg prefix <目标包>
 
 ## 章节导航
 
-[上一章：TF、URDF 与 RViz](17-tf-urdf-rviz.md) · [返回本卷](index.md) · [下一章：开机启动与进程管理](19-autostart-and-processes.md)
+[上一章：TF、URDF 与 RViz](22-tf-urdf-rviz.md) · [返回本篇](index.md) · [下一章：开机启动与进程管理](24-autostart-and-processes.md)

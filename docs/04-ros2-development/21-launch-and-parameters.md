@@ -46,7 +46,7 @@ ros2 param get <节点名> <参数名>
 ros2 param dump <节点名>
 ```
 
-车型、雷达、相机和串口参数要与第 1 章配置表对应。布尔值、数字和字符串保留正确 YAML 类型；缩进使用空格。
+车型、雷达、相机和串口参数要与第 6 章配置表对应。布尔值、数字和字符串保留正确 YAML 类型；缩进使用空格。
 
 ## 结果验收
 
@@ -66,4 +66,4 @@ ros2 param dump <节点名>
 
 ## 章节导航
 
-[上一章：节点、话题、服务与动作](15-nodes-topics-services-actions.md) · [返回本卷](index.md) · [下一章：TF、URDF 与 RViz](17-tf-urdf-rviz.md)
+[上一章：节点、话题、服务与动作](20-nodes-topics-services-actions.md) · [返回本篇](index.md) · [下一章：TF、URDF 与 RViz](22-tf-urdf-rviz.md)

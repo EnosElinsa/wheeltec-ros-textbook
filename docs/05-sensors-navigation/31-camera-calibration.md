@@ -50,4 +50,4 @@ status: complete
 
 ## 章节导航
 
-[上一章：摄像头、OpenCV 与图像话题](25-camera-opencv-images.md) · [返回本卷](index.md) · [下一章：视觉应用](27-vision-applications.md)
+[上一章：摄像头、OpenCV 与图像话题](30-camera-opencv-images.md) · [返回本篇](index.md) · [下一章：视觉跟随、巡线、KCF、AR 标签与网页视频](32-vision-applications.md)

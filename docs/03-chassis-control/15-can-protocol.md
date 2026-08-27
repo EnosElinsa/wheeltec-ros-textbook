@@ -74,4 +74,4 @@ candump can0
 
 ## 章节导航
 
-[上一章：串口通信协议](09-serial-protocol.md) · [返回本卷](index.md) · [下一章：里程计、编码器、IMU 与 PID](11-odometry-encoder-imu-pid.md)
+[上一章：串口通信协议](14-serial-protocol.md) · [返回本篇](index.md) · [下一章：里程计、编码器、IMU 与 PID](16-odometry-encoder-imu-pid.md)

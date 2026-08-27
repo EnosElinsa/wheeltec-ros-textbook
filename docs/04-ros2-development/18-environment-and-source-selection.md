@@ -8,7 +8,7 @@ status: complete
 
 确认程序实际运行在宿主系统还是容器中，找出 ROS 2 发行版、主工作空间和与硬件匹配的源码。完成后再进入编译，避免把错误平台的源码“编译成功”。
 
-如果你还不熟悉 ROS 2 的节点、通信和运行时关系，先读[卷零：ROS 2 理论基础](../00-ros2-theory/index.md)。
+如果你还不熟悉 ROS 2 的节点、通信和运行时关系，先读[第一篇：ROS 2 理论基础](../01-foundations/index.md)。
 
 ## 适用范围
 
@@ -16,7 +16,7 @@ status: complete
 
 ## 开始前检查
 
-- 第 1 章硬件配置表已完成。
+- 第 6 章硬件配置表已完成。
 - 保存当前 `.bashrc`、工作空间路径和启动方式。
 - 不解压新的 `src` 覆盖现有源码。
 
@@ -79,4 +79,4 @@ printenv AMENT_PREFIX_PATH | tr ':' '\n'
 
 ## 章节导航
 
-[返回本卷](index.md) · [下一章：工作空间、功能包与构建](14-workspace-packages-build.md)
+[上一章：直线纠偏、转向标定和常见底盘故障](../03-chassis-control/17-calibration-and-faults.md) · [返回本篇](index.md) · [下一章：工作空间、功能包与构建](19-workspace-packages-build.md)

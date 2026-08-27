@@ -14,7 +14,7 @@ status: complete
 
 ## 开始前检查
 
-- 第 7 章遥控底盘通过。
+- 第 12 章遥控底盘通过。
 - 主控通信设备稳定存在。
 - 场地清空，速度从默认低值开始。
 - 没有其他导航或遥控节点同时发布速度。
@@ -81,7 +81,7 @@ ros2 topic info /cmd_vel --verbose
 - 键盘节点是明确的速度发布者。
 - 正 `linear.x` 使机器人前进，停止键可靠归零。
 - `linear.y` 只在支持横移的车型生效。
-- 转向方向与第 6 章坐标测试一致。
+- 转向方向与第 11 章坐标测试一致。
 - 松开控制后没有其他节点继续发送非零速度。
 
 ## 常见故障与处理
@@ -96,4 +96,4 @@ ros2 topic info /cmd_vel --verbose
 
 ## 章节导航
 
-[上一章：遥控底盘](07-remote-control.md) · [返回本卷](index.md) · [下一章：串口通信协议](09-serial-protocol.md)
+[上一章：遥控底盘：APP、PS2 与航模遥控](12-remote-control.md) · [返回本篇](index.md) · [下一章：串口通信协议](14-serial-protocol.md)
