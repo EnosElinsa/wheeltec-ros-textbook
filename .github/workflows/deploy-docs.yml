@@ -34,6 +34,9 @@ jobs:
       - name: Build documentation
         run: mkdocs build --strict
 
+      - name: Generate legacy redirects
+        run: python tools/generate_redirects.py --mapping metadata/legacy-redirects.csv --site-dir site
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
