@@ -1,7 +1,7 @@
 kind,number,volume,path,title,status,size_limit_bytes
-foundation,1,01-foundations,docs/01-foundations/01-robot-components.md,一台 ROS 机器人由什么组成,complete,150000
-foundation,2,01-foundations,docs/01-foundations/02-ubuntu-terminal-programs.md,Ubuntu、终端与程序,complete,150000
-foundation,3,01-foundations,docs/01-foundations/03-what-ros2-solves.md,ROS 2 解决什么问题,complete,150000
+foundation,1,01-foundations,docs/01-foundations/01-understanding-ros.md,认识 ROS 与 ROS 2,complete,150000
+foundation,2,01-foundations,docs/01-foundations/02-robot-system-overview.md,一台 ROS 机器人如何工作,complete,150000
+foundation,3,01-foundations,docs/01-foundations/03-ubuntu-terminal-programs.md,Ubuntu、终端与程序,complete,150000
 foundation,4,01-foundations,docs/01-foundations/04-first-ros2-observation.md,第一次观察 ROS 2,complete,150000
 foundation,5,01-foundations,docs/01-foundations/05-ros2-communication.md,ROS 2 程序怎样协作,complete,150000
 chapter,6,02-bringup,docs/02-bringup/06-identify-configuration.md,识别你的机器人配置,complete,150000

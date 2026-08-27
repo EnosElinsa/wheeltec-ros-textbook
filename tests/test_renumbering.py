@@ -26,6 +26,30 @@ FINAL_PARTS = [
 
 
 class RenumberingTests(unittest.TestCase):
+    def test_first_part_manifest_uses_ros_first_filenames(self) -> None:
+        rows = quality.load_manifest(ROOT / "metadata" / "chapter-manifest.csv")
+        first_part = [row for row in rows if row["kind"] == "foundation"]
+        self.assertEqual(
+            [row["path"] for row in first_part],
+            [
+                "docs/01-foundations/01-understanding-ros.md",
+                "docs/01-foundations/02-robot-system-overview.md",
+                "docs/01-foundations/03-ubuntu-terminal-programs.md",
+                "docs/01-foundations/04-first-ros2-observation.md",
+                "docs/01-foundations/05-ros2-communication.md",
+            ],
+        )
+
+    def test_first_part_routes_are_chain_free_and_semantic(self) -> None:
+        from generate_redirects import load_redirects, validate_map
+
+        rows = load_redirects(ROOT / "metadata" / "legacy-redirects.csv")
+        self.assertEqual(validate_map(rows), [])
+        routes = {row.source: row.target for row in rows}
+        self.assertEqual(routes["01-foundations/01-robot-components/"], "01-foundations/02-robot-system-overview/")
+        self.assertEqual(routes["01-foundations/02-ubuntu-terminal-programs/"], "01-foundations/03-ubuntu-terminal-programs/")
+        self.assertEqual(routes["01-foundations/03-what-ros2-solves/"], "01-foundations/01-understanding-ros/")
+        self.assertEqual(routes["00-ros2-theory/t1-what-is-ros2/"], "01-foundations/01-understanding-ros/")
     def test_manifest_has_contiguous_chapters_1_to_46(self) -> None:
         rows = quality.load_manifest(ROOT / "metadata" / "chapter-manifest.csv")
         numbered = [

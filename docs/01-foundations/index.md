@@ -9,9 +9,9 @@
 
 ## 本篇内容
 
-1. [第 1 章：一台 ROS 机器人由什么组成](01-robot-components.md)
-2. [第 2 章：Ubuntu、终端与程序](02-ubuntu-terminal-programs.md)
-3. [第 3 章：ROS 2 解决什么问题](03-what-ros2-solves.md)
+1. [第 1 章：认识 ROS 与 ROS 2](01-understanding-ros.md)
+2. [第 2 章：一台 ROS 机器人如何工作](02-robot-system-overview.md)
+3. [第 3 章：Ubuntu、终端与程序](03-ubuntu-terminal-programs.md)
 4. [第 4 章：第一次观察 ROS 2](04-first-ros2-observation.md)
 5. [第 5 章：ROS 2 程序怎样协作](05-ros2-communication.md)
 
@@ -19,4 +19,4 @@
 
 ## 章节导航
 
-[从第 1 章开始](01-robot-components.md) · [返回教材首页](../index.md)
+[从第 1 章开始](01-understanding-ros.md) · [返回教材首页](../index.md)
