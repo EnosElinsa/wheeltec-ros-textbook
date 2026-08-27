@@ -20,18 +20,7 @@ status: complete
 
 ## 37.4 工作原理
 
-```text
-cmd_vel
- → ROS 2 底盘节点 Control()
- → m/s、rad/s 转为协议单位
- → 串口/CAN 帧
- → STM32 接收与逆运动学
- → PI/PWM/电机
- → 编码器与 IMU
- → STM32 正运动学与状态帧
- → ROS 2 解析
- → odom、imu、tf
-```
+![ROS 2 与 STM32 的闭环链路](../assets/diagrams/ros2-stm32-loop.svg)
 
 每个箭头都是独立边界。最常见错误是端口不对、协议版本不对、mm/s 与 m/s 漏换、角速度缩放、字节序和坐标符号。
 

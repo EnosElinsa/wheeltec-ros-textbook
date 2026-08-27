@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="system-acceptance-pipeline-title system-acceptance-pipeline-desc">
+  <title id="system-acceptance-pipeline-title">WHEELTEC 全系统验收流程</title>
+  <desc id="system-acceptance-pipeline-desc">流程图展示系统验收从电源和控制板开始，依次经过底盘反馈、通信传感器、坐标建图，最后到导航与应用。</desc>
+  <defs>
+    <marker id="system-acceptance-pipeline-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#4f5d75"/></marker>
+    <marker id="system-acceptance-pipeline-accent" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#eb6c36"/></marker>
+  </defs>
+  <rect width="1280" height="720" fill="#f5f5f5"/>
+  <text x="80" y="76" fill="#4f5d75" font-size="12" font-family="system-ui, sans-serif" letter-spacing="2">SYSTEM ACCEPTANCE · BOTTOM-UP EVIDENCE</text>
+  <text x="80" y="124" fill="#2d3142" font-size="28" font-weight="600" font-family="system-ui, sans-serif">从低层证据走到高层功能</text>
+  <text x="80" y="156" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">前一层没有证据，后一层的“正常”就无法解释。</text>
+  <path d="M264 300H336" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#system-acceptance-pipeline-arrow)"/>
+  <path d="M504 300H576" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#system-acceptance-pipeline-arrow)"/>
+  <path d="M744 300H816" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#system-acceptance-pipeline-arrow)"/>
+  <path d="M984 300H1056" fill="none" stroke="#eb6c36" stroke-width="1.2" marker-end="url(#system-acceptance-pipeline-accent)"/>
+  <rect x="80" y="228" width="184" height="144" rx="8" fill="#ffffff" stroke="#4f5d75"/>
+  <rect x="336" y="228" width="168" height="144" rx="8" fill="#ffffff" stroke="#4f5d75"/>
+  <rect x="576" y="228" width="168" height="144" rx="8" fill="#ffffff" stroke="#4f5d75"/>
+  <rect x="816" y="228" width="168" height="144" rx="8" fill="#ffffff" stroke="#4f5d75"/>
+  <rect x="1056" y="228" width="144" height="144" rx="8" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2"/>
+  <text x="104" y="264" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace" letter-spacing="2">01</text><text x="104" y="306" fill="#2d3142" font-size="20" font-weight="600" font-family="system-ui, sans-serif">电源</text><text x="104" y="338" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">急停 · 使能</text>
+  <text x="360" y="264" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace" letter-spacing="2">02</text><text x="360" y="306" fill="#2d3142" font-size="20" font-weight="600" font-family="system-ui, sans-serif">控制板</text><text x="360" y="338" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">TYPE · OLED</text>
+  <text x="600" y="264" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace" letter-spacing="2">03</text><text x="600" y="306" fill="#2d3142" font-size="20" font-weight="600" font-family="system-ui, sans-serif">底盘反馈</text><text x="600" y="338" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">轮速 · 里程计</text>
+  <text x="840" y="264" fill="#7a8399" font-size="12" font-family="ui-monospace, monospace" letter-spacing="2">04</text><text x="840" y="306" fill="#2d3142" font-size="20" font-weight="600" font-family="system-ui, sans-serif">传感器与 TF</text><text x="840" y="338" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">话题 · 坐标</text>
+  <text x="1080" y="264" fill="#eb6c36" font-size="12" font-family="ui-monospace, monospace" letter-spacing="2">05 · FOCAL</text><text x="1080" y="306" fill="#2d3142" font-size="20" font-weight="600" font-family="system-ui, sans-serif">导航与应用</text><text x="1080" y="338" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">地图 · Nav2</text>
+  <text x="80" y="464" fill="#2d3142" font-size="20" font-weight="600" font-family="system-ui, sans-serif">验收记录至少包含</text>
+  <rect x="80" y="496" width="1120" height="96" rx="8" fill="#ffffff" stroke="#4f5d75"/>
+  <text x="112" y="536" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">实际结果</text><text x="352" y="536" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">证据位置</text><text x="592" y="536" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">硬件与软件版本</text><text x="920" y="536" fill="#4f5d75" font-size="16" font-family="system-ui, sans-serif">失败项对应章节</text>
+  <line x1="80" y1="636" x2="1200" y2="636" stroke="rgba(45,49,66,0.12)"/>
+  <text x="80" y="672" fill="#4f5d75" font-size="12" font-family="ui-monospace, monospace">EVIDENCE FIRST · RECORD BEFORE INTERPRETATION</text>
+</svg>
