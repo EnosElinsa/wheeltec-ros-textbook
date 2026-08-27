@@ -27,6 +27,14 @@ FORBIDDEN_TEXT_PATTERNS = {
 
 
 class PublicSiteHygieneTests(unittest.TestCase):
+    def test_readme_is_a_reader_facing_entry_page(self) -> None:
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn("https://enoselinsa.github.io/wheeltec-ros-textbook/", readme)
+        self.assertIn("## 教材结构", readme)
+        self.assertIn("卷零", readme)
+        self.assertIn("卷八", readme)
+        self.assertIn("## 本地预览", readme)
+
     def test_internal_reference_files_are_not_public(self) -> None:
         present = [path for path in FORBIDDEN_PUBLIC_FILES if (ROOT / path).exists()]
         self.assertEqual(present, [])
