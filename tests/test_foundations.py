@@ -91,6 +91,36 @@ class FoundationContentTests(unittest.TestCase):
         self.assertLess(text.index("终端"), text.index("SSH"))
         self.assertEqual(quality.check_foundation(path, 150_000), [])
 
+    def test_chapter_3_explains_ros2_through_nodes(self) -> None:
+        path = ROOT / "docs" / "01-foundations" / "03-what-ros2-solves.md"
+        text = path.read_text(encoding="utf-8")
+        for term in ("ROS 2", "节点", "一个大程序"):
+            self.assertIn(term, text)
+        self.assertEqual(quality.check_foundation(path, 150_000), [])
+
+    def test_chapter_4_has_executable_and_read_only_routes(self) -> None:
+        path = ROOT / "docs" / "01-foundations" / "04-first-ros2-observation.md"
+        text = path.read_text(encoding="utf-8")
+        for term in (
+            "demo_nodes_cpp",
+            "talker",
+            "listener",
+            "ros2 node list",
+            "ros2 topic list",
+            "只读路线",
+        ):
+            self.assertIn(term, text)
+        self.assertEqual(quality.check_foundation(path, 150_000), [])
+
+    def test_chapter_5_introduces_communication_types_in_order(self) -> None:
+        path = ROOT / "docs" / "01-foundations" / "05-ros2-communication.md"
+        text = path.read_text(encoding="utf-8")
+        positions = [text.index(term) for term in ("话题", "服务", "动作", "参数")]
+        self.assertEqual(positions, sorted(positions))
+        self.assertIn("雷达节点", text)
+        self.assertIn("底盘节点", text)
+        self.assertEqual(quality.check_foundation(path, 150_000), [])
+
 
 if __name__ == "__main__":
     unittest.main()

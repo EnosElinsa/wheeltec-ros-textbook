@@ -11,9 +11,9 @@
 
 1. [第 1 章：一台 ROS 机器人由什么组成](01-robot-components.md)
 2. [第 2 章：Ubuntu、终端与程序](02-ubuntu-terminal-programs.md)
-3. 第 3 章：ROS 2 解决什么问题
-4. 第 4 章：第一次观察 ROS 2
-5. 第 5 章：ROS 2 程序怎样协作
+3. [第 3 章：ROS 2 解决什么问题](03-what-ros2-solves.md)
+4. [第 4 章：第一次观察 ROS 2](04-first-ros2-observation.md)
+5. [第 5 章：ROS 2 程序怎样协作](05-ros2-communication.md)
 
 前五章按顺序介绍概念。读完之后，再进入第二篇连接和检查实机。
 
