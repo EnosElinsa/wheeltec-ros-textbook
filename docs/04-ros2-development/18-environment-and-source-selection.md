@@ -58,7 +58,7 @@ find "$HOME" -maxdepth 3 -type d -name src 2>/dev/null
 printenv AMENT_PREFIX_PATH | tr ':' '\n'
 ```
 
-最后按主控、ROS 发行版、控制板、底盘和传感器选择源码。无法从文件名确认时，查看包清单、README、提交信息或供应商更新记录。
+最后按主控、ROS 发行版、控制板、底盘和传感器选择源码。无法从文件名确认时，查看包清单、README、提交信息或版本更新记录。
 
 ## 18.6 验收标准
 

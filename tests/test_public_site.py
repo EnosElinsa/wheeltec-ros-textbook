@@ -63,6 +63,16 @@ class PublicSiteHygieneTests(unittest.TestCase):
         ):
             self.assertNotIn(name, config)
 
+    def test_public_text_is_independent_of_source_material_framing(self) -> None:
+        offenders: list[str] = []
+        pattern = re.compile(
+            r"(?:资料中|资料包中|当前资料|随货资料|本机资料中|用户资料|原始资料)"
+        )
+        for path in sorted((ROOT / "docs").rglob("*.md")):
+            if pattern.search(path.read_text(encoding="utf-8")):
+                offenders.append(path.relative_to(ROOT).as_posix())
+        self.assertEqual(offenders, [])
+
 
 if __name__ == "__main__":
     unittest.main()

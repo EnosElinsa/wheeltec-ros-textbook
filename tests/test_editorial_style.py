@@ -28,6 +28,7 @@ class EditorialScannerTests(unittest.TestCase):
                 "filler emphasis",
                 "reader prediction",
                 "inflated technical prose",
+                "source-material framing",
             },
         )
 

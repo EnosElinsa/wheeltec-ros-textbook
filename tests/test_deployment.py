@@ -31,11 +31,11 @@ class DeploymentConfigurationTests(unittest.TestCase):
         self.assertLess(workflow.index("mkdocs build --strict"), workflow.index("generate_redirects.py"))
         self.assertLess(workflow.index("generate_redirects.py"), workflow.index("upload-pages-artifact"))
 
-    def test_deployment_page_is_exposed_in_part_nine_navigation(self) -> None:
+    def test_site_deployment_infrastructure_is_not_a_textbook_chapter(self) -> None:
         config = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")
-        self.assertIn("github-pages-deployment.md", config)
-        self.assertTrue(
-            (ROOT / "docs" / "09-deployment-maintenance" / "github-pages-deployment.md").is_file()
+        self.assertNotIn("github-pages-deployment.md", config)
+        self.assertFalse(
+            (ROOT / "docs" / "09-deployment-maintenance" / "github-pages-deployment.md").exists()
         )
 
     def test_local_build_runs_redirect_generation_after_mkdocs(self) -> None:

@@ -91,7 +91,6 @@ nav:
       - 45 日志、备份、升级与恢复: 09-deployment-maintenance/45-logs-backup-upgrade-recovery.md
       - 46 全系统验收: 09-deployment-maintenance/46-system-acceptance.md
       - 验收记录表: 09-deployment-maintenance/system-acceptance-checklist.md
-      - GitHub Pages 发布指南: 09-deployment-maintenance/github-pages-deployment.md
   - 附录:
       - A ROS 1 维护: appendices/a-ros1-maintenance.md
       - B 平台矩阵: appendices/b-platform-matrix.md
