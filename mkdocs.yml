@@ -81,6 +81,7 @@ nav:
       - 35 电机控制与 PID: 06-stm32-firmware/35-motor-control-pid.md
       - 36 编译、烧录与回滚: 06-stm32-firmware/36-build-flash-rollback.md
       - 37 ROS 2 与 STM32 联调: 06-stm32-firmware/37-ros2-stm32-integration.md
+      - STM32 外设最小实验: 06-stm32-firmware/stm32-peripheral-labs.md
   - 第七篇 高级应用:
       - 本篇说明: 07-advanced-applications/index.md
       - 38 Gazebo 仿真: 07-advanced-applications/38-gazebo-simulation.md
