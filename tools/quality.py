@@ -8,6 +8,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from urllib.parse import unquote
 
+from editorial_audit import scan_markdown
+
 
 REQUIRED_MANIFEST_COLUMNS = {
     "kind",
@@ -245,15 +247,27 @@ def check_all(root: Path, selected_paths: list[Path] | None = None) -> list[Issu
     return issues
 
 
+def check_editorial_style(path: Path) -> list[Issue]:
+    return [
+        Issue("error", issue.path, f"{issue.category}: {issue.excerpt}")
+        for issue in scan_markdown(path)
+    ]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Check textbook structure and content quality")
     subparsers = parser.add_subparsers(dest="command", required=True)
     check = subparsers.add_parser("check")
     check.add_argument("--root", type=Path, required=True)
     check.add_argument("--paths", type=Path, nargs="*")
+    check.add_argument("--editorial-strict", action="store_true")
     args = parser.parse_args()
 
     issues = check_all(args.root, args.paths)
+    if args.editorial_strict:
+        files = _markdown_files(args.root.resolve(), args.paths)
+        for path in files:
+            issues.extend(check_editorial_style(path))
     for issue in issues:
         print(f"{issue.severity.upper()} {issue.path}: {issue.message}")
     errors = [issue for issue in issues if issue.severity == "error"]
