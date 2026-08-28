@@ -3,11 +3,11 @@ name: Test ROS 2 examples
 on:
   push:
     paths:
-      - "examples/ros2-pubsub/**"
+      - "docs/04-ros2-development/**"
       - ".github/workflows/test-ros2-examples.yml"
   pull_request:
     paths:
-      - "examples/ros2-pubsub/**"
+      - "docs/04-ros2-development/**"
       - ".github/workflows/test-ros2-examples.yml"
   workflow_dispatch:
 
@@ -25,11 +25,14 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v6
 
+      - name: Fetch textbook code repository
+        run: git clone --depth 1 https://github.com/EnosElinsa/wheeltec-ros-source-reference.git /tmp/wheeltec-ros-source-reference
+
       - name: Create isolated ROS 2 workspace
         run: |
           mkdir -p /tmp/wheeltec_course_ws/src
-          cp -r examples/ros2-pubsub/cpp_pubsub /tmp/wheeltec_course_ws/src/
-          cp -r examples/ros2-pubsub/py_pubsub /tmp/wheeltec_course_ws/src/
+          cp -r /tmp/wheeltec-ros-source-reference/examples/ros2-pubsub/cpp_pubsub /tmp/wheeltec_course_ws/src/
+          cp -r /tmp/wheeltec-ros-source-reference/examples/ros2-pubsub/py_pubsub /tmp/wheeltec_course_ws/src/
 
       - name: Build packages
         run: |
