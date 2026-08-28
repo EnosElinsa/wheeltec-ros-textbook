@@ -66,14 +66,14 @@ ros2 pkg prefix <包名>
 
 ### 构建配套发布订阅实验
 
-教材仓库提供两个独立功能包：[C++ 示例](https://github.com/EnosElinsa/wheeltec-ros-textbook/tree/main/examples/ros2-pubsub/cpp_pubsub)和 [Python 示例](https://github.com/EnosElinsa/wheeltec-ros-textbook/tree/main/examples/ros2-pubsub/py_pubsub)。把它们放进同一工作空间的 `src/` 后构建：
+代码仓库提供两个独立功能包：[C++ 示例](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/main/examples/ros2-pubsub/cpp_pubsub)和 [Python 示例](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/main/examples/ros2-pubsub/py_pubsub)。把它们放进同一工作空间的 `src/` 后构建：
 
 ```bash
 mkdir -p ~/wheeltec_course_ws/src
 cd ~/wheeltec_course_ws/src
-git clone --depth 1 https://github.com/EnosElinsa/wheeltec-ros-textbook.git
-cp -r wheeltec-ros-textbook/examples/ros2-pubsub/cpp_pubsub .
-cp -r wheeltec-ros-textbook/examples/ros2-pubsub/py_pubsub .
+git clone --depth 1 https://github.com/EnosElinsa/wheeltec-ros-source-reference.git
+cp -r wheeltec-ros-source-reference/examples/ros2-pubsub/cpp_pubsub .
+cp -r wheeltec-ros-source-reference/examples/ros2-pubsub/py_pubsub .
 cd ..
 source /opt/ros/$ROS_DISTRO/setup.bash
 rosdep install --from-paths src --ignore-src -r -y

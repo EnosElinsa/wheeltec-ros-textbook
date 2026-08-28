@@ -64,14 +64,14 @@ ros2 action info <动作名>
 
 ### 运行配套发布订阅实验
 
-先完成第 19 章的构建步骤。终端 A 运行 [C++ 示例](https://github.com/EnosElinsa/wheeltec-ros-textbook/tree/main/examples/ros2-pubsub/cpp_pubsub)发布者：
+先完成第 19 章的构建步骤。终端 A 运行 [C++ 示例](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/main/examples/ros2-pubsub/cpp_pubsub)发布者：
 
 ```bash
 source ~/wheeltec_course_ws/install/setup.bash
 ros2 run cpp_pubsub talker
 ```
 
-终端 B 运行 [Python 示例](https://github.com/EnosElinsa/wheeltec-ros-textbook/tree/main/examples/ros2-pubsub/py_pubsub)订阅者：
+终端 B 运行 [Python 示例](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/main/examples/ros2-pubsub/py_pubsub)订阅者：
 
 ```bash
 source ~/wheeltec_course_ws/install/setup.bash

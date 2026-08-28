@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import csv
 import re
 import unittest
 from pathlib import Path
@@ -10,18 +9,15 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class PublicSourceReferenceTests(unittest.TestCase):
-    def test_catalog_has_complete_public_coverage(self) -> None:
-        path = ROOT / "metadata/public-source-packages.csv"
-        with path.open(encoding="utf-8-sig", newline="") as handle:
-            rows = list(csv.DictReader(handle))
-        self.assertEqual(len(rows), 240)
-        self.assertEqual(sum(row["content_kind"] == "source_archive" for row in rows), 220)
-        self.assertEqual(
-            len({row["canonical_archive_id"] for row in rows if row["publication_status"] == "publishable"}),
-            204,
-        )
-        self.assertTrue(all(":" not in row["archive_id"] for row in rows))
-        self.assertTrue(all(row["snapshot_url"] or row["publication_status"] != "publishable" for row in rows))
+    def test_appendix_lists_direct_code_entries(self) -> None:
+        text = (ROOT / "docs/appendices/d-public-source-reference.md").read_text(encoding="utf-8")
+        ids = set(re.findall(r"(?:G|R)-archive-\d{4}", text))
+        self.assertEqual(len(ids), 200)
+        self.assertEqual(text.count("https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/main/packages/"), 200)
+        self.assertNotIn("catalog/", text)
+        self.assertNotIn("release-manifest", text)
+        self.assertNotIn("SHA-256", text)
+        self.assertNotIn("下载", text)
 
     def test_appendix_is_published_and_linked_from_entry_pages(self) -> None:
         appendix = ROOT / "docs/appendices/d-public-source-reference.md"
@@ -57,8 +53,8 @@ class PublicSourceReferenceTests(unittest.TestCase):
 
     def test_appendix_has_safe_hardware_language_and_no_internal_ids(self) -> None:
         text = (ROOT / "docs/appendices/d-public-source-reference.md").read_text(encoding="utf-8")
-        self.assertIn("公开不等于适配当前实机", text)
         self.assertIn("实机照片补齐前", text)
+        self.assertIn("硬件核对", text)
         self.assertNotRegex(text, r"(?<![A-Za-z0-9])[GR]:(?:archive|firmware|video):")
         self.assertNotIn("wheeltec-ros-general-course", text)
         self.assertNotIn("wheeltec-r680-course", text)

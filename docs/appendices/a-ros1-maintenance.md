@@ -47,8 +47,8 @@ status: complete
 - 新开发优先返回第四篇和第五篇的 ROS 2 章节。
 
 
-!!! note "公开源码参考"
-    本节涉及的ROS 1 旧包与迁移参考可在[公开源码参考附录](d-public-source-reference.md)中按主题和公开 ID 定位。需要构建时先下载 Release 原始归档并校验 SHA-256；STM32 与 R680 条目在实机照片补齐前仍需完成硬件匹配，公开状态不等于烧录授权。
+!!! note "教材代码资源"
+    本节使用的代码入口见[教材代码资源附录](d-public-source-reference.md)。
 
 ## 章节导航
 

@@ -56,8 +56,8 @@ ROS 2 Nav2 二维导航。不同镜像可能使用不同规划器和控制器插
 | 到点不停 | 目标容差、控制器、速度复用和底盘停止链 |
 
 
-!!! note "公开源码参考"
-    本节涉及的Nav2 与导航源码可在[公开源码参考附录](../appendices/d-public-source-reference.md)中按主题和公开 ID 定位。需要构建时先下载 Release 原始归档并校验 SHA-256；STM32 与 R680 条目在实机照片补齐前仍需完成硬件匹配，公开状态不等于烧录授权。
+!!! note "教材代码资源"
+    本节使用的代码入口见[教材代码资源附录](../appendices/d-public-source-reference.md)。
 
 ## 章节导航
 
