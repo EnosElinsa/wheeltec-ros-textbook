@@ -56,6 +56,10 @@ WHEELTEC STM32 底盘固件。不同控制板的外设和任务名会变化，�
 | 通信正常但控制更新慢 | 控制任务延时、阻塞调用或优先级 |
 | 自检偶发失败 | 初始化顺序、传感器稳定时间和电压 |
 
+
+!!! note "公开源码参考"
+    本节涉及的STM32 架构与 FreeRTOS 源码可在[公开源码参考附录](../appendices/d-public-source-reference.md)中按主题和公开 ID 定位。需要构建时先下载 Release 原始归档并校验 SHA-256；STM32 与 R680 条目在实机照片补齐前仍需完成硬件匹配，公开状态不等于烧录授权。
+
 ## 章节导航
 
 [上一章：视觉跟随、巡线、KCF、AR 标签与网页视频](../05-sensors-navigation/32-vision-applications.md) · [返回本篇](index.md) · [下一章：硬件初始化、车型选择与接口](34-hardware-init-model-interfaces.md)

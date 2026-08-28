@@ -71,6 +71,10 @@ ros2 pkg prefix <目标包>
 | 编译通过但运行崩溃 | 查接口、参数类型、共享库和运行日志 |
 | 依赖安装破坏环境 | 使用包管理记录或系统镜像恢复，不盲目降级全局库 |
 
+
+!!! note "公开源码参考"
+    本节涉及的源码修改、构建与回滚可在[公开源码参考附录](../appendices/d-public-source-reference.md)中按主题和公开 ID 定位。需要构建时先下载 Release 原始归档并校验 SHA-256；STM32 与 R680 条目在实机照片补齐前仍需完成硬件匹配，公开状态不等于烧录授权。
+
 ## 章节导航
 
 [上一章：TF、URDF 与 RViz](22-tf-urdf-rviz.md) · [返回本篇](index.md) · [下一章：开机启动与进程管理](24-autostart-and-processes.md)

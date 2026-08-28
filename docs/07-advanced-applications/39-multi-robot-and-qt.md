@@ -48,6 +48,10 @@ ROS 2 多机器人编队与 Qt 控制界面。不同车型的编队接口和控�
 | Qt 显示正常但车不动 | 发布话题、QoS、控制优先级和底盘订阅 |
 | 掉线后继续走 | 命令超时和失联策略 |
 
+
+!!! note "公开源码参考"
+    本节涉及的多机与 Qt 源码可在[公开源码参考附录](../appendices/d-public-source-reference.md)中按主题和公开 ID 定位。需要构建时先下载 Release 原始归档并校验 SHA-256；STM32 与 R680 条目在实机照片补齐前仍需完成硬件匹配，公开状态不等于烧录授权。
+
 ## 章节导航
 
 [上一章：仿真与 Gazebo](38-gazebo-simulation.md) · [返回本篇](index.md) · [下一章：毫米波雷达、人体跟踪与深度学习](40-mmwave-human-deep-learning.md)

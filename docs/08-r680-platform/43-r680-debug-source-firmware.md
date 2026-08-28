@@ -98,6 +98,10 @@ R680 的车型分支会改变运动学、轮号、舵机、编码器和自检。
 | 测试固件正常、正式固件异常 | 正式工程配置、协议和任务逻辑 |
 | 回滚仍无法恢复 | EEPROM 参数、接线或机械状态也改变 |
 
+
+!!! note "公开源码参考"
+    本节涉及的R680、控制板与固件源码可在[公开源码参考附录](../appendices/d-public-source-reference.md)中按主题和公开 ID 定位。需要构建时先下载 Release 原始归档并校验 SHA-256；STM32 与 R680 条目在实机照片补齐前仍需完成硬件匹配，公开状态不等于烧录授权。
+
 ## 章节导航
 
 [上一章：R680 硬件、接线与 OLED 状态](42-r680-hardware-wiring-oled.md) · [返回本篇](index.md) · [下一章：网络、Docker、系统镜像与主控差异](../09-deployment-maintenance/44-network-docker-images.md)

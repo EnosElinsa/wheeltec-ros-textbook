@@ -14,7 +14,7 @@ import scaffold  # noqa: E402
 
 
 class ManifestTests(unittest.TestCase):
-    def test_manifest_has_5_foundations_41_engineering_chapters_and_3_appendices(self) -> None:
+    def test_manifest_has_5_foundations_41_engineering_chapters_and_4_appendices(self) -> None:
         rows = quality.load_manifest(ROOT / "metadata" / "chapter-manifest.csv")
         foundations = [row for row in rows if row["kind"] == "foundation"]
         chapters = [row for row in rows if row["kind"] == "chapter"]
@@ -23,7 +23,7 @@ class ManifestTests(unittest.TestCase):
         self.assertEqual([int(row["number"]) for row in foundations], list(range(1, 6)))
         self.assertEqual([int(row["number"]) for row in chapters], list(range(6, 47)))
         self.assertLess(rows.index(foundations[-1]), rows.index(chapters[0]))
-        self.assertEqual([row["number"] for row in appendices], ["A", "B", "C"])
+        self.assertEqual([row["number"] for row in appendices], ["A", "B", "C", "D"])
         self.assertEqual(len({row["path"] for row in rows}), len(rows))
         self.assertEqual(quality.check_manifest(rows), [])
 

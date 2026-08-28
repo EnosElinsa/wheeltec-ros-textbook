@@ -157,8 +157,8 @@ def check_manifest(rows: list[dict[str, str]]) -> list[str]:
         errors.append("engineering chapter numbers must be consecutive from 6 through 46")
     if numbered_rows != list(range(1, 47)):
         errors.append("all numbered pages must be ordered from 1 through 46")
-    if [row.get("number") for row in appendices] != ["A", "B", "C"]:
-        errors.append("public chapter manifest must contain appendices A through C")
+    if [row.get("number") for row in appendices] != ["A", "B", "C", "D"]:
+        errors.append("public chapter manifest must contain appendices A through D")
     return errors
 
 

@@ -48,6 +48,10 @@ AI 适合把自然语言转换成高层意图，例如“去实验室门口”�
 | 网络中断后动作持续 | 上层心跳和底盘超时必须独立生效 |
 | 令牌出现在日志 | 立即撤销，改用环境变量或安全凭据存储 |
 
+
+!!! note "公开源码参考"
+    本节涉及的语音、AI 与 OpenClaw 源码可在[公开源码参考附录](../appendices/d-public-source-reference.md)中按主题和公开 ID 定位。需要构建时先下载 Release 原始归档并校验 SHA-256；STM32 与 R680 条目在实机照片补齐前仍需完成硬件匹配，公开状态不等于烧录授权。
+
 ## 章节导航
 
 [上一章：毫米波雷达、人体跟踪与深度学习](40-mmwave-human-deep-learning.md) · [返回本篇](index.md) · [下一章：R680 硬件、接线与 OLED 状态](../08-r680-platform/42-r680-hardware-wiring-oled.md)

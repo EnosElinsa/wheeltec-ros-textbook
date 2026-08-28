@@ -54,6 +54,10 @@ ROS 侧不知道从哪个 Launch 和 C++ 回调开始追踪时，先完成 [`tur
 | IMU 方向错 | 板载轴定义、固件重映射或 ROS frame_id |
 | 断开主控后继续运动 | 通信超时和失能逻辑缺失，停止测试 |
 
+
+!!! note "公开源码参考"
+    本节涉及的ROS 2 与 STM32 联调源码可在[公开源码参考附录](../appendices/d-public-source-reference.md)中按主题和公开 ID 定位。需要构建时先下载 Release 原始归档并校验 SHA-256；STM32 与 R680 条目在实机照片补齐前仍需完成硬件匹配，公开状态不等于烧录授权。
+
 ## 章节导航
 
 [上一章：修改、编译、烧录与回滚固件](36-build-flash-rollback.md) · [返回本篇](index.md) · [下一章：仿真与 Gazebo](../07-advanced-applications/38-gazebo-simulation.md)

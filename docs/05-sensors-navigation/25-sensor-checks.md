@@ -77,6 +77,10 @@ ros2 topic echo --once <话题名>
 | 节点在但频率为 0 | 查设备参数、端口占用和驱动日志 |
 | 数据频率忽高忽低 | 查 CPU、USB 带宽、供电和 QoS |
 
+
+!!! note "公开源码参考"
+    本节涉及的传感器与驱动源码可在[公开源码参考附录](../appendices/d-public-source-reference.md)中按主题和公开 ID 定位。需要构建时先下载 Release 原始归档并校验 SHA-256；STM32 与 R680 条目在实机照片补齐前仍需完成硬件匹配，公开状态不等于烧录授权。
+
 ## 章节导航
 
 [上一章：开机启动与进程管理](../04-ros2-development/24-autostart-and-processes.md) · [返回本篇](index.md) · [下一章：激光雷达与二维建图](26-lidar-and-mapping.md)

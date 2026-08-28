@@ -47,6 +47,10 @@ Gazebo 用物理模型近似底盘和传感器。它适合检查节点连接和�
 | 时间戳异常 | `/use_sim_time` 和 `/clock` |
 | 仿真能导航、实机不能 | 回到传感器、TF、里程计和制动能力 |
 
+
+!!! note "公开源码参考"
+    本节涉及的Gazebo 仿真源码可在[公开源码参考附录](../appendices/d-public-source-reference.md)中按主题和公开 ID 定位。需要构建时先下载 Release 原始归档并校验 SHA-256；STM32 与 R680 条目在实机照片补齐前仍需完成硬件匹配，公开状态不等于烧录授权。
+
 ## 章节导航
 
 [上一章：ROS 2 与 STM32 联调](../06-stm32-firmware/37-ros2-stm32-integration.md) · [返回本篇](index.md) · [下一章：多机编队与 Qt 控制界面](39-multi-robot-and-qt.md)

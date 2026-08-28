@@ -53,6 +53,10 @@ status: complete
 | 转弯处撕裂 | 角速度过高、扫描频率或里程计误差 |
 | 保存后空白 | 保存时机、地图话题和输出路径 |
 
+
+!!! note "公开源码参考"
+    本节涉及的雷达、建图与相关源码可在[公开源码参考附录](../appendices/d-public-source-reference.md)中按主题和公开 ID 定位。需要构建时先下载 Release 原始归档并校验 SHA-256；STM32 与 R680 条目在实机照片补齐前仍需完成硬件匹配，公开状态不等于烧录授权。
+
 ## 章节导航
 
 [上一章：传感器自检](25-sensor-checks.md) · [返回本篇](index.md) · [下一章：地图保存、定位与坐标验证](27-map-localization-tf.md)

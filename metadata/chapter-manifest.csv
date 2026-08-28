@@ -48,3 +48,4 @@ chapter,46,09-deployment-maintenance,docs/09-deployment-maintenance/46-system-ac
 appendix,A,appendices,docs/appendices/a-ros1-maintenance.md,ROS 1 兼容与旧设备维护,complete,150000
 appendix,B,appendices,docs/appendices/b-platform-matrix.md,车型、主控与控制板矩阵,complete,150000
 appendix,C,appendices,docs/appendices/c-software-tools.md,软件、驱动与工具索引,complete,150000
+appendix,D,appendices,docs/appendices/d-public-source-reference.md,公开源码参考,complete,180000

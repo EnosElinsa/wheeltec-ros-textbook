@@ -61,7 +61,7 @@ class FoundationSchemaTests(unittest.TestCase):
                     "size_limit_bytes": "150000",
                 }
             )
-        for number in ("A", "B", "C"):
+        for number in ("A", "B", "C", "D"):
             rows.append(
                 {
                     "kind": "appendix",

@@ -74,6 +74,10 @@ baseline/
 | 地图加载失败 | 路径、权限、分辨率和版本 |
 | 自启动进入重启循环 | 禁用服务，回到手动基线 |
 
+
+!!! note "公开源码参考"
+    本节涉及的备份、升级与恢复所需源码版本可在[公开源码参考附录](../appendices/d-public-source-reference.md)中按主题和公开 ID 定位。需要构建时先下载 Release 原始归档并校验 SHA-256；STM32 与 R680 条目在实机照片补齐前仍需完成硬件匹配，公开状态不等于烧录授权。
+
 ## 章节导航
 
 [上一章：网络、Docker、系统镜像与主控差异](44-network-docker-images.md) · [返回本篇](index.md) · [下一章：全系统验收清单](46-system-acceptance.md)

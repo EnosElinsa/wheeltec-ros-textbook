@@ -47,6 +47,10 @@ status: complete
 | 毫米波停障过敏 | 阈值、安装角度、静态杂波和滤波 |
 | 推理卡顿 | 输入尺寸、硬件加速、模型版本和 CPU/GPU 占用 |
 
+
+!!! note "公开源码参考"
+    本节涉及的毫米波、人体与深度学习源码可在[公开源码参考附录](../appendices/d-public-source-reference.md)中按主题和公开 ID 定位。需要构建时先下载 Release 原始归档并校验 SHA-256；STM32 与 R680 条目在实机照片补齐前仍需完成硬件匹配，公开状态不等于烧录授权。
+
 ## 章节导航
 
 [上一章：多机编队与 Qt 控制界面](39-multi-robot-and-qt.md) · [返回本篇](index.md) · [下一章：语音、多模态 AI 与 OpenClaw](41-voice-ai-openclaw.md)
