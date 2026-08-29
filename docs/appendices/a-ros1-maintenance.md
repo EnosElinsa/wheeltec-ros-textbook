@@ -24,6 +24,8 @@ status: complete
 
 ## A.4 ROS 1 Bag 离线诊断 {#ros1-bag-offline-diagnostics}
 
+迁移内容：Bag 可在没有实机时核对消息类型、频率、时间戳、frame 和 TF；它不包含完整驱动、参数、URDF 或硬件配置。只在隔离 ROS master 中进行只读盘点和暂停回放，不将回放结果视为当前机器人兼容性或硬件验证。
+
 1. 记录 Ubuntu、ROS 发行版、源码和底盘控制板。
 2. 先运行旧系统的底盘和传感器基线。
 3. 修改前备份 Launch、参数、地图和固件。

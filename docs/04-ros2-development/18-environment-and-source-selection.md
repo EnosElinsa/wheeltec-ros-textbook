@@ -28,6 +28,8 @@ Docker 还多一层边界：宿主机看到的文件、设备和网络，只有�
 
 ## 18.5 源码包确认 {#source-package-selection}
 
+迁移内容：同一主控可能有系统安装、旧工作空间和当前工作空间中的同名包；以 `ros2 pkg prefix`、`ros2 pkg executables` 和 `ros2 pkg xml` 的当前解析结果确认实际包来源与完整性。
+
 在实际运行 ROS 的终端执行：
 
 ```bash
