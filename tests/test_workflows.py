@@ -47,6 +47,14 @@ class WorkflowContractTests(unittest.TestCase):
         for workflow in (examples, validation):
             self.assertLess(workflow.index("pip install"), workflow.index("import yaml"))
 
+    def test_ros2_container_workflow_uses_python3_everywhere(self) -> None:
+        workflow = (ROOT / ".github/workflows/test-ros2-examples.yml").read_text(encoding="utf-8")
+        self.assertIn("container: ros:humble-ros-base-jammy", workflow)
+        # The source tree contains a directory named ``python``; only reject
+        # bare interpreter invocations, not that resource path.
+        self.assertNotRegex(workflow, r"(?m)(?:^|[ (])python(?:\s|$)")
+        self.assertGreaterEqual(workflow.count("python3"), 3)
+
     def test_clone_source_revision_uses_an_isolated_destination_and_pinned_commit(self) -> None:
         from validate_code_resources import clone_source_revision
 
