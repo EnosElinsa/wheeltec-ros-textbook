@@ -27,14 +27,29 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v6
 
-      - name: Install mapping parser
-        run: python3 -m pip install --disable-pip-version-check pyyaml
-
       - name: Fetch textbook code repository
         run: |
-          SOURCE_REPOSITORY="$(python3 -c 'import yaml; print(yaml.safe_load(open("metadata/code-resources.yml"))["source_repository"])')"
-          SOURCE_REVISION="$(python3 -c 'import yaml; print(yaml.safe_load(open("metadata/code-resources.yml"))["source_revision"])')"
+          read_top_level_value() {
+            awk -v key="$1" '
+              $0 ~ "^[[:space:]]*" key "[[:space:]]*:" {
+                value = $0
+                sub("^[[:space:]]*" key "[[:space:]]*:[[:space:]]*", "", value)
+                sub("[[:space:]]*(#.*)?$", "", value)
+                if (value ~ /^\".*\"$/ || value ~ /^\047.*\047$/) {
+                  value = substr(value, 2, length(value) - 2)
+                }
+                print value
+                exit
+              }
+            ' metadata/code-resources.yml
+          }
+          SOURCE_REPOSITORY="$(read_top_level_value source_repository)"
+          SOURCE_REVISION="$(read_top_level_value source_revision)"
+          test -n "$SOURCE_REPOSITORY"
           test "${#SOURCE_REVISION}" -eq 40
+          case "$SOURCE_REVISION" in
+            *[!0-9a-f]* | "") exit 1 ;;
+          esac
           git clone --no-checkout "https://github.com/${SOURCE_REPOSITORY}.git" /tmp/wheeltec-ros-source-reference
           cd /tmp/wheeltec-ros-source-reference
           git checkout --detach "$SOURCE_REVISION"

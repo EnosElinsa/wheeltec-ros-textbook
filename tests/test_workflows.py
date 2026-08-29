@@ -44,16 +44,23 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertNotIn('https://github.com/EnosElinsa/wheeltec-ros-source-reference.git', examples)
         self.assertIn("separate", validation.lower())
         self.assertIn('"metadata/code-resources.yml"', examples)
-        for workflow in (examples, validation):
-            self.assertLess(workflow.index("pip install"), workflow.index("import yaml"))
+        self.assertLess(validation.index("pip install"), validation.index("import yaml"))
 
-    def test_ros2_container_workflow_uses_python3_everywhere(self) -> None:
+    def test_ros2_container_workflow_parses_pinned_mapping_without_a_python_dependency(self) -> None:
         workflow = (ROOT / ".github/workflows/test-ros2-examples.yml").read_text(encoding="utf-8")
         self.assertIn("container: ros:humble-ros-base-jammy", workflow)
+        self.assertNotIn("Install mapping parser", workflow)
+        self.assertNotIn("pip install", workflow)
+        self.assertNotIn("import yaml", workflow)
+        self.assertIn("read_top_level_value()", workflow)
+        self.assertIn("read_top_level_value source_repository", workflow)
+        self.assertIn("read_top_level_value source_revision", workflow)
+        self.assertIn("test -n \"$SOURCE_REPOSITORY\"", workflow)
+        self.assertIn("*[!0-9a-f]*", workflow)
         # The source tree contains a directory named ``python``; only reject
-        # bare interpreter invocations, not that resource path.
+        # interpreter invocations, not that resource path.
         self.assertNotRegex(workflow, r"(?m)(?:^|[ (])python(?:\s|$)")
-        self.assertGreaterEqual(workflow.count("python3"), 3)
+        self.assertNotRegex(workflow, r"(?m)(?:^|[ (])python3(?:\s|$)")
 
     def test_clone_source_revision_uses_an_isolated_destination_and_pinned_commit(self) -> None:
         from validate_code_resources import clone_source_revision
