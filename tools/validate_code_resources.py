@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import re
+import shutil
+import subprocess
 from dataclasses import asdict, dataclass, field
 from pathlib import Path, PurePosixPath
 from typing import Any
@@ -217,6 +219,42 @@ def immutable_tree_url(repository: str, revision: str, path: str) -> str:
     if not REVISION_PATTERN.fullmatch(revision):
         raise ValueError("source revision must be a 40-character lowercase commit SHA")
     return f"https://github.com/{repository}/tree/{revision}/{path.strip('/')}"
+
+
+def clone_source_revision(repository: str, revision: str, destination: Path) -> None:
+    """Clone a source repository into an isolated destination at one immutable SHA."""
+    if not REVISION_PATTERN.fullmatch(revision):
+        raise ValueError("source revision must be a 40-character lowercase commit SHA")
+    destination = Path(destination)
+    if destination.exists():
+        raise ValueError(f"clone destination already exists: {destination}")
+    url = repository if "://" in repository or Path(repository).exists() else f"https://github.com/{repository}.git"
+    subprocess.run(["git", "clone", "--no-checkout", url, str(destination)], check=True)
+    try:
+        subprocess.run(["git", "-C", str(destination), "checkout", "--detach", revision], check=True)
+    except Exception:
+        shutil.rmtree(destination, ignore_errors=True)
+        raise
+
+
+def run_code_resource_validation(textbook_root: Path, source_root: Path) -> int:
+    """Run mapping and Appendix D checks without writing to the source checkout."""
+    textbook_root = Path(textbook_root).resolve()
+    source_root = Path(source_root).resolve()
+    try:
+        mapping = load_code_resources(textbook_root / "metadata/code-resources.yml")
+        errors = validate_code_resource_map(mapping, source_root, textbook_root)
+        appendix = (textbook_root / "docs/appendices/d-public-source-reference.md").read_text(encoding="utf-8")
+        validate_appendix_matches_mapping(appendix, mapping)
+    except (OSError, ValueError) as error:
+        print(f"code resource validation failed: {error}")
+        return 1
+    if errors:
+        for error in errors:
+            print(error)
+        return 1
+    print(f"code resource validation passed: {len(mapping.resources)} resources")
+    return 0
 
 
 def _legacy_numbered_path_error(path: str) -> str | None:

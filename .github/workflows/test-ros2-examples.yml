@@ -26,13 +26,18 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Fetch textbook code repository
-        run: git clone --depth 1 https://github.com/EnosElinsa/wheeltec-ros-source-reference.git /tmp/wheeltec-ros-source-reference
+        run: |
+          SOURCE_REVISION="$(python -c 'import yaml; print(yaml.safe_load(open("metadata/code-resources.yml"))["source_revision"])')"
+          test "${#SOURCE_REVISION}" -eq 40
+          git clone --no-checkout https://github.com/EnosElinsa/wheeltec-ros-source-reference.git /tmp/wheeltec-ros-source-reference
+          cd /tmp/wheeltec-ros-source-reference
+          git checkout --detach "$SOURCE_REVISION"
 
       - name: Create isolated ROS 2 workspace
         run: |
           mkdir -p /tmp/wheeltec_course_ws/src
-          cp -r /tmp/wheeltec-ros-source-reference/examples/ros2-pubsub/cpp_pubsub /tmp/wheeltec_course_ws/src/
-          cp -r /tmp/wheeltec-ros-source-reference/examples/ros2-pubsub/py_pubsub /tmp/wheeltec_course_ws/src/
+          cp -r /tmp/wheeltec-ros-source-reference/examples/ros2/pubsub/cpp /tmp/wheeltec_course_ws/src/cpp_pubsub
+          cp -r /tmp/wheeltec-ros-source-reference/examples/ros2/pubsub/python /tmp/wheeltec_course_ws/src/py_pubsub
 
       - name: Build packages
         run: |
