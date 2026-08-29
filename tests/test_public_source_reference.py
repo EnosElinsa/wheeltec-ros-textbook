@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_ROOT = ROOT.parent / "code-resource-curation-source"
-APPROVED_SOURCE_BASELINE = "65d75585de1bfaf7d454bbe794f3714edd2e265b"
+APPROVED_SOURCE_BASELINE = "49d5e63165b1204eedbc72c48e43999711ffdbd0"
 sys.path.insert(0, str(ROOT / "tools"))
 
 import validate_code_resources  # noqa: E402
@@ -87,6 +87,7 @@ class PublicSourceReferenceTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
 
 
 
