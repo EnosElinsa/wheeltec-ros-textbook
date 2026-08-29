@@ -8,6 +8,7 @@ from pathlib import Path
 
 import yaml
 import sys
+import re
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -95,6 +96,23 @@ class WorkflowContractTests(unittest.TestCase):
         after = subprocess.check_output(["git", "-C", str(source), "status", "--porcelain"], text=True)
         self.assertEqual(before, after)
 
+    def test_formal_consumer_pages_and_reader_inputs_use_mapping_revision_only(self) -> None:
+        import validate_code_resources
+
+        mapping = validate_code_resources.load_code_resources(ROOT / "metadata/code-resources.yml")
+        revision = mapping.source_revision
+        pages = {ROOT / consumer.page for resource in mapping.resources for consumer in resource.consumers}
+        pages.update(
+            {
+                ROOT.parent.parent / "wheeltec-ros-source-reference/docs/superpowers/audits/code-resource-reader-test.md",
+                ROOT.parent.parent / "wheeltec-ros-source-reference/docs/superpowers/audits/code-resource-reader-test.json",
+            }
+        )
+        for page in pages:
+            text = page.read_text(encoding="utf-8")
+            revisions = re.findall(r"(?<![0-9a-f])[0-9a-f]{40}(?![0-9a-f])", text)
+            self.assertTrue(all(found == revision for found in revisions), page)
+
     def test_public_source_integrity_rejects_process_roots_and_non_code_top_level_dirs(self) -> None:
         from validate_code_resources import validate_public_source_tree
 
@@ -109,6 +127,9 @@ class WorkflowContractTests(unittest.TestCase):
             (source / "docs").rmdir()
             (source / ".github").mkdir()
             self.assertTrue(any(".github" in error for error in validate_public_source_tree(source)))
+            (source / ".github").rmdir()
+            (source / "ros2" / "config").mkdir(parents=True)
+            self.assertEqual(validate_public_source_tree(source), [])
 
         current = ROOT.parent / "code-resource-curation-source"
         self.assertEqual(validate_public_source_tree(current), [])
