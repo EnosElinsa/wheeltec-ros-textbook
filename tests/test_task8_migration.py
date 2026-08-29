@@ -4,13 +4,10 @@ import csv
 from pathlib import Path
 
 from heading_migration import assert_anchor_exists, heading_migration_complete
+from workspace_paths import find_process_root
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MIGRATION = Path(
-    r"C:\Users\labs2\Desktop\Projects\wheeltec-ros\wheeltec-ros-source-reference"
-    r"\docs\superpowers\audits\2026-08-29-page-heading-migration.csv"
-)
 OLD = (
     "docs/04-ros2-development/turn-on-wheeltec-robot-source-walkthrough.md",
     "docs/05-sensors-navigation/ros1-bag-offline-diagnostics.md",
@@ -48,7 +45,17 @@ def test_chapter_21_uses_the_exact_numbered_launch_chain_title() -> None:
 
 
 def test_every_retained_heading_is_substantively_represented() -> None:
-    heading_migration_complete(MIGRATION, ROOT)
+    process_root = find_process_root(ROOT)
+    if process_root is None:
+        import pytest
+
+        pytest.skip("standalone textbook checkout has no local heading-migration audit")
+    migration = process_root / "docs/superpowers/audits/2026-08-29-page-heading-migration.csv"
+    if not migration.is_file():
+        import pytest
+
+        pytest.skip("local process checkout does not contain heading-migration audit")
+    heading_migration_complete(migration, ROOT)
 
 
 def test_legacy_redirects_land_on_fixed_anchors() -> None:
