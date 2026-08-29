@@ -1,5 +1,5 @@
 source_repository: EnosElinsa/wheeltec-ros-source-reference
-source_revision: 93465bec26d410bab6cb4d6679fa9e4724764c64
+source_revision: c2c67b3d74c0ebfcf3f65a9725093a8f4397fa24
 resources:
   - id: ros2.robot.turn-on-wheeltec-robot
     repository_path: ros2/robot/turn-on-wheeltec-robot
@@ -15,7 +15,7 @@ resources:
     compatibility: {ros_distribution: humble, platform: requires-confirmation, hardware: requires-confirmation}
     dependencies: [{kind: system, path: rclcpp, provider: rosdep, verification: declared}
     ]
-    verification: {level: static_reviewed, source_commit: 93465bec26d410bab6cb4d6679fa9e4724764c64, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+    verification: {level: static_reviewed, source_commit: c2c67b3d74c0ebfcf3f65a9725093a8f4397fa24, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
 
   - id: stm32.labs.uart
     repository_path: stm32/labs/uart/stm32f103-stdperiph
@@ -23,35 +23,35 @@ resources:
       - {page: docs/06-stm32-firmware/34-hardware-init-model-interfaces.md, anchor: stm32-uart-lab, files: [USER/UART1.uvprojx, USER/main.c, SYSTEM/usart/usart.c, SYSTEM/usart/usart.h], role: UART 实验, mode: static_read, commands: [], acceptance: [能定位串口初始化], boundaries: [仅静态核对]}
     compatibility: {ros_distribution: none, platform: stm32f103, hardware: requires-confirmation}
     dependencies: [{kind: toolchain, path: CMSIS/StdPeriph, provider: project, verification: declared}]
-    verification: {level: static_reviewed, source_commit: 93465bec26d410bab6cb4d6679fa9e4724764c64, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-5-static.txt, verified_at: '2026-08-29'}
+    verification: {level: static_reviewed, source_commit: c2c67b3d74c0ebfcf3f65a9725093a8f4397fa24, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-5-static.txt, verified_at: '2026-08-29'}
   - id: stm32.labs.pwm
     repository_path: stm32/labs/pwm/stm32f103-stdperiph
     consumers:
       - {page: docs/06-stm32-firmware/34-hardware-init-model-interfaces.md, anchor: stm32-pwm-lab, files: [USER/PWM.uvprojx, USER/main.c, SYSTEM/usart/usart.c, SYSTEM/usart/usart.h], role: PWM 实验, mode: static_read, commands: [], acceptance: [能定位定时器与占空比], boundaries: [仅静态核对]}
     compatibility: {ros_distribution: none, platform: stm32f103, hardware: requires-confirmation}
     dependencies: [{kind: toolchain, path: CMSIS/StdPeriph, provider: project, verification: declared}]
-    verification: {level: static_reviewed, source_commit: 93465bec26d410bab6cb4d6679fa9e4724764c64, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-5-static.txt, verified_at: '2026-08-29'}
+    verification: {level: static_reviewed, source_commit: c2c67b3d74c0ebfcf3f65a9725093a8f4397fa24, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-5-static.txt, verified_at: '2026-08-29'}
   - id: stm32.labs.encoder
     repository_path: stm32/labs/encoder/stm32f103-stdperiph
     consumers:
       - {page: docs/06-stm32-firmware/34-hardware-init-model-interfaces.md, anchor: stm32-encoder-lab, files: [USER/Encoder.uvprojx, USER/main.c, SYSTEM/usart/usart.c, SYSTEM/usart/usart.h], role: 编码器实验, mode: static_read, commands: [], acceptance: [能定位编码器计数], boundaries: [仅静态核对]}
     compatibility: {ros_distribution: none, platform: stm32f103, hardware: requires-confirmation}
     dependencies: [{kind: toolchain, path: CMSIS/StdPeriph, provider: project, verification: declared}]
-    verification: {level: static_reviewed, source_commit: 93465bec26d410bab6cb4d6679fa9e4724764c64, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-5-static.txt, verified_at: '2026-08-29'}
+    verification: {level: static_reviewed, source_commit: c2c67b3d74c0ebfcf3f65a9725093a8f4397fa24, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-5-static.txt, verified_at: '2026-08-29'}
   - id: stm32.control.motor
     repository_path: stm32/control/motor/stm32f4-stdperiph
     consumers:
       - {page: docs/06-stm32-firmware/35-motor-control-pid.md, anchor: stm32-motor-control, files: [USER/main.c], role: 电机控制, mode: static_read, commands: [], acceptance: [能定位电机映射], boundaries: [无编译器与实机证据]}
     compatibility: {ros_distribution: none, platform: stm32f4, hardware: requires-confirmation}
     dependencies: [{kind: toolchain, path: CMSIS/StdPeriph/BSP, provider: project, verification: declared}]
-    verification: {level: static_reviewed, source_commit: 93465bec26d410bab6cb4d6679fa9e4724764c64, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-5-static.txt, verified_at: '2026-08-29'}
+    verification: {level: static_reviewed, source_commit: c2c67b3d74c0ebfcf3f65a9725093a8f4397fa24, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-5-static.txt, verified_at: '2026-08-29'}
   - id: stm32.control.pid
     repository_path: stm32/control/pid/stm32f4-stdperiph
     consumers:
       - {page: docs/06-stm32-firmware/35-motor-control-pid.md, anchor: stm32-pid-control, files: [USER/main.c], role: PID 控制, mode: static_read, commands: [], acceptance: [能定位 PID 常量], boundaries: [无编译器与实机证据]}
     compatibility: {ros_distribution: none, platform: stm32f4, hardware: requires-confirmation}
     dependencies: [{kind: toolchain, path: CMSIS/StdPeriph/BSP, provider: project, verification: declared}]
-    verification: {level: static_reviewed, source_commit: 93465bec26d410bab6cb4d6679fa9e4724764c64, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-5-static.txt, verified_at: '2026-08-29'}
+    verification: {level: static_reviewed, source_commit: c2c67b3d74c0ebfcf3f65a9725093a8f4397fa24, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-5-static.txt, verified_at: '2026-08-29'}
   - id: ros2.navigation.nav2-waypoint-cycle
     repository_path: ros2/navigation/nav2-waypoint-cycle/nav2_waypoint_cycle
     consumers:
@@ -65,7 +65,7 @@ resources:
         boundaries: [运行前核对 Nav2 版本]
     compatibility: {ros_distribution: humble, platform: requires-confirmation, hardware: requires-confirmation}
     dependencies: [{kind: system, path: nav2_msgs, provider: rosdep, verification: declared}]
-    verification: {level: static_reviewed, source_commit: 93465bec26d410bab6cb4d6679fa9e4724764c64, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+    verification: {level: static_reviewed, source_commit: c2c67b3d74c0ebfcf3f65a9725093a8f4397fa24, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
   - id: ros2.navigation.path-follow
     repository_path: ros2/navigation/path-follow/wheeltec_path_follow
     consumers:
@@ -79,7 +79,7 @@ resources:
         boundaries: [不替代实机安全检查]
     compatibility: {ros_distribution: humble, platform: requires-confirmation, hardware: requires-confirmation}
     dependencies: [{kind: system, path: rclpy, provider: rosdep, verification: declared}]
-    verification: {level: static_reviewed, source_commit: 93465bec26d410bab6cb4d6679fa9e4724764c64, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+    verification: {level: static_reviewed, source_commit: c2c67b3d74c0ebfcf3f65a9725093a8f4397fa24, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
   - id: applications.kcf-tracker
     repository_path: applications/kcf-tracker/wheeltec_robot_kcf_model
     consumers:
@@ -93,7 +93,7 @@ resources:
         boundaries: [依赖相机和初始框条件]
     compatibility: {ros_distribution: humble, platform: requires-confirmation, hardware: requires-confirmation}
     dependencies: [{kind: system, path: opencv, provider: system package, verification: declared}]
-    verification: {level: static_reviewed, source_commit: 93465bec26d410bab6cb4d6679fa9e4724764c64, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+    verification: {level: static_reviewed, source_commit: c2c67b3d74c0ebfcf3f65a9725093a8f4397fa24, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
   - id: examples.ros2.pubsub.cpp
     repository_path: examples/ros2/pubsub/cpp
     consumers:
@@ -107,7 +107,7 @@ resources:
         boundaries: [仅用于通信观察]
     compatibility: {ros_distribution: humble, platform: generic, hardware: none}
     dependencies: [{kind: system, path: rclcpp, provider: rosdep, verification: declared}]
-    verification: {level: static_reviewed, source_commit: 93465bec26d410bab6cb4d6679fa9e4724764c64, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+    verification: {level: static_reviewed, source_commit: c2c67b3d74c0ebfcf3f65a9725093a8f4397fa24, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
   - id: examples.ros2.pubsub.python
     repository_path: examples/ros2/pubsub/python
     consumers:
@@ -121,7 +121,8 @@ resources:
         boundaries: [仅用于通信观察]
     compatibility: {ros_distribution: humble, platform: generic, hardware: none}
     dependencies: [{kind: system, path: rclpy, provider: rosdep, verification: declared}]
-    verification: {level: static_reviewed, source_commit: 93465bec26d410bab6cb4d6679fa9e4724764c64, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+    verification: {level: static_reviewed, source_commit: c2c67b3d74c0ebfcf3f65a9725093a8f4397fa24, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+
 
 
 
