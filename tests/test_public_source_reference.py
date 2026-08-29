@@ -25,7 +25,7 @@ class PublicSourceReferenceTests(unittest.TestCase):
         self.assertEqual(validate_code_resources.validate_code_resource_map(mapping, source_root, ROOT), [])
 
     def test_bringup_consumer_block_uses_the_mapping_anchor_and_revision(self) -> None:
-        text = (ROOT / "docs/04-ros2-development/21-launch-and-parameters.md").read_text(encoding="utf-8")
+        text = (ROOT / "docs/05-ros2-development/25-launch-and-parameters.md").read_text(encoding="utf-8")
         self.assertIn("{#bringup-launch-chain}", text)
         self.assertIn(APPROVED_SOURCE_BASELINE, text)
         self.assertIn("ros2/robot/turn-on-wheeltec-robot", text)
@@ -53,24 +53,24 @@ class PublicSourceReferenceTests(unittest.TestCase):
         self.assertTrue(appendix.is_file())
         self.assertIn("d-public-source-reference.md", (ROOT / "mkdocs.yml").read_text(encoding="utf-8"))
         related = (
-            "docs/04-ros2-development/18-environment-and-source-selection.md",
-            "docs/04-ros2-development/21-launch-and-parameters.md",
-            "docs/04-ros2-development/23-modify-build-rollback.md",
-            "docs/05-sensors-navigation/25-sensor-checks.md",
-            "docs/05-sensors-navigation/26-lidar-and-mapping.md",
-            "docs/05-sensors-navigation/28-nav2-navigation.md",
-            "docs/05-sensors-navigation/30-camera-opencv-images.md",
-            "docs/05-sensors-navigation/32-vision-applications.md",
-            "docs/06-stm32-firmware/33-firmware-architecture-freertos.md",
-            "docs/06-stm32-firmware/34-hardware-init-model-interfaces.md",
-            "docs/06-stm32-firmware/35-motor-control-pid.md",
-            "docs/06-stm32-firmware/37-ros2-stm32-integration.md",
-            "docs/07-advanced-applications/38-gazebo-simulation.md",
-            "docs/07-advanced-applications/39-multi-robot-and-qt.md",
-            "docs/07-advanced-applications/40-mmwave-human-deep-learning.md",
-            "docs/07-advanced-applications/41-voice-ai-openclaw.md",
-            "docs/08-r680-platform/43-r680-debug-source-firmware.md",
-            "docs/09-deployment-maintenance/45-logs-backup-upgrade-recovery.md",
+            "docs/05-ros2-development/22-environment-and-source-selection.md",
+            "docs/05-ros2-development/25-launch-and-parameters.md",
+            "docs/05-ros2-development/27-modify-build-rollback.md",
+            "docs/06-sensors-navigation/29-sensor-checks.md",
+            "docs/06-sensors-navigation/30-lidar-and-mapping.md",
+            "docs/06-sensors-navigation/32-nav2-navigation.md",
+            "docs/06-sensors-navigation/34-camera-opencv-images.md",
+            "docs/06-sensors-navigation/36-vision-applications.md",
+            "docs/07-stm32-firmware/37-firmware-architecture-freertos.md",
+            "docs/07-stm32-firmware/38-hardware-init-model-interfaces.md",
+            "docs/07-stm32-firmware/39-motor-control-pid.md",
+            "docs/07-stm32-firmware/41-ros2-stm32-integration.md",
+            "docs/08-advanced-applications/42-gazebo-simulation.md",
+            "docs/08-advanced-applications/43-multi-robot-and-qt.md",
+            "docs/08-advanced-applications/44-mmwave-human-deep-learning.md",
+            "docs/08-advanced-applications/45-voice-ai-openclaw.md",
+            "docs/09-r680-platform/47-r680-debug-source-firmware.md",
+            "docs/10-deployment-maintenance/49-logs-backup-upgrade-recovery.md",
             "docs/appendices/a-ros1-maintenance.md",
         )
         generic = [

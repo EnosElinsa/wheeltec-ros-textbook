@@ -10,13 +10,13 @@ ROOT = Path(__file__).resolve().parents[1]
 class Stm32PeripheralLabMigrationTests(unittest.TestCase):
     def setUp(self) -> None:
         self.architecture = (
-            ROOT / "docs/06-stm32-firmware/33-firmware-architecture-freertos.md"
+            ROOT / "docs/07-stm32-firmware/37-firmware-architecture-freertos.md"
         ).read_text(encoding="utf-8")
         self.labs = (
-            ROOT / "docs/06-stm32-firmware/34-hardware-init-model-interfaces.md"
+            ROOT / "docs/07-stm32-firmware/38-hardware-init-model-interfaces.md"
         ).read_text(encoding="utf-8")
         self.control = (
-            ROOT / "docs/06-stm32-firmware/35-motor-control-pid.md"
+            ROOT / "docs/07-stm32-firmware/39-motor-control-pid.md"
         ).read_text(encoding="utf-8")
 
     def test_each_lab_keeps_observation_and_stop_conditions(self) -> None:

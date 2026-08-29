@@ -23,7 +23,7 @@ class MathRenderingTests(unittest.TestCase):
 
     def test_display_formula_uses_supported_block_delimiters(self) -> None:
         chapter = (
-            ROOT / "docs" / "03-chassis-control" / "11-coordinate-frames-and-chassis.md"
+            ROOT / "docs" / "04-chassis-control" / "15-coordinate-frames-and-chassis.md"
         ).read_text(encoding="utf-8")
         self.assertIn(
             "$$\nv_L = v_x - \\frac{W}{2}\\omega_z,\\qquad\nv_R = v_x + \\frac{W}{2}\\omega_z\n$$",

@@ -32,10 +32,10 @@ class CodeResourceContractTests(unittest.TestCase):
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text("# fixture\n", encoding="utf-8")
         for page, anchor in (
-            ("docs/04-ros2-development/18-environment-and-source-selection.md", "source-package-selection"),
-            ("docs/04-ros2-development/21-launch-and-parameters.md", "bringup-launch-chain"),
-            ("docs/04-ros2-development/23-modify-build-rollback.md", "source-change-exercise"),
-            ("docs/06-stm32-firmware/37-ros2-stm32-integration.md", "ros-serial-firmware-chain"),
+            ("docs/05-ros2-development/22-environment-and-source-selection.md", "source-package-selection"),
+            ("docs/05-ros2-development/25-launch-and-parameters.md", "bringup-launch-chain"),
+            ("docs/05-ros2-development/27-modify-build-rollback.md", "source-change-exercise"),
+            ("docs/07-stm32-firmware/41-ros2-stm32-integration.md", "ros-serial-firmware-chain"),
         ):
             path = root / page
             path.parent.mkdir(parents=True, exist_ok=True)

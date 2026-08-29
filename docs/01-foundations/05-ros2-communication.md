@@ -61,4 +61,4 @@ status: complete
 
 ## 章节导航
 
-[上一章：第一次观察 ROS 2](04-first-ros2-observation.md) · [返回本篇](index.md) · [下一章：识别你的机器人配置](../02-bringup/06-identify-configuration.md)
+[上一章：第一次观察 ROS 2](04-first-ros2-observation.md) · [返回本篇](index.md) · [下一章：主控、控制板与固件](../02-hardware-basics/06-controller-and-firmware.md)

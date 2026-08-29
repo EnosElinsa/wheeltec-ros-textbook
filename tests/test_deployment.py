@@ -35,7 +35,7 @@ class DeploymentConfigurationTests(unittest.TestCase):
         config = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")
         self.assertNotIn("github-pages-deployment.md", config)
         self.assertFalse(
-            (ROOT / "docs" / "09-deployment-maintenance" / "github-pages-deployment.md").exists()
+            (ROOT / "docs" / "10-deployment-maintenance" / "github-pages-deployment.md").exists()
         )
 
     def test_local_build_runs_redirect_generation_after_mkdocs(self) -> None:

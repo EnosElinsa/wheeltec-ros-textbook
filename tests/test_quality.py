@@ -14,14 +14,14 @@ import scaffold  # noqa: E402
 
 
 class ManifestTests(unittest.TestCase):
-    def test_manifest_has_5_foundations_41_engineering_chapters_and_4_appendices(self) -> None:
+    def test_manifest_has_9_foundations_41_engineering_chapters_and_4_appendices(self) -> None:
         rows = quality.load_manifest(ROOT / "metadata" / "chapter-manifest.csv")
         foundations = [row for row in rows if row["kind"] == "foundation"]
         chapters = [row for row in rows if row["kind"] == "chapter"]
         appendices = [row for row in rows if row["kind"] == "appendix"]
 
-        self.assertEqual([int(row["number"]) for row in foundations], list(range(1, 6)))
-        self.assertEqual([int(row["number"]) for row in chapters], list(range(6, 47)))
+        self.assertEqual([int(row["number"]) for row in foundations], list(range(1, 10)))
+        self.assertEqual([int(row["number"]) for row in chapters], list(range(10, 51)))
         self.assertLess(rows.index(foundations[-1]), rows.index(chapters[0]))
         self.assertEqual([row["number"] for row in appendices], ["A", "B", "C", "D"])
         self.assertEqual(len({row["path"] for row in rows}), len(rows))
@@ -31,9 +31,9 @@ class ManifestTests(unittest.TestCase):
         rows = [
             {
                 "kind": "chapter",
-                "number": "6",
-                "volume": "02-bringup",
-                "path": "docs/02-bringup/06-identify-configuration.md",
+                "number": "10",
+                "volume": "03-bringup",
+                "path": "docs/03-bringup/10-identify-configuration.md",
                 "title": "识别你的机器人配置",
                 "status": "draft",
                 "size_limit_bytes": "150000",
@@ -43,7 +43,7 @@ class ManifestTests(unittest.TestCase):
             root = Path(temp_dir)
             created = scaffold.create_pages(rows, root)
             chapter = root / rows[0]["path"]
-            volume_index = root / "docs" / "02-bringup" / "index.md"
+            volume_index = root / "docs" / "03-bringup" / "index.md"
             self.assertEqual(created, [chapter, volume_index])
             self.assertIn("status: draft", chapter.read_text(encoding="utf-8"))
             chapter.write_text("保留现有内容", encoding="utf-8")
@@ -54,24 +54,24 @@ class ManifestTests(unittest.TestCase):
         rows = [
             {
                 "kind": "chapter",
-                "number": "6",
-                "volume": "02-bringup",
-                "path": "docs/02-bringup/06.md",
+                "number": "10",
+                "volume": "03-bringup",
+                "path": "docs/03-bringup/06.md",
                 "title": "第一章",
                 "status": "draft",
                 "size_limit_bytes": "150000",
             },
             {
                 "kind": "chapter",
-                "number": "11",
-                "volume": "03-chassis-control",
-                "path": "docs/03-chassis-control/11.md",
+                "number": "15",
+                "volume": "04-chassis-control",
+                "path": "docs/04-chassis-control/11.md",
                 "title": "第十一章",
                 "status": "draft",
                 "size_limit_bytes": "150000",
             },
         ]
-        changed = scaffold.set_status(rows, "volume", "02-bringup", "complete")
+        changed = scaffold.set_status(rows, "volume", "03-bringup", "complete")
         self.assertEqual(changed, 1)
         self.assertEqual(rows[0]["status"], "complete")
         self.assertEqual(rows[1]["status"], "draft")

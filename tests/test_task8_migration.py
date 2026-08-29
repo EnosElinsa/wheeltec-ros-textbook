@@ -14,13 +14,13 @@ OLD = (
     "docs/06-stm32-firmware/stm32-peripheral-labs.md",
 )
 FIXED_TARGETS = (
-    ("docs/04-ros2-development/18-environment-and-source-selection.md", "source-package-selection"),
-    ("docs/04-ros2-development/21-launch-and-parameters.md", "bringup-launch-chain"),
-    ("docs/04-ros2-development/23-modify-build-rollback.md", "source-change-exercise"),
-    ("docs/06-stm32-firmware/33-firmware-architecture-freertos.md", "firmware-evidence-record"),
-    ("docs/06-stm32-firmware/34-hardware-init-model-interfaces.md", "stm32-peripheral-labs"),
-    ("docs/06-stm32-firmware/35-motor-control-pid.md", "closed-loop-prechecks"),
-    ("docs/06-stm32-firmware/37-ros2-stm32-integration.md", "ros-serial-firmware-chain"),
+    ("docs/05-ros2-development/22-environment-and-source-selection.md", "source-package-selection"),
+    ("docs/05-ros2-development/25-launch-and-parameters.md", "bringup-launch-chain"),
+    ("docs/05-ros2-development/27-modify-build-rollback.md", "source-change-exercise"),
+    ("docs/07-stm32-firmware/37-firmware-architecture-freertos.md", "firmware-evidence-record"),
+    ("docs/07-stm32-firmware/38-hardware-init-model-interfaces.md", "stm32-peripheral-labs"),
+    ("docs/07-stm32-firmware/39-motor-control-pid.md", "closed-loop-prechecks"),
+    ("docs/07-stm32-firmware/41-ros2-stm32-integration.md", "ros-serial-firmware-chain"),
     ("docs/appendices/a-ros1-maintenance.md", "ros1-bag-offline-diagnostics"),
 )
 
@@ -37,11 +37,11 @@ def test_fixed_target_anchors_exist_exactly_once() -> None:
         assert_anchor_exists(ROOT / relative, anchor)
 
 
-def test_chapter_21_uses_the_exact_numbered_launch_chain_title() -> None:
-    text = (ROOT / "docs/04-ros2-development/21-launch-and-parameters.md").read_text(
+def test_chapter_25_uses_the_exact_numbered_launch_chain_title() -> None:
+    text = (ROOT / "docs/05-ros2-development/25-launch-and-parameters.md").read_text(
         encoding="utf-8"
     )
-    assert "## 21.5 启动链源码追踪 {#bringup-launch-chain}" in text
+    assert "## 25.5 启动链源码追踪 {#bringup-launch-chain}" in text
 
 
 def test_every_retained_heading_is_substantively_represented() -> None:
@@ -62,13 +62,13 @@ def test_legacy_redirects_land_on_fixed_anchors() -> None:
     with (ROOT / "metadata/legacy-redirects.csv").open(encoding="utf-8", newline="") as handle:
         rows = {row["source"]: row["target"] for row in csv.DictReader(handle)}
     assert rows["04-ros2-development/turn-on-wheeltec-robot-source-walkthrough/"] == (
-        "04-ros2-development/21-launch-and-parameters/#bringup-launch-chain"
+        "05-ros2-development/25-launch-and-parameters/#bringup-launch-chain"
     )
     assert rows["05-sensors-navigation/ros1-bag-offline-diagnostics/"] == (
         "appendices/a-ros1-maintenance/#ros1-bag-offline-diagnostics"
     )
     assert rows["06-stm32-firmware/stm32-peripheral-labs/"] == (
-        "06-stm32-firmware/34-hardware-init-model-interfaces/#stm32-peripheral-labs"
+        "07-stm32-firmware/38-hardware-init-model-interfaces/#stm32-peripheral-labs"
     )
 
 

@@ -19,7 +19,7 @@ status: complete
 3. [第 8 章：传感器与状态反馈](08-sensors-and-feedback.md)：理解编码器、IMU、OLED、激光雷达和时间坐标。
 4. [第 9 章：底盘运动与闭环控制](09-chassis-motion-control.md)：把坐标、里程计、PWM 和 PID 串成控制链。
 
-完成本篇后，继续阅读[原实机接入章节](../02-bringup/06-identify-configuration.md)。任务 3 完成编号迁移后，这个入口会更新为第三篇的新索引。
+完成本篇后，继续阅读[第三篇：实机接入与首次启动](../03-bringup/index.md)。
 
 ## 章节导航
 

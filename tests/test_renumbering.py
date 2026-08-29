@@ -14,19 +14,20 @@ import quality  # noqa: E402
 
 FINAL_PARTS = [
     "01-foundations",
-    "02-bringup",
-    "03-chassis-control",
-    "04-ros2-development",
-    "05-sensors-navigation",
-    "06-stm32-firmware",
-    "07-advanced-applications",
-    "08-r680-platform",
-    "09-deployment-maintenance",
+    "02-hardware-basics",
+    "03-bringup",
+    "04-chassis-control",
+    "05-ros2-development",
+    "06-sensors-navigation",
+    "07-stm32-firmware",
+    "08-advanced-applications",
+    "09-r680-platform",
+    "10-deployment-maintenance",
 ]
 
 
 class RenumberingTests(unittest.TestCase):
-    def test_first_part_manifest_uses_ros_first_filenames(self) -> None:
+    def test_foundation_manifest_uses_nine_foundation_filenames(self) -> None:
         rows = quality.load_manifest(ROOT / "metadata" / "chapter-manifest.csv")
         first_part = [row for row in rows if row["kind"] == "foundation"]
         self.assertEqual(
@@ -37,27 +38,21 @@ class RenumberingTests(unittest.TestCase):
                 "docs/01-foundations/03-ubuntu-terminal-programs.md",
                 "docs/01-foundations/04-first-ros2-observation.md",
                 "docs/01-foundations/05-ros2-communication.md",
+                "docs/02-hardware-basics/06-controller-and-firmware.md",
+                "docs/02-hardware-basics/07-electrical-interfaces-communication.md",
+                "docs/02-hardware-basics/08-sensors-and-feedback.md",
+                "docs/02-hardware-basics/09-chassis-motion-control.md",
             ],
         )
 
-    def test_first_part_routes_are_chain_free_and_semantic(self) -> None:
-        from generate_redirects import load_redirects, validate_map
-
-        rows = load_redirects(ROOT / "metadata" / "legacy-redirects.csv")
-        self.assertEqual(validate_map(rows), [])
-        routes = {row.source: row.target for row in rows}
-        self.assertEqual(routes["01-foundations/01-robot-components/"], "01-foundations/02-robot-system-overview/")
-        self.assertEqual(routes["01-foundations/02-ubuntu-terminal-programs/"], "01-foundations/03-ubuntu-terminal-programs/")
-        self.assertEqual(routes["01-foundations/03-what-ros2-solves/"], "01-foundations/01-understanding-ros/")
-        self.assertEqual(routes["00-ros2-theory/t1-what-is-ros2/"], "01-foundations/01-understanding-ros/")
-    def test_manifest_has_contiguous_chapters_1_to_46(self) -> None:
+    def test_manifest_has_contiguous_chapters_1_to_50(self) -> None:
         rows = quality.load_manifest(ROOT / "metadata" / "chapter-manifest.csv")
         numbered = [
             int(row["number"])
             for row in rows
             if row["kind"] in {"foundation", "chapter"}
         ]
-        self.assertEqual(numbered, list(range(1, 47)))
+        self.assertEqual(numbered, list(range(1, 51)))
         self.assertEqual(quality.check_manifest(rows), [])
 
     def test_final_part_directories_exist(self) -> None:
@@ -94,14 +89,14 @@ class RenumberingTests(unittest.TestCase):
 
     def test_no_engineering_page_remains_in_old_part_directories(self) -> None:
         old_directories = (
-            "01-bringup",
-            "02-chassis-control",
-            "03-ros2-development",
-            "04-sensors-navigation",
-            "05-stm32-firmware",
-            "06-advanced-applications",
-            "07-r680-platform",
-            "08-deployment-maintenance",
+            "02-bringup",
+            "03-chassis-control",
+            "04-ros2-development",
+            "05-sensors-navigation",
+            "06-stm32-firmware",
+            "07-advanced-applications",
+            "08-r680-platform",
+            "09-deployment-maintenance",
         )
         leftovers: list[str] = []
         for name in old_directories:

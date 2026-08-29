@@ -15,7 +15,7 @@ class ConceptPlacementTests(unittest.TestCase):
 
     def test_workspace_semantics_live_in_chapter_19(self) -> None:
         self.assertPageContains(
-            "docs/04-ros2-development/19-workspace-packages-build.md",
+            "docs/05-ros2-development/23-workspace-packages-build.md",
             (
                 "`src/`",
                 "`build/`",
@@ -29,25 +29,25 @@ class ConceptPlacementTests(unittest.TestCase):
 
     def test_endpoint_compatibility_lives_in_chapter_20(self) -> None:
         self.assertPageContains(
-            "docs/04-ros2-development/20-nodes-topics-services-actions.md",
+            "docs/05-ros2-development/24-nodes-topics-services-actions.md",
             ("发布者", "订阅者", "reliability", "history", "depth"),
         )
 
     def test_transform_and_timestamp_tools_live_in_chapter_22(self) -> None:
         self.assertPageContains(
-            "docs/04-ros2-development/22-tf-urdf-rviz.md",
+            "docs/05-ros2-development/26-tf-urdf-rviz.md",
             ("坐标系", "静态变换", "动态变换", "时间戳", "view_frames"),
         )
 
     def test_sensor_diagnosis_order_lives_in_chapter_25(self) -> None:
         self.assertPageContains(
-            "docs/05-sensors-navigation/25-sensor-checks.md",
+            "docs/06-sensors-navigation/29-sensor-checks.md",
             ("设备 → 节点 → 话题 → 通信匹配 → 时间",),
         )
 
     def test_navigation_frame_ownership_lives_in_chapter_27(self) -> None:
         self.assertPageContains(
-            "docs/05-sensors-navigation/27-map-localization-tf.md",
+            "docs/06-sensors-navigation/31-map-localization-tf.md",
             (
                 "map → odom → base_link → sensor",
                 "定位系统估计 `map → odom`",
@@ -57,7 +57,7 @@ class ConceptPlacementTests(unittest.TestCase):
 
     def test_container_boundary_lives_in_chapter_44(self) -> None:
         self.assertPageContains(
-            "docs/09-deployment-maintenance/44-network-docker-images.md",
+            "docs/10-deployment-maintenance/48-network-docker-images.md",
             ("宿主", "容器", "USB", "GPU", "网络", "时间"),
         )
 

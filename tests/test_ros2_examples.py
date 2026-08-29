@@ -11,10 +11,10 @@ SOURCE_REVISION = "ebae2342709c756cb8fa387ccdbd6e5733f9219a"
 
 class Ros2ExampleBundleTests(unittest.TestCase):
     def test_chapters_link_to_the_code_repository_examples(self) -> None:
-        chapter_19 = (ROOT / "docs/04-ros2-development/19-workspace-packages-build.md").read_text(
+        chapter_19 = (ROOT / "docs/05-ros2-development/23-workspace-packages-build.md").read_text(
             encoding="utf-8"
         )
-        chapter_20 = (ROOT / "docs/04-ros2-development/20-nodes-topics-services-actions.md").read_text(
+        chapter_20 = (ROOT / "docs/05-ros2-development/24-nodes-topics-services-actions.md").read_text(
             encoding="utf-8"
         )
         cpp_url = f"{SOURCE_REPOSITORY_URL}/tree/{SOURCE_REVISION}/examples/ros2/pubsub/cpp"

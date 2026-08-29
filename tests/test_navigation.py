@@ -32,7 +32,7 @@ class NavigationTests(unittest.TestCase):
         numbered = [
             row for row in rows if row["kind"] in {"foundation", "chapter"}
         ]
-        self.assertEqual(len(numbered), 46)
+        self.assertEqual(len(numbered), 50)
         for index, row in enumerate(numbered):
             path = ROOT / row["path"]
             links = linked_markdown_paths(path)
@@ -57,7 +57,7 @@ class NavigationTests(unittest.TestCase):
                     )
         self.assertEqual(offenders, [])
 
-    def test_public_copy_uses_nine_parts_and_no_legacy_labels(self) -> None:
+    def test_public_copy_uses_ten_parts_and_no_legacy_labels(self) -> None:
         paths = sorted((ROOT / "docs").rglob("*.md"))
         paths.extend((ROOT / name) for name in ("README.md", "mkdocs.yml"))
         offenders: list[str] = []
@@ -67,10 +67,10 @@ class NavigationTests(unittest.TestCase):
                 offenders.append(path.relative_to(ROOT).as_posix())
         self.assertEqual(offenders, [])
 
-    def test_mkdocs_has_nine_parts_and_46_numbered_entries(self) -> None:
+    def test_mkdocs_has_ten_parts_and_50_numbered_entries(self) -> None:
         config = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")
-        self.assertEqual(len(re.findall(r"^  - 第[一二三四五六七八九]篇 ", config, re.MULTILINE)), 9)
-        self.assertEqual(len(re.findall(r"^      - (?:[1-9]|[1-3][0-9]|4[0-6]) ", config, re.MULTILINE)), 46)
+        self.assertEqual(len(re.findall(r"^  - 第(?:[一二三四五六七八九]|十)篇 ", config, re.MULTILINE)), 10)
+        self.assertEqual(len(re.findall(r"^      - (?:[1-9]|[1-4][0-9]|50) ", config, re.MULTILINE)), 50)
 
     def test_entry_pages_use_current_paths(self) -> None:
         combined = "\n".join(
@@ -79,11 +79,12 @@ class NavigationTests(unittest.TestCase):
         )
         for path in (
             "01-foundations",
-            "02-bringup",
-            "04-ros2-development",
-            "05-sensors-navigation",
-            "08-r680-platform",
-            "09-deployment-maintenance",
+            "02-hardware-basics",
+            "03-bringup",
+            "05-ros2-development",
+            "06-sensors-navigation",
+            "09-r680-platform",
+            "10-deployment-maintenance",
         ):
             self.assertIn(path, combined)
         self.assertNotIn("00-ros2-theory", combined)
@@ -114,11 +115,11 @@ class NavigationTests(unittest.TestCase):
         ):
             self.assertIn(f"## {heading}", text)
         for sequence in (
-            "1 → 2 → 3 → 4 → 5 → 6",
-            "1 → 4 → 5 → 18",
-            "6 → 7 → 8 → 9 → 10",
-            "1 → 4 → 5 → 18 → 25 → 26 → 27 → 28",
-            "6 → 17 → 42 → 43 → 45",
+            "1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10",
+            "1 → 4 → 5 → 22",
+            "10 → 11 → 12 → 13 → 14",
+            "1 → 4 → 5 → 22 → 29 → 30 → 31 → 32",
+            "10 → 21 → 46 → 47 → 49",
         ):
             self.assertIn(sequence, text)
         self.assertGreaterEqual(text.count("前置能力"), 3)

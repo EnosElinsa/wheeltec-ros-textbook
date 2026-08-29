@@ -4,12 +4,12 @@ on:
   push:
     paths:
       - "metadata/code-resources.yml"
-      - "docs/04-ros2-development/**"
+      - "docs/05-ros2-development/**"
       - ".github/workflows/test-ros2-examples.yml"
   pull_request:
     paths:
       - "metadata/code-resources.yml"
-      - "docs/04-ros2-development/**"
+      - "docs/05-ros2-development/**"
       - ".github/workflows/test-ros2-examples.yml"
   workflow_dispatch:
 

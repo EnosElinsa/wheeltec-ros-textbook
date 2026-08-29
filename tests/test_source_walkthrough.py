@@ -10,10 +10,10 @@ ROOT = Path(__file__).resolve().parents[1]
 class SourceWalkthroughMigrationTests(unittest.TestCase):
     def test_package_workspace_and_hardware_evidence_remain_distinct(self) -> None:
         pages = (
-            ROOT / "docs/04-ros2-development/18-environment-and-source-selection.md",
-            ROOT / "docs/04-ros2-development/21-launch-and-parameters.md",
-            ROOT / "docs/04-ros2-development/23-modify-build-rollback.md",
-            ROOT / "docs/06-stm32-firmware/37-ros2-stm32-integration.md",
+            ROOT / "docs/05-ros2-development/22-environment-and-source-selection.md",
+            ROOT / "docs/05-ros2-development/25-launch-and-parameters.md",
+            ROOT / "docs/05-ros2-development/27-modify-build-rollback.md",
+            ROOT / "docs/07-stm32-firmware/41-ros2-stm32-integration.md",
         )
         combined = "\n".join(path.read_text(encoding="utf-8") for path in pages)
         for phrase in (
@@ -27,7 +27,7 @@ class SourceWalkthroughMigrationTests(unittest.TestCase):
 
     def test_launch_chain_keeps_entry_composition_and_parameter_tracing(self) -> None:
         text = (
-            ROOT / "docs/04-ros2-development/21-launch-and-parameters.md"
+            ROOT / "docs/05-ros2-development/25-launch-and-parameters.md"
         ).read_text(encoding="utf-8")
         for phrase in (
             "从工作空间根执行构建和启动",
@@ -41,10 +41,10 @@ class SourceWalkthroughMigrationTests(unittest.TestCase):
 
     def test_safe_change_and_ros_firmware_chain_keep_acceptance_boundaries(self) -> None:
         change = (
-            ROOT / "docs/04-ros2-development/23-modify-build-rollback.md"
+            ROOT / "docs/05-ros2-development/27-modify-build-rollback.md"
         ).read_text(encoding="utf-8")
         firmware = (
-            ROOT / "docs/06-stm32-firmware/37-ros2-stm32-integration.md"
+            ROOT / "docs/07-stm32-firmware/41-ros2-stm32-integration.md"
         ).read_text(encoding="utf-8")
         self.assertIn("安全修改练习", change)
         self.assertIn("验收记录", change)

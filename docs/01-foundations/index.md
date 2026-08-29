@@ -15,8 +15,8 @@
 4. [第 4 章：第一次观察 ROS 2](04-first-ros2-observation.md)：运行示例并查看节点、话题和消息。
 5. [第 5 章：ROS 2 程序怎样协作](05-ros2-communication.md)：节点、话题、服务、动作和参数。
 
-完成这条知识链后，再进入第二篇连接和检查实机。
+完成这条知识链后，进入第二篇学习硬件、接口、传感器和闭环控制，再连接实机。
 
 ## 章节导航
 
-[从第 1 章开始](01-understanding-ros.md) · [返回教材首页](../index.md)
+[从第 1 章开始](01-understanding-ros.md) · [返回教材首页](../index.md) · [下一篇：机器人硬件、接口与控制基础](../02-hardware-basics/index.md)

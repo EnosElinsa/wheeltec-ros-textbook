@@ -35,7 +35,7 @@ class FoundationSchemaTests(unittest.TestCase):
                 f"missing issue category: {category}",
             )
 
-    def test_final_manifest_layout_accepts_foundations_1_to_5(self) -> None:
+    def test_final_manifest_layout_accepts_foundations_1_to_9(self) -> None:
         rows: list[dict[str, str]] = []
         for number in range(1, 6):
             rows.append(
@@ -49,13 +49,31 @@ class FoundationSchemaTests(unittest.TestCase):
                     "size_limit_bytes": "150000",
                 }
             )
-        for number in range(6, 47):
+        foundation_rows = {
+            6: ("02-hardware-basics", "06-controller-and-firmware.md"),
+            7: ("02-hardware-basics", "07-electrical-interfaces-communication.md"),
+            8: ("02-hardware-basics", "08-sensors-and-feedback.md"),
+            9: ("02-hardware-basics", "09-chassis-motion-control.md"),
+        }
+        for number, (volume, filename) in foundation_rows.items():
+            rows.append(
+                {
+                    "kind": "foundation",
+                    "number": str(number),
+                    "volume": volume,
+                    "path": f"docs/{volume}/{filename}",
+                    "title": f"基础 {number}",
+                    "status": "complete",
+                    "size_limit_bytes": "150000",
+                }
+            )
+        for number in range(10, 51):
             rows.append(
                 {
                     "kind": "chapter",
                     "number": str(number),
-                    "volume": "02-bringup",
-                    "path": f"docs/02-bringup/{number:02d}.md",
+                    "volume": "03-bringup",
+                    "path": f"docs/03-bringup/{number:02d}.md",
                     "title": f"工程 {number}",
                     "status": "complete",
                     "size_limit_bytes": "150000",

@@ -77,25 +77,66 @@ FOUNDATION_HEADINGS_BY_NUMBER = {
         "5.7 本章小结与练习",
         "章节导航",
     ],
+    6: [
+        "6.1 主控与控制板",
+        "6.2 CPU、MCU 与 STM32",
+        "6.3 源码、固件与构建结果",
+        "6.4 烧录与回滚",
+        "6.5 电源域、信号域与功率级",
+        "6.6 观察练习",
+        "6.7 本章小结",
+        "章节导航",
+    ],
+    7: [
+        "7.1 接线前先分清电气条件",
+        "7.2 USB 与串行端口",
+        "7.3 UART、USART 与逻辑电平",
+        "7.4 CAN 总线",
+        "7.5 字节流、数据帧与校验",
+        "7.6 GPIO、I²C、SPI 与 DMA",
+        "7.7 本章小结与观察练习",
+        "章节导航",
+    ],
+    8: [
+        "8.1 环境信息与机器人自身状态",
+        "8.2 编码器怎样记录转动",
+        "8.3 GMR 与霍尔效应编码器",
+        "8.4 IMU 怎样测量运动",
+        "8.5 OLED 是状态窗口",
+        "8.6 激光雷达、相机与 GNSS",
+        "8.7 采样、时间与坐标方向",
+        "8.8 本章小结与观察练习",
+        "章节导航",
+    ],
+    9: [
+        "9.1 机体坐标与底盘自由度",
+        "9.2 正运动学与逆运动学",
+        "9.3 从编码器到里程计",
+        "9.4 电机驱动器与 PWM",
+        "9.5 PI/PID 闭环控制",
+        "9.6 限幅、超时与停止",
+        "9.7 本章小结与观察练习",
+        "章节导航",
+    ],
 }
 def expected_engineering_headings(number: int) -> list[str]:
-    if number == 43:
+    if number == 47:
         return [
-            "43.1 学习目标",
-            "43.2 适用范围",
-            "43.3 静态核对",
-            "43.4 安全边界",
-            "43.5 故障记录",
-            "43.6 章节导航",
+            "47.1 学习目标",
+            "47.2 适用范围",
+            "47.3 静态核对",
+            "47.4 安全边界",
+            "47.5 故障记录",
+            "47.6 章节导航",
         ]
     task_titles = {
-        (18, 5): "源码包确认",
-        (21, 5): "启动链源码追踪",
-        (23, 5): "源码修改练习",
-        (33, 5): "固件实验记录",
-        (34, 5): "外设最小实验",
-        (35, 3): "闭环前置检查",
-        (37, 5): "ROS—串口—固件链",
+        (22, 5): "源码包确认",
+        (25, 5): "启动链源码追踪",
+        (27, 5): "源码修改练习",
+        (37, 5): "固件实验记录",
+        (38, 5): "外设最小实验",
+        (39, 3): "闭环前置检查",
+        (41, 5): "ROS—串口—固件链",
     }
     defaults = {
         1: "学习目标",
@@ -116,7 +157,7 @@ def expected_engineering_headings(number: int) -> list[str]:
 PROMOTIONAL_PATTERNS = ["推荐关注我们的公众号", "关注公众号", "获取更新资料"]
 UNFINISHED_PATTERNS = [r"\bTODO\b", r"\bTBD\b", r"\[待写\]", r"\[内容待补\]"]
 FORBIDDEN_FOUNDATION_PATTERNS = {
-    "later chapter prerequisite": r"(?:已读|先读|完成|先完成)第\s*(?:[6-9]|[1-3][0-9]|4[0-6])\s*章",
+    "later chapter prerequisite": r"(?:已读|先读|完成|先完成)第\s*(?:1[0-9]|[2-4][0-9]|50)\s*章",
     "advanced middleware jargon": r"\b(?:DDS|QoS|TF|colcon|Launch|Docker)\b",
     "required SSH access": r"必须(?:使用|通过).*SSH",
     "required robot runtime": r"(?:机器人|WHEELTEC).*(?:节点|系统).*已启动",
@@ -176,12 +217,12 @@ def check_manifest(rows: list[dict[str, str]]) -> list[str]:
         foundation_numbers = []
         chapter_numbers = []
         numbered_rows = []
-    if foundation_numbers != list(range(1, 6)):
-        errors.append("foundation numbers must be consecutive from 1 through 5")
-    if chapter_numbers != list(range(6, 47)):
-        errors.append("engineering chapter numbers must be consecutive from 6 through 46")
-    if numbered_rows != list(range(1, 47)):
-        errors.append("all numbered pages must be ordered from 1 through 46")
+    if foundation_numbers != list(range(1, 10)):
+        errors.append("foundation numbers must be consecutive from 1 through 9")
+    if chapter_numbers != list(range(10, 51)):
+        errors.append("engineering chapter numbers must be consecutive from 10 through 50")
+    if numbered_rows != list(range(1, 51)):
+        errors.append("all numbered pages must be ordered from 1 through 50")
     if [row.get("number") for row in appendices] != ["A", "B", "C", "D"]:
         errors.append("public chapter manifest must contain appendices A through D")
     return errors

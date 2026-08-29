@@ -9,14 +9,15 @@ from pathlib import Path
 
 VOLUME_TITLES = {
     "01-foundations": "第一篇：从零认识 ROS 机器人",
-    "02-bringup": "第二篇：实机接入与首次启动",
-    "03-chassis-control": "第三篇：底盘控制与运动学",
-    "04-ros2-development": "第四篇：ROS 2 开发",
-    "05-sensors-navigation": "第五篇：传感器、建图与导航",
-    "06-stm32-firmware": "第六篇：STM32 与底盘固件",
-    "07-advanced-applications": "第七篇：高级应用",
-    "08-r680-platform": "第八篇：R680 平台",
-    "09-deployment-maintenance": "第九篇：部署、备份与维护",
+    "02-hardware-basics": "第二篇：机器人硬件、接口与控制基础",
+    "03-bringup": "第三篇：实机接入与首次启动",
+    "04-chassis-control": "第四篇：底盘控制与运动学",
+    "05-ros2-development": "第五篇：ROS 2 开发",
+    "06-sensors-navigation": "第六篇：传感器、建图与导航",
+    "07-stm32-firmware": "第七篇：STM32 与底盘固件",
+    "08-advanced-applications": "第八篇：高级应用",
+    "09-r680-platform": "第九篇：R680 平台",
+    "10-deployment-maintenance": "第十篇：部署、备份与维护",
 }
 
 

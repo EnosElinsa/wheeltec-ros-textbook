@@ -25,11 +25,11 @@ DIAGRAMS = {
         "ROS 2 从雷达到电机的数据链",
     ),
     "ros2-stm32-loop.svg": (
-        "docs/06-stm32-firmware/37-ros2-stm32-integration.md",
+        "docs/07-stm32-firmware/41-ros2-stm32-integration.md",
         "ROS 2 与 STM32 的闭环链路",
     ),
     "system-acceptance-pipeline.svg": (
-        "docs/09-deployment-maintenance/46-system-acceptance.md",
+        "docs/10-deployment-maintenance/50-system-acceptance.md",
         "WHEELTEC 全系统验收流程",
     ),
 }

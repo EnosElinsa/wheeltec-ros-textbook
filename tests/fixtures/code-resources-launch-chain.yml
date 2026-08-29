@@ -4,7 +4,7 @@ resources:
   - id: ros2.robot.turn-on-wheeltec-robot
     repository_path: ros2/robot/turn-on-wheeltec-robot
     consumers:
-      - page: docs/04-ros2-development/18-environment-and-source-selection.md
+      - page: docs/05-ros2-development/22-environment-and-source-selection.md
         anchor: source-package-selection
         files:
           - launch/turn_on_wheeltec_robot.launch.py
@@ -15,7 +15,7 @@ resources:
           - 能定位启动入口
         boundaries:
           - 不据此确定当前车型
-      - page: docs/04-ros2-development/21-launch-and-parameters.md
+      - page: docs/05-ros2-development/25-launch-and-parameters.md
         anchor: bringup-launch-chain
         files:
           - launch/turn_on_wheeltec_robot.launch.py
@@ -28,7 +28,7 @@ resources:
           - 构建命令成功
         boundaries:
           - 不据此确定当前车型和串口参数
-      - page: docs/04-ros2-development/23-modify-build-rollback.md
+      - page: docs/05-ros2-development/27-modify-build-rollback.md
         anchor: source-change-exercise
         files:
           - src/wheeltec_robot.cpp
@@ -42,7 +42,7 @@ resources:
           - 隔离环境启动后可观察节点
         boundaries:
           - 不连接实车执行
-      - page: docs/06-stm32-firmware/37-ros2-stm32-integration.md
+      - page: docs/07-stm32-firmware/41-ros2-stm32-integration.md
         anchor: ros-serial-firmware-chain
         files:
           - launch/base_serial.launch.py
