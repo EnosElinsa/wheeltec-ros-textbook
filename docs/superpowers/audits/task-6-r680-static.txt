@@ -1,0 +1,1 @@
+Static source-tree review only. Hardware photo, wiring, measurement, flashing, runtime, and hardware verification are unavailable.
