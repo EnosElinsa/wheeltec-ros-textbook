@@ -41,14 +41,14 @@ resources:
   - id: stm32.control.motor
     repository_path: stm32/control/motor/stm32f4-stdperiph
     consumers:
-      - {page: docs/06-stm32-firmware/35-motor-control-pid.md, anchor: stm32-motor-control, files: [USER/main.c], role: 电机控制, mode: static_read, commands: [], acceptance: [能定位电机映射], boundaries: [无编译器与实机证据]}
+      - {page: docs/06-stm32-firmware/35-motor-control-pid.md, anchor: stm32-motor-control, files: [USER/WHEELTEC.uvprojx, USER/main.c], role: 电机控制, mode: static_read, commands: [], acceptance: [能定位电机映射], boundaries: [无编译器与实机证据], file_manifest: metadata/code-resource-manifests/motor.txt}
     compatibility: {ros_distribution: none, platform: stm32f4, hardware: requires-confirmation}
     dependencies: [{kind: toolchain, path: CMSIS/StdPeriph/BSP, provider: project, verification: declared}]
     verification: {level: static_reviewed, source_commit: c9f7befba2fdc3c39d6df134d5a16d190413f39c, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-5-static.txt, verified_at: '2026-08-29'}
   - id: stm32.control.pid
     repository_path: stm32/control/pid/stm32f4-stdperiph
     consumers:
-      - {page: docs/06-stm32-firmware/35-motor-control-pid.md, anchor: stm32-pid-control, files: [USER/main.c], role: PID 控制, mode: static_read, commands: [], acceptance: [能定位 PID 常量], boundaries: [无编译器与实机证据]}
+      - {page: docs/06-stm32-firmware/35-motor-control-pid.md, anchor: stm32-pid-control, files: [USER/WHEELTEC.uvprojx, USER/main.c], role: PID 控制, mode: static_read, commands: [], acceptance: [能定位 PID 常量], boundaries: [无编译器与实机证据], file_manifest: metadata/code-resource-manifests/pid.txt}
     compatibility: {ros_distribution: none, platform: stm32f4, hardware: requires-confirmation}
     dependencies: [{kind: toolchain, path: CMSIS/StdPeriph/BSP, provider: project, verification: declared}]
     verification: {level: static_reviewed, source_commit: c9f7befba2fdc3c39d6df134d5a16d190413f39c, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-5-static.txt, verified_at: '2026-08-29'}

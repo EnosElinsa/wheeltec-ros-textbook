@@ -282,7 +282,7 @@ def validate_code_resource_map(
                     errors.append(f"{consumer_prefix}: file_manifest does not exist: {consumer.file_manifest}")
                 else:
                     expected = sorted(path.relative_to(package_root).as_posix() for path in package_root.rglob("*") if path.is_file())
-                    actual = [line.strip() for line in manifest_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+                    actual = [line.strip().lstrip("\ufeff") for line in manifest_path.read_text(encoding="utf-8").splitlines() if line.strip()]
                     if actual != expected:
                         errors.append(f"{consumer_prefix}: file_manifest does not match resource tree")
         if not resource.dependencies:
