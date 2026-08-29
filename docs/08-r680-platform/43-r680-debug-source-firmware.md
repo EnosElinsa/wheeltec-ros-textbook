@@ -5,11 +5,11 @@ status: complete
 # 43. R680 底盘调试、源码与固件维护 {#r680-code-resource}
 
 !!! example "本章代码：C50C F407 麦轮霍尔编码器固件"
-    使用 [r680/firmware/c50c/f407-mecanum-hall-single-serial-can-b01](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/07a159d4ffb67165c905bcf62e46cb95ae32baae/r680/firmware/c50c/f407-mecanum-hall-single-serial-can-b01) 的 `USER/WHEELTEC.uvprojx`、`USER/main.c`、`HARDWARE/usartx.c` 和 `HARDWARE/can.c`，用于静态诊断串口与 CAN 控制链。
+    使用 [r680/firmware/c50c/f407-mecanum-hall-single-serial-can-b01](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/0ecdda9102755150f466d4de96e418ed4460575a/r680/firmware/c50c/f407-mecanum-hall-single-serial-can-b01) 的 `USER/WHEELTEC.uvprojx`、`USER/main.c`、`HARDWARE/usartx.c` 和 `HARDWARE/can.c`，用于静态诊断串口与 CAN 控制链。
 
     验收：能定位工程、主循环和双协议接口。边界：没有匹配实机照片、接线和测量证据时，只能静态阅读；不得据此烧录或声明硬件验证。
 
-    其他控制板、底盘和编码器组合当前没有选中的公开固件资源；在具备独立矩阵、完整工程和照片支持前，不应从本变体外推。
+    其他控制板、底盘和编码器组合当前不可用且没有公开可消费固件资源；在具备独立矩阵、完整工程和照片支持前，不应从本变体外推。
 
 ## 43.1 学习目标
 
