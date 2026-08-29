@@ -18,7 +18,7 @@ class RedirectTests(unittest.TestCase):
             ROOT / "metadata" / "legacy-redirects.csv"
         )
         self.assertEqual(generate_redirects.validate_map(rows), [])
-        self.assertEqual(len(rows), 60)
+        self.assertEqual(len(rows), 63)
 
     def test_map_rejects_duplicate_source_and_redirect_chain(self) -> None:
         rows = [
@@ -98,3 +98,4 @@ class RedirectTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

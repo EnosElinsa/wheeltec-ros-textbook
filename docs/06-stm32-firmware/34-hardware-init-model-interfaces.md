@@ -34,7 +34,7 @@ R680 C50C 的 TYPE 可由车型选择电位器决定，并在重新上电后生�
 6. 在电机失能时切换/读取车型，重启后确认 OLED TYPE。
 7. 只在车型、接线和源码一致时允许电机输出。
 
-需要验证“引脚初始化是否真的产生可观察结果”时，使用 [STM32 串口、PWM 与编码器最小实验](stm32-peripheral-labs.md)。先在电机失能状态分别核对 USART、TIM PWM 和编码器模式，再把结果映射回当前控制板接口表。
+需要验证“引脚初始化是否真的产生可观察结果”时，使用 [STM32 串口、PWM 与编码器最小实验](34-hardware-init-model-interfaces.md#stm32-peripheral-labs)。先在电机失能状态分别核对 USART、TIM PWM 和编码器模式，再把结果映射回当前控制板接口表。
 
 ## 34.6 验收标准
 
@@ -62,4 +62,3 @@ R680 C50C 的 TYPE 可由车型选择电位器决定，并在重新上电后生�
 [上一章：固件架构与 FreeRTOS 任务](33-firmware-architecture-freertos.md) · [返回本篇](index.md) · [下一章：电机控制与 PID 实现](35-motor-control-pid.md)
 
 详见[教材代码资源附录](../appendices/d-public-source-reference.md)。
-

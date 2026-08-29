@@ -52,7 +52,7 @@ ros2 pkg prefix <目标包>
 
 运行最小功能，保存节点、话题和日志。失败时停止进程，恢复文件，再局部构建并重复同一验收。不要在失败现场继续叠加第二个“顺手修复”。
 
-修改 WHEELTEC 底盘包前，先完成 [`turn_on_wheeltec_robot` 源码与启动链导读](turn-on-wheeltec-robot-source-walkthrough.md)中的完整性、入口、参数和接口记录。若当前目录只是缺少外部包的源码快照，不应把静态阅读结果当作可重建基线。
+修改 WHEELTEC 底盘包前，先完成 [`turn_on_wheeltec_robot` 源码与启动链导读](21-launch-and-parameters.md#bringup-launch-chain)中的完整性、入口、参数和接口记录。若当前目录只是缺少外部包的源码快照，不应把静态阅读结果当作可重建基线。
 
 ## 23.6 验收标准
 
@@ -78,4 +78,3 @@ ros2 pkg prefix <目标包>
 ## 章节导航
 
 [上一章：TF、URDF 与 RViz](22-tf-urdf-rviz.md) · [返回本篇](index.md) · [下一章：开机启动与进程管理](24-autostart-and-processes.md)
-

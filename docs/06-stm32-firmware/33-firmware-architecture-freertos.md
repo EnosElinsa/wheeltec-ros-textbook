@@ -38,7 +38,7 @@ WHEELTEC STM32 底盘固件。不同控制板的外设和任务名会变化，�
 6. 找到自检和失能条件，记录哪些异常会阻止输出。
 7. 标记中断与任务共同访问的变量，检查临界区和数据一致性。
 
-如果还不能独立确认串口中断、PWM 定时器和编码器计数链，先完成 [STM32 串口、PWM 与编码器最小实验](stm32-peripheral-labs.md)，再回到完整固件画任务图。最小实验面向已核对的测试板，不能代替 C30D/C50 工程兼容性判断。
+如果还不能独立确认串口中断、PWM 定时器和编码器计数链，先完成 [STM32 串口、PWM 与编码器最小实验](34-hardware-init-model-interfaces.md#stm32-peripheral-labs)，再回到完整固件画任务图。最小实验面向已核对的测试板，不能代替 C30D/C50 工程兼容性判断。
 
 ## 33.6 验收标准
 
@@ -65,4 +65,3 @@ WHEELTEC STM32 底盘固件。不同控制板的外设和任务名会变化，�
 [上一章：视觉跟随、巡线、KCF、AR 标签与网页视频](../05-sensors-navigation/32-vision-applications.md) · [返回本篇](index.md) · [下一章：硬件初始化、车型选择与接口](34-hardware-init-model-interfaces.md)
 
 详见[教材代码资源附录](../appendices/d-public-source-reference.md)。
-

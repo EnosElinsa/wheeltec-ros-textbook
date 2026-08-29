@@ -34,7 +34,7 @@ status: complete
 6. 手动转动机器人，核对 IMU 轴、上行原始值和 ROS 单位。
 7. 断开通信，验证 STM32 超时失能；恢复后仍从零速开始。
 
-ROS 侧不知道从哪个 Launch 和 C++ 回调开始追踪时，先完成 [`turn_on_wheeltec_robot` 源码与启动链导读](../04-ros2-development/turn-on-wheeltec-robot-source-walkthrough.md)，再把 `cmd_vel`、串口下行、上行解析、里程计和 IMU 逐项对应到本章检查点。
+ROS 侧不知道从哪个 Launch 和 C++ 回调开始追踪时，先完成 [`turn_on_wheeltec_robot` 源码与启动链导读](../04-ros2-development/21-launch-and-parameters.md#bringup-launch-chain)，再把 `cmd_vel`、串口下行、上行解析、里程计和 IMU 逐项对应到本章检查点。
 
 ## 37.6 验收标准
 
@@ -61,4 +61,3 @@ ROS 侧不知道从哪个 Launch 和 C++ 回调开始追踪时，先完成 [`tur
 ## 章节导航
 
 [上一章：修改、编译、烧录与回滚固件](36-build-flash-rollback.md) · [返回本篇](index.md) · [下一章：仿真与 Gazebo](../07-advanced-applications/38-gazebo-simulation.md)
-

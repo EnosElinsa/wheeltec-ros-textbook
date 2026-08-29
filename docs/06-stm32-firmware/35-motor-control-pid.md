@@ -38,7 +38,7 @@ $$
 6. 测试停止、反向、低速和常用负载。
 7. 每次参数变更保存曲线和版本。
 
-闭环调参前必须先证明 PWM 周期/占空比和编码器方向/计数可靠。[STM32 串口、PWM 与编码器最小实验](stm32-peripheral-labs.md)给出了无需使能电机的观察步骤；其中引脚和工程基线不能直接套用于其他控制板。
+闭环调参前必须先证明 PWM 周期/占空比和编码器方向/计数可靠。[STM32 串口、PWM 与编码器最小实验](34-hardware-init-model-interfaces.md#stm32-peripheral-labs)给出了无需使能电机的观察步骤；其中引脚和工程基线不能直接套用于其他控制板。
 
 ## 35.6 验收标准
 
@@ -66,4 +66,3 @@ $$
 [上一章：硬件初始化、车型选择与接口](34-hardware-init-model-interfaces.md) · [返回本篇](index.md) · [下一章：修改、编译、烧录与回滚固件](36-build-flash-rollback.md)
 
 详见[教材代码资源附录](../appendices/d-public-source-reference.md)。
-

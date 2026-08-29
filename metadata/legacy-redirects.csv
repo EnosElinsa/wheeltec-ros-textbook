@@ -59,3 +59,6 @@ source,target
 01-foundations/01-robot-components/,01-foundations/02-robot-system-overview/
 01-foundations/02-ubuntu-terminal-programs/,01-foundations/03-ubuntu-terminal-programs/
 01-foundations/03-what-ros2-solves/,01-foundations/01-understanding-ros/
+04-ros2-development/turn-on-wheeltec-robot-source-walkthrough/,04-ros2-development/21-launch-and-parameters/
+05-sensors-navigation/ros1-bag-offline-diagnostics/,appendices/a-ros1-maintenance/
+06-stm32-firmware/stm32-peripheral-labs/,06-stm32-firmware/34-hardware-init-model-interfaces/

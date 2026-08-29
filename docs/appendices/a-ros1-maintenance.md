@@ -30,7 +30,7 @@ status: complete
 4. 不把 ROS 1 工作空间 source 到 ROS 2 终端，反之亦然。
 5. 迁移功能时先替换通信接口，再验证 TF、时间和 QoS/连接行为。
 
-需要在不连接实机时检查旧话题、时间和 TF，可使用 [ROS 1 Bag 离线传感器诊断](../05-sensors-navigation/ros1-bag-offline-diagnostics.md)。先在隔离 ROS master 中完成 ROS 1 回放，再决定是否需要转换到 ROS 2。
+需要在不连接实机时检查旧话题、时间和 TF，可使用 [ROS 1 Bag 离线传感器诊断](../05-sensors-navigation/../appendices/a-ros1-maintenance.md#ros1-bag-offline-diagnostics)。先在隔离 ROS master 中完成 ROS 1 回放，再决定是否需要转换到 ROS 2。
 
 ## 常见故障
 
@@ -53,4 +53,3 @@ status: complete
 ## 章节导航
 
 [返回首页](../index.md) · [下一附录：车型、主控与控制板矩阵](b-platform-matrix.md)
-

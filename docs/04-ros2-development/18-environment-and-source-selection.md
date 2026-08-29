@@ -68,7 +68,7 @@ printenv AMENT_PREFIX_PATH | tr ':' '\n'
 - 源码包与主控、ROS 发行版和硬件配置有可追溯依据。
 - Autoware、TROS 或其他工作空间不会无意叠加到普通机器人环境。
 
-需要继续追踪底盘包的入口、依赖和运行链时，按 [`turn_on_wheeltec_robot` 源码与启动链导读](turn-on-wheeltec-robot-source-walkthrough.md)从安装前缀反查到当前工作空间，不要根据目录名选择源码。
+需要继续追踪底盘包的入口、依赖和运行链时，按 [`turn_on_wheeltec_robot` 源码与启动链导读](21-launch-and-parameters.md#bringup-launch-chain)从安装前缀反查到当前工作空间，不要根据目录名选择源码。
 
 ## 18.7 故障排查
 
@@ -86,4 +86,3 @@ printenv AMENT_PREFIX_PATH | tr ':' '\n'
 ## 章节导航
 
 [上一章：直线纠偏、转向标定和常见底盘故障](../03-chassis-control/17-calibration-and-faults.md) · [返回本篇](index.md) · [下一章：工作空间、功能包与构建](19-workspace-packages-build.md)
-
