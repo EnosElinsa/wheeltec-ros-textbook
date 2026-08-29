@@ -7,11 +7,11 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE_ROOT = ROOT.parent / "code-resource-curation-source"
 APPROVED_SOURCE_BASELINE = "ebae2342709c756cb8fa387ccdbd6e5733f9219a"
 sys.path.insert(0, str(ROOT / "tools"))
 
 import validate_code_resources  # noqa: E402
+from workspace_paths import find_source_root  # noqa: E402
 
 
 class PublicSourceReferenceTests(unittest.TestCase):
@@ -19,7 +19,10 @@ class PublicSourceReferenceTests(unittest.TestCase):
         mapping = validate_code_resources.load_code_resources(ROOT / "metadata/code-resources.yml")
         self.assertEqual(mapping.source_revision, APPROVED_SOURCE_BASELINE)
         self.assertEqual(len(mapping.resources), 13)
-        self.assertEqual(validate_code_resources.validate_code_resource_map(mapping, SOURCE_ROOT, ROOT), [])
+        source_root = find_source_root(ROOT)
+        if source_root is None:
+            self.skipTest("standalone textbook checkout has no local public-source Git checkout")
+        self.assertEqual(validate_code_resources.validate_code_resource_map(mapping, source_root, ROOT), [])
 
     def test_bringup_consumer_block_uses_the_mapping_anchor_and_revision(self) -> None:
         text = (ROOT / "docs/04-ros2-development/21-launch-and-parameters.md").read_text(encoding="utf-8")

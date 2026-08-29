@@ -10,6 +10,7 @@ import yaml
 import sys
 import re
 from unittest.mock import patch
+from workspace_paths import find_process_root, find_source_root
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
@@ -90,7 +91,9 @@ class WorkflowContractTests(unittest.TestCase):
     def test_run_code_resource_validation_is_read_only_and_reports_errors(self) -> None:
         from validate_code_resources import run_code_resource_validation
 
-        source = ROOT.parent / "code-resource-curation-source"
+        source = find_source_root(ROOT)
+        if source is None:
+            self.skipTest("standalone textbook checkout has no local public-source Git checkout")
         before = subprocess.check_output(["git", "-C", str(source), "status", "--porcelain"], text=True)
         self.assertEqual(run_code_resource_validation(ROOT, source), 0)
         after = subprocess.check_output(["git", "-C", str(source), "status", "--porcelain"], text=True)
@@ -102,12 +105,16 @@ class WorkflowContractTests(unittest.TestCase):
         mapping = validate_code_resources.load_code_resources(ROOT / "metadata/code-resources.yml")
         revision = mapping.source_revision
         pages = {ROOT / consumer.page for resource in mapping.resources for consumer in resource.consumers}
-        pages.update(
-            {
-                ROOT.parent.parent / "wheeltec-ros-source-reference/docs/superpowers/audits/code-resource-reader-test.md",
-                ROOT.parent.parent / "wheeltec-ros-source-reference/docs/superpowers/audits/code-resource-reader-test.json",
-            }
-        )
+        process_root = find_process_root(ROOT)
+        if process_root is not None:
+            pages.update(
+                page
+                for page in (
+                    process_root / "docs/superpowers/audits/code-resource-reader-test.md",
+                    process_root / "docs/superpowers/audits/code-resource-reader-test.json",
+                )
+                if page.is_file()
+            )
         for page in pages:
             text = page.read_text(encoding="utf-8")
             revisions = re.findall(r"(?<![0-9a-f])[0-9a-f]{40}(?![0-9a-f])", text)
@@ -131,5 +138,6 @@ class WorkflowContractTests(unittest.TestCase):
             (source / "ros2" / "config").mkdir(parents=True)
             self.assertEqual(validate_public_source_tree(source), [])
 
-        current = ROOT.parent / "code-resource-curation-source"
-        self.assertEqual(validate_public_source_tree(current), [])
+        current = find_source_root(ROOT)
+        if current is not None:
+            self.assertEqual(validate_public_source_tree(current), [])
