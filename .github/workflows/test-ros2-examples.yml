@@ -32,9 +32,10 @@ jobs:
 
       - name: Fetch textbook code repository
         run: |
+          SOURCE_REPOSITORY="$(python -c 'import yaml; print(yaml.safe_load(open("metadata/code-resources.yml"))["source_repository"])')"
           SOURCE_REVISION="$(python -c 'import yaml; print(yaml.safe_load(open("metadata/code-resources.yml"))["source_revision"])')"
           test "${#SOURCE_REVISION}" -eq 40
-          git clone --no-checkout https://github.com/EnosElinsa/wheeltec-ros-source-reference.git /tmp/wheeltec-ros-source-reference
+          git clone --no-checkout "https://github.com/${SOURCE_REPOSITORY}.git" /tmp/wheeltec-ros-source-reference
           cd /tmp/wheeltec-ros-source-reference
           git checkout --detach "$SOURCE_REVISION"
 

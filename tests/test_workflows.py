@@ -37,6 +37,9 @@ class WorkflowContractTests(unittest.TestCase):
             self.assertNotIn("/tree/main/", workflow)
         self.assertIn("examples/ros2/pubsub/cpp", examples)
         self.assertIn("examples/ros2/pubsub/python", examples)
+        self.assertIn('source_repository', examples)
+        self.assertIn('https://github.com/${SOURCE_REPOSITORY}.git', examples)
+        self.assertNotIn('https://github.com/EnosElinsa/wheeltec-ros-source-reference.git', examples)
         self.assertIn("separate", validation.lower())
         self.assertIn('"metadata/code-resources.yml"', examples)
         for workflow in (examples, validation):
@@ -103,3 +106,9 @@ class WorkflowContractTests(unittest.TestCase):
             (source / "tests").rmdir()
             (source / "docs").mkdir()
             self.assertTrue(any("docs" in error for error in validate_public_source_tree(source)))
+            (source / "docs").rmdir()
+            (source / ".github").mkdir()
+            self.assertTrue(any(".github" in error for error in validate_public_source_tree(source)))
+
+        current = ROOT.parent / "code-resource-curation-source"
+        self.assertEqual(validate_public_source_tree(current), [])

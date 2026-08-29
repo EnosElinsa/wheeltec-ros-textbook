@@ -261,7 +261,7 @@ def validate_public_source_tree(source_root: Path) -> list[str]:
     else:
         entries = [entry.name for entry in root.iterdir()]
     for name in entries:
-        if name == ".git" or name.startswith("."):
+        if name == ".git":
             continue
         entry = root / name
         if not entry.is_dir() or name not in APPROVED_SOURCE_ROOTS:
