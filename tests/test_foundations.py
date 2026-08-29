@@ -102,7 +102,7 @@ class FoundationContentTests(unittest.TestCase):
         )
         self.assertEqual(len(re.findall(r"^\d+\. ", tasks, re.MULTILINE)), 10)
         self.assertEqual(results.count("| PASS |"), 10)
-        for section in ("1.2", "1.3", "1.4", "1.6", "2.1", "3.3", "4.4", "5.6"):
+        for section in ("1.2", "1.4", "2.1", "3.2", "4.4", "5.6", "6.2", "7.4", "8.3", "9.5"):
             self.assertIn(section, results)
 
     def test_chapter_1_covers_visible_robot_components(self) -> None:
