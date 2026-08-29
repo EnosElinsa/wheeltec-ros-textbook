@@ -115,7 +115,16 @@ def _require_string_list(value: Any, location: str) -> list[str]:
 
 
 def _consumer(data: Any) -> Consumer:
-    row = _require_mapping(data, "consumer", CONSUMER_KEYS)
+    if not isinstance(data, dict):
+        raise _schema_error("consumer", "must be a mapping")
+    row = dict(data)
+    row.setdefault("file_manifest", "")
+    unknown = set(row) - CONSUMER_KEYS
+    if unknown:
+        raise _schema_error("consumer", f"unknown key: {sorted(unknown)[0]}")
+    for key in CONSUMER_KEYS - {"file_manifest"}:
+        if key not in row:
+            raise _schema_error("consumer", f"missing required key: {key}")
     return Consumer(
         page=_require_string(row["page"], "consumer.page"),
         anchor=_require_string(row["anchor"], "consumer.anchor"),
