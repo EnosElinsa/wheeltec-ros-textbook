@@ -16,7 +16,7 @@ ROS 2 正文环境。ROS 1 对应命令见附录 A。
 
 启动底盘基础节点，不启动导航和高级应用。另开一个加载相同环境的终端。
 
-## 24.4 工作原理
+## 24.4 工作原理 {#interface-compatibility}
 
 节点是一个运行中的 ROS 功能单元，例如读取串口的底盘驱动或发布图像的相机驱动。节点之间通过接口传递数据：
 
@@ -110,4 +110,3 @@ ros2 topic echo /course/chatter --once
 ## 章节导航
 
 [上一章：工作空间、功能包与构建](23-workspace-packages-build.md) · [返回本篇](index.md) · [下一章：Launch、参数与运行配置](25-launch-and-parameters.md)
-

@@ -18,7 +18,7 @@ USB RGB 相机和常见深度相机。深度图、点云和厂商 SDK 需按型�
 - 同一相机没有被多个程序独占。
 - USB 带宽和供电足够。
 
-## 34.4 工作原理
+## 34.4 工作原理 {#camera-opencv}
 
 相机设备先由 Linux 表示为 `/dev/video*`，相机驱动节点再把每一帧封装成 `sensor_msgs/msg/Image` 话题，`camera_info` 话题提供相机内参。Open Source Computer Vision Library（OpenCV）是处理图像的程序库，可用于颜色转换、去畸变和目标检测。cv_bridge 是 ROS 2 与 OpenCV 之间的转换包：它把图像消息变成 OpenCV 矩阵，也能把处理结果转回新话题。原始图像由驱动发布，视觉算法通过 cv_bridge 读取并输出结果；第 35 章补充内参标定，第 36 章再把检测结果接到控制逻辑。编码不匹配会导致颜色或尺寸异常。
 

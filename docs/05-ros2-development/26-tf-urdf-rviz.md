@@ -18,13 +18,13 @@ status: complete
 - 记录传感器实际安装方向和高度。
 - 备份 URDF/Xacro、网格和模型 Launch。
 
-## 26.4 工作原理
+## 26.4 工作原理 {#model-tf-rviz}
 
 ### 模型、坐标树与显示
 
-Transform Library 2（TF2）记录坐标系之间的位置和朝向关系，让雷达数据、相机图像和机器人模型能落在同一空间中。统一机器人描述格式（Unified Robot Description Format, URDF）用连杆和关节描述机器人外形；XML Macros（Xacro）是生成或复用 URDF 片段的写法，适合把不同车型的公共部分集中维护。`robot_state_publisher` 根据模型和关节状态发布 TF。
+可扩展标记语言（Extensible Markup Language, XML）用标签表示层次化数据。Transform Library 2（TF2）记录坐标系之间的位置和朝向关系，让雷达数据、相机图像和机器人模型能落在同一空间中。统一机器人描述格式（Unified Robot Description Format, URDF）用 XML 描述机器人外形；XML Macros（Xacro）是生成或复用 URDF 片段的写法，适合把不同车型的公共部分集中维护。`robot_state_publisher` 根据模型和关节状态发布 TF。
 
-RViz 是查看模型、话题和坐标关系的桌面工具，不参与底盘控制或导航计算。导航通常要求 `map → odom → base_link → sensor` 链完整。RViz 的红色报错说明上游坐标、话题或时间有问题，应先修复数据来源。
+ROS Visualization（RViz）是查看模型、话题和坐标关系的桌面工具，不参与底盘控制或导航计算。导航通常要求 `map → odom → base_link → sensor` 链完整。RViz 的红色报错说明上游坐标、话题或时间有问题，应先修复数据来源。
 
 ### 静态与动态变换
 

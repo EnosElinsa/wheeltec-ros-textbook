@@ -19,7 +19,7 @@ status: complete
 - 轮径、轮距和里程计方向已核对。
 - 场地允许低速完整覆盖。
 
-## 30.4 工作原理
+## 30.4 工作原理 {#lidar-slam}
 
 激光雷达（Light Detection and Ranging, LiDAR）按角度连续测量距离，发布的二维扫描让机器人能看到墙面和障碍物。同步定位与建图（Simultaneous Localization and Mapping, SLAM）把这些扫描与机器人运动估计配准，一边估计自己在哪，一边逐步生成地图。它依赖雷达数据、里程计和 TF 坐标关系；后续第 31 章会使用这张地图做定位，第 32 章的 Nav2 再根据定位结果规划路径。
 

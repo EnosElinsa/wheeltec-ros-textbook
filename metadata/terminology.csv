@@ -46,7 +46,7 @@ Kernelized Correlation Filter,Kernelized Correlation Filter,KCF,docs/06-sensors-
 Gazebo Simulation Platform,Gazebo Simulation Platform,Gazebo,docs/08-advanced-applications/42-gazebo-simulation.md,simulation-basics,Gazebo Simulation Platform（Gazebo）,Gazebo
 Qt Application Framework,Qt Application Framework,Qt,docs/08-advanced-applications/43-multi-robot-and-qt.md,qt-client,Qt Application Framework（Qt）,Qt
 网络文件系统,Network File System,NFS,docs/10-deployment-maintenance/48-network-docker-images.md,host-container-device-boundary,"网络文件系统（Network File System, NFS）",NFS
-Docker Container Platform,Docker Container Platform,Docker,docs/05-ros2-development/22-environment-and-source-selection.md,runtime-environment,"Docker Container Platform（Docker Container Platform, Docker）",Docker
+Docker Container Platform,Docker Container Platform,Docker,docs/05-ros2-development/22-environment-and-source-selection.md,runtime-environment,Docker Container Platform（Docker）,Docker
 应用程序编程接口,Application Programming Interface,API,docs/08-advanced-applications/45-voice-ai-openclaw.md,ai-interfaces,"应用程序编程接口（Application Programming Interface, API）",API
 互联网协议地址,Internet Protocol Address,IP Address,docs/03-bringup/13-connect-controller.md,network-remote-access,"互联网协议地址（Internet Protocol Address, IP Address）",IP
 虚拟网络计算,Virtual Network Computing,VNC,docs/03-bringup/13-connect-controller.md,network-remote-access,"虚拟网络计算（Virtual Network Computing, VNC）",VNC

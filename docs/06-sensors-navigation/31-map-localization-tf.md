@@ -18,9 +18,9 @@ status: complete
 - 底盘里程计、IMU、雷达与 TF 已通过。
 - 机器人在地图中有可辨认的初始区域。
 
-## 31.4 工作原理
+## 31.4 工作原理 {#localization-tf}
 
-第 30 章的 SLAM 地图记录了场地的固定轮廓；定位系统把机器人当前的雷达扫描与这张地图比较，估计机器人在地图中的位置。Transform Library 2（TF2）用一棵坐标树把这项估计交给底盘、传感器和导航节点。移动机器人常用的完整链路是 `map → odom → base_link → sensor`。`map` 是全局稳定坐标，`odom` 保持局部连续但会漂移，`base_link` 随机器人运动，最后一级表示雷达、相机等传感器相对机身的安装位置。
+第 30 章的 SLAM 地图记录了场地的固定轮廓；定位系统把机器人当前的雷达扫描与这张地图比较，估计机器人在地图中的位置。TF2用一棵坐标树把这项估计交给底盘、传感器和导航节点。移动机器人常用的完整链路是 `map → odom → base_link → sensor`。`map` 是全局稳定坐标，`odom` 保持局部连续但会漂移，`base_link` 随机器人运动，最后一级表示雷达、相机等传感器相对机身的安装位置。
 
 定位系统估计 `map → odom`，底盘里程计提供 `odom → base_link`，静态发布器或机器人模型提供 `base_link → sensor`。三段关系由不同来源负责；同一段出现多个发布者时会造成坐标跳变和冲突。
 
@@ -31,7 +31,7 @@ status: complete
 3. 在 RViz 中给出初始位姿，方向箭头与车头一致。
 4. 缓慢移动并回到原处，观察雷达扫描与墙线是否持续贴合。
 5. 记录 `/tf`、`/tf_static`、里程计和定位粒子/位姿话题。
-6. 若使用 EKF，确认它融合的传感器和输出坐标，不重复融合同一信息。
+6. 若使用扩展卡尔曼滤波器（Extended Kalman Filter, EKF），确认它融合的传感器和输出坐标，不重复融合同一信息。
 
 使用录制数据复现 TF 问题时，参考 [ROS 1 Bag 离线传感器诊断](../appendices/a-ros1-maintenance.md#ros1-bag-offline-diagnostics)，分别检查 Bag 中的 `/tf`、里程计 `header.frame_id`、`child_frame_id` 和传感器 frame。`/tf` 存在不代表整条链连续。
 
