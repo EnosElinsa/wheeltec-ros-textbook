@@ -26,7 +26,7 @@ status: complete
 
 Docker 还多一层边界：宿主机看到的文件、设备和网络，只有显式挂载或传入容器后才能被 ROS 使用。
 
-## 18.5 操作步骤
+## 18.5 源码包确认 {#source-package-selection}
 
 在实际运行 ROS 的终端执行：
 
@@ -86,3 +86,4 @@ printenv AMENT_PREFIX_PATH | tr ':' '\n'
 ## 章节导航
 
 [上一章：直线纠偏、转向标定和常见底盘故障](../03-chassis-control/17-calibration-and-faults.md) · [返回本篇](index.md) · [下一章：工作空间、功能包与构建](19-workspace-packages-build.md)
+

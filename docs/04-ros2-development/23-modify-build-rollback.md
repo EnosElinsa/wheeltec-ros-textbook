@@ -22,7 +22,7 @@ ROS 2 参数、Launch、Python 和 C/C++ 功能包。固件修改见第六篇。
 
 最危险的不是编译失败，而是同时改多处后“似乎能跑”。一次只改变一个假设，局部构建并验证原始症状，才能确定因果关系。
 
-## 23.5 操作步骤
+## 23.5 源码修改练习 {#source-change-exercise}
 
 建立修改记录：
 
@@ -78,3 +78,4 @@ ros2 pkg prefix <目标包>
 ## 章节导航
 
 [上一章：TF、URDF 与 RViz](22-tf-urdf-rviz.md) · [返回本篇](index.md) · [下一章：开机启动与进程管理](24-autostart-and-processes.md)
+

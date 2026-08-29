@@ -22,7 +22,7 @@ status: complete
 
 命令不同，故障分层方法相同：先看电源/底盘，再看设备/节点/话题，最后看导航或应用。
 
-## 维护步骤
+## A.4 ROS 1 Bag 离线诊断 {#ros1-bag-offline-diagnostics}
 
 1. 记录 Ubuntu、ROS 发行版、源码和底盘控制板。
 2. 先运行旧系统的底盘和传感器基线。
@@ -53,3 +53,4 @@ status: complete
 ## 章节导航
 
 [返回首页](../index.md) · [下一附录：车型、主控与控制板矩阵](b-platform-matrix.md)
+

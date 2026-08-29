@@ -24,7 +24,7 @@ C30D、C50 系列等资料覆盖的底盘控制板。引脚和电位器位置按
 
 R680 C50C 的 TYPE 可由车型选择电位器决定，并在重新上电后生效。错误 TYPE 会让同一组接口按错误底盘解释。
 
-## 34.5 操作步骤
+## 34.5 外设最小实验 {#stm32-peripheral-labs}
 
 1. 建立接口对应表，依次记录实物接口、原理图网络、MCU 引脚、初始化函数和运行变量。
 2. 核对串口号、波特率、CAN 波特率和设备别名。
@@ -62,3 +62,4 @@ R680 C50C 的 TYPE 可由车型选择电位器决定，并在重新上电后生�
 [上一章：固件架构与 FreeRTOS 任务](33-firmware-architecture-freertos.md) · [返回本篇](index.md) · [下一章：电机控制与 PID 实现](35-motor-control-pid.md)
 
 详见[教材代码资源附录](../appendices/d-public-source-reference.md)。
+

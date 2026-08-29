@@ -24,7 +24,7 @@ status: complete
 
 每个箭头都是独立边界。最常见错误是端口不对、协议版本不对、mm/s 与 m/s 漏换、角速度缩放、字节序和坐标符号。
 
-## 37.5 操作步骤
+## 37.5 ROS—串口—固件链 {#ros-serial-firmware-chain}
 
 1. 使用 udev 属性确认底盘设备别名指向当前 USB 转串口芯片。
 2. 关闭电机使能，启动底盘节点，观察串口打开和接收日志。
@@ -61,3 +61,4 @@ ROS 侧不知道从哪个 Launch 和 C++ 回调开始追踪时，先完成 [`tur
 ## 章节导航
 
 [上一章：修改、编译、烧录与回滚固件](36-build-flash-rollback.md) · [返回本篇](index.md) · [下一章：仿真与 Gazebo](../07-advanced-applications/38-gazebo-simulation.md)
+

@@ -26,7 +26,7 @@ WHEELTEC STM32 底盘固件。不同控制板的外设和任务名会变化，�
 
 实时性来自明确周期和优先级，不是“任务越多越好”。控制周期抖动会直接影响编码器测速、PI 参数和里程计积分。
 
-## 33.5 操作步骤
+## 33.5 固件实验记录 {#firmware-evidence-record}
 
 ### 核对固件运行链
 
@@ -65,3 +65,4 @@ WHEELTEC STM32 底盘固件。不同控制板的外设和任务名会变化，�
 [上一章：视觉跟随、巡线、KCF、AR 标签与网页视频](../05-sensors-navigation/32-vision-applications.md) · [返回本篇](index.md) · [下一章：硬件初始化、车型选择与接口](34-hardware-init-model-interfaces.md)
 
 详见[教材代码资源附录](../appendices/d-public-source-reference.md)。
+

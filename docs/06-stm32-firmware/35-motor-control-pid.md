@@ -12,7 +12,7 @@ status: complete
 
 直流编码器电机速度环；舵机位置环和速度/位置串级控制采用同一误差反馈思路，但参数与输出不同。
 
-## 35.3 操作前检查
+## 35.3 闭环前置检查 {#closed-loop-prechecks}
 
 - 编码器方向、每转计数、减速比和轮径正确。
 - 电机架空测试可靠，PWM 限幅存在。
@@ -66,3 +66,4 @@ $$
 [上一章：硬件初始化、车型选择与接口](34-hardware-init-model-interfaces.md) · [返回本篇](index.md) · [下一章：修改、编译、烧录与回滚固件](36-build-flash-rollback.md)
 
 详见[教材代码资源附录](../appendices/d-public-source-reference.md)。
+

@@ -63,11 +63,9 @@ nav:
       - 22 TF、URDF 与 RViz: 04-ros2-development/22-tf-urdf-rviz.md
       - 23 修改、编译与回滚: 04-ros2-development/23-modify-build-rollback.md
       - 24 开机启动与进程: 04-ros2-development/24-autostart-and-processes.md
-      - turn_on_wheeltec_robot 源码导读: 04-ros2-development/turn-on-wheeltec-robot-source-walkthrough.md
   - 第五篇 传感器、建图与导航:
       - 本篇说明: 05-sensors-navigation/index.md
       - 25 传感器自检: 05-sensors-navigation/25-sensor-checks.md
-      - ROS 1 Bag 离线诊断: 05-sensors-navigation/ros1-bag-offline-diagnostics.md
       - 26 雷达与二维建图: 05-sensors-navigation/26-lidar-and-mapping.md
       - 27 地图、定位与 TF: 05-sensors-navigation/27-map-localization-tf.md
       - 28 Nav2 导航: 05-sensors-navigation/28-nav2-navigation.md
@@ -82,7 +80,6 @@ nav:
       - 35 电机控制与 PID: 06-stm32-firmware/35-motor-control-pid.md
       - 36 编译、烧录与回滚: 06-stm32-firmware/36-build-flash-rollback.md
       - 37 ROS 2 与 STM32 联调: 06-stm32-firmware/37-ros2-stm32-integration.md
-      - STM32 外设最小实验: 06-stm32-firmware/stm32-peripheral-labs.md
   - 第七篇 高级应用:
       - 本篇说明: 07-advanced-applications/index.md
       - 38 Gazebo 仿真: 07-advanced-applications/38-gazebo-simulation.md
