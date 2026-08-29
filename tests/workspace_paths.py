@@ -23,6 +23,19 @@ def _contains_revision(path: Path, revision: str) -> bool:
     ).returncode == 0
 
 
+def _has_only_public_roots(path: Path) -> bool:
+    result = subprocess.run(
+        ["git", "-C", str(path), "ls-tree", "--name-only", "HEAD"],
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        return False
+    allowed = {"applications", "chassis", "examples", "platform", "r680", "ros1", "ros2", "stm32"}
+    entries = {line.strip() for line in result.stdout.splitlines() if line.strip()}
+    return bool(entries) and entries.issubset(allowed)
+
+
 def find_source_root(textbook_root: Path) -> Path | None:
     """Find an optional local public-source Git checkout across supported layouts."""
     root = textbook_root.resolve()
@@ -31,6 +44,7 @@ def find_source_root(textbook_root: Path) -> Path | None:
     candidates.extend(
         (
             root.parent / "code-resource-curation-source",
+            root.parent / ".worktrees/code-resource-curation-source",
             root.parent / "wheeltec-ros-source-reference",
             root.parent.parent / "wheeltec-ros-source-reference",
         )
@@ -45,7 +59,9 @@ def find_source_root(textbook_root: Path) -> Path | None:
         (
             path.resolve()
             for path in candidates
-            if _is_git_checkout(path) and (not revision or _contains_revision(path, revision))
+            if _is_git_checkout(path)
+            and _has_only_public_roots(path)
+            and (not revision or _contains_revision(path, revision))
         ),
         None,
     )
