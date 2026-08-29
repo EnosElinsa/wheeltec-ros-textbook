@@ -152,16 +152,31 @@ class CodeResourceContractTests(unittest.TestCase):
 
     def test_appendix_requires_the_immutable_resource_link_and_every_consumer_anchor(self) -> None:
         mapping = resources.load_code_resources(FIXTURE)
-        resource = mapping.resources[0]
-        appendix = "\n".join(
-            [
-                resources.immutable_tree_url(mapping.source_repository, mapping.source_revision, resource.repository_path),
-                *[f"{consumer.page}#{consumer.anchor}" for consumer in resource.consumers],
-            ]
-        )
+        self.assertTrue(hasattr(resources, "render_appendix"))
+        appendix = resources.render_appendix(mapping)
         resources.validate_appendix_matches_mapping(appendix, mapping)
-        with self.assertRaises(ValueError):
-            resources.validate_appendix_matches_mapping(appendix.replace("#source-change-exercise", ""), mapping)
+        mutations = (
+            appendix.replace("#source-change-exercise", "#stale-anchor", 1),
+            appendix.replace(REVISION, "f" * 40, 1),
+            appendix.replace("ros2/robot/turn-on-wheeltec-robot", "ros2/robot/wrong-package", 1),
+            appendix.replace("### ", "### duplicate\n\n" + appendix[appendix.index("### "):], 1),
+            appendix + "\n### extra resource\n",
+            appendix.replace("tree/" + REVISION, "tree/main", 1),
+        )
+        for mutated in mutations:
+            with self.subTest(mutated=mutated[-80:]), self.assertRaises(ValueError):
+                resources.validate_appendix_matches_mapping(mutated, mapping)
+
+    def test_appendix_render_is_deterministic_and_reader_facing(self) -> None:
+        mapping = resources.load_code_resources(FIXTURE)
+        first = resources.render_appendix(mapping)
+        second = resources.render_appendix(mapping)
+        self.assertEqual(first, second)
+        self.assertTrue(first.endswith("\n"))
+        self.assertIn("教材正文中的代码入口是主要使用位置", first)
+        self.assertIn("## ROS 2 基础与启动", first)
+        self.assertNotIn("/tree/main/", first)
+        self.assertNotIn("docs/superpowers", first)
 
 
 if __name__ == "__main__":

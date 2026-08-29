@@ -27,6 +27,27 @@ MODE_VERIFICATION_LEVELS = {
     "hardware": {"hardware_verified"},
 }
 FORBIDDEN_VALUES = ("example_only", "schema-example", "/tree/main/", "/blob/main/")
+APPENDIX_FORBIDDEN = (
+    "/tree/main/",
+    "G-archive",
+    "R-archive",
+    "baseline-",
+    "release",
+    "catalog",
+    "docs/superpowers",
+    "C:\\",
+    "归档整理",
+    "构建这个代码库",
+)
+APPENDIX_CATEGORIES = (
+    "ROS 2 基础与启动",
+    "ROS 2 导航",
+    "ROS 1 维护",
+    "视觉与应用",
+    "STM32 外设实验",
+    "STM32 控制",
+    "R680 固件",
+)
 
 MAP_KEYS = {"source_repository", "source_revision", "resources"}
 RESOURCE_KEYS = {"id", "repository_path", "consumers", "compatibility", "dependencies", "verification"}
@@ -197,6 +218,88 @@ def immutable_tree_url(repository: str, revision: str, path: str) -> str:
     return f"https://github.com/{repository}/tree/{revision}/{path.strip('/')}"
 
 
+def _appendix_category(resource: CodeResource) -> str:
+    resource_id = resource.id
+    if resource_id.startswith("examples.ros2.") or resource_id.startswith("ros2.robot."):
+        return "ROS 2 基础与启动"
+    if resource_id.startswith("ros2.navigation."):
+        return "ROS 2 导航"
+    if resource_id.startswith("ros1."):
+        return "ROS 1 维护"
+    if resource_id.startswith("applications."):
+        return "视觉与应用"
+    if resource_id.startswith("stm32.labs."):
+        return "STM32 外设实验"
+    if resource_id.startswith("stm32.control."):
+        return "STM32 控制"
+    if resource_id.startswith("r680.firmware."):
+        return "R680 固件"
+    raise ValueError(f"resource has no reader-facing Appendix D category: {resource.id}")
+
+
+def _consumer_link(consumer: Consumer) -> str:
+    relative = consumer.page.removeprefix("docs/")
+    target = relative if relative.startswith("appendices/") else "../" + relative
+    if target.startswith("appendices/"):
+        target = target.removeprefix("appendices/")
+    return f"[{consumer.role}]({target}#{consumer.anchor})"
+
+
+def _resource_title(resource: CodeResource) -> str:
+    roles = list(dict.fromkeys(consumer.role for consumer in resource.consumers))
+    return " / ".join(roles)
+
+
+def render_appendix(mapping: CodeResourceMap) -> str:
+    """Render the reader-facing Appendix D deterministically from the mapping."""
+    if not mapping.resources:
+        raise ValueError("Appendix D requires at least one selected code resource")
+    grouped: dict[str, list[CodeResource]] = {category: [] for category in APPENDIX_CATEGORIES}
+    for resource in mapping.resources:
+        grouped[_appendix_category(resource)].append(resource)
+
+    lines = [
+        "---",
+        "status: complete",
+        "---",
+        "",
+        "# D. 教材代码资源",
+        "",
+        "本附录是教材使用的代码资源索引。教材正文中的代码入口是主要使用位置；本页用于按用途集中查找同一批资源，不替代正文给出的文件范围、验收方法和安全边界。",
+        "",
+        f"所有源码链接固定到提交 `{mapping.source_revision}`。同名目录或后续版本不能自动替代本页所列资源。",
+    ]
+    for category in APPENDIX_CATEGORIES:
+        resources = sorted(grouped[category], key=lambda item: item.repository_path)
+        if not resources:
+            continue
+        lines.extend(("", f"## {category}"))
+        for resource in resources:
+            files = sorted({file for consumer in resource.consumers for file in consumer.files})
+            consumers = sorted(resource.consumers, key=lambda item: (item.page, item.anchor, item.role))
+            modes = "、".join(sorted({consumer.mode for consumer in consumers}))
+            boundaries = "；".join(
+                dict.fromkeys(boundary for consumer in consumers for boundary in consumer.boundaries)
+            )
+            lines.extend(
+                (
+                    "",
+                    f"### {_resource_title(resource)}",
+                    "",
+                    f"- 代码目录：[`{resource.repository_path}`]({immutable_tree_url(mapping.source_repository, mapping.source_revision, resource.repository_path)})",
+                    f"- 正文入口：{'；'.join(_consumer_link(consumer) for consumer in consumers)}",
+                    f"- 关键文件：{'、'.join(f'`{file}`' for file in files)}",
+                    f"- 核验状态：`{resource.verification.level}`；使用方式：`{modes}`。",
+                    f"- 使用边界：{boundaries}",
+                )
+            )
+    rendered = "\n".join(lines) + "\n"
+    forbidden = [value for value in APPENDIX_FORBIDDEN if value in rendered]
+    if forbidden:
+        raise ValueError("rendered Appendix D contains forbidden text: " + ", ".join(forbidden))
+    return rendered
+
+
 def _is_relative(path: str) -> bool:
     candidate = PurePosixPath(path)
     return bool(path) and not candidate.is_absolute() and ".." not in candidate.parts
@@ -320,15 +423,7 @@ def validate_code_resource_map(
 
 
 def validate_appendix_matches_mapping(appendix: str, mapping: CodeResourceMap) -> None:
-    """Reject an Appendix D that omits a mapped resource or formal consumer."""
-    missing: list[str] = []
-    for resource in mapping.resources:
-        url = immutable_tree_url(mapping.source_repository, mapping.source_revision, resource.repository_path)
-        if url not in appendix:
-            missing.append(url)
-        for consumer in resource.consumers:
-            reference = f"{consumer.page}#{consumer.anchor}"
-            if reference not in appendix:
-                missing.append(reference)
-    if missing:
-        raise ValueError("appendix does not match code-resource mapping: " + ", ".join(missing))
+    """Require exact deterministic parity with the selected consumer mapping."""
+    expected = render_appendix(mapping)
+    if appendix != expected:
+        raise ValueError("appendix does not exactly match the deterministic code-resource rendering")
