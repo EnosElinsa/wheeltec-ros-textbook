@@ -11,6 +11,7 @@ import yaml
 
 
 REVISION_PATTERN = re.compile(r"^[0-9a-f]{40}$")
+LEGACY_NUMBERED_COMPONENT = re.compile(r"^\d{4}(?:-|$)")
 ANCHOR_PATTERN = r"(?:\{#%s\}|<a\s+id=[\"']%s[\"'])"
 MODES = {"static_read", "build", "run", "hardware"}
 DEPENDENCY_KINDS = {"system", "project-resource", "runtime-asset", "toolchain"}
@@ -218,6 +219,13 @@ def immutable_tree_url(repository: str, revision: str, path: str) -> str:
     return f"https://github.com/{repository}/tree/{revision}/{path.strip('/')}"
 
 
+def _legacy_numbered_path_error(path: str) -> str | None:
+    for component in PurePosixPath(path).parts:
+        if LEGACY_NUMBERED_COMPONENT.match(component):
+            return f"legacy numbered path component is not allowed: {component}"
+    return None
+
+
 def _appendix_category(resource: CodeResource) -> str:
     resource_id = resource.id
     if resource_id.startswith("examples.ros2.") or resource_id.startswith("ros2.robot."):
@@ -256,6 +264,9 @@ def render_appendix(mapping: CodeResourceMap) -> str:
         raise ValueError("Appendix D requires at least one selected code resource")
     grouped: dict[str, list[CodeResource]] = {category: [] for category in APPENDIX_CATEGORIES}
     for resource in mapping.resources:
+        path_error = _legacy_numbered_path_error(resource.repository_path)
+        if path_error:
+            raise ValueError(path_error)
         grouped[_appendix_category(resource)].append(resource)
 
     lines = [
@@ -368,6 +379,9 @@ def validate_code_resource_map(
             errors.append(f"{prefix}: repository_path must be a relative path")
             package_root = root
         else:
+            legacy_error = _legacy_numbered_path_error(resource.repository_path)
+            if legacy_error:
+                errors.append(f"{prefix}: {legacy_error}")
             package_root = root / resource.repository_path
             if not package_root.is_dir():
                 errors.append(f"{prefix}: repository path does not exist: {resource.repository_path}")

@@ -178,6 +178,14 @@ class CodeResourceContractTests(unittest.TestCase):
         self.assertNotIn("/tree/main/", first)
         self.assertNotIn("docs/superpowers", first)
 
+    def test_legacy_numbered_repository_path_is_rejected_before_rendering(self) -> None:
+        mapping = resources.load_code_resources(FIXTURE)
+        mapping.resources[0].repository_path = "ros2/0054-qt-ros-test/package"
+        errors = resources.validate_code_resource_map(mapping, self.make_source_tree())
+        self.assertTrue(any("legacy numbered path component" in error for error in errors))
+        with self.assertRaisesRegex(ValueError, "legacy numbered path component"):
+            resources.render_appendix(mapping)
+
 
 if __name__ == "__main__":
     unittest.main()
