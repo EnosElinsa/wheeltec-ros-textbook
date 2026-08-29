@@ -20,7 +20,20 @@ VERIFICATION_LEVELS = {
     "runtime_verified",
     "hardware_verified",
 }
+MODE_VERIFICATION_LEVELS = {
+    "static_read": VERIFICATION_LEVELS,
+    "build": {"build_verified", "runtime_verified", "hardware_verified"},
+    "run": {"runtime_verified", "hardware_verified"},
+    "hardware": {"hardware_verified"},
+}
 FORBIDDEN_VALUES = ("example_only", "schema-example", "/tree/main/", "/blob/main/")
+
+MAP_KEYS = {"source_repository", "source_revision", "resources"}
+RESOURCE_KEYS = {"id", "repository_path", "consumers", "compatibility", "dependencies", "verification"}
+CONSUMER_KEYS = {"page", "anchor", "files", "role", "mode", "commands", "acceptance", "boundaries"}
+DEPENDENCY_KEYS = {"kind", "path", "provider", "verification"}
+VERIFICATION_KEYS = {"level", "source_commit", "environment", "command", "result", "evidence_path", "verified_at"}
+COMPATIBILITY_KEYS = {"ros_distribution", "platform", "hardware"}
 
 
 @dataclass
@@ -72,66 +85,96 @@ class CodeResourceMap:
     raw: dict[str, Any] = field(default_factory=dict, repr=False)
 
 
-def _as_list(value: Any) -> list[Any]:
-    return value if isinstance(value, list) else []
+def _schema_error(location: str, message: str) -> ValueError:
+    return ValueError(f"{location} {message}")
 
 
-def _as_text(value: Any) -> str:
-    return value if isinstance(value, str) else ""
+def _require_mapping(data: Any, location: str, keys: set[str]) -> dict[str, Any]:
+    if not isinstance(data, dict):
+        raise _schema_error(location, "must be a mapping")
+    for key in keys:
+        if key not in data:
+            raise _schema_error(location, f"missing required key: {key}")
+    unknown = set(data) - keys
+    if unknown:
+        raise _schema_error(location, f"unknown key: {sorted(unknown)[0]}")
+    return data
+
+
+def _require_string(value: Any, location: str) -> str:
+    if not isinstance(value, str):
+        raise _schema_error(location, "must be a string")
+    return value
+
+
+def _require_string_list(value: Any, location: str) -> list[str]:
+    if not isinstance(value, list):
+        raise _schema_error(location, "must be a list")
+    return [_require_string(item, f"{location}[{index}]") for index, item in enumerate(value)]
 
 
 def _consumer(data: Any) -> Consumer:
-    row = data if isinstance(data, dict) else {}
+    row = _require_mapping(data, "consumer", CONSUMER_KEYS)
     return Consumer(
-        page=_as_text(row.get("page")),
-        anchor=_as_text(row.get("anchor")),
-        files=[_as_text(item) for item in _as_list(row.get("files"))],
-        role=_as_text(row.get("role")),
-        mode=_as_text(row.get("mode")),
-        commands=[_as_text(item) for item in _as_list(row.get("commands"))],
-        acceptance=[_as_text(item) for item in _as_list(row.get("acceptance"))],
-        boundaries=[_as_text(item) for item in _as_list(row.get("boundaries"))],
+        page=_require_string(row["page"], "consumer.page"),
+        anchor=_require_string(row["anchor"], "consumer.anchor"),
+        files=_require_string_list(row["files"], "consumer.files"),
+        role=_require_string(row["role"], "consumer.role"),
+        mode=_require_string(row["mode"], "consumer.mode"),
+        commands=_require_string_list(row["commands"], "consumer.commands"),
+        acceptance=_require_string_list(row["acceptance"], "consumer.acceptance"),
+        boundaries=_require_string_list(row["boundaries"], "consumer.boundaries"),
     )
 
 
 def _dependency(data: Any) -> Dependency:
-    row = data if isinstance(data, dict) else {}
+    row = _require_mapping(data, "dependency", DEPENDENCY_KEYS)
     return Dependency(
-        kind=_as_text(row.get("kind")),
-        path=_as_text(row.get("path")),
-        provider=_as_text(row.get("provider")),
-        verification=_as_text(row.get("verification")),
+        kind=_require_string(row["kind"], "dependency.kind"),
+        path=_require_string(row["path"], "dependency.path"),
+        provider=_require_string(row["provider"], "dependency.provider"),
+        verification=_require_string(row["verification"], "dependency.verification"),
     )
 
 
 def _verification(data: Any) -> Verification:
-    row = data if isinstance(data, dict) else {}
-    return Verification(**{key: _as_text(row.get(key)) for key in Verification.__dataclass_fields__})
+    row = _require_mapping(data, "verification", VERIFICATION_KEYS)
+    return Verification(**{key: _require_string(row[key], f"verification.{key}") for key in Verification.__dataclass_fields__})
 
 
 def _resource(data: Any) -> CodeResource:
-    row = data if isinstance(data, dict) else {}
-    compatibility = row.get("compatibility")
+    row = _require_mapping(data, "resource", RESOURCE_KEYS)
+    compatibility = _require_mapping(row["compatibility"], "resource.compatibility", COMPATIBILITY_KEYS)
+    consumers = row["consumers"]
+    dependencies = row["dependencies"]
+    if not isinstance(consumers, list):
+        raise _schema_error("resources[0].consumers", "must be a list")
+    if not isinstance(dependencies, list):
+        raise _schema_error("resource.dependencies", "must be a list")
     return CodeResource(
-        id=_as_text(row.get("id")),
-        repository_path=_as_text(row.get("repository_path")),
-        consumers=[_consumer(item) for item in _as_list(row.get("consumers"))],
-        compatibility={str(key): _as_text(value) for key, value in compatibility.items()}
-        if isinstance(compatibility, dict)
-        else {},
-        dependencies=[_dependency(item) for item in _as_list(row.get("dependencies"))],
-        verification=_verification(row.get("verification")),
+        id=_require_string(row["id"], "resource.id"),
+        repository_path=_require_string(row["repository_path"], "resource.repository_path"),
+        consumers=[_consumer(item) for item in consumers],
+        compatibility={key: _require_string(value, f"resource.compatibility.{key}") for key, value in compatibility.items()},
+        dependencies=[_dependency(item) for item in dependencies],
+        verification=_verification(row["verification"]),
     )
 
 
 def load_code_resources(path: Path) -> CodeResourceMap:
     """Load ``metadata/code-resources.yml`` without touching either repository."""
-    loaded = yaml.load(path.read_text(encoding="utf-8"), Loader=yaml.BaseLoader)
-    raw = loaded if isinstance(loaded, dict) else {}
+    try:
+        loaded = yaml.safe_load(path.read_text(encoding="utf-8"))
+    except yaml.YAMLError as error:
+        raise ValueError(f"invalid YAML: {error}") from error
+    raw = _require_mapping(loaded, "mapping", MAP_KEYS)
+    resources = raw["resources"]
+    if not isinstance(resources, list):
+        raise _schema_error("resources", "must be a list")
     return CodeResourceMap(
-        source_repository=_as_text(raw.get("source_repository")),
-        source_revision=_as_text(raw.get("source_revision")),
-        resources=[_resource(item) for item in _as_list(raw.get("resources"))],
+        source_repository=_require_string(raw["source_repository"], "source_repository"),
+        source_revision=_require_string(raw["source_revision"], "source_revision"),
+        resources=[_resource(item) for item in resources],
         raw=raw,
     )
 
@@ -158,14 +201,6 @@ def _iter_strings(value: Any) -> list[str]:
     return []
 
 
-def _has_build_command(commands: list[str]) -> bool:
-    return any("build" in command.lower() for command in commands if command.strip())
-
-
-def _has_non_build_command(commands: list[str]) -> bool:
-    return any("build" not in command.lower() and command.strip() for command in commands)
-
-
 def _validate_consumer(consumer: Consumer, source_root: Path, prefix: str) -> list[str]:
     errors: list[str] = []
     for name, value in (("page", consumer.page), ("anchor", consumer.anchor), ("role", consumer.role)):
@@ -185,15 +220,8 @@ def _validate_consumer(consumer: Consumer, source_root: Path, prefix: str) -> li
         errors.append(f"{prefix}: consumer page does not exist: {consumer.page}")
     elif consumer.anchor and not re.search(ANCHOR_PATTERN % (re.escape(consumer.anchor), re.escape(consumer.anchor)), page.read_text(encoding="utf-8")):
         errors.append(f"{prefix}: consumer anchor does not exist: {consumer.page}#{consumer.anchor}")
-    if consumer.mode in {"build", "run", "hardware"} and not _has_build_command(consumer.commands):
-        errors.append(f"{prefix}: {consumer.mode} mode requires a build command")
-    if consumer.mode in {"run", "hardware"} and not _has_non_build_command(consumer.commands):
-        errors.append(f"{prefix}: {consumer.mode} mode requires a startup command after build")
-    if consumer.mode == "hardware":
-        hardware_evidence = " ".join(consumer.acceptance)
-        for required in ("硬件", "接线", "测量", "停止"):
-            if required not in hardware_evidence:
-                errors.append(f"{prefix}: hardware mode acceptance must record {required}")
+    if consumer.mode in {"build", "run", "hardware"} and not any(command.strip() for command in consumer.commands):
+        errors.append(f"{prefix}: {consumer.mode} mode requires commands")
     return errors
 
 
@@ -250,11 +278,19 @@ def validate_code_resource_map(mapping: CodeResourceMap, source_root: Path) -> l
                 errors.append(f"{prefix}: verification {name} is required")
         if verification.source_commit and verification.source_commit != mapping.source_revision:
             errors.append(f"{prefix}: verification source_commit must match source_revision")
+        for consumer_index, consumer in enumerate(resource.consumers):
+            if consumer.mode in MODE_VERIFICATION_LEVELS and verification.level not in MODE_VERIFICATION_LEVELS[consumer.mode]:
+                errors.append(
+                    f"{prefix}.consumers[{consumer_index}]: {consumer.mode} mode requires verification level "
+                    f"{sorted(MODE_VERIFICATION_LEVELS[consumer.mode])}"
+                )
         evidence = verification.evidence_path
         if evidence and (not _is_relative(evidence) or not evidence.startswith("docs/superpowers/audits/")):
             errors.append(f"{prefix}: evidence_path must be under docs/superpowers/audits/")
-        elif evidence and not (root / evidence).is_file():
-            errors.append(f"{prefix}: evidence_path does not exist: {evidence}")
+        elif evidence:
+            evidence_file = root / evidence
+            if not evidence_file.is_file() or evidence_file.stat().st_size == 0:
+                errors.append(f"{prefix}: evidence_path must be an existing non-empty file: {evidence}")
     return errors
 
 

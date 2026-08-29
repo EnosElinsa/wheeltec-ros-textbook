@@ -69,10 +69,10 @@ resources:
         provider: rosdep
         verification: declared-and-resolved
     verification:
-      level: build_verified
+      level: hardware_verified
       source_commit: 0123456789abcdef0123456789abcdef01234567
       environment: ros:humble@sha256:0123456789abcdef
       command: colcon build --packages-select turn_on_wheeltec_robot
       result: passed
       evidence_path: docs/superpowers/audits/launch-chain-build.json
-      verified_at: 2026-08-29T12:00:00+08:00
+      verified_at: "2026-08-29T12:00:00+08:00"

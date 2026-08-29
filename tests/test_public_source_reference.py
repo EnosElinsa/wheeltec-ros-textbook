@@ -7,6 +7,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+APPROVED_SOURCE_BASELINE = "f36a76f6da81de698b1adb80729f596744adda7e"
 sys.path.insert(0, str(ROOT / "tools"))
 
 import validate_code_resources  # noqa: E402
@@ -15,6 +16,7 @@ import validate_code_resources  # noqa: E402
 class PublicSourceReferenceTests(unittest.TestCase):
     def test_production_code_resource_map_is_a_valid_empty_contract(self) -> None:
         mapping = validate_code_resources.load_code_resources(ROOT / "metadata/code-resources.yml")
+        self.assertEqual(mapping.source_revision, APPROVED_SOURCE_BASELINE)
         self.assertEqual(mapping.resources, [])
         self.assertEqual(validate_code_resources.validate_code_resource_map(mapping, ROOT), [])
 

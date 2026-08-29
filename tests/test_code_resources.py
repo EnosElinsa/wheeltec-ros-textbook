@@ -3,6 +3,7 @@ from __future__ import annotations
 import sys
 import tempfile
 import unittest
+import re
 from pathlib import Path
 
 
@@ -81,6 +82,73 @@ class CodeResourceContractTests(unittest.TestCase):
         self.assertTrue(any("build" in error and "command" in error for error in errors))
         self.assertTrue(any("dependency" in error and "verification" in error for error in errors))
         self.assertTrue(any("evidence_path" in error for error in errors))
+
+    def test_validation_requires_a_non_empty_command_for_every_executable_mode(self) -> None:
+        for consumer_index, mode in ((1, "build"), (2, "run"), (3, "hardware")):
+            with self.subTest(mode=mode):
+                mapping = resources.load_code_resources(FIXTURE)
+                mapping.resources[0].consumers[consumer_index].commands = ["  "]
+                errors = resources.validate_code_resource_map(mapping, self.make_source_tree())
+                self.assertTrue(any(f"{mode} mode requires commands" in error for error in errors))
+
+    def test_validation_enforces_mode_to_verification_level_without_command_word_heuristics(self) -> None:
+        cases = (
+            ("static_read", "static_reviewed", False),
+            ("build", "static_reviewed", True),
+            ("build", "build_verified", False),
+            ("run", "build_verified", True),
+            ("run", "runtime_verified", False),
+            ("hardware", "runtime_verified", True),
+            ("hardware", "hardware_verified", False),
+        )
+        for mode, level, should_fail in cases:
+            with self.subTest(mode=mode, level=level):
+                mapping = resources.load_code_resources(FIXTURE)
+                resource = mapping.resources[0]
+                resource.consumers = [resource.consumers[0]]
+                resource.consumers[0].mode = mode
+                resource.consumers[0].commands = ["do the required step"] if mode != "static_read" else []
+                resource.verification.level = level
+                errors = resources.validate_code_resource_map(mapping, self.make_source_tree())
+                mismatch = any("requires verification level" in error for error in errors)
+                self.assertEqual(mismatch, should_fail)
+
+    def test_load_rejects_invalid_schema_types_missing_keys_and_unknown_keys(self) -> None:
+        cases = (
+            ("resources: bad\nsource_repository: owner/repo\nsource_revision: " + REVISION, "resources must be a list"),
+            ("resources: []\nsource_repository: [owner/repo]\nsource_revision: " + REVISION, "source_repository must be a string"),
+            ("resources: []\nsource_repository: owner/repo", "missing required key: source_revision"),
+            ("resources: []\nsource_repository: owner/repo\nsource_revision: " + REVISION + "\nunexpected: value", "unknown key: unexpected"),
+            ("resources:\n  - bad\nsource_repository: owner/repo\nsource_revision: " + REVISION, "resource must be a mapping"),
+            (
+                "source_repository: owner/repo\nsource_revision: " + REVISION
+                + "\nresources:\n  - id: resource\n    repository_path: code\n    consumers: bad\n    compatibility:\n      ros_distribution: baseline\n      platform: generic\n      hardware: none\n    dependencies: []\n    verification:\n      level: static_reviewed\n      source_commit: "
+                + REVISION
+                + "\n      environment: fixture\n      command: check\n      result: passed\n      evidence_path: docs/superpowers/audits/evidence.json\n      verified_at: now",
+                "resources[0].consumers must be a list",
+            ),
+            (
+                "source_repository: owner/repo\nsource_revision: " + REVISION
+                + "\nresources:\n  - id: resource\n    repository_path: code\n    consumers: []\n    compatibility: []\n    dependencies: []\n    verification:\n      level: static_reviewed\n      source_commit: "
+                + REVISION
+                + "\n      environment: fixture\n      command: check\n      result: passed\n      evidence_path: docs/superpowers/audits/evidence.json\n      verified_at: now",
+                "resource.compatibility must be a mapping",
+            ),
+        )
+        for content, message in cases:
+            with self.subTest(message=message), tempfile.TemporaryDirectory() as temp_dir:
+                path = Path(temp_dir) / "invalid.yml"
+                path.write_text(content, encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, re.escape(message)):
+                    resources.load_code_resources(path)
+
+    def test_validation_rejects_an_empty_evidence_file(self) -> None:
+        mapping = resources.load_code_resources(FIXTURE)
+        root = self.make_source_tree()
+        evidence = root / mapping.resources[0].verification.evidence_path
+        evidence.write_text("", encoding="utf-8")
+        errors = resources.validate_code_resource_map(mapping, root)
+        self.assertTrue(any("existing non-empty file" in error for error in errors))
 
     def test_appendix_requires_the_immutable_resource_link_and_every_consumer_anchor(self) -> None:
         mapping = resources.load_code_resources(FIXTURE)
