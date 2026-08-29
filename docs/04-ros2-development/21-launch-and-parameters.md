@@ -24,6 +24,10 @@ Launch 描述一次运行需要启动哪些节点、传入哪些参数和命名�
 
 ## 21.5 操作步骤 {#bringup-launch-chain}
 
+### 启动链追踪
+
+从 `turn_on_wheeltec_robot.launch.py` 依次检查 `base_serial.launch.py`、车型描述、参数和传感器分支；外部驱动使用 `get_package_share_directory()` 时必须在当前工作空间确认依赖，不能把单包静态阅读当成整机可启动结论。
+
 !!! example "本章代码：底盘启动链"
     仓库目录：[ros2/robot/turn-on-wheeltec-robot](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ad5153b91e36b3d77c9577feecf68bb0886c80f7/ros2/robot/turn-on-wheeltec-robot)
 
