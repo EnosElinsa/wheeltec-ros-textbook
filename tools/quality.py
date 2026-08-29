@@ -9,6 +9,7 @@ from pathlib import Path
 from urllib.parse import unquote
 
 from editorial_audit import scan_markdown
+from terminology_audit import audit_rules, load_rules
 
 
 REQUIRED_MANIFEST_COLUMNS = {
@@ -326,6 +327,18 @@ def check_editorial_style(path: Path) -> list[Issue]:
     return [
         Issue("error", issue.path, f"{issue.category}: {issue.excerpt}")
         for issue in scan_markdown(path)
+    ]
+
+
+def check_terminology(root: Path, paths: list[Path] | None = None) -> list[Issue]:
+    """Adapt terminology-audit findings to the repository quality issue type."""
+    return [
+        Issue("error", item.path, f"{item.category}: {item.term}: {item.message}")
+        for item in audit_rules(
+            root,
+            load_rules(root / "metadata" / "terminology.csv"),
+            paths=paths,
+        )
     ]
 
 
