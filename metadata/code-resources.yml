@@ -27,14 +27,14 @@ resources:
   - id: stm32.labs.pwm
     repository_path: stm32/labs/pwm/stm32f103-stdperiph
     consumers:
-      - {page: docs/06-stm32-firmware/34-hardware-init-model-interfaces.md, anchor: stm32-pwm-lab, files: [USER/PWM.uvprojx, USER/main.c, STM32F10x_FWLib/src/stm32f10x_usart.c, USER/stm32f10x.h], role: PWM 实验, mode: static_read, commands: [], acceptance: [能定位定时器与占空比], boundaries: [仅静态核对], file_manifest: metadata/code-resource-manifests/uart.txt}
+      - {page: docs/06-stm32-firmware/34-hardware-init-model-interfaces.md, anchor: stm32-pwm-lab, files: [USER/PWM.uvprojx, USER/main.c, STM32F10x_FWLib/src/stm32f10x_usart.c, USER/stm32f10x.h], role: PWM 实验, mode: static_read, commands: [], acceptance: [能定位定时器与占空比], boundaries: [仅静态核对], file_manifest: metadata/code-resource-manifests/pwm.txt}
     compatibility: {ros_distribution: none, platform: stm32f103, hardware: requires-confirmation}
     dependencies: [{kind: toolchain, path: CMSIS/StdPeriph, provider: project, verification: declared}]
     verification: {level: static_reviewed, source_commit: c9f7befba2fdc3c39d6df134d5a16d190413f39c, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-5-static.txt, verified_at: '2026-08-29'}
   - id: stm32.labs.encoder
     repository_path: stm32/labs/encoder/stm32f103-stdperiph
     consumers:
-      - {page: docs/06-stm32-firmware/34-hardware-init-model-interfaces.md, anchor: stm32-encoder-lab, files: [USER/Encoder.uvprojx, USER/main.c, STM32F10x_FWLib/src/stm32f10x_usart.c, USER/stm32f10x.h], role: 编码器实验, mode: static_read, commands: [], acceptance: [能定位编码器计数], boundaries: [仅静态核对], file_manifest: metadata/code-resource-manifests/uart.txt}
+      - {page: docs/06-stm32-firmware/34-hardware-init-model-interfaces.md, anchor: stm32-encoder-lab, files: [USER/Encoder.uvprojx, USER/main.c, STM32F10x_FWLib/src/stm32f10x_usart.c, USER/stm32f10x.h], role: 编码器实验, mode: static_read, commands: [], acceptance: [能定位编码器计数], boundaries: [仅静态核对], file_manifest: metadata/code-resource-manifests/encoder.txt}
     compatibility: {ros_distribution: none, platform: stm32f103, hardware: requires-confirmation}
     dependencies: [{kind: toolchain, path: CMSIS/StdPeriph, provider: project, verification: declared}]
     verification: {level: static_reviewed, source_commit: c9f7befba2fdc3c39d6df134d5a16d190413f39c, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-5-static.txt, verified_at: '2026-08-29'}
@@ -122,6 +122,7 @@ resources:
     compatibility: {ros_distribution: humble, platform: generic, hardware: none}
     dependencies: [{kind: system, path: rclpy, provider: rosdep, verification: declared}]
     verification: {level: static_reviewed, source_commit: c9f7befba2fdc3c39d6df134d5a16d190413f39c, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+
 
 
 
