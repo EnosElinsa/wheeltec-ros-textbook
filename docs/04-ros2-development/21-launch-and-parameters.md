@@ -22,7 +22,7 @@ status: complete
 
 Launch 描述一次运行需要启动哪些节点、传入哪些参数和命名空间。YAML 文件只是参数来源之一；Launch 内部默认值、命令行覆盖和节点代码默认值都可能改变最终结果。
 
-## 21.5 操作步骤 {#bringup-launch-chain}
+## 21.5 启动链源码追踪 {#bringup-launch-chain}
 
 ### `turn_on_wheeltec_robot` 源码与启动链导读
 

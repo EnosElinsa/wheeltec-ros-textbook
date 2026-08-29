@@ -40,6 +40,13 @@ def test_fixed_target_anchors_exist_exactly_once() -> None:
         assert_anchor_exists(ROOT / relative, anchor)
 
 
+def test_chapter_21_uses_the_exact_numbered_launch_chain_title() -> None:
+    text = (ROOT / "docs/04-ros2-development/21-launch-and-parameters.md").read_text(
+        encoding="utf-8"
+    )
+    assert "## 21.5 启动链源码追踪 {#bringup-launch-chain}" in text
+
+
 def test_every_retained_heading_is_substantively_represented() -> None:
     heading_migration_complete(MIGRATION, ROOT)
 

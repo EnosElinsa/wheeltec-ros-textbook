@@ -89,6 +89,7 @@ def expected_engineering_headings(number: int) -> list[str]:
         ]
     task_titles = {
         (18, 5): "源码包确认",
+        (21, 5): "启动链源码追踪",
         (23, 5): "源码修改练习",
         (33, 5): "固件实验记录",
         (34, 5): "外设最小实验",
