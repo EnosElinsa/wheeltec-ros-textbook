@@ -256,7 +256,10 @@ def check_foundation(path: Path, size_limit: int, number: int | None = None) -> 
     if path.stat().st_size > size_limit:
         issues.append(Issue("error", relative, "file exceeds size limit"))
     text = path.read_text(encoding="utf-8")
-    headings = set(re.findall(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE))
+    headings = {
+        re.sub(r"\s+\{#[^}]+\}$", "", heading)
+        for heading in re.findall(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE)
+    }
     expected = FOUNDATION_HEADINGS_BY_NUMBER.get(number, FOUNDATION_HEADINGS)
     for heading in expected:
         if heading not in headings:

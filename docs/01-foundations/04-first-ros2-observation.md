@@ -8,7 +8,7 @@ status: complete
 
 ## 4.1 观察目标与准备
 
-本次练习关注三个对象：**节点（Node）**、**话题（Topic）**和消息。`talker` 周期性发布文字，`listener` 订阅同一个话题并打印收到的内容。
+本次练习关注三个对象：节点、话题和消息。节点和话题的定义见第 5 章；这里先把它们当作要观察的程序和数据通道。`talker` 周期性发布文字，`listener` 订阅同一个话题并打印收到的内容。
 
 ![talker 与 listener 的 ROS 2 通信](../assets/diagrams/talker-listener.svg)
 

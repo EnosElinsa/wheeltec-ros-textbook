@@ -1,84 +1,91 @@
-chinese,english,abbreviation,first_use,later_use
-机器人操作系统,Robot Operating System,ROS,机器人操作系统（Robot Operating System, ROS）,ROS
-机器人操作系统 2,Robot Operating System 2,ROS 2,机器人操作系统 2（Robot Operating System 2, ROS 2）,ROS 2
-操作系统,Operating System,OS,操作系统（Operating System, OS）,操作系统
-安全外壳协议,Secure Shell,SSH,安全外壳协议（Secure Shell, SSH）,SSH
-控制器局域网,Controller Area Network,CAN,控制器局域网（Controller Area Network, CAN）,CAN
-传感器,Sensor,,传感器（Sensor）,传感器
-激光雷达,Light Detection And Ranging,LiDAR,激光雷达（Light Detection And Ranging, LiDAR）,激光雷达或 LiDAR
-编码器,Encoder,,编码器（Encoder）,编码器
-惯性测量单元,Inertial Measurement Unit,IMU,惯性测量单元（Inertial Measurement Unit, IMU）,IMU
-微控制器,Microcontroller Unit,MCU,微控制器（Microcontroller Unit, MCU）,MCU
-STM32 微控制器,STM32 Microcontroller,,STM32 微控制器（STM32 Microcontroller）,STM32
-串行通信,Serial Communication,,串行通信（Serial Communication）,串行通信
-串行端口,Serial Port,,串行端口（Serial Port）,串口或串行端口
-波特率,Baud Rate,,波特率（Baud Rate）,波特率
-电机驱动器,Motor Driver,,电机驱动器（Motor Driver）,电机驱动器
-通用串行总线,Universal Serial Bus,USB,通用串行总线（Universal Serial Bus, USB）,USB
-终端,Terminal,,终端（Terminal）,终端
-文件,File,,文件（File）,文件
-目录,Directory,,目录（Directory）,目录
-进程,Process,,进程（Process）,进程
-命令解释器,Shell,,命令解释器（Shell）,Shell
-固件,Firmware,,固件（Firmware）,固件
-实时操作系统,Real-Time Operating System,RTOS,实时操作系统（Real-Time Operating System, RTOS）,RTOS
-FreeRTOS,FreeRTOS,,FreeRTOS,FreeRTOS
-通用异步收发传输器,Universal Asynchronous Receiver-Transmitter,UART,通用异步收发传输器（Universal Asynchronous Receiver-Transmitter, UART）,UART
-通用同步/异步收发传输器,Universal Synchronous/Asynchronous Receiver-Transmitter,USART,通用同步/异步收发传输器（Universal Synchronous/Asynchronous Receiver-Transmitter, USART）,USART
-脉宽调制,Pulse-Width Modulation,PWM,脉宽调制（Pulse-Width Modulation, PWM）,PWM
-比例—积分—微分控制,Proportional–Integral–Derivative Control,PID,比例—积分—微分控制（Proportional–Integral–Derivative Control, PID）,PID
-比例—积分控制,Proportional–Integral Control,PI,比例—积分控制（Proportional–Integral Control, PI）,PI
-有机发光二极管,Organic Light-Emitting Diode,OLED,有机发光二极管（Organic Light-Emitting Diode, OLED）,OLED
-巨磁阻,Giant Magnetoresistance,GMR,巨磁阻（Giant Magnetoresistance, GMR）,GMR
-霍尔效应编码器,Hall Effect Encoder,,霍尔效应编码器（Hall Effect Encoder）,霍尔效应编码器
-直接内存访问,Direct Memory Access,DMA,直接内存访问（Direct Memory Access, DMA）,DMA
-Transform Library 2,Transform Library 2,TF2,Transform Library 2（TF2）,TF2
-XML Macros,XML Macros,Xacro,XML Macros（Xacro）,Xacro
-ROS Visualization,ROS Visualization,RViz,ROS Visualization（RViz）,RViz
-Launch System,Launch System,Launch,Launch System（Launch）,Launch
-同步定位与建图,Simultaneous Localization and Mapping,SLAM,同步定位与建图（Simultaneous Localization and Mapping, SLAM）,SLAM
-Navigation2,Navigation2,Nav2,Navigation2（Nav2）,Nav2
-Open Source Computer Vision Library,Open Source Computer Vision Library,OpenCV,Open Source Computer Vision Library（OpenCV）,OpenCV
-cv_bridge,cv_bridge,,cv_bridge,cv_bridge
-快速扩展随机树,Rapidly-Exploring Random Tree,RRT,快速扩展随机树（Rapidly-Exploring Random Tree, RRT）,RRT
-Kernelized Correlation Filter,Kernelized Correlation Filter,KCF,Kernelized Correlation Filter（KCF）,KCF
-增强现实标签,Augmented Reality Tag,AR Tag,增强现实标签（Augmented Reality Tag, AR Tag）,AR Tag
-Gazebo Simulation Platform,Gazebo Simulation Platform,Gazebo,Gazebo Simulation Platform（Gazebo）,Gazebo
-Qt Application Framework,Qt Application Framework,Qt,Qt Application Framework（Qt）,Qt
-网络文件系统,Network File System,NFS,网络文件系统（Network File System, NFS）,NFS
-Docker Container Platform,Docker Container Platform,Docker,Docker Container Platform（Docker）,Docker
-应用程序编程接口,Application Programming Interface,API,应用程序编程接口（Application Programming Interface, API）,API
-互联网协议地址,Internet Protocol Address,IP Address,互联网协议地址（Internet Protocol Address, IP Address）,IP
-虚拟网络计算,Virtual Network Computing,VNC,虚拟网络计算（Virtual Network Computing, VNC）,VNC
-扩展卡尔曼滤波器,Extended Kalman Filter,EKF,扩展卡尔曼滤波器（Extended Kalman Filter, EKF）,EKF
-全局导航卫星系统,Global Navigation Satellite System,GNSS,全局导航卫星系统（Global Navigation Satellite System, GNSS）,GNSS
-数据长度代码,Data Length Code,DLC,数据长度代码（Data Length Code, DLC）,DLC
-标识符,Identifier,ID,标识符（Identifier, ID）,ID
-块校验字符,Block Check Character,BCC,块校验字符（Block Check Character, BCC）,BCC
-里程计,Odometry,,里程计（Odometry）,里程计
-底盘运动模型,Chassis Kinematics,,底盘运动模型（Chassis Kinematics）,底盘运动模型
-通用输入输出,General-Purpose Input/Output,GPIO,通用输入输出（General-Purpose Input/Output, GPIO）,GPIO
-内部集成电路总线,Inter-Integrated Circuit,I²C,内部集成电路总线（Inter-Integrated Circuit, I²C）,I²C
-串行外设接口,Serial Peripheral Interface,SPI,串行外设接口（Serial Peripheral Interface, SPI）,SPI
-晶体管—晶体管逻辑,Transistor-Transistor Logic,TTL,晶体管—晶体管逻辑（Transistor-Transistor Logic, TTL）,TTL
-电可擦可编程只读存储器,Electrically Erasable Programmable Read-Only Memory,EEPROM,电可擦可编程只读存储器（Electrically Erasable Programmable Read-Only Memory, EEPROM）,EEPROM
-中央处理器,Central Processing Unit,CPU,中央处理器（Central Processing Unit, CPU）,CPU
-图形处理器,Graphics Processing Unit,GPU,图形处理器（Graphics Processing Unit, GPU）,GPU
-域标识符,Domain Identifier,Domain ID,域标识符（Domain Identifier, Domain ID）,Domain ID
-可扩展标记语言,Extensible Markup Language,XML,可扩展标记语言（Extensible Markup Language, XML）,XML
-YAML 配置格式,YAML Ain't Markup Language,YAML,YAML 配置格式（YAML Ain't Markup Language, YAML）,YAML
-世界,World,,世界（World）,世界
-插件,Plugin,,插件（Plugin）,插件
-哈希值,Hash Value,,哈希值（Hash Value）,哈希值
-数据分发服务,Data Distribution Service,DDS,数据分发服务（Data Distribution Service, DDS）,DDS
-服务质量,Quality of Service,QoS,服务质量（Quality of Service, QoS）,QoS
-统一机器人描述格式,Unified Robot Description Format,URDF,统一机器人描述格式（Unified Robot Description Format, URDF）,URDF
-节点,Node,,节点（Node）,节点
-话题,Topic,,话题（Topic）,话题
-发布者,Publisher,,发布者（Publisher）,发布者
-订阅者,Subscriber,,订阅者（Subscriber）,订阅者
-服务,Service,,服务（Service）,服务
-动作,Action,,动作（Action）,动作
-参数,Parameter,,参数（Parameter）,参数
-工作空间,Workspace,,工作空间（Workspace）,工作空间
-功能包,Package,,功能包（Package）,功能包
+chinese,english,abbreviation,canonical_path,canonical_anchor,first_use,later_use
+机器人操作系统,Robot Operating System,ROS,docs/01-foundations/01-understanding-ros.md,ros-platform,"机器人操作系统（Robot Operating System, ROS）",ROS
+机器人操作系统 2,Robot Operating System 2,ROS 2,docs/01-foundations/01-understanding-ros.md,ros-platform,"机器人操作系统 2（Robot Operating System 2, ROS 2）",ROS 2
+操作系统,Operating System,OS,docs/01-foundations/03-ubuntu-terminal-programs.md,operating-system,"操作系统（Operating System, OS）",OS
+安全外壳协议,Secure Shell,SSH,docs/01-foundations/03-ubuntu-terminal-programs.md,ssh,"安全外壳协议（Secure Shell, SSH）",SSH
+控制器局域网,Controller Area Network,CAN,docs/02-hardware-basics/07-electrical-interfaces-communication.md,can,"控制器局域网（Controller Area Network, CAN）",CAN
+传感器,Sensor,,docs/01-foundations/02-robot-system-overview.md,sensor,传感器（Sensor）,传感器
+激光雷达,Light Detection And Ranging,LiDAR,docs/02-hardware-basics/08-sensors-and-feedback.md,lidar-camera-gnss,"激光雷达（Light Detection And Ranging, LiDAR）",激光雷达
+编码器,Encoder,,docs/02-hardware-basics/08-sensors-and-feedback.md,encoder,编码器（Encoder）,编码器
+惯性测量单元,Inertial Measurement Unit,IMU,docs/02-hardware-basics/08-sensors-and-feedback.md,imu,"惯性测量单元（Inertial Measurement Unit, IMU）",IMU
+微控制器,Microcontroller Unit,MCU,docs/02-hardware-basics/06-controller-and-firmware.md,cpu-mcu-stm32,"微控制器（Microcontroller Unit, MCU）",MCU
+STM32 微控制器,STM32 Microcontroller,,docs/02-hardware-basics/06-controller-and-firmware.md,cpu-mcu-stm32,STM32 微控制器（STM32 Microcontroller）,STM32
+串行通信,Serial Communication,,docs/02-hardware-basics/07-electrical-interfaces-communication.md,usb-serial-port,串行通信（Serial Communication）,串行通信
+串行端口,Serial Port,,docs/02-hardware-basics/07-electrical-interfaces-communication.md,usb-serial-port,串行端口（Serial Port）,串口或串行端口
+波特率,Baud Rate,,docs/02-hardware-basics/07-electrical-interfaces-communication.md,uart-usart-levels,波特率（Baud Rate）,波特率
+电机驱动器,Motor Driver,,docs/02-hardware-basics/09-chassis-motion-control.md,motor-driver-pwm,电机驱动器（Motor Driver）,电机驱动器
+通用串行总线,Universal Serial Bus,USB,docs/02-hardware-basics/07-electrical-interfaces-communication.md,usb-serial-port,"通用串行总线（Universal Serial Bus, USB）",USB
+终端,Terminal,,docs/01-foundations/03-ubuntu-terminal-programs.md,terminal-command,终端（Terminal）,终端
+文件,File,,docs/01-foundations/03-ubuntu-terminal-programs.md,file-directory,文件（File）,文件
+目录,Directory,,docs/01-foundations/03-ubuntu-terminal-programs.md,file-directory,目录（Directory）,目录
+进程,Process,,docs/01-foundations/03-ubuntu-terminal-programs.md,program-process,进程（Process）,进程
+命令解释器,Shell,,docs/01-foundations/03-ubuntu-terminal-programs.md,terminal-command,命令解释器（Shell）,Shell
+固件,Firmware,,docs/02-hardware-basics/06-controller-and-firmware.md,source-firmware-build,固件（Firmware）,固件
+实时操作系统,Real-Time Operating System,RTOS,docs/07-stm32-firmware/37-firmware-architecture-freertos.md,initialization-task-scheduling,"实时操作系统（Real-Time Operating System, RTOS）",RTOS
+FreeRTOS,FreeRTOS,,docs/07-stm32-firmware/37-firmware-architecture-freertos.md,initialization-task-scheduling,FreeRTOS,FreeRTOS
+通用异步收发传输器,Universal Asynchronous Receiver-Transmitter,UART,docs/02-hardware-basics/07-electrical-interfaces-communication.md,uart-usart-levels,"通用异步收发传输器（Universal Asynchronous Receiver-Transmitter, UART）",UART
+通用同步/异步收发传输器,Universal Synchronous/Asynchronous Receiver-Transmitter,USART,docs/02-hardware-basics/07-electrical-interfaces-communication.md,uart-usart-levels,"通用同步/异步收发传输器（Universal Synchronous/Asynchronous Receiver-Transmitter, USART）",USART
+脉宽调制,Pulse-Width Modulation,PWM,docs/02-hardware-basics/09-chassis-motion-control.md,motor-driver-pwm,"脉宽调制（Pulse-Width Modulation, PWM）",PWM
+比例—积分—微分控制,Proportional–Integral–Derivative Control,PID,docs/02-hardware-basics/09-chassis-motion-control.md,pi-pid,"比例—积分—微分控制（Proportional–Integral–Derivative Control, PID）",PID
+比例—积分控制,Proportional–Integral Control,PI,docs/02-hardware-basics/09-chassis-motion-control.md,pi-pid,"比例—积分控制（Proportional–Integral Control, PI）",PI
+有机发光二极管,Organic Light-Emitting Diode,OLED,docs/02-hardware-basics/08-sensors-and-feedback.md,oled,"有机发光二极管（Organic Light-Emitting Diode, OLED）",OLED
+巨磁阻,Giant Magnetoresistance,GMR,docs/02-hardware-basics/08-sensors-and-feedback.md,encoder-types,"巨磁阻（Giant Magnetoresistance, GMR）",GMR
+霍尔效应编码器,Hall Effect Encoder,,docs/02-hardware-basics/08-sensors-and-feedback.md,encoder-types,霍尔效应编码器（Hall Effect Encoder）,霍尔效应编码器
+直接内存访问,Direct Memory Access,DMA,docs/02-hardware-basics/07-electrical-interfaces-communication.md,gpio-i2c-spi-dma,"直接内存访问（Direct Memory Access, DMA）",DMA
+Transform Library 2,Transform Library 2,TF2,docs/05-ros2-development/26-tf-urdf-rviz.md,model-tf-rviz,Transform Library 2（TF2）,TF2
+XML Macros,XML Macros,Xacro,docs/05-ros2-development/26-tf-urdf-rviz.md,model-tf-rviz,XML Macros（Xacro）,Xacro
+ROS Visualization,ROS Visualization,RViz,docs/05-ros2-development/26-tf-urdf-rviz.md,model-tf-rviz,ROS Visualization（RViz）,RViz
+Launch System,Launch System,Launch,docs/05-ros2-development/25-launch-and-parameters.md,launch-principle,Launch System（Launch）,Launch
+同步定位与建图,Simultaneous Localization and Mapping,SLAM,docs/06-sensors-navigation/30-lidar-and-mapping.md,lidar-slam,"同步定位与建图（Simultaneous Localization and Mapping, SLAM）",SLAM
+Navigation2,Navigation2,Nav2,docs/06-sensors-navigation/32-nav2-navigation.md,planning-control-recovery,Navigation2（Nav2）,Nav2
+Open Source Computer Vision Library,Open Source Computer Vision Library,OpenCV,docs/06-sensors-navigation/34-camera-opencv-images.md,camera-opencv,Open Source Computer Vision Library（OpenCV）,OpenCV
+cv_bridge,cv_bridge,,docs/06-sensors-navigation/34-camera-opencv-images.md,camera-opencv,cv_bridge,cv_bridge
+快速扩展随机树,Rapidly-Exploring Random Tree,RRT,docs/06-sensors-navigation/33-waypoints-path-exploration.md,exploration-methods,"快速扩展随机树（Rapidly-Exploring Random Tree, RRT）",RRT
+Kernelized Correlation Filter,Kernelized Correlation Filter,KCF,docs/06-sensors-navigation/36-vision-applications.md,vision-chain,Kernelized Correlation Filter（KCF）,KCF
+增强现实标签,Augmented Reality Tag,AR Tag,docs/06-sensors-navigation/36-vision-applications.md,vision-chain,"增强现实标签（Augmented Reality Tag, AR Tag）",AR Tag
+Gazebo Simulation Platform,Gazebo Simulation Platform,Gazebo,docs/08-advanced-applications/42-gazebo-simulation.md,simulation-basics,Gazebo Simulation Platform（Gazebo）,Gazebo
+Qt Application Framework,Qt Application Framework,Qt,docs/08-advanced-applications/43-multi-robot-and-qt.md,qt-client,Qt Application Framework（Qt）,Qt
+网络文件系统,Network File System,NFS,docs/10-deployment-maintenance/48-network-docker-images.md,host-container-device-boundary,"网络文件系统（Network File System, NFS）",NFS
+Docker Container Platform,Docker Container Platform,Docker,docs/05-ros2-development/22-environment-and-source-selection.md,runtime-environment,"Docker Container Platform（Docker Container Platform, Docker）",Docker
+应用程序编程接口,Application Programming Interface,API,docs/08-advanced-applications/45-voice-ai-openclaw.md,ai-interfaces,"应用程序编程接口（Application Programming Interface, API）",API
+互联网协议地址,Internet Protocol Address,IP Address,docs/03-bringup/13-connect-controller.md,network-remote-access,"互联网协议地址（Internet Protocol Address, IP Address）",IP
+虚拟网络计算,Virtual Network Computing,VNC,docs/03-bringup/13-connect-controller.md,network-remote-access,"虚拟网络计算（Virtual Network Computing, VNC）",VNC
+扩展卡尔曼滤波器,Extended Kalman Filter,EKF,docs/06-sensors-navigation/31-map-localization-tf.md,localization-tf,"扩展卡尔曼滤波器（Extended Kalman Filter, EKF）",EKF
+全局导航卫星系统,Global Navigation Satellite System,GNSS,docs/02-hardware-basics/08-sensors-and-feedback.md,lidar-camera-gnss,"全局导航卫星系统（Global Navigation Satellite System, GNSS）",GNSS
+数据长度代码,Data Length Code,DLC,docs/02-hardware-basics/07-electrical-interfaces-communication.md,frames-checksum,"数据长度代码（Data Length Code, DLC）",DLC
+标识符,Identifier,ID,docs/02-hardware-basics/07-electrical-interfaces-communication.md,can,"标识符（Identifier, ID）",ID
+块校验字符,Block Check Character,BCC,docs/02-hardware-basics/07-electrical-interfaces-communication.md,frames-checksum,"块校验字符（Block Check Character, BCC）",BCC
+里程计,Odometry,,docs/02-hardware-basics/09-chassis-motion-control.md,encoder-odometry,里程计（Odometry）,里程计
+底盘运动模型,Chassis Kinematics,,docs/02-hardware-basics/09-chassis-motion-control.md,body-coordinate,底盘运动模型（Chassis Kinematics）,底盘运动模型
+通用输入输出,General-Purpose Input/Output,GPIO,docs/02-hardware-basics/07-electrical-interfaces-communication.md,gpio-i2c-spi-dma,"通用输入输出（General-Purpose Input/Output, GPIO）",GPIO
+内部集成电路总线,Inter-Integrated Circuit,I²C,docs/02-hardware-basics/07-electrical-interfaces-communication.md,gpio-i2c-spi-dma,"内部集成电路总线（Inter-Integrated Circuit, I²C）",I²C
+串行外设接口,Serial Peripheral Interface,SPI,docs/02-hardware-basics/07-electrical-interfaces-communication.md,gpio-i2c-spi-dma,"串行外设接口（Serial Peripheral Interface, SPI）",SPI
+晶体管—晶体管逻辑,Transistor-Transistor Logic,TTL,docs/02-hardware-basics/07-electrical-interfaces-communication.md,uart-usart-levels,"晶体管—晶体管逻辑（Transistor-Transistor Logic, TTL）",TTL
+电可擦可编程只读存储器,Electrically Erasable Programmable Read-Only Memory,EEPROM,docs/02-hardware-basics/06-controller-and-firmware.md,flash-rollback,"电可擦可编程只读存储器（Electrically Erasable Programmable Read-Only Memory, EEPROM）",EEPROM
+中央处理器,Central Processing Unit,CPU,docs/02-hardware-basics/06-controller-and-firmware.md,cpu-mcu-stm32,"中央处理器（Central Processing Unit, CPU）",CPU
+图形处理器,Graphics Processing Unit,GPU,docs/02-hardware-basics/06-controller-and-firmware.md,cpu-mcu-stm32,"图形处理器（Graphics Processing Unit, GPU）",GPU
+域标识符,Domain Identifier,Domain ID,docs/05-ros2-development/24-nodes-topics-services-actions.md,interface-compatibility,"域标识符（Domain Identifier, Domain ID）",Domain ID
+可扩展标记语言,Extensible Markup Language,XML,docs/05-ros2-development/26-tf-urdf-rviz.md,model-tf-rviz,"可扩展标记语言（Extensible Markup Language, XML）",XML
+YAML 配置格式,YAML Ain't Markup Language,YAML,docs/05-ros2-development/25-launch-and-parameters.md,launch-principle,"YAML 配置格式（YAML Ain't Markup Language, YAML）",YAML
+世界,World,,docs/08-advanced-applications/42-gazebo-simulation.md,simulation-basics,世界（World）,世界
+插件,Plugin,,docs/08-advanced-applications/42-gazebo-simulation.md,simulation-basics,插件（Plugin）,插件
+哈希值,Hash Value,,docs/10-deployment-maintenance/49-logs-backup-upgrade-recovery.md,backup-layers,哈希值（Hash Value）,哈希值
+数据分发服务,Data Distribution Service,DDS,docs/05-ros2-development/24-nodes-topics-services-actions.md,interface-compatibility,"数据分发服务（Data Distribution Service, DDS）",DDS
+服务质量,Quality of Service,QoS,docs/05-ros2-development/24-nodes-topics-services-actions.md,interface-compatibility,"服务质量（Quality of Service, QoS）",QoS
+统一机器人描述格式,Unified Robot Description Format,URDF,docs/05-ros2-development/26-tf-urdf-rviz.md,model-tf-rviz,"统一机器人描述格式（Unified Robot Description Format, URDF）",URDF
+节点,Node,,docs/01-foundations/05-ros2-communication.md,node,节点（Node）,节点
+话题,Topic,,docs/01-foundations/05-ros2-communication.md,topic,话题（Topic）,话题
+发布者,Publisher,,docs/01-foundations/05-ros2-communication.md,topic,发布者（Publisher）,发布者
+订阅者,Subscriber,,docs/01-foundations/05-ros2-communication.md,topic,订阅者（Subscriber）,订阅者
+服务,Service,,docs/01-foundations/05-ros2-communication.md,service,服务（Service）,服务
+动作,Action,,docs/01-foundations/05-ros2-communication.md,action,动作（Action）,动作
+参数,Parameter,,docs/01-foundations/05-ros2-communication.md,parameter,参数（Parameter）,参数
+工作空间,Workspace,,docs/05-ros2-development/23-workspace-packages-build.md,workspace-layout,工作空间（Workspace）,工作空间
+功能包,Package,,docs/05-ros2-development/23-workspace-packages-build.md,workspace-layout,功能包（Package）,功能包
+主控,Robot Computer,,docs/02-hardware-basics/06-controller-and-firmware.md,controller-roles,主控,主控
+底盘控制板,Chassis Controller,,docs/02-hardware-basics/06-controller-and-firmware.md,controller-roles,底盘控制板,底盘控制板
+cmd_vel,cmd_vel,,docs/04-chassis-control/17-keyboard-and-cmd-vel.md,keyboard-control,cmd_vel,cmd_vel
+base_link,base_link,,docs/05-ros2-development/26-tf-urdf-rviz.md,model-tf-rviz,base_link,base_link
+odom,odom,,docs/02-hardware-basics/09-chassis-motion-control.md,encoder-odometry,odom,odom
+map,map,,docs/06-sensors-navigation/31-map-localization-tf.md,localization-tf,map,map
+TF,Transform Framework,,docs/05-ros2-development/26-tf-urdf-rviz.md,model-tf-rviz,TF,TF

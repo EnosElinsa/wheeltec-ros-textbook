@@ -103,3 +103,15 @@ def test_public_pages_exclude_superpowers(tmp_path: Path) -> None:
     (docs / "reader.md").write_text("# Reader\n", encoding="utf-8")
     (docs / "superpowers" / "plan.md").write_text("# Plan\n", encoding="utf-8")
     assert find_public_pages(tmp_path) == [(docs / "reader.md").resolve()]
+
+
+def test_scoped_audit_defers_unselected_canonical_validation(tmp_path: Path) -> None:
+    docs = tmp_path / "docs"
+    docs.mkdir()
+    selected = docs / "selected.md"
+    selected.write_text(f"# Selected\n\n{FULL}用于通信。\n", encoding="utf-8")
+    csv_path = tmp_path / "terms.csv"
+    csv_path.write_text(HEADER + ROW, encoding="utf-8")
+    issues = audit_rules(tmp_path, load_rules(csv_path), paths=[selected])
+    categories = {issue.category for issue in issues}
+    assert categories == {"duplicate full form"}

@@ -128,7 +128,8 @@ def audit_rules(
     for rule in rules:
         canonical = (root / rule.canonical_path).resolve()
         label = rule.abbreviation or rule.chinese
-        if not canonical.is_file():
+        validate_canonical = paths is None or canonical in visible
+        if validate_canonical and not canonical.is_file():
             issues.append(
                 TerminologyIssue(
                     "missing canonical page",
@@ -138,42 +139,47 @@ def audit_rules(
                     "canonical_path does not exist",
                 )
             )
-            continue
-        canonical_lines = _visible_lines(canonical)
-        anchor = f"{{#{rule.canonical_anchor}}}"
-        anchor_count = canonical.read_text(encoding="utf-8").count(anchor)
-        if anchor_count != 1:
-            issues.append(
-                TerminologyIssue(
-                    "canonical anchor",
-                    label,
-                    rule.canonical_path,
-                    1,
-                    f"expected one {anchor}, found {anchor_count}",
+        elif validate_canonical:
+            canonical_lines = _visible_lines(canonical)
+            anchor = f"{{#{rule.canonical_anchor}}}"
+            anchor_count = canonical.read_text(encoding="utf-8").count(anchor)
+            if anchor_count != 1:
+                issues.append(
+                    TerminologyIssue(
+                        "canonical anchor",
+                        label,
+                        rule.canonical_path,
+                        1,
+                        f"expected one {anchor}, found {anchor_count}",
+                    )
                 )
+            canonical_source = canonical.read_text(encoding="utf-8")
+            first_count = (
+                canonical_source.count(rule.first_use)
+                if rule.first_use == rule.later_use
+                else sum(line.count(rule.first_use) for _, line in canonical_lines)
             )
-        first_count = sum(line.count(rule.first_use) for _, line in canonical_lines)
-        if rule.first_use == rule.later_use:
-            if first_count == 0:
+            if rule.first_use == rule.later_use:
+                if first_count == 0:
+                    issues.append(
+                        TerminologyIssue(
+                            "canonical first use",
+                            label,
+                            rule.canonical_path,
+                            1,
+                            "unexpanded term must occur on canonical page",
+                        )
+                    )
+            elif first_count != 1:
                 issues.append(
                     TerminologyIssue(
                         "canonical first use",
                         label,
                         rule.canonical_path,
-                        1,
-                        "unexpanded term must occur on canonical page",
+                        _line_for(canonical_lines, rule.first_use),
+                        f"expected canonical first_use once, found {first_count}",
                     )
                 )
-        elif first_count != 1:
-            issues.append(
-                TerminologyIssue(
-                    "canonical first use",
-                    label,
-                    rule.canonical_path,
-                    _line_for(canonical_lines, rule.first_use),
-                    f"expected canonical first_use once, found {first_count}",
-                )
-            )
         for page, lines in visible.items():
             if page in {canonical, glossary}:
                 continue

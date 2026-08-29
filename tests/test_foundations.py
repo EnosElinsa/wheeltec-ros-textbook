@@ -113,7 +113,7 @@ class FoundationContentTests(unittest.TestCase):
         self.assertIn("微控制器", text)
         self.assertIn("底层反馈控制", text)
         self.assertIn("串行通信", text)
-        self.assertIn("控制器局域网（Controller Area Network, CAN）", text)
+        self.assertIn("控制器通信总线", text)
         self.assertEqual(quality.check_foundation(path, 150_000, 2), [])
 
     def test_chapter_2_builds_computer_vocabulary_before_ssh(self) -> None:
@@ -124,7 +124,10 @@ class FoundationContentTests(unittest.TestCase):
         self.assertIn("操作系统（Operating System, OS）", text)
         self.assertLess(text.index("终端"), text.index("SSH"))
         self.assertIn("安全外壳协议（Secure Shell, SSH）", text)
-        headings = re.findall(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE)
+        headings = [
+            re.sub(r"\s+\{#[^}]+\}$", "", heading)
+            for heading in re.findall(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE)
+        ]
         self.assertEqual(headings[:3], [
             "3.1 主控首先是一台计算机",
             "3.2 操作系统管理什么",
@@ -142,7 +145,10 @@ class FoundationContentTests(unittest.TestCase):
             "2017", "Ardent Apalone",
         ):
             self.assertIn(term, text)
-        headings = re.findall(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE)
+        headings = [
+            re.sub(r"\s+\{#[^}]+\}$", "", heading)
+            for heading in re.findall(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE)
+        ]
         self.assertEqual(headings, [
             "1.1 从机器人软件的难题说起",
             "1.2 ROS 的名称与定位",
@@ -175,7 +181,10 @@ class FoundationContentTests(unittest.TestCase):
     def test_chapter_5_introduces_communication_types_in_order(self) -> None:
         path = ROOT / "docs" / "01-foundations" / "05-ros2-communication.md"
         text = path.read_text(encoding="utf-8")
-        headings = re.findall(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE)
+        headings = [
+            re.sub(r"\s+\{#[^}]+\}$", "", heading)
+            for heading in re.findall(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE)
+        ]
         positions = [headings.index(term) for term in (
             "5.2 话题：持续发布的数据流",
             "5.3 服务：一次请求与一次响应",

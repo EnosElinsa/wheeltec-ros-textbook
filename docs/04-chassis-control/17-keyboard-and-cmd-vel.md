@@ -19,7 +19,7 @@ status: complete
 - 场地清空，速度从默认低值开始。
 - 没有其他导航或遥控节点同时发布速度。
 
-## 17.4 工作原理
+## 17.4 工作原理 {#keyboard-control}
 
 键盘节点读取按键，生成 `geometry_msgs/msg/Twist` 并发布到速度话题。底盘驱动订阅该话题，把 `linear.x`、`linear.y` 和 `angular.z` 转成轮速或阿克曼转角。
 
@@ -29,9 +29,9 @@ status: complete
 
 ### 1. 启动底盘
 
-Launch System（Launch）是 ROS 2 用来按清单启动节点、参数和命名空间的机制；底盘 Launch 文件会把底盘驱动及其配置组合起来。
+Launch是 ROS 2 用来按清单启动节点、参数和命名空间的机制；底盘启动命令 文件会把底盘驱动及其配置组合起来。
 
-在机器人主控终端中加载正确 ROS 2 和工作空间，然后执行当前镜像的底盘 Launch。常见示例：
+在机器人主控终端中加载正确 ROS 2 和工作空间，然后执行当前镜像的底盘启动命令。常见示例：
 
 ```bash
 ros2 launch turn_on_wheeltec_robot turn_on_wheeltec_robot.launch.py
