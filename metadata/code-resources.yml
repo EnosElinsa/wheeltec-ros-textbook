@@ -130,21 +130,3 @@ resources:
     dependencies: [{kind: system, path: rclpy, provider: rosdep, verification: declared}]
     verification: {level: static_reviewed, source_commit: 0ecdda9102755150f466d4de96e418ed4460575a, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
