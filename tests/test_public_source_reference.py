@@ -1,14 +1,23 @@
 from __future__ import annotations
 
 import re
+import sys
 import unittest
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+
+import validate_code_resources  # noqa: E402
 
 
 class PublicSourceReferenceTests(unittest.TestCase):
+    def test_production_code_resource_map_is_a_valid_empty_contract(self) -> None:
+        mapping = validate_code_resources.load_code_resources(ROOT / "metadata/code-resources.yml")
+        self.assertEqual(mapping.resources, [])
+        self.assertEqual(validate_code_resources.validate_code_resource_map(mapping, ROOT), [])
+
     def test_appendix_lists_direct_code_entries(self) -> None:
         text = (ROOT / "docs/appendices/d-public-source-reference.md").read_text(encoding="utf-8")
         links = re.findall(
