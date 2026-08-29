@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_ROOT = ROOT.parent / "code-resource-curation-source"
-APPROVED_SOURCE_BASELINE = "ad5153b91e36b3d77c9577feecf68bb0886c80f7"
+APPROVED_SOURCE_BASELINE = "93465bec26d410bab6cb4d6679fa9e4724764c64"
 sys.path.insert(0, str(ROOT / "tools"))
 
 import validate_code_resources  # noqa: E402

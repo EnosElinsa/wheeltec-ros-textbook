@@ -54,9 +54,11 @@ R680 C50C 的 TYPE 可由车型选择电位器决定，并在重新上电后生�
 | 某车型轮号错乱 | 车型分支、接口映射和线束 |
 
 
-!!! note "教材代码资源"
-    本节使用的代码入口见[教材代码资源附录](../appendices/d-public-source-reference.md)。
+!!! example "本章代码：外设最小实验"
+    使用 `stm32/labs/uart/stm32f103-stdperiph/main.c`、`stm32/labs/pwm/stm32f103-stdperiph/main.c` 与 `stm32/labs/encoder/stm32f103-stdperiph/main.c` 及各自完整依赖目录。验收：能定位串口、PWM、编码器初始化；边界：静态阅读，不作硬件适配结论。
 
 ## 章节导航
 
 [上一章：固件架构与 FreeRTOS 任务](33-firmware-architecture-freertos.md) · [返回本篇](index.md) · [下一章：电机控制与 PID 实现](35-motor-control-pid.md)
+
+详见[教材代码资源附录](../appendices/d-public-source-reference.md)。

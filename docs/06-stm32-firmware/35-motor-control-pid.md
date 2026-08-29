@@ -58,9 +58,11 @@ $$
 | PWM 饱和仍达不到速度 | 供电、负载、减速比或目标不现实 |
 
 
-!!! note "教材代码资源"
-    本节使用的代码入口见[教材代码资源附录](../appendices/d-public-source-reference.md)。
+!!! example "本章代码：电机与 PID"
+    使用 `stm32/control/motor/stm32f4-stdperiph/USER/main.c` 与 `stm32/control/pid/stm32f4-stdperiph/USER/main.c` 及完整 F4 CMSIS/StdPeriph/BSP 依赖。验收：静态核对电机映射和 PID 常量；边界：未提供编译器与实机证据。
 
 ## 章节导航
 
 [上一章：硬件初始化、车型选择与接口](34-hardware-init-model-interfaces.md) · [返回本篇](index.md) · [下一章：修改、编译、烧录与回滚固件](36-build-flash-rollback.md)
+
+详见[教材代码资源附录](../appendices/d-public-source-reference.md)。

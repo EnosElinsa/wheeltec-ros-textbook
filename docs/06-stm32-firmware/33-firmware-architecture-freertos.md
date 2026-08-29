@@ -57,9 +57,11 @@ WHEELTEC STM32 底盘固件。不同控制板的外设和任务名会变化，�
 | 自检偶发失败 | 初始化顺序、传感器稳定时间和电压 |
 
 
-!!! note "教材代码资源"
-    本节使用的代码入口见[教材代码资源附录](../appendices/d-public-source-reference.md)。
+    !!! example "本章代码：固件证据记录"
+    使用 `stm32/labs/uart/stm32f103-stdperiph`、`stm32/labs/pwm/stm32f103-stdperiph` 与 `stm32/labs/encoder/stm32f103-stdperiph` 的完整工程目录；本章只做静态核对。验收：记录 MCU、启动文件和工程文件；边界：无 Keil/Arm GCC 时不宣称构建或烧录。
 
 ## 章节导航
 
 [上一章：视觉跟随、巡线、KCF、AR 标签与网页视频](../05-sensors-navigation/32-vision-applications.md) · [返回本篇](index.md) · [下一章：硬件初始化、车型选择与接口](34-hardware-init-model-interfaces.md)
+
+详见[教材代码资源附录](../appendices/d-public-source-reference.md)。

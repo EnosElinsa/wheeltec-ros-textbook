@@ -1,5 +1,5 @@
 source_repository: EnosElinsa/wheeltec-ros-source-reference
-source_revision: ad5153b91e36b3d77c9577feecf68bb0886c80f7
+source_revision: 93465bec26d410bab6cb4d6679fa9e4724764c64
 resources:
   - id: ros2.robot.turn-on-wheeltec-robot
     repository_path: ros2/robot/turn-on-wheeltec-robot
@@ -15,7 +15,7 @@ resources:
     compatibility: {ros_distribution: humble, platform: requires-confirmation, hardware: requires-confirmation}
     dependencies: [{kind: system, path: rclcpp, provider: rosdep, verification: declared}
     ]
-    verification: {level: static_reviewed, source_commit: ad5153b91e36b3d77c9577feecf68bb0886c80f7, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+    verification: {level: static_reviewed, source_commit: 93465bec26d410bab6cb4d6679fa9e4724764c64, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
   - id: ros2.navigation.nav2-waypoint-cycle
     repository_path: ros2/navigation/nav2-waypoint-cycle/nav2_waypoint_cycle
     consumers:
@@ -29,7 +29,7 @@ resources:
         boundaries: [运行前核对 Nav2 版本]
     compatibility: {ros_distribution: humble, platform: requires-confirmation, hardware: requires-confirmation}
     dependencies: [{kind: system, path: nav2_msgs, provider: rosdep, verification: declared}]
-    verification: {level: static_reviewed, source_commit: ad5153b91e36b3d77c9577feecf68bb0886c80f7, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+    verification: {level: static_reviewed, source_commit: 93465bec26d410bab6cb4d6679fa9e4724764c64, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
   - id: ros2.navigation.path-follow
     repository_path: ros2/navigation/path-follow/wheeltec_path_follow
     consumers:
@@ -43,7 +43,7 @@ resources:
         boundaries: [不替代实机安全检查]
     compatibility: {ros_distribution: humble, platform: requires-confirmation, hardware: requires-confirmation}
     dependencies: [{kind: system, path: rclpy, provider: rosdep, verification: declared}]
-    verification: {level: static_reviewed, source_commit: ad5153b91e36b3d77c9577feecf68bb0886c80f7, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+    verification: {level: static_reviewed, source_commit: 93465bec26d410bab6cb4d6679fa9e4724764c64, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
   - id: applications.kcf-tracker
     repository_path: applications/kcf-tracker/wheeltec_robot_kcf_model
     consumers:
@@ -57,7 +57,7 @@ resources:
         boundaries: [依赖相机和初始框条件]
     compatibility: {ros_distribution: humble, platform: requires-confirmation, hardware: requires-confirmation}
     dependencies: [{kind: system, path: opencv, provider: system package, verification: declared}]
-    verification: {level: static_reviewed, source_commit: ad5153b91e36b3d77c9577feecf68bb0886c80f7, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+    verification: {level: static_reviewed, source_commit: 93465bec26d410bab6cb4d6679fa9e4724764c64, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
   - id: examples.ros2.pubsub.cpp
     repository_path: examples/ros2/pubsub/cpp
     consumers:
@@ -71,7 +71,7 @@ resources:
         boundaries: [仅用于通信观察]
     compatibility: {ros_distribution: humble, platform: generic, hardware: none}
     dependencies: [{kind: system, path: rclcpp, provider: rosdep, verification: declared}]
-    verification: {level: static_reviewed, source_commit: ad5153b91e36b3d77c9577feecf68bb0886c80f7, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+    verification: {level: static_reviewed, source_commit: 93465bec26d410bab6cb4d6679fa9e4724764c64, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
   - id: examples.ros2.pubsub.python
     repository_path: examples/ros2/pubsub/python
     consumers:
@@ -85,7 +85,9 @@ resources:
         boundaries: [仅用于通信观察]
     compatibility: {ros_distribution: humble, platform: generic, hardware: none}
     dependencies: [{kind: system, path: rclpy, provider: rosdep, verification: declared}]
-    verification: {level: static_reviewed, source_commit: ad5153b91e36b3d77c9577feecf68bb0886c80f7, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+    verification: {level: static_reviewed, source_commit: 93465bec26d410bab6cb4d6679fa9e4724764c64, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+
+
 
 
 
