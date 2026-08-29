@@ -54,8 +54,8 @@ status: complete
 | 保存后空白 | 保存时机、地图话题和输出路径 |
 
 
-!!! note "教材代码资源"
-    本节使用的代码入口见[教材代码资源附录](../appendices/d-public-source-reference.md)。
+!!! note "代码资源边界"
+    本章不指定建图算法源码包；命令必须以读者安装的 ROS 发行版与雷达驱动为准。
 
 ## 章节导航
 

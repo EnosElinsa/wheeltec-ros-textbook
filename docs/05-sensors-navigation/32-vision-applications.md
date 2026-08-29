@@ -51,9 +51,8 @@ ROS 2 视觉跟随、巡线、KCF、AR 标签和 Web 视频节点。具体接口
 
 
 !!! note "教材代码资源"
-    本节使用 `applications/kcf-tracker/wheeltec_robot_kcf_model` 中的 `package.xml`、`launch/kcf_tracker.launch.py`、`wheeltec_robot_kcf_model/kcf_tracker_node.py` 和 `wheeltec_robot_kcf_model/pid_controller.py`。源码固定在 [ad5153b9](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ad5153b91e36b3d77c9577feecf68bb0886c80f7/applications/kcf-tracker/wheeltec_robot_kcf_model)，详见[教材代码资源附录](../appendices/d-public-source-reference.md)。验收：能定位 KCF 节点入口；边界：依赖相机和初始跟踪框，未提供 YOLO 模型资产。
+    本节使用 `applications/kcf-tracker/wheeltec_robot_kcf_model` 中的 `package.xml`、`launch/kcf_tracker.launch.py`、`wheeltec_robot_kcf_model/kcf_tracker_node.py` 和 `wheeltec_robot_kcf_model/pid_controller.py`。源码固定在 [667b1ffc](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/667b1ffceb4354c19ef8f0e94969fcd25cbb5d6b/applications/kcf-tracker/wheeltec_robot_kcf_model)。验收：能定位 KCF 节点入口；边界：依赖相机和初始跟踪框，未提供 YOLO 模型资产。
 
 ## 章节导航
 
 [上一章：相机内参与坐标标定](31-camera-calibration.md) · [返回本篇](index.md) · [下一章：固件架构与 FreeRTOS 任务](../06-stm32-firmware/33-firmware-architecture-freertos.md)
-

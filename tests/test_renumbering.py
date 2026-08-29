@@ -86,7 +86,10 @@ class RenumberingTests(unittest.TestCase):
                 continue
             number = int(row["number"])
             text = (ROOT / row["path"]).read_text(encoding="utf-8")
-            headings = re.findall(r"^##\s+(.+?)\s*$", text, re.MULTILINE)
+            headings = [
+                re.sub(r"\s+\{#[^}]+\}$", "", heading)
+                for heading in re.findall(r"^##\s+(.+?)\s*$", text, re.MULTILINE)
+            ]
             self.assertEqual(headings, quality.expected_engineering_headings(number))
 
     def test_no_engineering_page_remains_in_old_part_directories(self) -> None:

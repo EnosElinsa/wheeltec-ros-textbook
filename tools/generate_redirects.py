@@ -40,26 +40,49 @@ def _path_error(value: str) -> str | None:
     return None
 
 
+def _target_parts(value: str) -> tuple[str, str]:
+    route, separator, fragment = value.partition("#")
+    if separator and (
+        not fragment
+        or "#" in fragment
+        or any(not (character.isalnum() or character in "._-") for character in fragment)
+    ):
+        raise ValueError("target fragment must use the safe anchor alphabet")
+    return route, f"#{fragment}" if separator else ""
+
+
 def validate_map(rows: list[Redirect]) -> list[str]:
     errors: list[str] = []
     sources: set[str] = set()
     for row in rows:
-        for field, value in (("source", row.source), ("target", row.target)):
-            message = _path_error(value)
-            if message:
-                errors.append(f"{field} {value!r} {message}")
+        message = _path_error(row.source)
+        if message:
+            errors.append(f"source {row.source!r} {message}")
+        try:
+            target_route, _ = _target_parts(row.target)
+        except ValueError as exc:
+            errors.append(f"target {row.target!r} {exc}")
+            target_route = row.target
+        message = _path_error(target_route)
+        if message:
+            errors.append(f"target {row.target!r} {message}")
         if row.source in sources:
             errors.append(f"duplicate source: {row.source}")
         sources.add(row.source)
         if row.source == row.target:
             errors.append(f"redirect points to itself: {row.source}")
     for row in rows:
-        if row.target in sources:
+        try:
+            target_route, _ = _target_parts(row.target)
+        except ValueError:
+            continue
+        if target_route in sources:
             errors.append(f"redirect chain: {row.source} -> {row.target}")
     return errors
 
 
 def _site_file(site_dir: Path, route: str) -> Path:
+    route, _ = _target_parts(route)
     resolved_site = site_dir.resolve()
     target = (resolved_site / Path(*PurePosixPath(route).parts) / "index.html").resolve()
     try:
@@ -78,17 +101,21 @@ def validate_built_targets(rows: list[Redirect], site_dir: Path) -> list[str]:
 
 
 def render_redirect(source: str, target: str) -> str:
+    target, fixed_fragment = _target_parts(target)
     source_dir = source.rstrip("/") or "."
     relative = posixpath.relpath(target, start=source_dir)
     if not relative.endswith("/"):
         relative += "/"
-    escaped = html.escape(relative, quote=True)
+    destination = relative + fixed_fragment
+    escaped = html.escape(destination, quote=True)
     js_target = (
         json.dumps(relative, ensure_ascii=True)
         .replace("<", "\\u003c")
         .replace(">", "\\u003e")
         .replace("&", "\\u0026")
     )
+    js_fragment = json.dumps(fixed_fragment, ensure_ascii=True)
+    js_suffix = f"location.search + {js_fragment}" if fixed_fragment else "location.search + location.hash"
     return f"""<!doctype html>
 <html lang="zh-CN">
 <head>
@@ -100,7 +127,7 @@ def render_redirect(source: str, target: str) -> str:
 <body>
   <p>页面已迁移到 <a href="{escaped}">{escaped}</a>。</p>
   <script>
-    location.replace({js_target} + location.search + location.hash);
+    location.replace({js_target} + {js_suffix});
   </script>
 </body>
 </html>

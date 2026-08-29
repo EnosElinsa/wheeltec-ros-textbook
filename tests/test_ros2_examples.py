@@ -6,6 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_REPOSITORY_URL = "https://github.com/EnosElinsa/wheeltec-ros-source-reference"
+SOURCE_REVISION = "667b1ffceb4354c19ef8f0e94969fcd25cbb5d6b"
 
 
 class Ros2ExampleBundleTests(unittest.TestCase):
@@ -16,8 +17,8 @@ class Ros2ExampleBundleTests(unittest.TestCase):
         chapter_20 = (ROOT / "docs/04-ros2-development/20-nodes-topics-services-actions.md").read_text(
             encoding="utf-8"
         )
-        cpp_url = f"{SOURCE_REPOSITORY_URL}/tree/main/examples/ros2-pubsub/cpp_pubsub"
-        python_url = f"{SOURCE_REPOSITORY_URL}/tree/main/examples/ros2-pubsub/py_pubsub"
+        cpp_url = f"{SOURCE_REPOSITORY_URL}/tree/{SOURCE_REVISION}/examples/ros2/pubsub/cpp"
+        python_url = f"{SOURCE_REPOSITORY_URL}/tree/{SOURCE_REVISION}/examples/ros2/pubsub/python"
         for text in (chapter_19, chapter_20):
             self.assertIn(cpp_url, text)
             self.assertIn(python_url, text)

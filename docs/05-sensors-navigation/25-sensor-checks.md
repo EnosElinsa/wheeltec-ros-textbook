@@ -78,8 +78,8 @@ ros2 topic echo --once <话题名>
 | 数据频率忽高忽低 | 查 CPU、USB 带宽、供电和 QoS |
 
 
-!!! note "教材代码资源"
-    本节使用的代码入口见[教材代码资源附录](../appendices/d-public-source-reference.md)。
+!!! note "代码资源边界"
+    本章使用系统设备、ROS 图与话题诊断命令，不依赖源码仓库中的专用代码资源。
 
 ## 章节导航
 

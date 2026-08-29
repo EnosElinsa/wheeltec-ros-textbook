@@ -29,7 +29,6 @@ status: complete
 
 仅记录静态发现：设备字段、协议文件和工程路径。硬件异常、轮号、编码器方向与低速行为必须等待独立矩阵和实机证据。
 
-详见[教材代码资源附录](../appendices/d-public-source-reference.md)。
 
 ## 43.6 章节导航
 

@@ -24,7 +24,7 @@ class PublicSourceReferenceTests(unittest.TestCase):
     def test_bringup_consumer_block_uses_the_mapping_anchor_and_revision(self) -> None:
         text = (ROOT / "docs/04-ros2-development/21-launch-and-parameters.md").read_text(encoding="utf-8")
         self.assertIn("{#bringup-launch-chain}", text)
-        self.assertIn("ad5153b91e36b3d77c9577feecf68bb0886c80f7", text)
+        self.assertIn(APPROVED_SOURCE_BASELINE, text)
         self.assertIn("ros2/robot/turn-on-wheeltec-robot", text)
 
     def test_appendix_lists_direct_code_entries(self) -> None:
@@ -44,7 +44,7 @@ class PublicSourceReferenceTests(unittest.TestCase):
         self.assertNotIn("R-archive-", text)
         self.assertTrue(all(f"/tree/main/{root}/" in text for root in ("applications", "chassis", "platform", "r680", "ros1", "ros2", "stm32")))
 
-    def test_appendix_is_published_and_linked_from_entry_pages(self) -> None:
+    def test_appendix_is_published_but_not_used_as_a_generic_chapter_pointer(self) -> None:
         appendix = ROOT / "docs/appendices/d-public-source-reference.md"
         self.assertTrue(appendix.is_file())
         self.assertIn("d-public-source-reference.md", (ROOT / "mkdocs.yml").read_text(encoding="utf-8"))
@@ -69,12 +69,13 @@ class PublicSourceReferenceTests(unittest.TestCase):
             "docs/09-deployment-maintenance/45-logs-backup-upgrade-recovery.md",
             "docs/appendices/a-ros1-maintenance.md",
         )
-        missing = [
+        generic = [
             path
             for path in related
-            if "d-public-source-reference.md" not in (ROOT / path).read_text(encoding="utf-8")
+            if "本节使用的代码入口见[教材代码资源附录]" in (ROOT / path).read_text(encoding="utf-8")
+            or "详见[教材代码资源附录]" in (ROOT / path).read_text(encoding="utf-8")
         ]
-        self.assertEqual(missing, [])
+        self.assertEqual(generic, [])
 
     def test_appendix_has_safe_hardware_language_and_no_internal_ids(self) -> None:
         text = (ROOT / "docs/appendices/d-public-source-reference.md").read_text(encoding="utf-8")

@@ -56,8 +56,8 @@ ros2 topic echo --once <camera_info话题>
 | `camera_info` 空 | 标定文件路径和相机名 |
 
 
-!!! note "教材代码资源"
-    本节使用的代码入口见[教材代码资源附录](../appendices/d-public-source-reference.md)。
+!!! note "代码资源边界"
+    本章使用相机驱动、ROS 图像工具和 OpenCV 最小片段，不依赖源码仓库中的专用代码资源。
 
 ## 章节导航
 
