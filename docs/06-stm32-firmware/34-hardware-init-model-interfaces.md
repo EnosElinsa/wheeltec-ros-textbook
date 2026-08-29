@@ -8,15 +8,24 @@ status: complete
 
 把控制板外设初始化与实机接口一一对应，确认车型选择如何改变电机数、运动学和转向结构。
 
+!!! example "本节代码：UART 实验"
+    仓库目录：[`stm32/labs/uart/stm32f103-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/labs/uart/stm32f103-stdperiph)。完整文件集见 `metadata/code-resource-manifests/uart.txt`。验收：能定位串口初始化。边界：仅静态核对。
+
 ## 34.2 适用范围 {#stm32-pwm-lab}
 
 C30D、C50 系列等资料覆盖的底盘控制板。引脚和电位器位置按板卡版本核对。
+
+!!! example "本节代码：PWM 实验"
+    仓库目录：[`stm32/labs/pwm/stm32f103-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/labs/pwm/stm32f103-stdperiph)。完整文件集见 `metadata/code-resource-manifests/pwm.txt`。验收：能定位定时器与占空比。边界：仅静态核对。
 
 ## 34.3 操作前检查 {#stm32-encoder-lab}
 
 - 断电拍摄控制板和线缆。
 - 查原理图、资源分配表和当前源码宏。
 - 不用其他板卡的引脚表推断本机。
+
+!!! example "本节代码：编码器实验"
+    仓库目录：[`stm32/labs/encoder/stm32f103-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/labs/encoder/stm32f103-stdperiph)。完整文件集见 `metadata/code-resource-manifests/encoder.txt`。验收：能定位编码器计数。边界：仅静态核对。
 
 ## 34.4 工作原理
 

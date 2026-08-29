@@ -8,9 +8,15 @@ status: complete
 
 从编码器计数得到轮速，理解增量 PI 怎样更新 PWM，并用曲线而不是听感调整参数。
 
+!!! example "本节代码：电机控制"
+    仓库目录：[`stm32/control/motor/stm32f4-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/control/motor/stm32f4-stdperiph)。完整文件集见 `metadata/code-resource-manifests/motor.txt`。验收：能定位电机映射。边界：无编译器与实机证据。
+
 ## 35.2 适用范围 {#stm32-pid-control}
 
 直流编码器电机速度环；舵机位置环和速度/位置串级控制采用同一误差反馈思路，但参数与输出不同。
+
+!!! example "本节代码：PID 控制"
+    仓库目录：[`stm32/control/pid/stm32f4-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/control/pid/stm32f4-stdperiph)。完整文件集见 `metadata/code-resource-manifests/pid.txt`。验收：能定位 PID 常量。边界：无编译器与实机证据。
 
 ## 35.3 闭环前置检查 {#closed-loop-prechecks}
 
