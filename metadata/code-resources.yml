@@ -1,3 +1,91 @@
 source_repository: EnosElinsa/wheeltec-ros-source-reference
-source_revision: f36a76f6da81de698b1adb80729f596744adda7e
-resources: []
+source_revision: 2e7fc855864ec31616665dd87660aca463f85379
+resources:
+  - id: ros2.robot.turn-on-wheeltec-robot
+    repository_path: ros2/robot/turn-on-wheeltec-robot
+    consumers:
+      - page: docs/04-ros2-development/21-launch-and-parameters.md
+        anchor: bringup-launch-chain
+        files: [launch/turn_on_wheeltec_robot.launch.py, launch/base_serial.launch.py, launch/robot_mode_description.launch.py, src/wheeltec_robot.cpp]
+        role: 追踪底盘启动链
+        mode: static_read
+        commands: []
+        acceptance: [能定位启动入口和底盘节点]
+        boundaries: [不据此确定当前车型和串口参数]
+    compatibility: {ros_distribution: humble, platform: requires-confirmation, hardware: requires-confirmation}
+    dependencies: [{kind: system, path: rclcpp, provider: rosdep, verification: declared}
+    ]
+    verification: {level: static_reviewed, source_commit: 2e7fc855864ec31616665dd87660aca463f85379, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+  - id: ros2.navigation.nav2-waypoint-cycle
+    repository_path: ros2/navigation/nav2-waypoint-cycle/nav2_waypoint_cycle
+    consumers:
+      - page: docs/05-sensors-navigation/28-nav2-navigation.md
+        anchor: nav2-code-resource
+        files: [package.xml, nav2_waypoint_cycle/waypoint_cycle.py]
+        role: 多点导航示例
+        mode: static_read
+        commands: []
+        acceptance: [能说明航点循环入口]
+        boundaries: [运行前核对 Nav2 版本]
+    compatibility: {ros_distribution: humble, platform: requires-confirmation, hardware: requires-confirmation}
+    dependencies: [{kind: system, path: nav2_msgs, provider: rosdep, verification: declared}]
+    verification: {level: static_reviewed, source_commit: 2e7fc855864ec31616665dd87660aca463f85379, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+  - id: ros2.navigation.path-follow
+    repository_path: ros2/navigation/path-follow/wheeltec_path_follow
+    consumers:
+      - page: docs/05-sensors-navigation/29-waypoints-path-exploration.md
+        anchor: path-follow-code-resource
+        files: [package.xml, launch/follow_path.launch.py, scripts/follow_path.py]
+        role: 路径跟踪示例
+        mode: static_read
+        commands: []
+        acceptance: [能定位路径跟踪入口]
+        boundaries: [不替代实机安全检查]
+    compatibility: {ros_distribution: humble, platform: requires-confirmation, hardware: requires-confirmation}
+    dependencies: [{kind: system, path: rclpy, provider: rosdep, verification: declared}]
+    verification: {level: static_reviewed, source_commit: 2e7fc855864ec31616665dd87660aca463f85379, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+  - id: applications.kcf-tracker
+    repository_path: applications/kcf-tracker/wheeltec_robot_kcf_model
+    consumers:
+      - page: docs/05-sensors-navigation/32-vision-applications.md
+        anchor: kcf-code-resource
+        files: [package.xml, launch/kcf_tracker.launch.py, wheeltec_robot_kcf_model/kcf_tracker_node.py, wheeltec_robot_kcf_model/pid_controller.py]
+        role: KCF 跟踪示例
+        mode: static_read
+        commands: []
+        acceptance: [能定位 KCF 节点入口]
+        boundaries: [依赖相机和初始框条件]
+    compatibility: {ros_distribution: humble, platform: requires-confirmation, hardware: requires-confirmation}
+    dependencies: [{kind: system, path: opencv, provider: system package, verification: declared}]
+    verification: {level: static_reviewed, source_commit: 2e7fc855864ec31616665dd87660aca463f85379, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+  - id: examples.ros2.pubsub.cpp
+    repository_path: examples/ros2/pubsub/cpp
+    consumers:
+      - page: docs/04-ros2-development/20-nodes-topics-services-actions.md
+        anchor: pubsub-code-resource
+        files: [package.xml, CMakeLists.txt, src/publisher.cpp, src/subscriber.cpp]
+        role: C++ 发布订阅示例
+        mode: static_read
+        commands: []
+        acceptance: [能定位 talker 和 listener]
+        boundaries: [仅用于通信观察]
+    compatibility: {ros_distribution: humble, platform: generic, hardware: none}
+    dependencies: [{kind: system, path: rclcpp, provider: rosdep, verification: declared}]
+    verification: {level: static_reviewed, source_commit: 2e7fc855864ec31616665dd87660aca463f85379, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+  - id: examples.ros2.pubsub.python
+    repository_path: examples/ros2/pubsub/python
+    consumers:
+      - page: docs/04-ros2-development/20-nodes-topics-services-actions.md
+        anchor: pubsub-code-resource
+        files: [package.xml, setup.py, py_pubsub/publisher.py, py_pubsub/subscriber.py]
+        role: Python 发布订阅示例
+        mode: static_read
+        commands: []
+        acceptance: [能定位 Python 发布者和订阅者]
+        boundaries: [仅用于通信观察]
+    compatibility: {ros_distribution: humble, platform: generic, hardware: none}
+    dependencies: [{kind: system, path: rclpy, provider: rosdep, verification: declared}]
+    verification: {level: static_reviewed, source_commit: 2e7fc855864ec31616665dd87660aca463f85379, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+
+
+

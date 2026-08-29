@@ -2,7 +2,7 @@
 status: complete
 ---
 
-# 29. 多点导航、路径跟踪与自主探索
+# 29. 多点导航、路径跟踪与自主探索 {#path-follow-code-resource}
 
 ## 29.1 学习目标
 

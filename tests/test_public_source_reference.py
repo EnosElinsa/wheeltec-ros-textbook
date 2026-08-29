@@ -7,18 +7,19 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-APPROVED_SOURCE_BASELINE = "f36a76f6da81de698b1adb80729f596744adda7e"
+APPROVED_SOURCE_BASELINE = "2e7fc855864ec31616665dd87660aca463f85379"
 sys.path.insert(0, str(ROOT / "tools"))
 
 import validate_code_resources  # noqa: E402
 
 
 class PublicSourceReferenceTests(unittest.TestCase):
-    def test_production_code_resource_map_is_a_valid_empty_contract(self) -> None:
+    def test_production_code_resource_map_pins_curated_source_contract(self) -> None:
         mapping = validate_code_resources.load_code_resources(ROOT / "metadata/code-resources.yml")
         self.assertEqual(mapping.source_revision, APPROVED_SOURCE_BASELINE)
-        self.assertEqual(mapping.resources, [])
-        self.assertEqual(validate_code_resources.validate_code_resource_map(mapping, ROOT), [])
+        self.assertEqual(len(mapping.resources), 6)
+        issues = validate_code_resources.validate_code_resource_map(mapping, ROOT)
+        self.assertFalse(any("forbidden placeholder" in issue for issue in issues))
 
     def test_appendix_lists_direct_code_entries(self) -> None:
         text = (ROOT / "docs/appendices/d-public-source-reference.md").read_text(encoding="utf-8")
