@@ -57,8 +57,9 @@ ROS 2 Nav2 二维导航。不同镜像可能使用不同规划器和控制器插
 
 
 !!! note "教材代码资源"
-    本节使用 `ros2/navigation/nav2-waypoint-cycle` 中的 `package.xml` 与 `nav2_waypoint_cycle/waypoint_cycle.py`，用于静态追踪航点循环入口。源码固定在 [6644bede](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/6644bedeac817aeced24ed28e65fb3a9b992416d/ros2/navigation/nav2-waypoint-cycle)，详见[教材代码资源附录](../appendices/d-public-source-reference.md)。验收：能说明航点动作客户端与循环逻辑；边界：运行前核对 Nav2 发行版。
+    本节使用 `ros2/navigation/nav2-waypoint-cycle` 中的 `package.xml` 与 `nav2_waypoint_cycle/waypoint_cycle.py`，用于静态追踪航点循环入口。源码固定在 [6644bede](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ad5153b91e36b3d77c9577feecf68bb0886c80f7/ros2/navigation/nav2-waypoint-cycle)，详见[教材代码资源附录](../appendices/d-public-source-reference.md)。验收：能说明航点动作客户端与循环逻辑；边界：运行前核对 Nav2 发行版。
 
 ## 章节导航
 
 [上一章：地图保存、定位与坐标验证](27-map-localization-tf.md) · [返回本篇](index.md) · [下一章：多点导航、路径跟踪与自主探索](29-waypoints-path-exploration.md)
+

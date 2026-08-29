@@ -7,7 +7,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-APPROVED_SOURCE_BASELINE = "2e7fc855864ec31616665dd87660aca463f85379"
+APPROVED_SOURCE_BASELINE = "ad5153b91e36b3d77c9577feecf68bb0886c80f7"
 sys.path.insert(0, str(ROOT / "tools"))
 
 import validate_code_resources  # noqa: E402
