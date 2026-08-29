@@ -30,7 +30,7 @@ FORBIDDEN_VALUES = ("example_only", "schema-example", "/tree/main/", "/blob/main
 
 MAP_KEYS = {"source_repository", "source_revision", "resources"}
 RESOURCE_KEYS = {"id", "repository_path", "consumers", "compatibility", "dependencies", "verification"}
-CONSUMER_KEYS = {"page", "anchor", "files", "role", "mode", "commands", "acceptance", "boundaries"}
+CONSUMER_KEYS = {"page", "anchor", "files", "file_manifest", "role", "mode", "commands", "acceptance", "boundaries"}
 DEPENDENCY_KEYS = {"kind", "path", "provider", "verification"}
 VERIFICATION_KEYS = {"level", "source_commit", "environment", "command", "result", "evidence_path", "verified_at"}
 COMPATIBILITY_KEYS = {"ros_distribution", "platform", "hardware"}
@@ -46,6 +46,7 @@ class Consumer:
     commands: list[str] = field(default_factory=list)
     acceptance: list[str] = field(default_factory=list)
     boundaries: list[str] = field(default_factory=list)
+    file_manifest: str = ""
 
 
 @dataclass
@@ -119,6 +120,7 @@ def _consumer(data: Any) -> Consumer:
         page=_require_string(row["page"], "consumer.page"),
         anchor=_require_string(row["anchor"], "consumer.anchor"),
         files=_require_string_list(row["files"], "consumer.files"),
+        file_manifest=_require_string(row["file_manifest"], "consumer.file_manifest"),
         role=_require_string(row["role"], "consumer.role"),
         mode=_require_string(row["mode"], "consumer.mode"),
         commands=_require_string_list(row["commands"], "consumer.commands"),
@@ -212,6 +214,8 @@ def _validate_consumer(consumer: Consumer, source_root: Path, prefix: str) -> li
         errors.append(f"{prefix}: acceptance is required")
     if not consumer.boundaries or any(not item.strip() for item in consumer.boundaries):
         errors.append(f"{prefix}: boundaries is required")
+    if consumer.file_manifest and (not _is_relative(consumer.file_manifest) or not consumer.file_manifest.startswith("metadata/code-resource-manifests/")):
+        errors.append(f"{prefix}: file_manifest must be under metadata/code-resource-manifests/")
     if consumer.mode not in MODES:
         errors.append(f"{prefix}: mode must be one of {sorted(MODES)}")
         return errors
@@ -263,6 +267,15 @@ def validate_code_resource_map(
             for file_path in consumer.files:
                 if _is_relative(file_path) and not (package_root / file_path).is_file():
                     errors.append(f"{consumer_prefix}: source file does not exist: {file_path}")
+            if consumer.file_manifest:
+                manifest_path = content_root / consumer.file_manifest
+                if not manifest_path.is_file():
+                    errors.append(f"{consumer_prefix}: file_manifest does not exist: {consumer.file_manifest}")
+                else:
+                    expected = sorted(path.relative_to(package_root).as_posix() for path in package_root.rglob("*") if path.is_file())
+                    actual = [line.strip() for line in manifest_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+                    if actual != expected:
+                        errors.append(f"{consumer_prefix}: file_manifest does not match resource tree")
         if not resource.dependencies:
             errors.append(f"{prefix}: dependencies must be a non-empty structured list")
         for dependency_index, dependency in enumerate(resource.dependencies):

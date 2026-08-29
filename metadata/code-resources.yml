@@ -1,5 +1,5 @@
 source_repository: EnosElinsa/wheeltec-ros-source-reference
-source_revision: 789e649364e62f9feb450ebb526eb475ba2912f6
+source_revision: c9f7befba2fdc3c39d6df134d5a16d190413f39c
 resources:
   - id: ros2.robot.turn-on-wheeltec-robot
     repository_path: ros2/robot/turn-on-wheeltec-robot
@@ -122,6 +122,7 @@ resources:
     compatibility: {ros_distribution: humble, platform: generic, hardware: none}
     dependencies: [{kind: system, path: rclpy, provider: rosdep, verification: declared}]
     verification: {level: static_reviewed, source_commit: 789e649364e62f9feb450ebb526eb475ba2912f6, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-4-static.txt, verified_at: '2026-08-29'}
+
 
 
 
