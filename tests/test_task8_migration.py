@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import csv
 from pathlib import Path
 
 from heading_migration import assert_anchor_exists, heading_migration_complete
@@ -56,20 +55,6 @@ def test_every_retained_heading_is_substantively_represented() -> None:
 
         pytest.skip("local process checkout does not contain heading-migration audit")
     heading_migration_complete(migration, ROOT)
-
-
-def test_legacy_redirects_land_on_fixed_anchors() -> None:
-    with (ROOT / "metadata/legacy-redirects.csv").open(encoding="utf-8", newline="") as handle:
-        rows = {row["source"]: row["target"] for row in csv.DictReader(handle)}
-    assert rows["04-ros2-development/turn-on-wheeltec-robot-source-walkthrough/"] == (
-        "05-ros2-development/25-launch-and-parameters/#bringup-launch-chain"
-    )
-    assert rows["05-sensors-navigation/ros1-bag-offline-diagnostics/"] == (
-        "appendices/a-ros1-maintenance/#ros1-bag-offline-diagnostics"
-    )
-    assert rows["06-stm32-firmware/stm32-peripheral-labs/"] == (
-        "07-stm32-firmware/38-hardware-init-model-interfaces/#stm32-peripheral-labs"
-    )
 
 
 def test_no_stale_internal_links_or_generic_appendix_only_notes() -> None:

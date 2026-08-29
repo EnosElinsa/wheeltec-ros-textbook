@@ -13,9 +13,4 @@ if (-not (Test-Path -LiteralPath $venvRoot -PathType Container)) {
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 & $mkdocsExe build --strict -f (Join-Path $projectRoot 'mkdocs.yml')
-if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
-& $pythonExe (Join-Path $projectRoot 'tools\generate_redirects.py') `
-    --mapping (Join-Path $projectRoot 'metadata\legacy-redirects.csv') `
-    --site-dir (Join-Path $projectRoot 'site')
 exit $LASTEXITCODE

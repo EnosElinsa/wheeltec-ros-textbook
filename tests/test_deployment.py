@@ -17,19 +17,18 @@ class DeploymentConfigurationTests(unittest.TestCase):
             "id-token: write",
             "pip install -r requirements.txt",
             "mkdocs build --strict",
-            "python tools/generate_redirects.py --mapping metadata/legacy-redirects.csv --site-dir site",
             "path: site",
             "actions/upload-pages-artifact@v4",
             "actions/deploy-pages@v4",
         ):
             self.assertIn(expected, workflow)
 
-    def test_redirect_step_runs_after_build_and_before_artifact_upload(self) -> None:
+    def test_pages_workflow_builds_before_artifact_upload_without_redirects(self) -> None:
         workflow = (ROOT / ".github" / "workflows" / "deploy-docs.yml").read_text(
             encoding="utf-8"
         )
-        self.assertLess(workflow.index("mkdocs build --strict"), workflow.index("generate_redirects.py"))
-        self.assertLess(workflow.index("generate_redirects.py"), workflow.index("upload-pages-artifact"))
+        self.assertNotIn("generate_redirects.py", workflow)
+        self.assertLess(workflow.index("mkdocs build --strict"), workflow.index("upload-pages-artifact"))
 
     def test_site_deployment_infrastructure_is_not_a_textbook_chapter(self) -> None:
         config = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")
@@ -38,10 +37,18 @@ class DeploymentConfigurationTests(unittest.TestCase):
             (ROOT / "docs" / "10-deployment-maintenance" / "github-pages-deployment.md").exists()
         )
 
-    def test_local_build_runs_redirect_generation_after_mkdocs(self) -> None:
+    def test_local_build_runs_strict_mkdocs_without_redirects(self) -> None:
         script = (ROOT / "tools" / "build_site.ps1").read_text(encoding="utf-8")
-        self.assertIn("generate_redirects.py", script)
-        self.assertLess(script.index("build --strict"), script.index("generate_redirects.py"))
+        self.assertIn("build --strict", script)
+        self.assertNotIn("generate_redirects.py", script)
+
+    def test_legacy_redirect_subsystem_is_absent(self) -> None:
+        for relative in (
+            "metadata/legacy-redirects.csv",
+            "tools/generate_redirects.py",
+            "tests/test_redirects.py",
+        ):
+            self.assertFalse((ROOT / relative).exists(), relative)
 
 
 if __name__ == "__main__":
