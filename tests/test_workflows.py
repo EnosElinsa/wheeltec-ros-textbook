@@ -12,7 +12,7 @@ from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
-SOURCE_REVISION = "9bcc786a6eb7bc3734205952f6ae114581c72a23"
+SOURCE_REVISION = "ebae2342709c756cb8fa387ccdbd6e5733f9219a"
 
 
 class WorkflowContractTests(unittest.TestCase):

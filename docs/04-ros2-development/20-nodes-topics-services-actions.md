@@ -64,14 +64,14 @@ ros2 action info <动作名>
 
 ### 运行配套发布订阅实验
 
-先完成第 19 章的构建步骤。终端 A 运行 [C++ 示例](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/9bcc786a6eb7bc3734205952f6ae114581c72a23/examples/ros2/pubsub/cpp)发布者；查看 `package.xml`、`CMakeLists.txt`、`src/publisher.cpp` 和 `src/subscriber.cpp`：
+先完成第 19 章的构建步骤。终端 A 运行 [C++ 示例](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/examples/ros2/pubsub/cpp)发布者；查看 `package.xml`、`CMakeLists.txt`、`src/publisher.cpp` 和 `src/subscriber.cpp`：
 
 ```bash
 source ~/wheeltec_course_ws/install/setup.bash
 ros2 run cpp_pubsub talker
 ```
 
-终端 B 运行 [Python 示例](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/9bcc786a6eb7bc3734205952f6ae114581c72a23/examples/ros2/pubsub/python)订阅者；查看 `package.xml`、`setup.py`、`py_pubsub/publisher.py` 和 `py_pubsub/subscriber.py`：
+终端 B 运行 [Python 示例](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/examples/ros2/pubsub/python)订阅者；查看 `package.xml`、`setup.py`、`py_pubsub/publisher.py` 和 `py_pubsub/subscriber.py`：
 
 ```bash
 source ~/wheeltec_course_ws/install/setup.bash

@@ -57,9 +57,7 @@ SYSTEM/sys/sys.c
 SYSTEM/sys/sys.h
 SYSTEM/usart/usart.c
 SYSTEM/usart/usart.h
-USER/PWM.uvoptx
 USER/PWM.uvprojx
-USER/TIMER.uvoptx
 USER/main.c
 USER/stm32f10x.h
 USER/stm32f10x_conf.h

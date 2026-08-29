@@ -54,7 +54,6 @@ SYSTEM/Inc/usart.h
 SYSTEM/delay.c
 SYSTEM/sys.c
 SYSTEM/usart.c
-USER/WHEELTEC.uvoptx
 USER/WHEELTEC.uvprojx
 USER/main.c
 USER/stm32f4xx.h

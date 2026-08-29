@@ -59,7 +59,6 @@ SYSTEM/sys/sys.c
 SYSTEM/sys/sys.h
 SYSTEM/usart/usart.c
 SYSTEM/usart/usart.h
-USER/Encoder.uvoptx
 USER/Encoder.uvprojx
 USER/main.c
 USER/stm32f10x.h

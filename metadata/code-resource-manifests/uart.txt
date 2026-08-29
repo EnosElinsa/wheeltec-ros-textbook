@@ -53,7 +53,6 @@ SYSTEM/delay/delay.h
 SYSTEM/sys/sys.c
 SYSTEM/sys/sys.h
 SYSTEM/usart/usart.h
-USER/UART1.uvoptx
 USER/UART1.uvprojx
 USER/main.c
 USER/stm32f10x.h
