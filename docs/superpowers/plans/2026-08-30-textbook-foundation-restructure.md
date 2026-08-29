@@ -925,7 +925,7 @@ Before:
 若控制板上有 CAN 接口，记录其连接对象。控制器局域网（Controller Area Network, CAN）是……
 
 After:
-检查控制板是否接入 [CAN 总线](../02-hardware-basics/07-electrical-interfaces-communication.md#can)，并记录总线上的设备。
+检查控制板是否接入 CAN 总线（见第 7 章），并记录总线上的设备。
 ```
 
 ```text
@@ -933,7 +933,7 @@ Before:
 固件（Firmware）是存放在控制板中……
 
 After:
-烧录前先核对[固件与控制板的对应关系](../02-hardware-basics/06-controller-and-firmware.md#source-firmware-build)。
+烧录前先核对第 6 章说明的固件与控制板对应关系。
 ```
 
 Use one prerequisite paragraph per task chapter when multiple concepts share the same foundation page; do not add one link sentence per term.
