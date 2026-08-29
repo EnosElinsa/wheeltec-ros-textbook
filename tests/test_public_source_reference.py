@@ -7,6 +7,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SOURCE_ROOT = ROOT.parent / "code-resource-curation-source"
 APPROVED_SOURCE_BASELINE = "ad5153b91e36b3d77c9577feecf68bb0886c80f7"
 sys.path.insert(0, str(ROOT / "tools"))
 
@@ -18,8 +19,13 @@ class PublicSourceReferenceTests(unittest.TestCase):
         mapping = validate_code_resources.load_code_resources(ROOT / "metadata/code-resources.yml")
         self.assertEqual(mapping.source_revision, APPROVED_SOURCE_BASELINE)
         self.assertEqual(len(mapping.resources), 6)
-        issues = validate_code_resources.validate_code_resource_map(mapping, ROOT)
-        self.assertFalse(any("forbidden placeholder" in issue for issue in issues))
+        self.assertEqual(validate_code_resources.validate_code_resource_map(mapping, SOURCE_ROOT, ROOT), [])
+
+    def test_bringup_consumer_block_uses_the_mapping_anchor_and_revision(self) -> None:
+        text = (ROOT / "docs/04-ros2-development/21-launch-and-parameters.md").read_text(encoding="utf-8")
+        self.assertIn("{#bringup-launch-chain}", text)
+        self.assertIn("ad5153b91e36b3d77c9577feecf68bb0886c80f7", text)
+        self.assertIn("ros2/robot/turn-on-wheeltec-robot", text)
 
     def test_appendix_lists_direct_code_entries(self) -> None:
         text = (ROOT / "docs/appendices/d-public-source-reference.md").read_text(encoding="utf-8")

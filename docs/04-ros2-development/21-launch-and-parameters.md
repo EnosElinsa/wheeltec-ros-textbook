@@ -22,7 +22,14 @@ status: complete
 
 Launch 描述一次运行需要启动哪些节点、传入哪些参数和命名空间。YAML 文件只是参数来源之一；Launch 内部默认值、命令行覆盖和节点代码默认值都可能改变最终结果。
 
-## 21.5 操作步骤
+## 21.5 操作步骤 {#bringup-launch-chain}
+
+!!! example "本章代码：底盘启动链"
+    仓库目录：[ros2/robot/turn-on-wheeltec-robot](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ad5153b91e36b3d77c9577feecf68bb0886c80f7/ros2/robot/turn-on-wheeltec-robot)
+
+    本章使用 `launch/turn_on_wheeltec_robot.launch.py`、`launch/base_serial.launch.py`、`launch/robot_mode_description.launch.py` 和 `src/wheeltec_robot.cpp`，用于静态追踪启动入口、底盘串口节点和车型描述分支。
+
+    验收：能定位入口 Launch 与 `base_serial.launch.py` 的关系，并说明节点参数来源。边界：本资源只用于静态阅读；`robot_mode_description` 仍依赖未随本包发布的 `wheeltec_robot_urdf`、`mini_mec` 与 `mini_diff` URDF 资源，不可据此启动机器人或确定硬件参数。
 
 定位入口：
 

@@ -225,7 +225,9 @@ def _validate_consumer(consumer: Consumer, source_root: Path, prefix: str) -> li
     return errors
 
 
-def validate_code_resource_map(mapping: CodeResourceMap, source_root: Path) -> list[str]:
+def validate_code_resource_map(
+    mapping: CodeResourceMap, source_root: Path, textbook_root: Path | None = None
+) -> list[str]:
     """Return every contract violation for a mapping and checked-out source tree."""
     errors: list[str] = []
     if not re.fullmatch(r"[^/\s]+/[^/\s]+", mapping.source_repository):
@@ -239,6 +241,7 @@ def validate_code_resource_map(mapping: CodeResourceMap, source_root: Path) -> l
                 errors.append(f"mapping contains forbidden placeholder or mutable URL: {forbidden}")
 
     root = source_root.resolve()
+    content_root = (textbook_root or source_root).resolve()
     resource_ids: set[str] = set()
     for index, resource in enumerate(mapping.resources):
         prefix = f"resource[{index}]"
@@ -256,7 +259,7 @@ def validate_code_resource_map(mapping: CodeResourceMap, source_root: Path) -> l
             errors.append(f"{prefix}: at least one formal consumer is required")
         for consumer_index, consumer in enumerate(resource.consumers):
             consumer_prefix = f"{prefix}.consumers[{consumer_index}]"
-            errors.extend(_validate_consumer(consumer, root, consumer_prefix))
+            errors.extend(_validate_consumer(consumer, content_root, consumer_prefix))
             for file_path in consumer.files:
                 if _is_relative(file_path) and not (package_root / file_path).is_file():
                     errors.append(f"{consumer_prefix}: source file does not exist: {file_path}")
@@ -288,7 +291,7 @@ def validate_code_resource_map(mapping: CodeResourceMap, source_root: Path) -> l
         if evidence and (not _is_relative(evidence) or not evidence.startswith("docs/superpowers/audits/")):
             errors.append(f"{prefix}: evidence_path must be under docs/superpowers/audits/")
         elif evidence:
-            evidence_file = root / evidence
+            evidence_file = content_root / evidence
             if not evidence_file.is_file() or evidence_file.stat().st_size == 0:
                 errors.append(f"{prefix}: evidence_path must be an existing non-empty file: {evidence}")
     return errors
