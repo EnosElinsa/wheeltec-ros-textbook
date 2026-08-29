@@ -172,8 +172,6 @@ SYSTEM/sys/sys.c
 SYSTEM/sys/sys.h
 SYSTEM/usart/usart.c
 SYSTEM/usart/usart.h
-USER/JLinkSettings.ini
-USER/WHEELTEC.uvoptx
 USER/WHEELTEC.uvprojx
 USER/main.c
 USER/stm32f4xx.h
@@ -182,4 +180,3 @@ USER/stm32f4xx_it.c
 USER/stm32f4xx_it.h
 USER/system_stm32f4xx.c
 USER/system_stm32f4xx.h
-keilkilll.bat
