@@ -51,7 +51,7 @@ ROS 2 视觉跟随、巡线、KCF、AR 标签和 Web 视频节点。具体接口
 
 
 !!! note "教材代码资源"
-    本节使用 `applications/kcf-tracker/wheeltec_robot_kcf_model` 中的 `package.xml`、`launch/kcf_tracker.launch.py`、`wheeltec_robot_kcf_model/kcf_tracker_node.py` 和 `wheeltec_robot_kcf_model/pid_controller.py`。源码固定在 [667b1ffc](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/667b1ffceb4354c19ef8f0e94969fcd25cbb5d6b/applications/kcf-tracker/wheeltec_robot_kcf_model)。验收：能定位 KCF 节点入口；边界：依赖相机和初始跟踪框，未提供 YOLO 模型资产。
+    本节使用 `applications/kcf-tracker/wheeltec_robot_kcf_model` 中的 `package.xml`、`launch/kcf_tracker.launch.py`、`wheeltec_robot_kcf_model/kcf_tracker_node.py` 和 `wheeltec_robot_kcf_model/pid_controller.py`。源码固定在 [667b1ffc](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/9bcc786a6eb7bc3734205952f6ae114581c72a23/applications/kcf-tracker/wheeltec_robot_kcf_model)。验收：能定位 KCF 节点入口；边界：依赖相机和初始跟踪框，未提供 YOLO 模型资产。
 
 ## 章节导航
 

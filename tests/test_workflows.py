@@ -8,10 +8,11 @@ from pathlib import Path
 
 import yaml
 import sys
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
-SOURCE_REVISION = "667b1ffceb4354c19ef8f0e94969fcd25cbb5d6b"
+SOURCE_REVISION = "9bcc786a6eb7bc3734205952f6ae114581c72a23"
 
 
 class WorkflowContractTests(unittest.TestCase):
@@ -37,6 +38,9 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("examples/ros2/pubsub/cpp", examples)
         self.assertIn("examples/ros2/pubsub/python", examples)
         self.assertIn("separate", validation.lower())
+        self.assertIn('"metadata/code-resources.yml"', examples)
+        for workflow in (examples, validation):
+            self.assertLess(workflow.index("pip install"), workflow.index("import yaml"))
 
     def test_clone_source_revision_uses_an_isolated_destination_and_pinned_commit(self) -> None:
         from validate_code_resources import clone_source_revision
@@ -59,6 +63,26 @@ class WorkflowContractTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 clone_source_revision(str(origin), "main", Path(temp_dir) / "bad")
 
+    def test_clone_failure_removes_only_the_partial_explicit_destination(self) -> None:
+        from validate_code_resources import clone_source_revision
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            destination = root / "partial-clone"
+            sibling = root / "keep.txt"
+            sibling.write_text("keep", encoding="utf-8")
+
+            def fail_clone(*args, **kwargs):
+                destination.mkdir()
+                (destination / "partial").write_text("partial", encoding="utf-8")
+                raise subprocess.CalledProcessError(1, args[0])
+
+            with patch("validate_code_resources.subprocess.run", side_effect=fail_clone):
+                with self.assertRaises(subprocess.CalledProcessError):
+                    clone_source_revision("owner/repository", SOURCE_REVISION, destination)
+            self.assertFalse(destination.exists())
+            self.assertEqual(sibling.read_text(encoding="utf-8"), "keep")
+
     def test_run_code_resource_validation_is_read_only_and_reports_errors(self) -> None:
         from validate_code_resources import run_code_resource_validation
 
@@ -67,3 +91,15 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertEqual(run_code_resource_validation(ROOT, source), 0)
         after = subprocess.check_output(["git", "-C", str(source), "status", "--porcelain"], text=True)
         self.assertEqual(before, after)
+
+    def test_public_source_integrity_rejects_process_roots_and_non_code_top_level_dirs(self) -> None:
+        from validate_code_resources import validate_public_source_tree
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            source = Path(temp_dir)
+            (source / "ros2").mkdir()
+            (source / "tests").mkdir()
+            self.assertTrue(any("tests" in error for error in validate_public_source_tree(source)))
+            (source / "tests").rmdir()
+            (source / "docs").mkdir()
+            self.assertTrue(any("docs" in error for error in validate_public_source_tree(source)))

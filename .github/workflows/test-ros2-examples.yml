@@ -3,10 +3,12 @@ name: Test ROS 2 examples
 on:
   push:
     paths:
+      - "metadata/code-resources.yml"
       - "docs/04-ros2-development/**"
       - ".github/workflows/test-ros2-examples.yml"
   pull_request:
     paths:
+      - "metadata/code-resources.yml"
       - "docs/04-ros2-development/**"
       - ".github/workflows/test-ros2-examples.yml"
   workflow_dispatch:
@@ -24,6 +26,9 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
+
+      - name: Install mapping parser
+        run: python -m pip install --disable-pip-version-check pyyaml
 
       - name: Fetch textbook code repository
         run: |

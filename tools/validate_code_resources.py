@@ -58,6 +58,8 @@ CONSUMER_KEYS = {"page", "anchor", "files", "file_manifest", "role", "mode", "co
 DEPENDENCY_KEYS = {"kind", "path", "provider", "verification"}
 VERIFICATION_KEYS = {"level", "source_commit", "environment", "command", "result", "evidence_path", "verified_at"}
 COMPATIBILITY_KEYS = {"ros_distribution", "platform", "hardware"}
+APPROVED_SOURCE_ROOTS = {"applications", "chassis", "examples", "platform", "r680", "ros1", "ros2", "stm32"}
+FORBIDDEN_SOURCE_ROOTS = {"docs", "tools", "catalog", "config", "tests", "archives", "releases", "release"}
 
 
 @dataclass
@@ -229,7 +231,12 @@ def clone_source_revision(repository: str, revision: str, destination: Path) -> 
     if destination.exists():
         raise ValueError(f"clone destination already exists: {destination}")
     url = repository if "://" in repository or Path(repository).exists() else f"https://github.com/{repository}.git"
-    subprocess.run(["git", "clone", "--no-checkout", url, str(destination)], check=True)
+    try:
+        subprocess.run(["git", "clone", "--no-checkout", url, str(destination)], check=True)
+    except Exception:
+        if destination.is_dir():
+            shutil.rmtree(destination, ignore_errors=True)
+        raise
     try:
         subprocess.run(["git", "-C", str(destination), "checkout", "--detach", revision], check=True)
     except Exception:
@@ -237,11 +244,44 @@ def clone_source_revision(repository: str, revision: str, destination: Path) -> 
         raise
 
 
+def validate_public_source_tree(source_root: Path) -> list[str]:
+    """Ensure a checked-out public source tree contains code roots only."""
+    root = Path(source_root)
+    errors: list[str] = []
+    if not root.is_dir():
+        return [f"source root does not exist: {root}"]
+    git_dir = root / ".git"
+    if git_dir.exists():
+        try:
+            entries = subprocess.check_output(
+                ["git", "-C", str(root), "ls-tree", "--name-only", "HEAD"], text=True
+            ).splitlines()
+        except subprocess.CalledProcessError as error:
+            return [f"cannot inspect source tree: {error}"]
+    else:
+        entries = [entry.name for entry in root.iterdir()]
+    for name in entries:
+        if name == ".git" or name.startswith("."):
+            continue
+        entry = root / name
+        if not entry.is_dir() or name not in APPROVED_SOURCE_ROOTS:
+            if name in FORBIDDEN_SOURCE_ROOTS:
+                errors.append(f"forbidden public source root: {name}")
+            else:
+                errors.append(f"unapproved public source root: {name}")
+    return errors
+
+
 def run_code_resource_validation(textbook_root: Path, source_root: Path) -> int:
     """Run mapping and Appendix D checks without writing to the source checkout."""
     textbook_root = Path(textbook_root).resolve()
     source_root = Path(source_root).resolve()
     try:
+        integrity_errors = validate_public_source_tree(source_root)
+        if integrity_errors:
+            for error in integrity_errors:
+                print(error)
+            return 1
         mapping = load_code_resources(textbook_root / "metadata/code-resources.yml")
         errors = validate_code_resource_map(mapping, source_root, textbook_root)
         appendix = (textbook_root / "docs/appendices/d-public-source-reference.md").read_text(encoding="utf-8")
