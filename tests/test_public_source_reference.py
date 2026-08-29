@@ -11,13 +11,20 @@ ROOT = Path(__file__).resolve().parents[1]
 class PublicSourceReferenceTests(unittest.TestCase):
     def test_appendix_lists_direct_code_entries(self) -> None:
         text = (ROOT / "docs/appendices/d-public-source-reference.md").read_text(encoding="utf-8")
-        ids = set(re.findall(r"(?:G|R)-archive-\d{4}", text))
-        self.assertEqual(len(ids), 200)
-        self.assertEqual(text.count("https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/main/packages/"), 200)
+        links = re.findall(
+            r"https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/main/([^ )]+)",
+            text,
+        )
+        package_links = [link for link in links if not link.startswith("examples/")]
+        self.assertEqual(len(package_links), 200)
+        self.assertEqual(len(set(package_links)), 200)
         self.assertNotIn("catalog/", text)
         self.assertNotIn("release-manifest", text)
         self.assertNotIn("SHA-256", text)
         self.assertNotIn("下载", text)
+        self.assertNotIn("G-archive-", text)
+        self.assertNotIn("R-archive-", text)
+        self.assertTrue(all(f"/tree/main/{root}/" in text for root in ("applications", "chassis", "platform", "r680", "ros1", "ros2", "stm32")))
 
     def test_appendix_is_published_and_linked_from_entry_pages(self) -> None:
         appendix = ROOT / "docs/appendices/d-public-source-reference.md"
