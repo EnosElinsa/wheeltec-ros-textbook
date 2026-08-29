@@ -18,7 +18,7 @@ class PublicSourceReferenceTests(unittest.TestCase):
     def test_production_code_resource_map_pins_curated_source_contract(self) -> None:
         mapping = validate_code_resources.load_code_resources(ROOT / "metadata/code-resources.yml")
         self.assertEqual(mapping.source_revision, APPROVED_SOURCE_BASELINE)
-        self.assertEqual(len(mapping.resources), 11)
+        self.assertEqual(len(mapping.resources), 12)
         self.assertEqual(validate_code_resources.validate_code_resource_map(mapping, SOURCE_ROOT, ROOT), [])
 
     def test_bringup_consumer_block_uses_the_mapping_anchor_and_revision(self) -> None:
