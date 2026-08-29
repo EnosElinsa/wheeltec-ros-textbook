@@ -8,7 +8,7 @@ status: complete
 
 沿着 `cmd_vel` 到电机、再从编码器/IMU 回到 ROS 2 的完整链路设置检查点，定位通信和单位转换问题。
 
-**联调**是把已经分别检查过的 ROS 2 程序、串口链路和控制板固件连接起来，逐段确认数据能否到达下一层。调试时一次只跨过一个接口，这样才能分清故障来自 ROS 节点、协议转换、物理通信还是固件执行。
+联调是把已经分别检查过的 ROS 2 程序、串口链路和控制板固件连接起来，逐段确认数据能否到达下一层。调试时一次只跨过一个接口，这样才能分清故障来自 ROS 节点、协议转换、物理通信还是固件执行。
 
 ## 41.2 适用范围
 
@@ -30,7 +30,7 @@ status: complete
 
 ### 从 `cmd_vel` 追到 STM32，再回到 ROS 2
 
-底盘节点通常订阅 `geometry_msgs/msg/Twist` 类型的 `cmd_vel`，把线速度和角速度编码为串口下行帧。这里的**帧**是一段按协议排列的连续字节，通常包含帧头、数据字段、校验值和帧尾。STM32 返回编码器、IMU 和电压等数据后，节点解析并发布里程计、原始 IMU 和供电电压。可以按下列链路定位：
+底盘节点通常订阅 `geometry_msgs/msg/Twist` 类型的 `cmd_vel`，把线速度和角速度编码为串口下行帧。这里的帧是一段按协议排列的连续字节，通常包含帧头、数据字段、校验值和帧尾。STM32 返回编码器、IMU 和电压等数据后，节点解析并发布里程计、原始 IMU 和供电电压。可以按下列链路定位：
 
 ```text
 /cmd_vel
@@ -55,7 +55,7 @@ ros2 topic echo /PowerVoltage --once
 ros2 run tf2_ros tf2_echo odom_combined base_footprint
 ```
 
-将 `/odom` 的 `header.frame_id`、`child_frame_id` 与节点参数比较；将 IMU 的 `header.frame_id` 与 TF 树比较；同时记录 `ros2 topic hz` 的频率。命名空间会给一组接口增加名称前缀，**重映射（Remapping）**则在启动时把原接口名替换为另一个名称。因此，实际话题名应以 `ros2 node info` 的运行结果为准。
+将 `/odom` 的 `header.frame_id`、`child_frame_id` 与节点参数比较；将 IMU 的 `header.frame_id` 与 TF 树比较；同时记录 `ros2 topic hz` 的频率。命名空间会给一组接口增加名称前缀，重映射（Remapping）则在启动时把原接口名替换为另一个名称。因此，实际话题名应以 `ros2 node info` 的运行结果为准。
 
 这些命令仍不能单独证明波特率已经生效、节点确实打开了预期设备或 STM32 已正确执行帧。硬件证据至少应包括：节点打开串口的日志或设备句柄、在电机失能/架空条件下观察到零速下行帧，以及 STM32 返回帧被节点接收并转成预期话题。缺少其中任一项，只能报告 ROS 图上的静态或运行时接口证据。
 
@@ -81,4 +81,4 @@ ros2 run tf2_ros tf2_echo odom_combined base_footprint
 
 ## 章节导航
 
-[上一章：修改、编译、烧录与回滚固件](40-build-flash-rollback.md) · [返回本篇](index.md) · [下一章：仿真与 Gazebo](../08-advanced-applications/42-gazebo-simulation.md)
+[上一章：修改、编译、烧录与回滚固件](40-build-flash-rollback.md) · [返回本篇](index.md) · [下一章：机器人仿真](../08-advanced-applications/42-gazebo-simulation.md)

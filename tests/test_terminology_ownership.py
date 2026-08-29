@@ -115,3 +115,33 @@ def test_scoped_audit_defers_unselected_canonical_validation(tmp_path: Path) -> 
     issues = audit_rules(tmp_path, load_rules(csv_path), paths=[selected])
     categories = {issue.category for issue in issues}
     assert categories == {"duplicate full form"}
+
+
+def test_can_is_defined_once_before_task_use() -> None:
+    rules = load_rules(ROOT / "metadata/terminology.csv")
+    can = next(rule for rule in rules if rule.abbreviation == "CAN")
+    assert can.canonical_path == (
+        "docs/02-hardware-basics/07-electrical-interfaces-communication.md"
+    )
+    assert audit_rules(ROOT, rules) == []
+
+
+def test_firmware_full_form_is_not_reintroduced() -> None:
+    full = "固件（Firmware）"
+    occurrences: list[Path] = []
+    for path in find_public_pages(ROOT):
+        if path == (ROOT / "docs/glossary.md").resolve():
+            continue
+        occurrences.extend([path] * path.read_text(encoding="utf-8").count(full))
+    assert occurrences == [
+        (ROOT / "docs/02-hardware-basics/06-controller-and-firmware.md").resolve()
+    ]
+
+
+def test_public_reader_pages_have_no_inline_bold() -> None:
+    offenders = [
+        path.relative_to(ROOT).as_posix()
+        for path in find_public_pages(ROOT)
+        if "**" in path.read_text(encoding="utf-8")
+    ]
+    assert offenders == []

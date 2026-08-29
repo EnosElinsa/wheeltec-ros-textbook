@@ -8,11 +8,11 @@ status: complete
 
 把语音、视觉或聊天入口接到机器人上层决策，同时保留确定性的指令校验、速度限制和停止链。
 
-**人工智能（Artificial Intelligence, AI）**在本章用于理解语音、图像或文字输入，并生成高层任务意图。**多模态大模型（Multimodal Large Language Model）**可以同时处理多种输入形式。模型输出存在不确定性，所以它只能进入受控任务接口，不能越过速度限制、通信超时和急停。
+人工智能（Artificial Intelligence, AI）在本章用于理解语音、图像或文字输入，并生成高层任务意图。多模态大模型（Multimodal Large Language Model）可以同时处理多种输入形式。模型输出存在不确定性，所以它只能进入受控任务接口，不能越过速度限制、通信超时和急停。
 
 ## 45.2 适用范围
 
-ROS 2 **文本转语音（Text-to-Speech, TTS）**、多模态大模型交互和 OpenClaw 应用。**应用程序编程接口（Application Programming Interface, API）**是程序之间约定的调用入口；QQBot 等网络服务也只作为可选入口。在本章的控制链中，OpenClaw 位于上层，负责把聊天或工具调用接到受限的机器人任务接口。
+ROS 2 文本转语音（Text-to-Speech, TTS）、多模态大模型交互和 OpenClaw 应用。应用程序编程接口（Application Programming Interface, API）是程序之间约定的调用入口；QQBot 等网络服务也只作为可选入口。在本章的控制链中，OpenClaw 位于上层，负责把聊天或工具调用接到受限的机器人任务接口。
 
 ## 45.3 操作前检查
 
@@ -20,7 +20,7 @@ ROS 2 **文本转语音（Text-to-Speech, TTS）**、多模态大模型交互和
 - API 凭据不写入源码、日志或教材。
 - 运动命令采用白名单，急停不经过云服务。
 
-## 45.4 工作原理
+## 45.4 工作原理 {#ai-interfaces}
 
 AI 可以把“去实验室门口”这样的自然语言转换成导航目标。连续轮速仍由确定的 ROS 状态机、Nav2 或固定控制器计算。模型输出先经过结构检查、动作白名单和参数范围校验，随后才交给这些执行模块。
 

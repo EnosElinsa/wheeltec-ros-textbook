@@ -364,6 +364,7 @@ def check_all(root: Path, selected_paths: list[Path] | None = None) -> list[Issu
         if row["status"] == "complete" and (root / row["path"]).is_file()
     ]
     issues.extend(check_duplicate_prose(complete_paths))
+    issues.extend(check_terminology(root, selected_paths))
     return issues
 
 

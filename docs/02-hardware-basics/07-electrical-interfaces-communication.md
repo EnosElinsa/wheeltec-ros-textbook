@@ -20,7 +20,7 @@ status: complete
 
 通用异步收发传输器（Universal Asynchronous Receiver-Transmitter, UART）是 MCU 中逐位收发串行数据的外设。通用同步/异步收发传输器（Universal Synchronous/Asynchronous Receiver-Transmitter, USART）在此基础上还可以使用时钟线进行同步通信。波特率（Baud Rate）描述每秒传送的符号数；数据位、停止位、校验方式和流控也必须两端一致。
 
-电脑常通过 USB-TTL 模块连接 UART/USART。晶体管—晶体管逻辑（Transistor-Transistor Logic, TTL）只描述信号电平，不能与 RS-232 的正负电压直接等同。接线通常是 TX 接对端 RX、RX 接对端 TX，并共地；VCC 是否连接要按当前板卡供电方案确认。
+电脑常通过 USB 转串口模块连接 UART/USART。晶体管—晶体管逻辑（Transistor-Transistor Logic, TTL）只描述信号电平，不能与 RS-232 的正负电压直接等同。接线通常是 TX 接对端 RX、RX 接对端 TX，并共地；VCC 是否连接要按当前板卡供电方案确认。
 
 ## 7.4 CAN 总线 {#can}
 

@@ -53,4 +53,4 @@ ROS 2 多点导航、路径跟踪和快速扩展随机树（Rapidly-Exploring Ra
 
 ## 章节导航
 
-[上一章：Nav2 导航](32-nav2-navigation.md) · [返回本篇](index.md) · [下一章：摄像头、OpenCV 与图像话题](34-camera-opencv-images.md)
+[上一章：Nav2 导航](32-nav2-navigation.md) · [返回本篇](index.md) · [下一章：摄像头与图像话题](34-camera-opencv-images.md)

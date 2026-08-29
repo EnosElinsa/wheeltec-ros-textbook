@@ -89,3 +89,5 @@ base_link,base_link,,docs/05-ros2-development/26-tf-urdf-rviz.md,model-tf-rviz,b
 odom,odom,,docs/02-hardware-basics/09-chassis-motion-control.md,encoder-odometry,odom,odom
 map,map,,docs/06-sensors-navigation/31-map-localization-tf.md,localization-tf,map,map
 TF,Transform Framework,,docs/05-ros2-development/26-tf-urdf-rviz.md,model-tf-rviz,TF,TF
+人工智能,Artificial Intelligence,AI,docs/08-advanced-applications/45-voice-ai-openclaw.md,ai-interfaces,"人工智能（Artificial Intelligence, AI）",AI
+文本转语音,Text-to-Speech,TTS,docs/08-advanced-applications/45-voice-ai-openclaw.md,ai-interfaces,"文本转语音（Text-to-Speech, TTS）",TTS

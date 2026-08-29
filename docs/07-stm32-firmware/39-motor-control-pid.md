@@ -8,7 +8,7 @@ status: complete
 
 从编码器计数得到轮速，理解增量 PI 怎样更新 PWM，并根据目标值、测量值和输出曲线调整参数。仅凭电机声音无法判断控制误差和稳定性。
 
-**比例—积分—微分控制（Proportional-Integral-Derivative Control, PID）**根据目标值与测量值之间的误差计算控制输出。底盘速度环常使用其中的比例和积分两项，简称 PI 控制；微分项并非每个速度环都需要。本章观察的是“目标轮速 → 误差 → PWM → 实际轮速”这条闭环。
+比例—积分—微分控制（Proportional-Integral-Derivative Control, PID）根据目标值与测量值之间的误差计算控制输出。底盘速度环常使用其中的比例和积分两项，简称 PI 控制；微分项并非每个速度环都需要。本章观察的是“目标轮速 → 误差 → PWM → 实际轮速”这条闭环。
 
 !!! example "本节代码：电机控制"
     仓库目录：[`stm32/control/motor/stm32f4-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/control/motor/stm32f4-stdperiph)。完整文件集见 `metadata/code-resource-manifests/motor.txt`。验收：能定位电机映射。边界：无编译器与实机证据。

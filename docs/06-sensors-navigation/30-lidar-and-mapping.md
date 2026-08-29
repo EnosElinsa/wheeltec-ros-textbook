@@ -21,7 +21,7 @@ status: complete
 
 ## 30.4 工作原理 {#lidar-slam}
 
-激光雷达（Light Detection and Ranging, LiDAR）按角度连续测量距离，发布的二维扫描让机器人能看到墙面和障碍物。同步定位与建图（Simultaneous Localization and Mapping, SLAM）把这些扫描与机器人运动估计配准，一边估计自己在哪，一边逐步生成地图。它依赖雷达数据、里程计和 TF 坐标关系；后续第 31 章会使用这张地图做定位，第 32 章的 Nav2 再根据定位结果规划路径。
+激光雷达（Light Detection and Ranging, LiDAR）按角度连续测量距离，发布的二维扫描让机器人能看到墙面和障碍物。同步定位与建图（Simultaneous Localization and Mapping, SLAM）把这些扫描与机器人运动估计配准，一边估计自己在哪，一边逐步生成地图。它依赖雷达数据、里程计和 TF 坐标关系；后续第 31 章会使用这张地图做定位，第 32 章的导航框架再根据定位结果规划路径。
 
 Gmapping 依赖粒子滤波和较可靠里程计；slam_toolbox 是 ROS 2 常用方案，支持在线/离线与图优化；Cartographer 使用扫描匹配和图优化，对配置与算力更敏感。
 
@@ -33,7 +33,7 @@ Gmapping 依赖粒子滤波和较可靠里程计；slam_toolbox 是 ROS 2 常用
 2. 选择一个建图 Launch，只运行一套 SLAM。
 3. 低速沿场地边缘行驶，避免急转和长时间原地打滑。
 4. 回到已走过区域，观察墙线能否重合，判断闭环和里程计质量。
-5. 建图结束后停止运动，再用当前算法或 Nav2 提供的保存工具保存地图。
+5. 建图结束后停止运动，再用当前算法或导航框架提供的保存工具保存地图。
 6. 记录 YAML/PGM 或序列化地图文件、分辨率、原点、算法和参数版本。
 
 若使用历史 ROS 1 Bag 做离线诊断，先完成 [ROS 1 Bag 离线传感器诊断](../appendices/a-ros1-maintenance.md#ros1-bag-offline-diagnostics)，确认扫描类型、frame、TF、里程计和时间条件。只有扫描而没有 TF/里程计的 Bag 不能据此宣称建图条件完整。

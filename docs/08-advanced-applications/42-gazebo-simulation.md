@@ -8,7 +8,7 @@ status: complete
 
 用仿真验证 ROS 接口、Launch、TF、导航参数和算法流程，同时明确哪些结论必须回到实机重测。
 
-**仿真（Simulation）**用软件模型代替真实机器人和场地。Gazebo Simulation Platform（Gazebo）是机器人仿真平台，可以计算刚体运动、碰撞和传感器数据，并通过插件与 ROS 2 节点交换消息。仿真适合提前检查软件链路，但其结论受模型精度限制。
+仿真（Simulation）用软件模型代替真实机器人和场地。Gazebo Simulation Platform（Gazebo）是机器人仿真平台，可以计算刚体运动、碰撞和传感器数据，并通过插件与 ROS 2 节点交换消息。仿真适合提前检查软件链路，但其结论受模型精度限制。
 
 ## 42.2 适用范围
 
@@ -20,9 +20,9 @@ status: complete
 - 不与实机底盘节点共用同一命名空间和速度话题。
 - 记录模型轮径、质量、惯量、摩擦和传感器参数。
 
-## 42.4 工作原理
+## 42.4 工作原理 {#simulation-basics}
 
-Gazebo 中的**世界（World）**描述地面、墙体和障碍物，机器人模型描述连杆、关节、质量、惯量与碰撞形状，**插件（Plugin）**把轮子或虚拟传感器接到 ROS 2 接口。模型可以近似底盘和传感器，却不会自动复现 USB 掉线、电池压降、编码器噪声、轮胎形变和现场光照。
+Gazebo 中的世界（World）描述地面、墙体和障碍物，机器人模型描述连杆、关节、质量、惯量与碰撞形状，插件（Plugin）把轮子或虚拟传感器接到 ROS 2 接口。模型可以近似底盘和传感器，却不会自动复现 USB 掉线、电池压降、编码器噪声、轮胎形变和现场光照。
 
 ## 42.5 操作步骤
 
@@ -55,4 +55,4 @@ Gazebo 中的**世界（World）**描述地面、墙体和障碍物，机器人�
 
 ## 章节导航
 
-[上一章：ROS 2 与 STM32 联调](../07-stm32-firmware/41-ros2-stm32-integration.md) · [返回本篇](index.md) · [下一章：多机编队与 Qt 控制界面](43-multi-robot-and-qt.md)
+[上一章：ROS 2 与 STM32 联调](../07-stm32-firmware/41-ros2-stm32-integration.md) · [返回本篇](index.md) · [下一章：多机编队与控制界面](43-multi-robot-and-qt.md)

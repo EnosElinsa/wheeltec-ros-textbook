@@ -104,9 +104,9 @@ ros2 topic echo /course/chatter --once
 |---|---|
 | 节点列表为空 | ROS 环境、Domain ID、DDS 和网络 |
 | 话题存在但收不到 | QoS、命名空间、类型和发布频率 |
-| 同名节点重复 | 旧进程、重复 Launch 或命名空间缺失 |
+| 同名节点重复 | 旧进程、重复启动或命名空间缺失 |
 | 动作无法取消 | 动作服务器状态、客户端实现和通信链 |
 
 ## 章节导航
 
-[上一章：工作空间、功能包与构建](23-workspace-packages-build.md) · [返回本篇](index.md) · [下一章：Launch、参数与运行配置](25-launch-and-parameters.md)
+[上一章：工作空间、功能包与构建](23-workspace-packages-build.md) · [返回本篇](index.md) · [下一章：启动与运行配置](25-launch-and-parameters.md)

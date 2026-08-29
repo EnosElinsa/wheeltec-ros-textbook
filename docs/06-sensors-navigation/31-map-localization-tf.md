@@ -56,4 +56,4 @@ status: complete
 
 ## 章节导航
 
-[上一章：激光雷达与二维建图](30-lidar-and-mapping.md) · [返回本篇](index.md) · [下一章：Nav2 导航](32-nav2-navigation.md)
+[上一章：激光雷达与二维建图](30-lidar-and-mapping.md) · [返回本篇](index.md) · [下一章：二维导航](32-nav2-navigation.md)

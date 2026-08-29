@@ -29,7 +29,7 @@ $$
 
 ## 9.4 电机驱动器与 PWM {#motor-driver-pwm}
 
-电机驱动器（Motor Driver）根据控制板的方向、使能和 PWM 信号调节电机电流。脉宽调制（Pulse-Width Modulation, PWM）在固定周期内改变有效电平所占比例，控制平均驱动强度；微控制器引脚输出的 PWM 不能直接承受电机功率。
+电机驱动器（Motor Driver）根据控制板的方向、使能和周期调制信号调节电机电流。脉宽调制（Pulse-Width Modulation, PWM）在固定周期内改变有效电平所占比例，控制平均驱动强度；微控制器引脚输出的 PWM 不能直接承受电机功率。
 
 ## 9.5 PI/PID 闭环控制 {#pi-pid}
 

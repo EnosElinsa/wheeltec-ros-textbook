@@ -8,7 +8,7 @@ status: complete
 
 把控制板外设初始化与实机接口一一对应，确认车型选择如何改变电机数、运动学和转向结构。
 
-**通用异步收发传输器（Universal Asynchronous Receiver-Transmitter, UART）**是微控制器中的串行通信外设。它按约定的波特率和帧格式逐位收发数据，常用于控制板调试或与 ROS 主控交换命令。日常所说的“串口”通常指 UART 外设及其电气接口、线缆和软件配置组成的整条链路。
+UART是微控制器中的串行通信外设。它按约定的波特率和帧格式逐位收发数据，常用于控制板调试或与 ROS 主控交换命令。日常所说的“串口”通常指 UART 外设及其电气接口、线缆和软件配置组成的整条链路。
 
 !!! example "本节代码：UART 实验"
     仓库目录：[`stm32/labs/uart/stm32f103-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/labs/uart/stm32f103-stdperiph)。完整文件集见 `metadata/code-resource-manifests/uart.txt`。验收：能定位串口初始化。边界：仅静态核对。
@@ -17,7 +17,7 @@ status: complete
 
 C30D、C50 系列等资料覆盖的底盘控制板。引脚和电位器位置按板卡版本核对。
 
-**脉宽调制（Pulse-Width Modulation, PWM）**在固定周期内改变有效电平所占时间。控制板用它表达电机驱动强度，也可以控制舵机或灯光；微控制器引脚输出的 PWM 信号本身不能直接为电机供电。
+PWM在固定周期内改变有效电平所占时间。控制板用它表达电机驱动强度，也可以控制舵机或灯光；微控制器引脚输出的 PWM 信号本身不能直接为电机供电。
 
 !!! example "本节代码：PWM 实验"
     仓库目录：[`stm32/labs/pwm/stm32f103-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/labs/pwm/stm32f103-stdperiph)。完整文件集见 `metadata/code-resource-manifests/pwm.txt`。验收：能定位定时器与占空比。边界：仅静态核对。
@@ -33,7 +33,7 @@ C30D、C50 系列等资料覆盖的底盘控制板。引脚和电位器位置按
 
 ## 38.4 工作原理
 
-初始化把芯片引脚和内部外设配置成软件可用资源。**通用输入输出（General-Purpose Input/Output, GPIO）**引脚读取开关量或输出方向、使能信号；定时器产生 PWM，也能读取编码器；UART 与主控通信；CAN 连接扩展总线；**内部集成电路总线（Inter-Integrated Circuit, I²C）**或**串行外设接口（Serial Peripheral Interface, SPI）**常用于读取 IMU。车型选择进一步决定轮号、运动学、转向、显示和自检阈值。
+初始化把芯片引脚和内部外设配置成软件可用资源。GPIO引脚读取开关量或输出方向、使能信号；定时器产生 PWM，也能读取编码器；UART 与主控通信；CAN 连接扩展总线；I²C或SPI常用于读取 IMU。车型选择进一步决定轮号、运动学、转向、显示和自检阈值。
 
 R680 C50C 的 TYPE 可由车型选择电位器决定，并在重新上电后生效。错误 TYPE 会让同一组接口按错误底盘解释。
 
@@ -43,9 +43,9 @@ R680 C50C 的 TYPE 可由车型选择电位器决定，并在重新上电后生�
 
 #### 目标与基线
 
-目标是把串口问题拆成时钟、GPIO、帧格式、中断接收和应用处理五层。基线工程使用**通用同步/异步收发传输器（Universal Synchronous/Asynchronous Receiver-Transmitter, USART）**的第 1 组外设 USART1：`PA9` 为发送端 TX，`PA10` 为接收端 RX，配置为 9600 bit/s、8 数据位、1 停止位、无校验、无硬件流控；接收中断读取一个字节后原样发回。
+目标是把串口问题拆成时钟、GPIO、帧格式、中断接收和应用处理五层。基线工程使用USART的第 1 组外设 USART1：`PA9` 为发送端 TX，`PA10` 为接收端 RX，配置为 9600 bit/s、8 数据位、1 停止位、无校验、无硬件流控；接收中断读取一个字节后原样发回。
 
-USB-TTL 串口模块把电脑的 USB 数据转换为微控制器可用的晶体管—晶体管逻辑（Transistor-Transistor Logic, TTL）电平串口信号。它只负责信号转换，不会自动修正接反的 TX/RX、错误波特率或不兼容电压。
+USB-TTL 串口模块把电脑的 USB 数据转换为微控制器可用的TTL电平串口信号。它只负责信号转换，不会自动修正接反的 TX/RX、错误波特率或不兼容电压。
 
 #### 操作前检查
 
