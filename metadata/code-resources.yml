@@ -27,7 +27,7 @@ resources:
   - id: stm32.labs.pwm
     repository_path: stm32/labs/pwm/stm32f103-stdperiph
     consumers:
-      - {page: docs/06-stm32-firmware/34-hardware-init-model-interfaces.md, anchor: stm32-pwm-lab, files: [USER/UART1.uvprojx, USER/main.c, SYSTEM/usart/usart.c, SYSTEM/usart/usart.h], role: PWM 实验, mode: static_read, commands: [], acceptance: [能定位定时器与占空比], boundaries: [仅静态核对]}
+      - {page: docs/06-stm32-firmware/34-hardware-init-model-interfaces.md, anchor: stm32-pwm-lab, files: [USER/PWM.uvprojx, USER/main.c, SYSTEM/usart/usart.c, SYSTEM/usart/usart.h], role: PWM 实验, mode: static_read, commands: [], acceptance: [能定位定时器与占空比], boundaries: [仅静态核对]}
     compatibility: {ros_distribution: none, platform: stm32f103, hardware: requires-confirmation}
     dependencies: [{kind: toolchain, path: CMSIS/StdPeriph, provider: project, verification: declared}]
     verification: {level: static_reviewed, source_commit: 93465bec26d410bab6cb4d6679fa9e4724764c64, environment: source-tree, command: static review, result: passed, evidence_path: docs/superpowers/audits/task-5-static.txt, verified_at: '2026-08-29'}
