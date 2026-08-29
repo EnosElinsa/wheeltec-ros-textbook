@@ -26,39 +26,58 @@ status: complete
 
 Docker 还多一层边界：宿主机看到的文件、设备和网络，只有显式挂载或传入容器后才能被 ROS 使用。
 
-## 18.5 操作步骤
+## 18.5 源码包确认 {#source-package-selection}
 
-在实际运行 ROS 的终端执行：
+这份导读用于回答一个具体问题：执行一条 Launch 命令后，ROS 2 怎样从启动文件走到底盘串口节点、参数、话题、传感器和 TF？读者应在自己的机器人工作空间中完成追踪，不要把本页出现的文件名当成所有版本都相同的固定清单。
 
-```bash
-cat /etc/os-release
-uname -m
-printenv ROS_DISTRO
-printenv ROS_VERSION
-which ros2
-```
+### 先确认正在查看哪一份包
 
-若使用 Docker，先确认容器：
+同一台主控可能同时保留系统安装、旧工作空间和当前工作空间中的同名包。先在已经加载机器人环境的终端执行：
 
 ```bash
-docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}'
+ros2 pkg prefix turn_on_wheeltec_robot
+ros2 pkg executables turn_on_wheeltec_robot
+ros2 pkg xml turn_on_wheeltec_robot
 ```
 
-进入容器后重新执行环境检查，不能用宿主机结果代替。
-
-查找工作空间：
+`ros2 pkg prefix` 指向的是安装结果，不一定是源码目录。再到已确认的工作空间中定位源码：
 
 ```bash
-find "$HOME" -maxdepth 3 -type d -name src 2>/dev/null
+cd <机器人工作空间>
+colcon list | rg '^turn_on_wheeltec_robot\s'
+find src -type f -path '*/turn_on_wheeltec_robot/package.xml' -print
 ```
 
-对候选工作空间记录 `src/build/install/log` 状态、源码日期和包名。当前终端的叠加顺序可从环境变量判断：
+如果安装前缀、`colcon list` 和准备修改的目录不能对应，先停止，不要继续编辑或构建。
+
+### 先判断源码是否完整
+
+一份可用于修改和重建的包，应能根据构建类型找到与其职责对应的文件；下面是核对方向，不是要求每个包都必须同时拥有所有目录：
+
+| 位置 | 职责 | 核对点 |
+|---|---|---|
+| `package.xml` | 包名、依赖、构建类型 | 是否仍有许可证或维护者占位；依赖是否与当前 ROS 发行版一致 |
+| `CMakeLists.txt` 或 `setup.py` | CMake/ament 或 Python 安装规则 | 实际生成哪些可执行文件；Launch、配置和资源是否被安装 |
+| `launch/`（若有） | 组合底盘、EKF、IMU、模型、雷达和相机 | 哪个是入口；它继续包含了哪些 Launch 文件 |
+| `config/`（若有） | EKF、IMU、相机等参数 | 参数文件是否真的被入口引用 |
+| `src/`、`include/` 或 Python 模块 | 串口收发、协议解析、里程计和 IMU 发布 | 节点订阅与发布哪些接口；单位在哪里转换 |
+| `msg/`（若有） | 包内自定义消息 | 是否还依赖另一个消息包 |
+| udev 脚本或规则（若有） | 固定串口设备别名 | 规则是否匹配当前 USB 芯片和序列号 |
+
+只有 `launch/` 或几个 `.cpp` 文件的快照可用于静态阅读，不能据此声称“源码可以重建”。`build/`、`install/`、`log/`、`.pyc` 和 `__pycache__/` 是构建产物或缓存，也不能替代源码。
+
+还要检查包外依赖：
 
 ```bash
-printenv AMENT_PREFIX_PATH | tr ':' '\n'
+cd <turn_on_wheeltec_robot 源码目录>
+rg -n 'find_package\(|<depend>|<build_depend>|<exec_depend>' CMakeLists.txt package.xml
+rg -n "get_package_share_directory\(|package='" launch
 ```
 
-最后按主控、ROS 发行版、控制板、底盘和传感器选择源码。无法从文件名确认时，查看包清单、README、提交信息或版本更新记录。
+常见依赖包括串口库、机器人自定义消息、`wheeltec_robot_urdf`、`robot_localization`、IMU 滤波器、雷达驱动和相机驱动。缺少这些包时，只能说明当前工作空间不自包含；源码包本身仍可能是完整的。是否能够重建，要回到工作空间根目录执行构建并记录结果。
+
+!!! note "代码资源边界"
+    本节只使用环境与包查询命令，不依赖仓库中的专用代码资源；具体启动链源码在第 21 章定位。
 
 ## 18.6 验收标准
 
@@ -68,7 +87,7 @@ printenv AMENT_PREFIX_PATH | tr ':' '\n'
 - 源码包与主控、ROS 发行版和硬件配置有可追溯依据。
 - Autoware、TROS 或其他工作空间不会无意叠加到普通机器人环境。
 
-需要继续追踪底盘包的入口、依赖和运行链时，按 [`turn_on_wheeltec_robot` 源码与启动链导读](turn-on-wheeltec-robot-source-walkthrough.md)从安装前缀反查到当前工作空间，不要根据目录名选择源码。
+需要继续追踪底盘包的入口、依赖和运行链时，按 [`turn_on_wheeltec_robot` 源码与启动链导读](21-launch-and-parameters.md#bringup-launch-chain)从安装前缀反查到当前工作空间，不要根据目录名选择源码。
 
 ## 18.7 故障排查
 
@@ -78,10 +97,6 @@ printenv AMENT_PREFIX_PATH | tr ':' '\n'
 | 同一个包解析到意外路径 | 检查 `AMENT_PREFIX_PATH` 和多个 `install/setup.bash` |
 | 宿主有设备、容器没有 | 检查设备映射、权限和容器启动参数 |
 | 源码目录名正确但依赖报错 | 核对发行版、架构和分支，不先强装随机版本依赖 |
-
-
-!!! note "教材代码资源"
-    本节使用的代码入口见[教材代码资源附录](../appendices/d-public-source-reference.md)。
 
 ## 章节导航
 

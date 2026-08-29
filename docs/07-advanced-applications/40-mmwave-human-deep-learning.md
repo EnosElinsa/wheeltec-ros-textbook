@@ -2,7 +2,7 @@
 status: complete
 ---
 
-# 40. 毫米波雷达、人体跟踪与深度学习
+# 40. 毫米波雷达、人体跟踪与深度学习 {#bodyreader-code-resource}
 
 ## 40.1 学习目标
 
@@ -48,8 +48,8 @@ status: complete
 | 推理卡顿 | 输入尺寸、硬件加速、模型版本和 CPU/GPU 占用 |
 
 
-!!! note "教材代码资源"
-    本节使用的代码入口见[教材代码资源附录](../appendices/d-public-source-reference.md)。
+!!! example "本章代码：人体骨架消息与跟随节点"
+    使用 `ros1/maintenance/bodyreader` 的 `package.xml`、`launch/bodyfollow.launch`、`src/bodydata_process.cpp`、`src/follower.cpp` 和 `msg/body.msg`。验收：能定位人体消息与跟随节点；边界：依赖 Astra/OpenNI 运行时和相机，当前只作静态阅读。
 
 ## 章节导航
 

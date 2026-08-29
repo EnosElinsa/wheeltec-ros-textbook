@@ -5,57 +5,47 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-LAB_PATH = "06-stm32-firmware/stm32-peripheral-labs.md"
-LAB_LINK = "stm32-peripheral-labs.md"
 
 
-class Stm32PeripheralLabTests(unittest.TestCase):
-    def test_lab_page_is_published_and_linked_from_related_chapters(self) -> None:
-        lab = ROOT / "docs" / LAB_PATH
-        self.assertTrue(lab.is_file())
-        self.assertIn(LAB_PATH, (ROOT / "mkdocs.yml").read_text(encoding="utf-8"))
+class Stm32PeripheralLabMigrationTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.architecture = (
+            ROOT / "docs/06-stm32-firmware/33-firmware-architecture-freertos.md"
+        ).read_text(encoding="utf-8")
+        self.labs = (
+            ROOT / "docs/06-stm32-firmware/34-hardware-init-model-interfaces.md"
+        ).read_text(encoding="utf-8")
+        self.control = (
+            ROOT / "docs/06-stm32-firmware/35-motor-control-pid.md"
+        ).read_text(encoding="utf-8")
 
-        related_pages = (
-            "docs/06-stm32-firmware/33-firmware-architecture-freertos.md",
-            "docs/06-stm32-firmware/34-hardware-init-model-interfaces.md",
-            "docs/06-stm32-firmware/35-motor-control-pid.md",
-        )
-        missing = [
-            path
-            for path in related_pages
-            if LAB_LINK not in (ROOT / path).read_text(encoding="utf-8")
-        ]
-        self.assertEqual(missing, [])
-
-    def test_each_lab_has_an_observation_and_stop_condition(self) -> None:
-        lab = ROOT / "docs" / LAB_PATH
-        self.assertTrue(lab.is_file(), "STM32 peripheral lab page is missing")
-        text = lab.read_text(encoding="utf-8")
+    def test_each_lab_keeps_observation_and_stop_conditions(self) -> None:
         for heading in (
-            "## 实验一：串口收发与回环",
-            "## 实验二：PWM 频率与占空比",
-            "## 实验三：编码器计数与方向",
+            "### 实验一：串口收发与回环",
+            "### 实验二：PWM 频率与占空比",
+            "### 实验三：编码器计数与方向",
         ):
-            start = text.index(heading)
-            next_heading = text.find("\n## ", start + len(heading))
-            section = text[start:] if next_heading == -1 else text[start:next_heading]
-            self.assertIn("### 预期观察", section)
-            self.assertIn("### 停止条件", section)
+            start = self.labs.index(heading)
+            next_heading = self.labs.find("\n### ", start + len(heading))
+            section = self.labs[start:] if next_heading == -1 else self.labs[start:next_heading]
+            self.assertIn("#### 预期观察", section)
+        self.assertGreaterEqual(self.control.count("停止条件"), 3)
 
-    def test_page_does_not_present_local_examples_as_portable_firmware(self) -> None:
-        lab = ROOT / "docs" / LAB_PATH
-        self.assertTrue(lab.is_file(), "STM32 peripheral lab page is missing")
-        text = lab.read_text(encoding="utf-8")
+    def test_labs_do_not_present_f103_examples_as_portable_firmware(self) -> None:
+        combined = self.architecture + self.labs + self.control
         for phrase in (
             "STM32F103C8T6",
             "不能据此形成烧录建议",
-            "不提供原始归档或固件下载",
+            "不提供可直接烧录的固件文件",
             "待实机验证",
+            "静态校对",
+            "历史构建",
+            "当前构建",
+            "实机验证",
         ):
-            self.assertIn(phrase, text)
+            self.assertIn(phrase, combined)
 
-    def test_lab_instructions_cover_electrical_and_measurement_edge_cases(self) -> None:
-        text = (ROOT / "docs" / LAB_PATH).read_text(encoding="utf-8")
+    def test_lab_instructions_keep_electrical_and_measurement_edge_cases(self) -> None:
         for phrase in (
             "不连接 USB-TTL 的 VCC",
             "十六进制发送",
@@ -65,12 +55,12 @@ class Stm32PeripheralLabTests(unittest.TestCase):
             "PC 端把各窗口的有符号增量求和",
             "实测时间窗",
             "断电后交换 A/B 相",
-            "静态校对",
-            "历史构建",
-            "当前构建",
-            "实机验证",
         ):
-            self.assertIn(phrase, text)
+            self.assertIn(phrase, self.labs)
+
+    def test_unified_record_is_retained_in_chapter_33(self) -> None:
+        for phrase in ("统一实验记录", "板卡与 MCU", "验收门槛", "安全状态"):
+            self.assertIn(phrase, self.architecture)
 
 
 if __name__ == "__main__":

@@ -2,7 +2,7 @@
 status: complete
 ---
 
-# 20. 节点、话题、服务与动作
+# 20. 节点、话题、服务与动作 {#pubsub-code-resource}
 
 ## 20.1 学习目标
 
@@ -64,14 +64,14 @@ ros2 action info <动作名>
 
 ### 运行配套发布订阅实验
 
-先完成第 19 章的构建步骤。终端 A 运行 [C++ 示例](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/main/examples/ros2-pubsub/cpp_pubsub)发布者：
+先完成第 19 章的构建步骤。终端 A 运行 [C++ 示例](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/examples/ros2/pubsub/cpp)发布者；查看 `package.xml`、`CMakeLists.txt`、`src/publisher.cpp` 和 `src/subscriber.cpp`：
 
 ```bash
 source ~/wheeltec_course_ws/install/setup.bash
 ros2 run cpp_pubsub talker
 ```
 
-终端 B 运行 [Python 示例](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/main/examples/ros2-pubsub/py_pubsub)订阅者：
+终端 B 运行 [Python 示例](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/examples/ros2/pubsub/python)订阅者；查看 `package.xml`、`setup.py`、`py_pubsub/publisher.py` 和 `py_pubsub/subscriber.py`：
 
 ```bash
 source ~/wheeltec_course_ws/install/setup.bash
@@ -107,3 +107,4 @@ ros2 topic echo /course/chatter --once
 ## 章节导航
 
 [上一章：工作空间、功能包与构建](19-workspace-packages-build.md) · [返回本篇](index.md) · [下一章：Launch、参数与运行配置](21-launch-and-parameters.md)
+

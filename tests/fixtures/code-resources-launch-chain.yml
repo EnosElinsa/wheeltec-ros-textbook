@@ -1,0 +1,78 @@
+source_repository: EnosElinsa/wheeltec-ros-source-reference
+source_revision: 0123456789abcdef0123456789abcdef01234567
+resources:
+  - id: ros2.robot.turn-on-wheeltec-robot
+    repository_path: ros2/robot/turn-on-wheeltec-robot
+    consumers:
+      - page: docs/04-ros2-development/18-environment-and-source-selection.md
+        anchor: source-package-selection
+        files:
+          - launch/turn_on_wheeltec_robot.launch.py
+        role: 确认实际使用的启动包
+        mode: static_read
+        commands: []
+        acceptance:
+          - 能定位启动入口
+        boundaries:
+          - 不据此确定当前车型
+      - page: docs/04-ros2-development/21-launch-and-parameters.md
+        anchor: bringup-launch-chain
+        files:
+          - launch/turn_on_wheeltec_robot.launch.py
+          - launch/base_serial.launch.py
+        role: 追踪启动入口和底盘串口节点
+        mode: build
+        commands:
+          - colcon build --packages-select turn_on_wheeltec_robot
+        acceptance:
+          - 构建命令成功
+        boundaries:
+          - 不据此确定当前车型和串口参数
+      - page: docs/04-ros2-development/23-modify-build-rollback.md
+        anchor: source-change-exercise
+        files:
+          - src/wheeltec_robot.cpp
+        role: 完成局部修改练习
+        mode: run
+        commands:
+          - colcon build --packages-select turn_on_wheeltec_robot
+          - ros2 launch turn_on_wheeltec_robot turn_on_wheeltec_robot.launch.py
+        acceptance:
+          - 构建命令成功
+          - 隔离环境启动后可观察节点
+        boundaries:
+          - 不连接实车执行
+      - page: docs/06-stm32-firmware/37-ros2-stm32-integration.md
+        anchor: ros-serial-firmware-chain
+        files:
+          - launch/base_serial.launch.py
+          - src/wheeltec_robot.cpp
+        role: 追踪 ROS 串口节点到固件接口
+        mode: hardware
+        commands:
+          - colcon build --packages-select turn_on_wheeltec_robot
+          - ros2 launch turn_on_wheeltec_robot turn_on_wheeltec_robot.launch.py
+          - ./verify-wheeltec-hardware-chain.sh
+        acceptance:
+          - 构建命令成功
+          - 隔离环境启动后可观察节点
+          - 匹配硬件、接线、测量和停止条件均已记录
+        boundaries:
+          - 未核对硬件前不得烧录
+    compatibility:
+      ros_distribution: teaching-baseline
+      platform: requires-confirmation
+      hardware: requires-confirmation
+    dependencies:
+      - kind: system
+        path: rclcpp
+        provider: rosdep
+        verification: declared-and-resolved
+    verification:
+      level: hardware_verified
+      source_commit: 0123456789abcdef0123456789abcdef01234567
+      environment: ros:humble@sha256:0123456789abcdef
+      command: colcon build --packages-select turn_on_wheeltec_robot
+      result: passed
+      evidence_path: docs/superpowers/audits/launch-chain-build.json
+      verified_at: "2026-08-29T12:00:00+08:00"

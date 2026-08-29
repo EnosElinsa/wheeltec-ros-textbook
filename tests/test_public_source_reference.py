@@ -1,32 +1,51 @@
 from __future__ import annotations
 
 import re
+import sys
 import unittest
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SOURCE_ROOT = ROOT.parent / "code-resource-curation-source"
+APPROVED_SOURCE_BASELINE = "ebae2342709c756cb8fa387ccdbd6e5733f9219a"
+sys.path.insert(0, str(ROOT / "tools"))
+
+import validate_code_resources  # noqa: E402
 
 
 class PublicSourceReferenceTests(unittest.TestCase):
-    def test_appendix_lists_direct_code_entries(self) -> None:
+    def test_production_code_resource_map_pins_curated_source_contract(self) -> None:
+        mapping = validate_code_resources.load_code_resources(ROOT / "metadata/code-resources.yml")
+        self.assertEqual(mapping.source_revision, APPROVED_SOURCE_BASELINE)
+        self.assertEqual(len(mapping.resources), 13)
+        self.assertEqual(validate_code_resources.validate_code_resource_map(mapping, SOURCE_ROOT, ROOT), [])
+
+    def test_bringup_consumer_block_uses_the_mapping_anchor_and_revision(self) -> None:
+        text = (ROOT / "docs/04-ros2-development/21-launch-and-parameters.md").read_text(encoding="utf-8")
+        self.assertIn("{#bringup-launch-chain}", text)
+        self.assertIn(APPROVED_SOURCE_BASELINE, text)
+        self.assertIn("ros2/robot/turn-on-wheeltec-robot", text)
+
+    def test_appendix_is_byte_equal_to_the_real_mapping_render(self) -> None:
+        mapping = validate_code_resources.load_code_resources(ROOT / "metadata/code-resources.yml")
+        actual = (ROOT / "docs/appendices/d-public-source-reference.md").read_text(encoding="utf-8")
+        expected = validate_code_resources.render_appendix(mapping)
+        self.assertEqual(actual, expected)
+        validate_code_resources.validate_appendix_matches_mapping(actual, mapping)
+
+    def test_appendix_has_one_immutable_entry_per_selected_resource(self) -> None:
+        mapping = validate_code_resources.load_code_resources(ROOT / "metadata/code-resources.yml")
         text = (ROOT / "docs/appendices/d-public-source-reference.md").read_text(encoding="utf-8")
-        links = re.findall(
-            r"https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/main/([^ )]+)",
+        immutable_links = re.findall(
+            rf"https://github\.com/{re.escape(mapping.source_repository)}/tree/"
+            rf"{mapping.source_revision}/([^ )]+)",
             text,
         )
-        package_links = [link for link in links if not link.startswith("examples/")]
-        self.assertEqual(len(package_links), 200)
-        self.assertEqual(len(set(package_links)), 200)
-        self.assertNotIn("catalog/", text)
-        self.assertNotIn("release-manifest", text)
-        self.assertNotIn("SHA-256", text)
-        self.assertNotIn("下载", text)
-        self.assertNotIn("G-archive-", text)
-        self.assertNotIn("R-archive-", text)
-        self.assertTrue(all(f"/tree/main/{root}/" in text for root in ("applications", "chassis", "platform", "r680", "ros1", "ros2", "stm32")))
+        self.assertEqual(len(immutable_links), len(mapping.resources))
+        self.assertEqual(sorted(immutable_links), sorted(resource.repository_path for resource in mapping.resources))
 
-    def test_appendix_is_published_and_linked_from_entry_pages(self) -> None:
+    def test_appendix_is_published_but_not_used_as_a_generic_chapter_pointer(self) -> None:
         appendix = ROOT / "docs/appendices/d-public-source-reference.md"
         self.assertTrue(appendix.is_file())
         self.assertIn("d-public-source-reference.md", (ROOT / "mkdocs.yml").read_text(encoding="utf-8"))
@@ -51,21 +70,24 @@ class PublicSourceReferenceTests(unittest.TestCase):
             "docs/09-deployment-maintenance/45-logs-backup-upgrade-recovery.md",
             "docs/appendices/a-ros1-maintenance.md",
         )
-        missing = [
+        generic = [
             path
             for path in related
-            if "d-public-source-reference.md" not in (ROOT / path).read_text(encoding="utf-8")
+            if "本节使用的代码入口见[教材代码资源附录]" in (ROOT / path).read_text(encoding="utf-8")
+            or "详见[教材代码资源附录]" in (ROOT / path).read_text(encoding="utf-8")
         ]
-        self.assertEqual(missing, [])
+        self.assertEqual(generic, [])
 
     def test_appendix_has_safe_hardware_language_and_no_internal_ids(self) -> None:
         text = (ROOT / "docs/appendices/d-public-source-reference.md").read_text(encoding="utf-8")
-        self.assertIn("实机照片补齐前", text)
-        self.assertIn("硬件核对", text)
-        self.assertNotRegex(text, r"(?<![A-Za-z0-9])[GR]:(?:archive|firmware|video):")
-        self.assertNotIn("wheeltec-ros-general-course", text)
-        self.assertNotIn("wheeltec-r680-course", text)
+        for forbidden in (
+            "/tree/main/", "G-archive", "R-archive", "baseline-", "release",
+            "catalog", "docs/superpowers", "C:\\", "归档整理", "构建这个代码库",
+        ):
+            self.assertNotIn(forbidden, text)
+        self.assertIn("不得烧录或声明硬件验证", text)
 
 
 if __name__ == "__main__":
     unittest.main()
+

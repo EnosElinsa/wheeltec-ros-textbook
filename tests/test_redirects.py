@@ -18,7 +18,7 @@ class RedirectTests(unittest.TestCase):
             ROOT / "metadata" / "legacy-redirects.csv"
         )
         self.assertEqual(generate_redirects.validate_map(rows), [])
-        self.assertEqual(len(rows), 60)
+        self.assertEqual(len(rows), 63)
 
     def test_map_rejects_duplicate_source_and_redirect_chain(self) -> None:
         rows = [
@@ -59,6 +59,19 @@ class RedirectTests(unittest.TestCase):
         self.assertIn('rel="canonical"', html)
         self.assertIn('http-equiv="refresh"', html)
         self.assertIn("location.search + location.hash", html)
+
+    def test_rendered_redirect_can_land_on_a_fixed_target_anchor(self) -> None:
+        rows = [
+            generate_redirects.Redirect(
+                "old/",
+                "new/page/#fixed-anchor",
+            )
+        ]
+        self.assertEqual(generate_redirects.validate_map(rows), [])
+        html = generate_redirects.render_redirect(rows[0].source, rows[0].target)
+        self.assertIn("#fixed-anchor", html)
+        self.assertIn("location.search", html)
+        self.assertNotIn("location.hash", html)
 
     def test_built_target_must_exist(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

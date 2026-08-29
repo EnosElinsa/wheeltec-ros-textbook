@@ -4,15 +4,50 @@ status: complete
 
 # 35. 电机控制与 PID 实现
 
-## 35.1 学习目标
+## 35.1 学习目标 {#stm32-motor-control}
 
 从编码器计数得到轮速，理解增量 PI 怎样更新 PWM，并用曲线而不是听感调整参数。
 
-## 35.2 适用范围
+!!! example "本节代码：电机控制"
+    仓库目录：[`stm32/control/motor/stm32f4-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/control/motor/stm32f4-stdperiph)。完整文件集见 `metadata/code-resource-manifests/motor.txt`。验收：能定位电机映射。边界：无编译器与实机证据。
+
+## 35.2 适用范围 {#stm32-pid-control}
 
 直流编码器电机速度环；舵机位置环和速度/位置串级控制采用同一误差反馈思路，但参数与输出不同。
 
-## 35.3 操作前检查
+!!! example "本节代码：PID 控制"
+    仓库目录：[`stm32/control/pid/stm32f4-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/control/pid/stm32f4-stdperiph)。完整文件集见 `metadata/code-resource-manifests/pid.txt`。验收：能定位 PID 常量。边界：无编译器与实机证据。
+
+## 35.3 闭环前置检查 {#closed-loop-prechecks}
+
+进入闭环前先逐项检查三个最小外设实验的停止条件；任一项触发即停止，不把外设观察外推为整车控制结论。
+
+### 串口实验停止条件
+
+- 测得接口电平超出 MCU/USB-TTL 模块允许范围；
+- TX/RX 或地线无法确认，接口接入后板卡复位、掉电或异常发热；
+- 串口与下载口、主控通信口或其他外设冲突；
+- 固件目标芯片、下载地址或回滚文件不能确认。
+
+停止后断电并恢复原接线。不要用反复更换固件、提高电压或短接未知引脚来试错。
+
+### PWM 实验停止条件
+
+- `PA0` 的板级用途不能确认，或它仍连接电机驱动/功率级；
+- 输出电压、频率或板卡温度异常；
+- 探头接入导致复位、波形严重畸变或电源限流；
+- 为获得波形需要取消安全使能、短接驱动器或提高供电电压。
+
+该实验只验收 MCU 引脚波形。要进入电机实验，必须另行核对驱动器、使能、方向、限流和急停。
+
+### 编码器实验停止条件
+
+- 编码器输出电平或接线无法确认；
+- 手动转轴阻力异常、机械结构带动轮子或其他执行机构；
+- 静止计数持续快速增长，或输入幅值超出 MCU 范围；
+- 需要使能电机才能观察计数，但急停、架空和限速尚未完成。
+
+编码器实验通过后，也只能证明单个输入链路。轮号映射、减速比、轮径和完整底盘方向仍需在第 34–35 章逐轮验收。
 
 - 编码器方向、每转计数、减速比和轮径正确。
 - 电机架空测试可靠，PWM 限幅存在。
@@ -38,7 +73,7 @@ $$
 6. 测试停止、反向、低速和常用负载。
 7. 每次参数变更保存曲线和版本。
 
-闭环调参前必须先证明 PWM 周期/占空比和编码器方向/计数可靠。[STM32 串口、PWM 与编码器最小实验](stm32-peripheral-labs.md)给出了无需使能电机的观察步骤；其中引脚和工程基线不能直接套用于其他控制板。
+闭环调参前必须先证明 PWM 周期/占空比和编码器方向/计数可靠。[STM32 串口、PWM 与编码器最小实验](34-hardware-init-model-interfaces.md#stm32-peripheral-labs)给出了无需使能电机的观察步骤；其中引脚和工程基线不能直接套用于其他控制板。
 
 ## 35.6 验收标准
 
@@ -58,8 +93,8 @@ $$
 | PWM 饱和仍达不到速度 | 供电、负载、减速比或目标不现实 |
 
 
-!!! note "教材代码资源"
-    本节使用的代码入口见[教材代码资源附录](../appendices/d-public-source-reference.md)。
+!!! example "本章代码：电机与 PID"
+    使用 `stm32/control/motor/stm32f4-stdperiph/USER/main.c` 与 `stm32/control/pid/stm32f4-stdperiph/USER/main.c` 及完整 F4 CMSIS/StdPeriph/BSP 依赖。验收：静态核对电机映射和 PID 常量；边界：未提供编译器与实机证据。
 
 ## 章节导航
 

@@ -34,7 +34,7 @@ status: complete
 5. 建图结束后停止运动，再用当前算法或 Nav2 提供的保存工具保存地图。
 6. 记录 YAML/PGM 或序列化地图文件、分辨率、原点、算法和参数版本。
 
-若使用历史 ROS 1 Bag 做离线诊断，先完成 [ROS 1 Bag 离线传感器诊断](ros1-bag-offline-diagnostics.md)，确认扫描类型、frame、TF、里程计和时间条件。只有扫描而没有 TF/里程计的 Bag 不能据此宣称建图条件完整。
+若使用历史 ROS 1 Bag 做离线诊断，先完成 [ROS 1 Bag 离线传感器诊断](../appendices/a-ros1-maintenance.md#ros1-bag-offline-diagnostics)，确认扫描类型、frame、TF、里程计和时间条件。只有扫描而没有 TF/里程计的 Bag 不能据此宣称建图条件完整。
 
 ## 26.6 验收标准
 
@@ -54,8 +54,8 @@ status: complete
 | 保存后空白 | 保存时机、地图话题和输出路径 |
 
 
-!!! note "教材代码资源"
-    本节使用的代码入口见[教材代码资源附录](../appendices/d-public-source-reference.md)。
+!!! note "代码资源边界"
+    本章不指定建图算法源码包；命令必须以读者安装的 ROS 发行版与雷达驱动为准。
 
 ## 章节导航
 

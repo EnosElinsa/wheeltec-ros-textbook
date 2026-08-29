@@ -2,7 +2,7 @@
 status: complete
 ---
 
-# 28. Nav2 导航
+# 28. Nav2 导航 {#nav2-code-resource}
 
 ## 28.1 学习目标
 
@@ -57,7 +57,7 @@ ROS 2 Nav2 二维导航。不同镜像可能使用不同规划器和控制器插
 
 
 !!! note "教材代码资源"
-    本节使用的代码入口见[教材代码资源附录](../appendices/d-public-source-reference.md)。
+    本节使用 `ros2/navigation/nav2-waypoint-cycle` 中的 `package.xml` 与 `nav2_waypoint_cycle/waypoint_cycle.py`，用于静态追踪航点循环入口。源码固定在 [ebae2342](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/ros2/navigation/nav2-waypoint-cycle)。验收：能说明航点动作客户端与循环逻辑；边界：运行前核对 Nav2 发行版。
 
 ## 章节导航
 

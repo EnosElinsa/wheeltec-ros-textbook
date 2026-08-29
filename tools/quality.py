@@ -78,14 +78,38 @@ FOUNDATION_HEADINGS_BY_NUMBER = {
     ],
 }
 def expected_engineering_headings(number: int) -> list[str]:
+    if number == 43:
+        return [
+            "43.1 学习目标",
+            "43.2 适用范围",
+            "43.3 静态核对",
+            "43.4 安全边界",
+            "43.5 故障记录",
+            "43.6 章节导航",
+        ]
+    task_titles = {
+        (18, 5): "源码包确认",
+        (21, 5): "启动链源码追踪",
+        (23, 5): "源码修改练习",
+        (33, 5): "固件实验记录",
+        (34, 5): "外设最小实验",
+        (35, 3): "闭环前置检查",
+        (37, 5): "ROS—串口—固件链",
+    }
+    defaults = {
+        1: "学习目标",
+        2: "适用范围",
+        3: "操作前检查",
+        4: "工作原理",
+        5: "操作步骤",
+        6: "验收标准",
+        7: "故障排查",
+    }
     return [
-        f"{number}.1 学习目标",
-        f"{number}.2 适用范围",
-        f"{number}.3 操作前检查",
-        f"{number}.4 工作原理",
-        f"{number}.5 操作步骤",
-        f"{number}.6 验收标准",
-        f"{number}.7 故障排查",
+        *[
+            f"{number}.{section} {task_titles.get((number, section), defaults[section])}"
+            for section in range(1, 8)
+        ],
         "章节导航",
     ]
 PROMOTIONAL_PATTERNS = ["推荐关注我们的公众号", "关注公众号", "获取更新资料"]
@@ -168,7 +192,10 @@ def check_chapter(path: Path, size_limit: int, number: int = 6) -> list[Issue]:
     if path.stat().st_size > size_limit:
         issues.append(Issue("error", relative, "file exceeds size limit"))
     text = path.read_text(encoding="utf-8")
-    headings = re.findall(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE)
+    headings = [
+        re.sub(r"\s+\{#[^}]+\}$", "", heading)
+        for heading in re.findall(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE)
+    ]
     for heading in expected_engineering_headings(number):
         if heading not in headings:
             issues.append(Issue("error", relative, f"missing section: {heading}"))

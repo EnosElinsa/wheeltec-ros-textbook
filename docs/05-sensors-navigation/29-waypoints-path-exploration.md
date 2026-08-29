@@ -2,11 +2,16 @@
 status: complete
 ---
 
-# 29. 多点导航、路径跟踪与自主探索
+# 29. 多点导航、路径跟踪与自主探索 {#path-follow-code-resource}
 
 ## 29.1 学习目标
 
 在单目标 Nav2 已通过后，增加任务层功能：按序访问多个目标、跟踪给定路径或自动选择探索目标。失败时仍回到 Nav2 基础链诊断。
+
+!!! example "本章代码：路径跟踪"
+    仓库目录：[`ros2/navigation/path-follow/wheeltec_path_follow`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/ros2/navigation/path-follow/wheeltec_path_follow)
+
+    完整文件集见 `metadata/code-resource-manifests/path-follow.txt`；本节重点查看 `package.xml`、`launch/follow_path.launch.py`、`scripts/follow_path.py`。验收：能定位路径跟踪入口。边界：不替代实机安全检查。
 
 ## 29.2 适用范围
 
