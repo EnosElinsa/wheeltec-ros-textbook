@@ -10,7 +10,7 @@ status: complete
 
 ## 22.2 适用范围
 
-适用于 ROS 2 的 TF2、URDF/Xacro 和 `robot_state_publisher`。
+适用于 ROS 2 的坐标变换、机器人模型和可视化工具。TF2、URDF/Xacro 与 `robot_state_publisher` 的分工在 22.4 节说明。
 
 ## 22.3 操作前检查
 
@@ -22,7 +22,9 @@ status: complete
 
 ### 模型、坐标树与显示
 
-URDF 描述连杆和关节；`robot_state_publisher` 根据模型和关节状态发布 TF。导航通常要求 `map → odom → base_link → sensor` 链完整。RViz 只是显示客户端，红色报错反映的是上游坐标、话题或时间问题。
+Transform Library 2（TF2）记录坐标系之间的位置和朝向关系，让雷达数据、相机图像和机器人模型能落在同一空间中。统一机器人描述格式（Unified Robot Description Format, URDF）用连杆和关节描述机器人外形；XML Macros（Xacro）是生成或复用 URDF 片段的写法，适合把不同车型的公共部分集中维护。`robot_state_publisher` 根据模型和关节状态发布 TF。
+
+RViz 是查看模型、话题和坐标关系的桌面工具，不参与底盘控制或导航计算。导航通常要求 `map → odom → base_link → sensor` 链完整。RViz 的红色报错说明上游坐标、话题或时间有问题，应先修复数据来源。
 
 ### 静态与动态变换
 
@@ -46,7 +48,7 @@ ros2 topic echo --once /robot_description
 
 ### 修改模型并验证
 
-修改 URDF 时先调整一个 link/joint，检查：父子关系、平移单位（米）、旋转单位（弧度）和网格路径。重新启动模型发布节点后，再用 `/robot_description` 和 TF 验证，而不是只刷新 RViz。
+修改 URDF 时先调整一个 link/joint，检查父子关系、平移单位（米）、旋转单位（弧度）和网格路径。重新启动模型发布节点后，用 `/robot_description` 和 TF 验证运行结果；刷新 RViz 只能更新显示，不能证明节点已加载新模型。
 
 主控和虚拟机各自保留模型副本时，两端必须同步；否则 RViz 可能显示旧模型而主控运行新坐标。
 
@@ -59,6 +61,8 @@ ros2 topic echo --once /robot_description
 - 修改后运行中的 `/robot_description` 已变化，并可恢复旧模型。
 
 ## 22.7 故障排查
+
+先对照实物确认传感器安装，再确认模型与 TF 发布节点；接着查看模型话题，检查时间戳和整条坐标链。定位或导航仍失败时，才检查它们引用的 frame 名称。下表保留常见显示现象及其直接检查点。
 
 | 现象 | 检查 |
 |---|---|

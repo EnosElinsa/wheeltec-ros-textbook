@@ -8,9 +8,11 @@ status: complete
 
 从正在使用的 Launch 文件追踪节点、参数文件和条件分支，安全修改车型、端口与传感器配置，并证明运行节点读到了新值。
 
+Launch System（Launch）是 ROS 2 用来编排启动过程的机制；其中的 Launch 文件是一份具体启动清单。它可以一次启动多个节点，并为节点传入参数和命名空间。
+
 ## 21.2 适用范围
 
-适用于 Python Launch 和 YAML 参数。旧 XML Launch 或 ROS 1 参数服务器见附录 A。
+适用于 Python Launch 和 YAML 参数。YAML 配置格式（YAML Ain't Markup Language, YAML）用缩进表示层次结构；XML（Extensible Markup Language）Launch 或 ROS 1 参数服务器见附录 A。
 
 ## 21.3 操作前检查
 
@@ -20,7 +22,7 @@ status: complete
 
 ## 21.4 工作原理
 
-Launch 描述一次运行需要启动哪些节点、传入哪些参数和命名空间。YAML 文件只是参数来源之一；Launch 内部默认值、命令行覆盖和节点代码默认值都可能改变最终结果。
+Launch 文件（Launch File）是一次启动任务的清单：它决定启动哪些节点、给节点传哪些参数、使用什么命名空间，以及是否继续包含其他 Launch 文件。它把已构建工作空间中的底盘、传感器和模型节点组合成一条运行链。YAML 文件只是参数来源之一；Launch 内部默认值、命令行覆盖和节点代码默认值都可能改变最终结果。
 
 ## 21.5 启动链源码追踪 {#bringup-launch-chain}
 
@@ -36,6 +38,8 @@ Launch 描述一次运行需要启动哪些节点、传入哪些参数和命名�
 cd <turn_on_wheeltec_robot 源码目录>
 rg -n 'IncludeLaunchDescription|get_package_share_directory|Node\(' launch
 ```
+
+启动链中还可能出现扩展卡尔曼滤波器（Extended Kalman Filter, EKF）和统一机器人描述格式（Unified Robot Description Format, URDF）。EKF 用多源测量估计机器人状态；URDF 用连杆和关节描述车型模型。看到这些名称时，先把它们当作启动链中的独立节点或资源，再继续核对参数和输出。
 
 一套常见结构如下；文件名、节点名和层级均为观察启动链时的示例，不是当前版本的固定接口：
 
@@ -56,7 +60,7 @@ wheeltec_sensors.launch.py
 
 这张树只是追踪方法，不是所有版本的保证。实际入口可能只启动底盘，也可能把雷达和相机一起启动；以当前工作空间的源码和运行节点为准。
 
-启动链闭合不等于数据链闭合：某个雷达或相机进程被启动，只能证明 Launch 创建了它；还要检查 EKF 配置、remap、话题类型、频率和 TF，才能证明数据真正被消费。
+启动链闭合不等于数据链闭合：某个雷达或相机进程被启动，只能证明 Launch 创建了它；还要检查扩展卡尔曼滤波器（Extended Kalman Filter, EKF）配置、重映射（remap）、话题类型、频率和 TF，才能证明数据真正被消费。
 
 #### 从工作空间根执行构建和启动
 
@@ -86,7 +90,7 @@ ros2 launch turn_on_wheeltec_robot <入口.launch.py>
 
 #### 机器人组合入口
 
-`turn_on_wheeltec_robot.launch.py` 往往在底盘节点之外继续启动 EKF、IMU 滤波、关节状态、车型 URDF 和静态 TF。车型选择可能由布尔 Launch 参数和注释切换，而不是一张集中 YAML 表。因此修改车型前要同时检查：
+`turn_on_wheeltec_robot.launch.py` 往往在底盘节点之外继续启动 EKF、IMU 滤波、关节状态、车型 URDF 和静态 TF。车型选择可能由布尔 Launch 参数、代码中的条件分支或 YAML 文件共同决定，修改车型前要同时检查：
 
 1. 哪个车型 Include 被加入 `LaunchDescription`；
 2. 传给车型 Launch 的参数是否为真；
@@ -114,7 +118,7 @@ ros2 param get <底盘节点名> robot_frame_id
 ros2 param get <底盘节点名> odom_frame_id
 ```
 
-若源码默认值、Launch 传入值和运行值不同，优先确认是否加载了另一工作空间或另一 Launch 入口，而不是立即修改第三处参数。
+若源码默认值、Launch 传入值和运行值不同，先确认实际加载的工作空间和 Launch 入口，再决定是否调整参数。
 
 !!! example "本章代码：底盘启动链"
     仓库目录：[ros2/robot/turn-on-wheeltec-robot](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/ros2/robot/turn-on-wheeltec-robot)
@@ -129,6 +133,8 @@ ros2 param get <底盘节点名> odom_frame_id
 - 恢复备份后可回到原行为。
 
 ## 21.7 故障排查
+
+修改 Launch 后，先确认设备端口和驱动节点，再检查重映射后的话题。传感器或模型无法对齐时检查时间与坐标参数；基础链路正常后，才把问题归到建图、导航等算法配置。下表保留各类配置问题的直接检查点。
 
 | 现象 | 原因 |
 |---|---|

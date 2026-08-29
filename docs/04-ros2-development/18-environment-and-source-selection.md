@@ -10,6 +10,8 @@ status: complete
 
 需要补充 ROS 2 节点、通信和运行时基础时，先读[第一篇：从零认识 ROS 机器人](../01-foundations/index.md)。
 
+Docker Container Platform（Docker）可以在主控上隔离运行一套软件。宿主机是直接管理硬件的 Ubuntu 系统，容器是隔离的运行实例，镜像是创建容器时使用的软件模板；设备和目录只有显式映射后才会出现在容器中。
+
 ## 18.2 适用范围
 
 适用于 Ubuntu 上的原生 ROS 2 和 WHEELTEC 预装 Docker 环境。TROS、Autoware 或厂商定制镜像应单独记录，不与普通 ROS 2 工作空间混用。
@@ -22,9 +24,13 @@ status: complete
 
 ## 18.4 工作原理
 
+ROS 2 工作空间（ROS 2 Workspace）是放置机器人程序并生成可运行版本的项目目录。它把源码、构建过程和安装结果放在同一处，方便开发者明确当前改的是哪一套程序。后续章节会在这个目录中构建功能包、启动节点和检查传感器数据。
+
 一套可运行环境由 Ubuntu、ROS 发行版、架构、依赖、源码分支和硬件配置共同决定。ROS 2 Humble 源码不能因为目录名相近就放进 Foxy 环境；Jetson、树莓派、RDK 的相机与硬件加速依赖也不同。
 
 Docker 还多一层边界：宿主机看到的文件、设备和网络，只有显式挂载或传入容器后才能被 ROS 使用。
+
+机器人模型常用统一机器人描述格式（Unified Robot Description Format, URDF）保存连杆、关节和几何信息。第 21 章会在启动链中追踪它的加载位置，第 22 章再说明它与 TF2、RViz 的关系。
 
 ## 18.5 源码包确认 {#source-package-selection}
 
@@ -90,6 +96,8 @@ rg -n "get_package_share_directory\(|package='" launch
 需要继续追踪底盘包的入口、依赖和运行链时，按 [`turn_on_wheeltec_robot` 源码与启动链导读](21-launch-and-parameters.md#bringup-launch-chain)从安装前缀反查到当前工作空间，不要根据目录名选择源码。
 
 ## 18.7 故障排查
+
+环境问题先从设备映射查起，再确认驱动包和节点来自正确环境；节点启动后依次查看话题、时间与坐标，最后才读取建图或导航算法日志。下表列出在这一顺序中常见的入口现象。
 
 | 现象 | 处理 |
 |---|---|
