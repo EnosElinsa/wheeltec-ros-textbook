@@ -14,7 +14,7 @@
 | 编码器（Encoder） | 将车轮或电机轴的转动转换为脉冲、角度或位置数据的器件。 | 第 8 章 |
 | 惯性测量单元（Inertial Measurement Unit, IMU） | 测量加速度和角速度的传感器模块。 | 第 8 章 |
 | 微控制器（Microcontroller Unit, MCU） | 集成处理器、存储器和输入输出接口、用于实时控制的小型计算机。 | 第 6 章 |
-| STM32 微控制器（STM32 Microcontroller） | STMicroelectronics 生产的 32 位微控制器产品系列，常用于底盘控制板。 | 第 6 章 |
+| STM32 | STMicroelectronics 的 32 位微控制器产品系列，常见于底盘控制板。 | 第 6 章 |
 | 串行通信（Serial Communication） | 按顺序逐个传送数据位的通信方式。 | 第 7 章 |
 | 串行端口（Serial Port） | 计算机与外部设备交换字节流的接口，在 Ubuntu 中常表现为 `/dev/ttyUSB0` 等设备文件。 | 第 7 章 |
 | 波特率（Baud Rate） | 描述通信链路每秒传送符号数的参数；两端配置必须匹配。 | 第 7 章 |

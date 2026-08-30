@@ -10,7 +10,7 @@ EXPECTED = {
     "docs/02-hardware-basics/06-controller-and-firmware.md": (
         "中央处理器（Central Processing Unit, CPU）",
         "微控制器（Microcontroller Unit, MCU）",
-        "STM32 微控制器（STM32 Microcontroller）",
+        "STM32",
         "固件（Firmware）",
         "构建",
         "烧录",
@@ -70,3 +70,22 @@ def test_foundation_part_index_links_only_to_chapters_six_through_nine() -> None
         "09-chassis-motion-control.md",
     ):
         assert slug in text
+
+
+def test_hardware_chapters_form_a_progressive_system_model() -> None:
+    chapter_7 = (ROOT / "docs/02-hardware-basics/07-electrical-interfaces-communication.md").read_text(
+        encoding="utf-8"
+    )
+    chapter_8 = (ROOT / "docs/02-hardware-basics/08-sensors-and-feedback.md").read_text(
+        encoding="utf-8"
+    )
+    chapter_9 = (ROOT / "docs/02-hardware-basics/09-chassis-motion-control.md").read_text(
+        encoding="utf-8"
+    )
+    assert "第 6 章" in chapter_7
+    assert "第 7 章" in chapter_8
+    assert "第 8 章" in chapter_9
+    forbidden = ("不等于", "不能单独", "不代表")
+    for text in (chapter_7, chapter_8, chapter_9):
+        for phrase in forbidden:
+            assert phrase not in text, phrase

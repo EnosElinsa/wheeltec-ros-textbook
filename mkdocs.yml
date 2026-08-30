@@ -31,7 +31,7 @@ nav:
   - 首页: index.md
   - 阅读路径: reading-paths.md
   - 术语表: glossary.md
-  - 第一篇 从零认识 ROS 机器人:
+  - 第一篇 从软件层认识 ROS 机器人:
       - 本篇说明: 01-foundations/index.md
       - 1 认识 ROS 与 ROS 2: 01-foundations/01-understanding-ros.md
       - 2 一台 ROS 机器人如何工作: 01-foundations/02-robot-system-overview.md

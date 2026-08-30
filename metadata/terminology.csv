@@ -9,7 +9,7 @@ chinese,english,abbreviation,canonical_path,canonical_anchor,first_use,later_use
 编码器,Encoder,,docs/02-hardware-basics/08-sensors-and-feedback.md,encoder,编码器（Encoder）,编码器
 惯性测量单元,Inertial Measurement Unit,IMU,docs/02-hardware-basics/08-sensors-and-feedback.md,imu,"惯性测量单元（Inertial Measurement Unit, IMU）",IMU
 微控制器,Microcontroller Unit,MCU,docs/02-hardware-basics/06-controller-and-firmware.md,cpu-mcu-stm32,"微控制器（Microcontroller Unit, MCU）",MCU
-STM32 微控制器,STM32 Microcontroller,,docs/02-hardware-basics/06-controller-and-firmware.md,cpu-mcu-stm32,STM32 微控制器（STM32 Microcontroller）,STM32
+STM32,STMicroelectronics 32-bit Microcontroller Family,,docs/02-hardware-basics/06-controller-and-firmware.md,cpu-mcu-stm32,STM32,STM32
 串行通信,Serial Communication,,docs/02-hardware-basics/07-electrical-interfaces-communication.md,usb-serial-port,串行通信（Serial Communication）,串行通信
 串行端口,Serial Port,,docs/02-hardware-basics/07-electrical-interfaces-communication.md,usb-serial-port,串行端口（Serial Port）,串口或串行端口
 波特率,Baud Rate,,docs/02-hardware-basics/07-electrical-interfaces-communication.md,uart-usart-levels,波特率（Baud Rate）,波特率

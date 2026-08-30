@@ -16,7 +16,7 @@
 
 | 部分 | 主要内容 |
 |---|---|
-| [第一篇：从零认识 ROS 机器人](https://enoselinsa.github.io/wheeltec-ros-textbook/01-foundations/) | 机器人组成、Ubuntu、终端、程序、ROS 2、节点和通信方式 |
+| [第一篇：从软件层认识 ROS 机器人](https://enoselinsa.github.io/wheeltec-ros-textbook/01-foundations/) | 机器人系统概览、Ubuntu、终端、程序、ROS 2、节点和通信方式 |
 | [第二篇：机器人硬件、接口与控制基础](https://enoselinsa.github.io/wheeltec-ros-textbook/02-hardware-basics/) | 主控、控制板、固件、通信接口、传感器与闭环控制 |
 | [第三篇：实机接入与首次启动](https://enoselinsa.github.io/wheeltec-ros-textbook/03-bringup/) | 识别配置、供电接线、首次上电、连接主控和基线检查 |
 | [第四篇：底盘控制与运动学](https://enoselinsa.github.io/wheeltec-ros-textbook/04-chassis-control/) | 坐标系、遥控、`cmd_vel`、协议、里程计与标定 |

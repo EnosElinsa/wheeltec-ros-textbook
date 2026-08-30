@@ -111,10 +111,40 @@ class FoundationContentTests(unittest.TestCase):
         for term in ("机械结构", "电源", "传感器", "主控", "控制板", "电机"):
             self.assertIn(term, text)
         self.assertIn("微控制器", text)
-        self.assertIn("底层反馈控制", text)
+        self.assertIn("底层反馈", text)
         self.assertIn("串行通信", text)
         self.assertIn("控制器通信总线", text)
         self.assertEqual(quality.check_foundation(path, 150_000, 2), [])
+
+    def test_chapter_2_stays_at_system_overview_boundary(self) -> None:
+        path = ROOT / "docs" / "01-foundations" / "02-robot-system-overview.md"
+        text = path.read_text(encoding="utf-8")
+        self.assertIn("传感器（Sensor）", text)
+        self.assertIn("第二篇", text)
+        self.assertNotIn("STM32", text)
+        self.assertNotIn("摄像头（Camera）", text)
+        self.assertNotIn("串行通信是", text)
+        self.assertNotIn("控制器通信总线允许", text)
+
+    def test_selected_boundary_pages_avoid_contrastive_warning_templates(self) -> None:
+        pages = (
+            ROOT / "docs/01-foundations/02-robot-system-overview.md",
+            ROOT / "docs/01-foundations/05-ros2-communication.md",
+            ROOT / "docs/02-hardware-basics/index.md",
+            ROOT / "docs/02-hardware-basics/06-controller-and-firmware.md",
+        )
+        forbidden = (
+            "不等于",
+            "不能单独",
+            "不代表",
+            "旧固件恢复成功",
+            "源码是人可以阅读和修改的程序文件",
+            "文件名、购买年份或外壳颜色",
+        )
+        for path in pages:
+            text = path.read_text(encoding="utf-8")
+            for phrase in forbidden:
+                self.assertNotIn(phrase, text, f"{path}: {phrase}")
 
     def test_chapter_2_builds_computer_vocabulary_before_ssh(self) -> None:
         path = ROOT / "docs" / "01-foundations" / "03-ubuntu-terminal-programs.md"
