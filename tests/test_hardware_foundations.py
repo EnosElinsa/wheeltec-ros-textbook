@@ -85,7 +85,43 @@ def test_hardware_chapters_form_a_progressive_system_model() -> None:
     assert "第 6 章" in chapter_7
     assert "第 7 章" in chapter_8
     assert "第 8 章" in chapter_9
-    forbidden = ("不等于", "不能单独", "不代表")
-    for text in (chapter_7, chapter_8, chapter_9):
+
+
+def test_rewritten_foundations_avoid_mechanical_warning_templates() -> None:
+    pages = sorted((ROOT / "docs/01-foundations").glob("*.md")) + sorted(
+        (ROOT / "docs/02-hardware-basics").glob("*.md")
+    )
+    forbidden = (
+        "不等于",
+        "不能单独",
+        "不代表",
+        "旧固件恢复成功",
+        "源码是人可以阅读和修改的程序文件",
+        "文件名、购买年份或外壳颜色",
+    )
+    for path in pages:
+        text = path.read_text(encoding="utf-8")
         for phrase in forbidden:
-            assert phrase not in text, phrase
+            assert phrase not in text, f"{path}: {phrase}"
+
+
+def test_hardware_explanations_close_key_technical_relations() -> None:
+    chapter_6 = (ROOT / "docs/02-hardware-basics/06-controller-and-firmware.md").read_text(
+        encoding="utf-8"
+    )
+    chapter_7 = (ROOT / "docs/02-hardware-basics/07-electrical-interfaces-communication.md").read_text(
+        encoding="utf-8"
+    )
+    chapter_9 = (ROOT / "docs/02-hardware-basics/09-chassis-motion-control.md").read_text(
+        encoding="utf-8"
+    )
+    assert "STM32 是常见的 MCU 产品系列" in chapter_6
+    assert "STM32 Microcontroller" not in chapter_6
+    for phrase in ("上电后从非易失存储器运行", "固件映像", "可回滚基线包括程序和参数"):
+        assert phrase in chapter_6
+    assert "共同的信号参考" in chapter_7
+    assert "TTL 电平 UART" in chapter_7
+    assert "电平范围和极性" in chapter_7
+    assert "四轮差速或滑移转向" in chapter_9
+    for symbol in ("`v_L`", "`v_R`", "`v_x`", "`ω_z`", "`u_k`", "`e_k`", "`K_p`", "`K_i`", "`T_s`"):
+        assert symbol in chapter_9

@@ -10,7 +10,7 @@ status: complete
 
 连接一块板时，需要同时确认供电、信号和机械连接。电源部分看电压范围、持续电流和极性；信号部分看逻辑电平、收发方向和共地；连接器则按板卡资料核对型号与针脚。机械配合、电气条件和供电能力分别查规格。
 
-电源线承载能量，信号线传递状态或命令，信号地回到规定的功率参考点。改线在断电状态完成；出现复位、发热或通信间歇时，先停止动作，再把供电和信号分开检查。
+电源线承载能量，信号线传递状态或命令。收发两端按照系统接地方案建立共同的信号参考，电机电流的回流由功率回路承载。改线在断电状态完成；出现复位、发热或通信间歇时，先停止动作，再把供电和信号分开检查。
 
 ## 7.2 USB 与串行端口 {#usb-serial-port}
 
@@ -22,7 +22,7 @@ status: complete
 
 控制板内部通常由通用异步收发传输器（Universal Asynchronous Receiver-Transmitter, UART）逐位收发串行数据；通用同步/异步收发传输器（Universal Synchronous/Asynchronous Receiver-Transmitter, USART）还可以使用时钟线进行同步通信。波特率（Baud Rate）、数据位、停止位、校验方式和流控共同构成串行链路的配置。
 
-电脑通过 USB 转串口模块连接 UART/USART。晶体管—晶体管逻辑（Transistor-Transistor Logic, TTL）与 RS-232 采用不同的电压标准，接线前先确认转换关系；通常 TX 接对端 RX、RX 接对端 TX，并共地，VCC 按当前板卡的供电方案处理。
+电脑通过 USB 转串口模块连接 UART/USART。晶体管—晶体管逻辑（Transistor-Transistor Logic, TTL）说明这一侧使用逻辑电平；TTL 电平 UART 与 RS-232 的电平范围和极性不同，连接时需要匹配的电平转换器。接线通常是 TX 接对端 RX、RX 接对端 TX，并共地，VCC 按当前板卡的供电方案处理。
 
 ## 7.4 CAN 总线 {#can}
 
