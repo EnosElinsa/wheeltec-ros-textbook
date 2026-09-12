@@ -53,18 +53,14 @@
 前置能力：能够解释节点、话题和消息，并已按第 10～14 章完成安全接入检查。
 
 ```text
-1 → 4 → 5 → 22 → 29 → 30 → 31 → 32 → 33
+29 → 30 → 31 → 32 → 33
 ```
 
-1. [第 1 章：认识 ROS 与 ROS 2](01-foundations/01-understanding-ros.md)
-2. [第 4 章：第一次观察 ROS 2](01-foundations/04-first-ros2-observation.md)
-3. [第 5 章：ROS 2 程序怎样协作](01-foundations/05-ros2-communication.md)
-4. [第 22 章：环境与源码选择](05-ros2-development/22-environment-and-source-selection.md)
-5. [第 29 章：传感器、驱动与话题自检](06-sensors-navigation/29-sensor-checks.md)
-6. [第 30 章：里程计、TF 与时间](06-sensors-navigation/30-odometry-tf-time.md)
-7. [第 31 章：激光雷达与二维建图](06-sensors-navigation/31-lidar-and-mapping.md)
-8. [第 32 章：地图保存、定位与坐标验证](06-sensors-navigation/32-map-localization-tf.md)
-9. [第 33 章：Nav2 导航](06-sensors-navigation/33-nav2-navigation.md)
+1. [第 29 章：传感器、驱动与话题自检](06-sensors-navigation/29-sensor-checks.md)
+2. [第 30 章：里程计、TF 与时间](06-sensors-navigation/30-odometry-tf-time.md)
+3. [第 31 章：激光雷达与二维建图](06-sensors-navigation/31-lidar-and-mapping.md)
+4. [第 32 章：地图保存、定位与坐标验证](06-sensors-navigation/32-map-localization-tf.md)
+5. [第 33 章：Nav2 导航](06-sensors-navigation/33-nav2-navigation.md)
 
 ## STM32 固件开发
 
