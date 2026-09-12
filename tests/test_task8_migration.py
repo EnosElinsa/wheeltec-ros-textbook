@@ -16,10 +16,10 @@ FIXED_TARGETS = (
     ("docs/05-ros2-development/22-environment-and-source-selection.md", "source-package-selection"),
     ("docs/05-ros2-development/25-launch-and-parameters.md", "bringup-launch-chain"),
     ("docs/05-ros2-development/27-modify-build-rollback.md", "source-change-exercise"),
-    ("docs/07-stm32-firmware/37-firmware-architecture-freertos.md", "firmware-evidence-record"),
-    ("docs/07-stm32-firmware/38-hardware-init-model-interfaces.md", "stm32-peripheral-labs"),
-    ("docs/07-stm32-firmware/39-motor-control-pid.md", "closed-loop-prechecks"),
-    ("docs/07-stm32-firmware/41-ros2-stm32-integration.md", "ros-serial-firmware-chain"),
+    ("docs/07-stm32-firmware/38-firmware-architecture-freertos.md", "firmware-evidence-record"),
+    ("docs/07-stm32-firmware/39-hardware-init-model-interfaces.md", "stm32-peripheral-labs"),
+    ("docs/07-stm32-firmware/40-motor-control-pid.md", "closed-loop-prechecks"),
+    ("docs/07-stm32-firmware/42-ros2-stm32-integration.md", "ros-serial-firmware-chain"),
     ("docs/appendices/a-ros1-maintenance.md", "ros1-bag-offline-diagnostics"),
 )
 

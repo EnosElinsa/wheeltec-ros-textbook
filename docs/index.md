@@ -31,7 +31,7 @@ ROS 2 是正文默认环境。使用 ROS 1 旧设备时，请查看[ROS 1 兼容
 - 第一次使用机器人：完成第二篇后，从[识别你的机器人配置](03-bringup/10-identify-configuration.md)开始。
 - 已经能连接主控，准备做 ROS 2 开发：进入[ROS 2 环境与源码版本选择](05-ros2-development/22-environment-and-source-selection.md)。
 - 准备建图和导航：先完成[传感器自检](06-sensors-navigation/29-sensor-checks.md)。
-- 维护 R680：先查看[R680 硬件、接线与 OLED 状态](09-r680-platform/46-r680-hardware-wiring-oled.md)。
+- 维护 R680：先查看[R680 硬件、接线与 OLED 状态](09-r680-platform/47-r680-hardware-wiring-oled.md)。
 
 完整的章节组合见[阅读路径](reading-paths.md)。术语不清楚时可查[术语表](glossary.md)。
 

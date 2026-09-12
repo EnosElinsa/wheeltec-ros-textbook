@@ -2,9 +2,9 @@
 status: complete
 ---
 
-# 38. 硬件初始化、车型选择与接口
+# 39. 硬件初始化、车型选择与接口
 
-## 38.1 学习目标 {#stm32-uart-lab}
+## 39.1 学习目标 {#stm32-uart-lab}
 
 把控制板外设初始化与实机接口一一对应，确认车型选择如何改变电机数、运动学和转向结构。
 
@@ -13,7 +13,7 @@ UART是微控制器中的串行通信外设。它按约定的波特率和帧格�
 !!! example "本节代码：UART 实验"
     仓库目录：[`stm32/labs/uart/stm32f103-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/labs/uart/stm32f103-stdperiph)。完整文件集见 `metadata/code-resource-manifests/uart.txt`。验收：能定位串口初始化。边界：仅静态核对。
 
-## 38.2 适用范围 {#stm32-pwm-lab}
+## 39.2 适用范围 {#stm32-pwm-lab}
 
 C30D、C50 系列等资料覆盖的底盘控制板。引脚和电位器位置按板卡版本核对。
 
@@ -22,7 +22,7 @@ PWM在固定周期内改变有效电平所占时间。控制板用它表达电�
 !!! example "本节代码：PWM 实验"
     仓库目录：[`stm32/labs/pwm/stm32f103-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/labs/pwm/stm32f103-stdperiph)。完整文件集见 `metadata/code-resource-manifests/pwm.txt`。验收：能定位定时器与占空比。边界：仅静态核对。
 
-## 38.3 操作前检查 {#stm32-encoder-lab}
+## 39.3 操作前检查 {#stm32-encoder-lab}
 
 - 断电拍摄控制板和线缆。
 - 查原理图、资源分配表和当前源码宏。
@@ -31,13 +31,13 @@ PWM在固定周期内改变有效电平所占时间。控制板用它表达电�
 !!! example "本节代码：编码器实验"
     仓库目录：[`stm32/labs/encoder/stm32f103-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/labs/encoder/stm32f103-stdperiph)。完整文件集见 `metadata/code-resource-manifests/encoder.txt`。验收：能定位编码器计数。边界：仅静态核对。
 
-## 38.4 工作原理
+## 39.4 工作原理
 
 初始化把芯片引脚和内部外设配置成软件可用资源。GPIO引脚读取开关量或输出方向、使能信号；定时器产生 PWM，也能读取编码器；UART 与主控通信；CAN 连接扩展总线；I²C或SPI常用于读取 IMU。车型选择进一步决定轮号、运动学、转向、显示和自检阈值。
 
 R680 C50C 的 TYPE 可由车型选择电位器决定，并在重新上电后生效。错误 TYPE 会让同一组接口按错误底盘解释。
 
-## 38.5 外设最小实验 {#stm32-peripheral-labs}
+## 39.5 外设最小实验 {#stm32-peripheral-labs}
 
 ### 实验一：串口收发与回环
 
@@ -150,7 +150,7 @@ $$
 - 相同角度、相近速度下，多次计数结果应落在实验前写下的允许偏差内；已知脉冲源测试则应按编码器模式预测准确计数。
 - 逻辑分析仪边沿数、所选编码器模式和串口计数能解释彼此差异。
 
-## 38.6 验收标准
+## 39.6 验收标准
 
 - 每个已接接口都有正确初始化函数。
 - 车型 TYPE 与底盘机械结构一致。
@@ -158,7 +158,7 @@ $$
 - IMU 原始轴经过软件转换后符合机器人坐标。
 - 未使用的接口处于安全状态。
 
-## 38.7 故障排查
+## 39.7 故障排查
 
 | 现象 | 检查 |
 |---|---|
@@ -173,4 +173,4 @@ $$
 
 ## 章节导航
 
-[上一章：固件架构与 FreeRTOS 任务](37-firmware-architecture-freertos.md) · [返回本篇](index.md) · [下一章：电机控制与 PID 实现](39-motor-control-pid.md)
+[上一章：固件架构与 FreeRTOS 任务](38-firmware-architecture-freertos.md) · [返回本篇](index.md) · [下一章：电机控制与 PID 实现](40-motor-control-pid.md)

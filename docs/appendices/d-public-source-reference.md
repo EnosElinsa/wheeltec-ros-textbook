@@ -39,7 +39,7 @@ status: complete
 ### 多点导航示例
 
 - 代码目录：[`ros2/navigation/nav2-waypoint-cycle/nav2_waypoint_cycle`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/ros2/navigation/nav2-waypoint-cycle/nav2_waypoint_cycle)
-- 正文入口：[多点导航示例](../06-sensors-navigation/32-nav2-navigation.md#nav2-code-resource)
+- 正文入口：[多点导航示例](../06-sensors-navigation/33-nav2-navigation.md#nav2-code-resource)
 - 关键文件：`nav2_waypoint_cycle/waypoint_cycle.py`、`package.xml`
 - 核验状态：`static_reviewed`；使用方式：`static_read`。
 - 使用边界：运行前核对 Nav2 版本
@@ -47,7 +47,7 @@ status: complete
 ### 路径跟踪示例
 
 - 代码目录：[`ros2/navigation/path-follow/wheeltec_path_follow`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/ros2/navigation/path-follow/wheeltec_path_follow)
-- 正文入口：[路径跟踪示例](../06-sensors-navigation/33-waypoints-path-exploration.md#path-follow-code-resource)
+- 正文入口：[路径跟踪示例](../06-sensors-navigation/34-waypoints-path-exploration.md#path-follow-code-resource)
 - 关键文件：`launch/follow_path.launch.py`、`package.xml`、`scripts/follow_path.py`
 - 核验状态：`static_reviewed`；使用方式：`static_read`。
 - 使用边界：不替代实机安全检查
@@ -57,7 +57,7 @@ status: complete
 ### 人体消息与跟随节点
 
 - 代码目录：[`ros1/maintenance/bodyreader`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/ros1/maintenance/bodyreader)
-- 正文入口：[人体消息与跟随节点](../08-advanced-applications/44-mmwave-human-deep-learning.md#bodyreader-code-resource)
+- 正文入口：[人体消息与跟随节点](../08-advanced-applications/45-mmwave-human-deep-learning.md#bodyreader-code-resource)
 - 关键文件：`launch/bodyfollow.launch`、`msg/body.msg`、`package.xml`、`src/bodydata_process.cpp`、`src/follower.cpp`
 - 核验状态：`static_reviewed`；使用方式：`static_read`。
 - 使用边界：依赖 Astra/OpenNI 运行时和相机，仅静态阅读
@@ -67,7 +67,7 @@ status: complete
 ### KCF 跟踪示例
 
 - 代码目录：[`applications/kcf-tracker/wheeltec_robot_kcf_model`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/applications/kcf-tracker/wheeltec_robot_kcf_model)
-- 正文入口：[KCF 跟踪示例](../06-sensors-navigation/36-vision-applications.md#kcf-code-resource)
+- 正文入口：[KCF 跟踪示例](../06-sensors-navigation/37-vision-applications.md#kcf-code-resource)
 - 关键文件：`launch/kcf_tracker.launch.py`、`package.xml`、`wheeltec_robot_kcf_model/kcf_tracker_node.py`、`wheeltec_robot_kcf_model/pid_controller.py`
 - 核验状态：`static_reviewed`；使用方式：`static_read`。
 - 使用边界：依赖相机和初始框条件
@@ -77,7 +77,7 @@ status: complete
 ### 编码器实验
 
 - 代码目录：[`stm32/labs/encoder/stm32f103-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/labs/encoder/stm32f103-stdperiph)
-- 正文入口：[编码器实验](../07-stm32-firmware/38-hardware-init-model-interfaces.md#stm32-encoder-lab)
+- 正文入口：[编码器实验](../07-stm32-firmware/39-hardware-init-model-interfaces.md#stm32-encoder-lab)
 - 关键文件：`STM32F10x_FWLib/src/stm32f10x_usart.c`、`USER/Encoder.uvprojx`、`USER/main.c`、`USER/stm32f10x.h`
 - 核验状态：`static_reviewed`；使用方式：`static_read`。
 - 使用边界：仅静态核对
@@ -85,7 +85,7 @@ status: complete
 ### PWM 实验
 
 - 代码目录：[`stm32/labs/pwm/stm32f103-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/labs/pwm/stm32f103-stdperiph)
-- 正文入口：[PWM 实验](../07-stm32-firmware/38-hardware-init-model-interfaces.md#stm32-pwm-lab)
+- 正文入口：[PWM 实验](../07-stm32-firmware/39-hardware-init-model-interfaces.md#stm32-pwm-lab)
 - 关键文件：`STM32F10x_FWLib/src/stm32f10x_usart.c`、`USER/PWM.uvprojx`、`USER/main.c`、`USER/stm32f10x.h`
 - 核验状态：`static_reviewed`；使用方式：`static_read`。
 - 使用边界：仅静态核对
@@ -93,7 +93,7 @@ status: complete
 ### UART 实验
 
 - 代码目录：[`stm32/labs/uart/stm32f103-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/labs/uart/stm32f103-stdperiph)
-- 正文入口：[UART 实验](../07-stm32-firmware/38-hardware-init-model-interfaces.md#stm32-uart-lab)
+- 正文入口：[UART 实验](../07-stm32-firmware/39-hardware-init-model-interfaces.md#stm32-uart-lab)
 - 关键文件：`STM32F10x_FWLib/src/stm32f10x_usart.c`、`USER/UART1.uvprojx`、`USER/main.c`、`USER/stm32f10x.h`
 - 核验状态：`static_reviewed`；使用方式：`static_read`。
 - 使用边界：仅静态核对
@@ -103,7 +103,7 @@ status: complete
 ### 电机控制
 
 - 代码目录：[`stm32/control/motor/stm32f4-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/control/motor/stm32f4-stdperiph)
-- 正文入口：[电机控制](../07-stm32-firmware/39-motor-control-pid.md#stm32-motor-control)
+- 正文入口：[电机控制](../07-stm32-firmware/40-motor-control-pid.md#stm32-motor-control)
 - 关键文件：`USER/WHEELTEC.uvprojx`、`USER/main.c`
 - 核验状态：`static_reviewed`；使用方式：`static_read`。
 - 使用边界：无编译器与实机证据
@@ -111,7 +111,7 @@ status: complete
 ### PID 控制
 
 - 代码目录：[`stm32/control/pid/stm32f4-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/control/pid/stm32f4-stdperiph)
-- 正文入口：[PID 控制](../07-stm32-firmware/39-motor-control-pid.md#stm32-pid-control)
+- 正文入口：[PID 控制](../07-stm32-firmware/40-motor-control-pid.md#stm32-pid-control)
 - 关键文件：`USER/WHEELTEC.uvprojx`、`USER/main.c`
 - 核验状态：`static_reviewed`；使用方式：`static_read`。
 - 使用边界：无编译器与实机证据
@@ -121,7 +121,7 @@ status: complete
 ### 静态诊断串口与 CAN 控制链
 
 - 代码目录：[`r680/firmware/c50c/f407-mecanum-hall-single-serial-can-b01`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/r680/firmware/c50c/f407-mecanum-hall-single-serial-can-b01)
-- 正文入口：[静态诊断串口与 CAN 控制链](../09-r680-platform/47-r680-debug-source-firmware.md#r680-code-resource)
+- 正文入口：[静态诊断串口与 CAN 控制链](../09-r680-platform/48-r680-debug-source-firmware.md#r680-code-resource)
 - 关键文件：`HARDWARE/can.c`、`HARDWARE/usartx.c`、`USER/WHEELTEC.uvprojx`、`USER/main.c`
 - 核验状态：`static_reviewed`；使用方式：`static_read`。
 - 使用边界：无照片、接线与测量证据，不得烧录或声明硬件验证

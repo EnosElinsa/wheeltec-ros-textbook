@@ -42,12 +42,20 @@ class ConceptPlacementTests(unittest.TestCase):
     def test_sensor_diagnosis_order_lives_in_chapter_25(self) -> None:
         self.assertPageContains(
             "docs/06-sensors-navigation/29-sensor-checks.md",
-            ("设备 → 节点 → 话题 → 通信匹配 → 时间",),
+            (
+                "设备 → 节点 → 话题 → 通信匹配 → 时间",
+                "Linux 内核驱动和 SDK 本身通常不发布 ROS 2 话题",
+                "`sensor_msgs/msg/LaserScan`",
+                "`sensor_msgs/msg/Image`",
+                "`sensor_msgs/msg/Imu`",
+                "`sensor_msgs/msg/NavSatFix`",
+                "`ros2 node info`",
+            ),
         )
 
     def test_navigation_frame_ownership_lives_in_chapter_27(self) -> None:
         self.assertPageContains(
-            "docs/06-sensors-navigation/31-map-localization-tf.md",
+            "docs/06-sensors-navigation/32-map-localization-tf.md",
             (
                 "map → odom → base_link → sensor",
                 "定位系统估计 `map → odom`",
@@ -57,7 +65,7 @@ class ConceptPlacementTests(unittest.TestCase):
 
     def test_container_boundary_lives_in_chapter_44(self) -> None:
         self.assertPageContains(
-            "docs/10-deployment-maintenance/48-network-docker-images.md",
+            "docs/10-deployment-maintenance/49-network-docker-images.md",
             ("宿主", "容器", "USB", "GPU", "网络", "时间"),
         )
 

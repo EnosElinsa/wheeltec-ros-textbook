@@ -13,7 +13,7 @@ class SourceWalkthroughMigrationTests(unittest.TestCase):
             ROOT / "docs/05-ros2-development/22-environment-and-source-selection.md",
             ROOT / "docs/05-ros2-development/25-launch-and-parameters.md",
             ROOT / "docs/05-ros2-development/27-modify-build-rollback.md",
-            ROOT / "docs/07-stm32-firmware/41-ros2-stm32-integration.md",
+            ROOT / "docs/07-stm32-firmware/42-ros2-stm32-integration.md",
         )
         combined = "\n".join(path.read_text(encoding="utf-8") for path in pages)
         for phrase in (
@@ -44,7 +44,7 @@ class SourceWalkthroughMigrationTests(unittest.TestCase):
             ROOT / "docs/05-ros2-development/27-modify-build-rollback.md"
         ).read_text(encoding="utf-8")
         firmware = (
-            ROOT / "docs/07-stm32-firmware/41-ros2-stm32-integration.md"
+            ROOT / "docs/07-stm32-firmware/42-ros2-stm32-integration.md"
         ).read_text(encoding="utf-8")
         self.assertIn("安全修改练习", change)
         self.assertIn("验收记录", change)

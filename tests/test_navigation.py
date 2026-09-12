@@ -32,7 +32,7 @@ class NavigationTests(unittest.TestCase):
         numbered = [
             row for row in rows if row["kind"] in {"foundation", "chapter"}
         ]
-        self.assertEqual(len(numbered), 50)
+        self.assertEqual(len(numbered), 51)
         for index, row in enumerate(numbered):
             path = ROOT / row["path"]
             links = linked_markdown_paths(path)
@@ -67,10 +67,10 @@ class NavigationTests(unittest.TestCase):
                 offenders.append(path.relative_to(ROOT).as_posix())
         self.assertEqual(offenders, [])
 
-    def test_mkdocs_has_ten_parts_and_50_numbered_entries(self) -> None:
+    def test_mkdocs_has_ten_parts_and_51_numbered_entries(self) -> None:
         config = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")
         self.assertEqual(len(re.findall(r"^  - 第(?:[一二三四五六七八九]|十)篇 ", config, re.MULTILINE)), 10)
-        self.assertEqual(len(re.findall(r"^      - (?:[1-9]|[1-4][0-9]|50) ", config, re.MULTILINE)), 50)
+        self.assertEqual(len(re.findall(r"^      - (?:[1-9]|[1-4][0-9]|50|51) ", config, re.MULTILINE)), 51)
 
     def test_entry_pages_use_current_paths(self) -> None:
         combined = "\n".join(
@@ -118,8 +118,8 @@ class NavigationTests(unittest.TestCase):
             "1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10",
             "1 → 4 → 5 → 22",
             "10 → 11 → 12 → 13 → 14",
-            "1 → 4 → 5 → 22 → 29 → 30 → 31 → 32",
-            "10 → 21 → 46 → 47 → 49",
+            "1 → 4 → 5 → 22 → 29 → 30 → 31 → 32 → 33",
+            "10 → 21 → 47 → 48 → 50",
         ):
             self.assertIn(sequence, text)
         self.assertGreaterEqual(text.count("前置能力"), 3)

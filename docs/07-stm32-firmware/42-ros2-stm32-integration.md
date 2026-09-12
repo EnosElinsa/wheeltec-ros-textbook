@@ -2,31 +2,31 @@
 status: complete
 ---
 
-# 41. ROS 2 与 STM32 联调
+# 42. ROS 2 与 STM32 联调
 
-## 41.1 学习目标
+## 42.1 学习目标
 
 沿着 `cmd_vel` 到电机、再从编码器/IMU 回到 ROS 2 的完整链路设置检查点，定位通信和单位转换问题。
 
 联调是把已经分别检查过的 ROS 2 程序、串口链路和控制板固件连接起来，逐段确认数据能否到达下一层。调试时一次只跨过一个接口，这样才能分清故障来自 ROS 节点、协议转换、物理通信还是固件执行。
 
-## 41.2 适用范围
+## 42.2 适用范围
 
 使用 `turn_on_wheeltec_robot` 与串口底盘协议的 ROS 2 机器人。CAN 驱动可沿用同样的边界检查。
 
-## 41.3 操作前检查
+## 42.3 操作前检查
 
 - STM32 固件已通过架空验收并可回滚。
 - 串口设备别名和权限稳定。
 - ROS 2 底盘节点源码与固件协议版本匹配。
 
-## 41.4 工作原理
+## 42.4 工作原理
 
 ![ROS 2 与 STM32 的闭环链路](../assets/diagrams/ros2-stm32-loop.svg)
 
 图中的每个箭头都是一个可单独检查的接口。常见错误包括设备端口选错、协议版本不一致、毫米每秒与米每秒漏换、角速度缩放倍数错误，以及字节序或坐标符号相反。
 
-## 41.5 ROS—串口—固件链 {#ros-serial-firmware-chain}
+## 42.5 ROS—串口—固件链 {#ros-serial-firmware-chain}
 
 ### 从 `cmd_vel` 追到 STM32，再回到 ROS 2
 
@@ -61,7 +61,7 @@ ros2 run tf2_ros tf2_echo odom_combined base_footprint
 
 代码入口与完整文件集见第 25 章的[底盘启动链资源块](../05-ros2-development/25-launch-and-parameters.md#bringup-launch-chain)；本节只定义 ROS、串口与固件之间的验证边界，不新增独立代码资源。
 
-## 41.6 验收标准
+## 42.6 验收标准
 
 - 设备别名在重插后稳定。
 - ROS 速度和协议整数的缩放可手算复核。
@@ -69,7 +69,7 @@ ros2 run tf2_ros tf2_echo odom_combined base_footprint
 - 停止、节点退出和通信断开都能让底盘安全停机。
 - 记录中包含 ROS 包版本、固件版本和抓帧证据。
 
-## 41.7 故障排查
+## 42.7 故障排查
 
 | 现象 | 边界 |
 |---|---|
@@ -81,4 +81,4 @@ ros2 run tf2_ros tf2_echo odom_combined base_footprint
 
 ## 章节导航
 
-[上一章：修改、编译、烧录与回滚固件](40-build-flash-rollback.md) · [返回本篇](index.md) · [下一章：机器人仿真](../08-advanced-applications/42-gazebo-simulation.md)
+[上一章：修改、编译、烧录与回滚固件](41-build-flash-rollback.md) · [返回本篇](index.md) · [下一章：机器人仿真](../08-advanced-applications/43-gazebo-simulation.md)

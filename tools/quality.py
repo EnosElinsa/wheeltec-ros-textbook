@@ -120,23 +120,79 @@ FOUNDATION_HEADINGS_BY_NUMBER = {
     ],
 }
 def expected_engineering_headings(number: int) -> list[str]:
-    if number == 47:
+    if number == 29:
         return [
-            "47.1 学习目标",
-            "47.2 适用范围",
-            "47.3 静态核对",
-            "47.4 安全边界",
-            "47.5 故障记录",
-            "47.6 章节导航",
+            "29.1 传感器部件与物理接口",
+            "29.2 从物理接口到 ROS 2 话题",
+            "29.3 操作步骤",
+            "章节导航",
+        ]
+    if number == 30:
+        return [
+            "30.1 为什么只有雷达数据还不够",
+            "30.2 里程计从哪里来",
+            "30.3 先认识建图所需的坐标关系",
+            "30.4 TF 从哪里来",
+            "30.5 时间信息从哪里来",
+            "30.6 三类输入的匹配检查",
+            "章节导航",
+        ]
+    if number == 31:
+        return [
+            "31.1 从雷达话题到 SLAM 输入",
+            "31.2 输入不匹配时怎样调整",
+            "31.3 常见二维建图算法",
+            "31.4 迁移或替换建图算法",
+            "31.5 建图操作步骤",
+            "31.6 故障排查",
+            "章节导航",
+        ]
+    if number == 32:
+        return [
+            "32.1 保存地图",
+            "32.2 从建图切换到定位",
+            "32.3 设置初始位姿",
+            "32.4 在 RViz2 和命令行中验证",
+            "32.5 定位之后还能做什么",
+            "32.6 常见问题",
+            "章节导航",
+        ]
+    if number == 33:
+        return [
+            "33.1 Nav2 接收什么，又输出什么",
+            "33.2 Nav2 内部怎样实现一次导航",
+            "33.3 启动前先确认接口",
+            "33.4 第一次发送导航目标",
+            "33.5 代价地图和 footprint 为什么重要",
+            "33.6 导航失败时怎样定位问题",
+            "章节导航",
+        ]
+    if number == 34:
+        return [
+            "34.1 多点导航：把多个目标交给 Nav2",
+            "34.2 路径跟踪：已经有路线时怎样走",
+            "34.3 自主探索：从未知区域选择下一个目标",
+            "34.4 这些算法有什么区别",
+            "34.5 运行时怎样确认任务真的在工作",
+            "章节导航",
+        ]
+    if number == 48:
+        return [
+            "48.1 学习目标",
+            "48.2 适用范围",
+            "48.3 静态核对",
+            "48.4 安全边界",
+            "48.5 故障记录",
+            "48.6 章节导航",
         ]
     task_titles = {
         (22, 5): "源码包确认",
         (25, 5): "启动链源码追踪",
         (27, 5): "源码修改练习",
-        (37, 5): "固件实验记录",
-        (38, 5): "外设最小实验",
-        (39, 3): "闭环前置检查",
-        (41, 5): "ROS—串口—固件链",
+        (38, 5): "固件实验记录",
+        (39, 5): "外设最小实验",
+        (40, 3): "闭环前置检查",
+        (42, 5): "ROS—串口—固件链",
     }
     defaults = {
         1: "学习目标",
@@ -157,7 +213,7 @@ def expected_engineering_headings(number: int) -> list[str]:
 PROMOTIONAL_PATTERNS = ["推荐关注我们的公众号", "关注公众号", "获取更新资料"]
 UNFINISHED_PATTERNS = [r"\bTODO\b", r"\bTBD\b", r"\[待写\]", r"\[内容待补\]"]
 FORBIDDEN_FOUNDATION_PATTERNS = {
-    "later chapter prerequisite": r"(?:已读|先读|完成|先完成)第\s*(?:1[0-9]|[2-4][0-9]|50)\s*章",
+    "later chapter prerequisite": r"(?:已读|先读|完成|先完成)第\s*(?:1[0-9]|[2-4][0-9]|50|51)\s*章",
     "advanced middleware jargon": r"\b(?:DDS|QoS|TF|colcon|Launch|Docker)\b",
     "required SSH access": r"必须(?:使用|通过).*SSH",
     "required robot runtime": r"(?:机器人|WHEELTEC).*(?:节点|系统).*已启动",
@@ -219,10 +275,10 @@ def check_manifest(rows: list[dict[str, str]]) -> list[str]:
         numbered_rows = []
     if foundation_numbers != list(range(1, 10)):
         errors.append("foundation numbers must be consecutive from 1 through 9")
-    if chapter_numbers != list(range(10, 51)):
-        errors.append("engineering chapter numbers must be consecutive from 10 through 50")
-    if numbered_rows != list(range(1, 51)):
-        errors.append("all numbered pages must be ordered from 1 through 50")
+    if chapter_numbers != list(range(10, 52)):
+        errors.append("engineering chapter numbers must be consecutive from 10 through 51")
+    if numbered_rows != list(range(1, 52)):
+        errors.append("all numbered pages must be ordered from 1 through 51")
     if [row.get("number") for row in appendices] != ["A", "B", "C", "D"]:
         errors.append("public chapter manifest must contain appendices A through D")
     return errors
