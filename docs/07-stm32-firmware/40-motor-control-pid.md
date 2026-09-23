@@ -2,9 +2,9 @@
 status: complete
 ---
 
-# 39. 电机控制与 PID 实现
+# 40. 电机控制与 PID 实现
 
-## 39.1 学习目标 {#stm32-motor-control}
+## 40.1 学习目标 {#stm32-motor-control}
 
 从编码器计数得到轮速，理解增量 PI 怎样更新 PWM，并根据目标值、测量值和输出曲线调整参数。仅凭电机声音无法判断控制误差和稳定性。
 
@@ -13,14 +13,14 @@ status: complete
 !!! example "本节代码：电机控制"
     仓库目录：[`stm32/control/motor/stm32f4-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/control/motor/stm32f4-stdperiph)。完整文件集见 `metadata/code-resource-manifests/motor.txt`。验收：能定位电机映射。边界：无编译器与实机证据。
 
-## 39.2 适用范围 {#stm32-pid-control}
+## 40.2 适用范围 {#stm32-pid-control}
 
 直流编码器电机速度环；舵机位置环和速度/位置串级控制采用同一误差反馈思路，但参数与输出不同。
 
 !!! example "本节代码：PID 控制"
     仓库目录：[`stm32/control/pid/stm32f4-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/control/pid/stm32f4-stdperiph)。完整文件集见 `metadata/code-resource-manifests/pid.txt`。验收：能定位 PID 常量。边界：无编译器与实机证据。
 
-## 39.3 闭环前置检查 {#closed-loop-prechecks}
+## 40.3 闭环前置检查 {#closed-loop-prechecks}
 
 进入闭环前先逐项检查三个最小外设实验的停止条件；任一项触发即停止，不把外设观察外推为整车控制结论。
 
@@ -55,7 +55,7 @@ status: complete
 - 电机架空测试可靠，PWM 限幅存在。
 - 备份当前参数和固件。
 
-## 39.4 工作原理
+## 40.4 工作原理
 
 目标轮速来自逆运动学，测量轮速来自编码器。增量 PI 常写为：
 
@@ -65,7 +65,7 @@ $$
 
 比例项决定控制器对当前误差变化的反应强度，积分项累积一段时间内的误差，用于减小持续偏差。控制周期改变后，同一组参数产生的效果也会改变。程序还要限制 PWM 输出、处理低速死区，并在失能时清除积分，防止重新使能后突然输出较大控制量。
 
-## 39.5 操作步骤
+## 40.5 操作步骤
 
 1. 用固定周期记录目标速度、测量速度、误差和 PWM。
 2. 先确认开环方向和编码器反馈方向一致。
@@ -75,9 +75,9 @@ $$
 6. 测试停止、反向、低速和常用负载。
 7. 每次参数变更保存曲线和版本。
 
-闭环调参前必须先证明 PWM 周期/占空比和编码器方向/计数可靠。[STM32 串口、PWM 与编码器最小实验](38-hardware-init-model-interfaces.md#stm32-peripheral-labs)给出了无需使能电机的观察步骤；其中引脚和工程基线不能直接套用于其他控制板。
+闭环调参前必须先证明 PWM 周期/占空比和编码器方向/计数可靠。[STM32 串口、PWM 与编码器最小实验](39-hardware-init-model-interfaces.md#stm32-peripheral-labs)给出了无需使能电机的观察步骤；其中引脚和工程基线不能直接套用于其他控制板。
 
-## 39.6 验收标准
+## 40.6 验收标准
 
 - 各轮响应方向正确，目标和实测曲线可解释。
 - 常用速度下稳定误差可接受，无持续振荡。
@@ -85,7 +85,7 @@ $$
 - 电机和驱动器温升正常。
 - 参数在重启后按预期加载。
 
-## 39.7 故障排查
+## 40.7 故障排查
 
 | 现象 | 优先检查 |
 |---|---|
@@ -100,4 +100,4 @@ $$
 
 ## 章节导航
 
-[上一章：硬件初始化、车型选择与接口](38-hardware-init-model-interfaces.md) · [返回本篇](index.md) · [下一章：修改、编译、烧录与回滚固件](40-build-flash-rollback.md)
+[上一章：硬件初始化、车型选择与接口](39-hardware-init-model-interfaces.md) · [返回本篇](index.md) · [下一章：修改、编译、烧录与回滚固件](41-build-flash-rollback.md)

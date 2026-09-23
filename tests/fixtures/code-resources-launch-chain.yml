@@ -42,7 +42,7 @@ resources:
           - 隔离环境启动后可观察节点
         boundaries:
           - 不连接实车执行
-      - page: docs/07-stm32-firmware/41-ros2-stm32-integration.md
+      - page: docs/07-stm32-firmware/42-ros2-stm32-integration.md
         anchor: ros-serial-firmware-chain
         files:
           - launch/base_serial.launch.py

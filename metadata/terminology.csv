@@ -21,8 +21,8 @@ STM32,STMicroelectronics 32-bit Microcontroller Family,,docs/02-hardware-basics/
 进程,Process,,docs/01-foundations/03-ubuntu-terminal-programs.md,program-process,进程（Process）,进程
 命令解释器,Shell,,docs/01-foundations/03-ubuntu-terminal-programs.md,terminal-command,命令解释器（Shell）,Shell
 固件,Firmware,,docs/02-hardware-basics/06-controller-and-firmware.md,source-firmware-build,固件（Firmware）,固件
-实时操作系统,Real-Time Operating System,RTOS,docs/07-stm32-firmware/37-firmware-architecture-freertos.md,initialization-task-scheduling,"实时操作系统（Real-Time Operating System, RTOS）",RTOS
-FreeRTOS,FreeRTOS,,docs/07-stm32-firmware/37-firmware-architecture-freertos.md,initialization-task-scheduling,FreeRTOS,FreeRTOS
+实时操作系统,Real-Time Operating System,RTOS,docs/07-stm32-firmware/38-firmware-architecture-freertos.md,initialization-task-scheduling,"实时操作系统（Real-Time Operating System, RTOS）",RTOS
+FreeRTOS,FreeRTOS,,docs/07-stm32-firmware/38-firmware-architecture-freertos.md,initialization-task-scheduling,FreeRTOS,FreeRTOS
 通用异步收发传输器,Universal Asynchronous Receiver-Transmitter,UART,docs/02-hardware-basics/07-electrical-interfaces-communication.md,uart-usart-levels,"通用异步收发传输器（Universal Asynchronous Receiver-Transmitter, UART）",UART
 通用同步/异步收发传输器,Universal Synchronous/Asynchronous Receiver-Transmitter,USART,docs/02-hardware-basics/07-electrical-interfaces-communication.md,uart-usart-levels,"通用同步/异步收发传输器（Universal Synchronous/Asynchronous Receiver-Transmitter, USART）",USART
 脉宽调制,Pulse-Width Modulation,PWM,docs/02-hardware-basics/09-chassis-motion-control.md,motor-driver-pwm,"脉宽调制（Pulse-Width Modulation, PWM）",PWM
@@ -36,21 +36,21 @@ Transform Library 2,Transform Library 2,TF2,docs/05-ros2-development/26-tf-urdf-
 XML Macros,XML Macros,Xacro,docs/05-ros2-development/26-tf-urdf-rviz.md,model-tf-rviz,XML Macros（Xacro）,Xacro
 ROS Visualization,ROS Visualization,RViz,docs/05-ros2-development/26-tf-urdf-rviz.md,model-tf-rviz,ROS Visualization（RViz）,RViz
 Launch System,Launch System,Launch,docs/05-ros2-development/25-launch-and-parameters.md,launch-principle,Launch System（Launch）,Launch
-同步定位与建图,Simultaneous Localization and Mapping,SLAM,docs/06-sensors-navigation/30-lidar-and-mapping.md,lidar-slam,"同步定位与建图（Simultaneous Localization and Mapping, SLAM）",SLAM
-Navigation2,Navigation2,Nav2,docs/06-sensors-navigation/32-nav2-navigation.md,planning-control-recovery,Navigation2（Nav2）,Nav2
-Open Source Computer Vision Library,Open Source Computer Vision Library,OpenCV,docs/06-sensors-navigation/34-camera-opencv-images.md,camera-opencv,Open Source Computer Vision Library（OpenCV）,OpenCV
-cv_bridge,cv_bridge,,docs/06-sensors-navigation/34-camera-opencv-images.md,camera-opencv,cv_bridge,cv_bridge
-快速扩展随机树,Rapidly-Exploring Random Tree,RRT,docs/06-sensors-navigation/33-waypoints-path-exploration.md,exploration-methods,"快速扩展随机树（Rapidly-Exploring Random Tree, RRT）",RRT
-Kernelized Correlation Filter,Kernelized Correlation Filter,KCF,docs/06-sensors-navigation/36-vision-applications.md,vision-chain,Kernelized Correlation Filter（KCF）,KCF
-增强现实标签,Augmented Reality Tag,AR Tag,docs/06-sensors-navigation/36-vision-applications.md,vision-chain,"增强现实标签（Augmented Reality Tag, AR Tag）",AR Tag
-Gazebo Simulation Platform,Gazebo Simulation Platform,Gazebo,docs/08-advanced-applications/42-gazebo-simulation.md,simulation-basics,Gazebo Simulation Platform（Gazebo）,Gazebo
-Qt Application Framework,Qt Application Framework,Qt,docs/08-advanced-applications/43-multi-robot-and-qt.md,qt-client,Qt Application Framework（Qt）,Qt
-网络文件系统,Network File System,NFS,docs/10-deployment-maintenance/48-network-docker-images.md,host-container-device-boundary,"网络文件系统（Network File System, NFS）",NFS
+同步定位与建图,Simultaneous Localization and Mapping,SLAM,docs/06-sensors-navigation/30-odometry-tf-time.md,odometry-slam,"同步定位与建图（Simultaneous Localization and Mapping, SLAM）",SLAM
+Navigation2,Navigation2,Nav2,docs/06-sensors-navigation/33-nav2-navigation.md,planning-control-recovery,Navigation2（Nav2）,Nav2
+Open Source Computer Vision Library,Open Source Computer Vision Library,OpenCV,docs/06-sensors-navigation/35-camera-opencv-images.md,camera-opencv,Open Source Computer Vision Library（OpenCV）,OpenCV
+cv_bridge,cv_bridge,,docs/06-sensors-navigation/35-camera-opencv-images.md,camera-opencv,cv_bridge,cv_bridge
+快速扩展随机树,Rapidly-Exploring Random Tree,RRT,docs/06-sensors-navigation/34-waypoints-path-exploration.md,exploration-methods,"快速扩展随机树（Rapidly-Exploring Random Tree, RRT）",RRT
+Kernelized Correlation Filter,Kernelized Correlation Filter,KCF,docs/06-sensors-navigation/37-vision-applications.md,vision-chain,Kernelized Correlation Filter（KCF）,KCF
+增强现实标签,Augmented Reality Tag,AR Tag,docs/06-sensors-navigation/37-vision-applications.md,vision-chain,"增强现实标签（Augmented Reality Tag, AR Tag）",AR Tag
+Gazebo Simulation Platform,Gazebo Simulation Platform,Gazebo,docs/08-advanced-applications/43-gazebo-simulation.md,simulation-basics,Gazebo Simulation Platform（Gazebo）,Gazebo
+Qt Application Framework,Qt Application Framework,Qt,docs/08-advanced-applications/44-multi-robot-and-qt.md,qt-client,Qt Application Framework（Qt）,Qt
+网络文件系统,Network File System,NFS,docs/10-deployment-maintenance/49-network-docker-images.md,host-container-device-boundary,"网络文件系统（Network File System, NFS）",NFS
 Docker Container Platform,Docker Container Platform,Docker,docs/05-ros2-development/22-environment-and-source-selection.md,runtime-environment,Docker Container Platform（Docker）,Docker
-应用程序编程接口,Application Programming Interface,API,docs/08-advanced-applications/45-voice-ai-openclaw.md,ai-interfaces,"应用程序编程接口（Application Programming Interface, API）",API
+应用程序编程接口,Application Programming Interface,API,docs/08-advanced-applications/46-voice-ai-openclaw.md,ai-interfaces,"应用程序编程接口（Application Programming Interface, API）",API
 互联网协议地址,Internet Protocol Address,IP Address,docs/03-bringup/13-connect-controller.md,network-remote-access,"互联网协议地址（Internet Protocol Address, IP Address）",IP
 虚拟网络计算,Virtual Network Computing,VNC,docs/03-bringup/13-connect-controller.md,network-remote-access,"虚拟网络计算（Virtual Network Computing, VNC）",VNC
-扩展卡尔曼滤波器,Extended Kalman Filter,EKF,docs/06-sensors-navigation/31-map-localization-tf.md,localization-tf,"扩展卡尔曼滤波器（Extended Kalman Filter, EKF）",EKF
+扩展卡尔曼滤波器,Extended Kalman Filter,EKF,docs/06-sensors-navigation/30-odometry-tf-time.md,odometry-ekf,"扩展卡尔曼滤波器（Extended Kalman Filter, EKF）",EKF
 全局导航卫星系统,Global Navigation Satellite System,GNSS,docs/02-hardware-basics/08-sensors-and-feedback.md,lidar-camera-gnss,"全局导航卫星系统（Global Navigation Satellite System, GNSS）",GNSS
 数据长度代码,Data Length Code,DLC,docs/02-hardware-basics/07-electrical-interfaces-communication.md,frames-checksum,"数据长度代码（Data Length Code, DLC）",DLC
 标识符,Identifier,ID,docs/02-hardware-basics/07-electrical-interfaces-communication.md,can,"标识符（Identifier, ID）",ID
@@ -67,9 +67,9 @@ Docker Container Platform,Docker Container Platform,Docker,docs/05-ros2-developm
 域标识符,Domain Identifier,Domain ID,docs/05-ros2-development/24-nodes-topics-services-actions.md,interface-compatibility,"域标识符（Domain Identifier, Domain ID）",Domain ID
 可扩展标记语言,Extensible Markup Language,XML,docs/05-ros2-development/26-tf-urdf-rviz.md,model-tf-rviz,"可扩展标记语言（Extensible Markup Language, XML）",XML
 YAML 配置格式,YAML Ain't Markup Language,YAML,docs/05-ros2-development/25-launch-and-parameters.md,launch-principle,"YAML 配置格式（YAML Ain't Markup Language, YAML）",YAML
-世界,World,,docs/08-advanced-applications/42-gazebo-simulation.md,simulation-basics,世界（World）,世界
-插件,Plugin,,docs/08-advanced-applications/42-gazebo-simulation.md,simulation-basics,插件（Plugin）,插件
-哈希值,Hash Value,,docs/10-deployment-maintenance/49-logs-backup-upgrade-recovery.md,backup-layers,哈希值（Hash Value）,哈希值
+世界,World,,docs/08-advanced-applications/43-gazebo-simulation.md,simulation-basics,世界（World）,世界
+插件,Plugin,,docs/08-advanced-applications/43-gazebo-simulation.md,simulation-basics,插件（Plugin）,插件
+哈希值,Hash Value,,docs/10-deployment-maintenance/50-logs-backup-upgrade-recovery.md,backup-layers,哈希值（Hash Value）,哈希值
 数据分发服务,Data Distribution Service,DDS,docs/05-ros2-development/24-nodes-topics-services-actions.md,interface-compatibility,"数据分发服务（Data Distribution Service, DDS）",DDS
 服务质量,Quality of Service,QoS,docs/05-ros2-development/24-nodes-topics-services-actions.md,interface-compatibility,"服务质量（Quality of Service, QoS）",QoS
 统一机器人描述格式,Unified Robot Description Format,URDF,docs/05-ros2-development/26-tf-urdf-rviz.md,model-tf-rviz,"统一机器人描述格式（Unified Robot Description Format, URDF）",URDF
@@ -87,7 +87,7 @@ YAML 配置格式,YAML Ain't Markup Language,YAML,docs/05-ros2-development/25-la
 cmd_vel,cmd_vel,,docs/04-chassis-control/17-keyboard-and-cmd-vel.md,keyboard-control,cmd_vel,cmd_vel
 base_link,base_link,,docs/05-ros2-development/26-tf-urdf-rviz.md,model-tf-rviz,base_link,base_link
 odom,odom,,docs/02-hardware-basics/09-chassis-motion-control.md,encoder-odometry,odom,odom
-map,map,,docs/06-sensors-navigation/31-map-localization-tf.md,localization-tf,map,map
+map,map,,docs/06-sensors-navigation/32-map-localization-tf.md,localization-tf,map,map
 TF,Transform Framework,,docs/05-ros2-development/26-tf-urdf-rviz.md,model-tf-rviz,TF,TF
-人工智能,Artificial Intelligence,AI,docs/08-advanced-applications/45-voice-ai-openclaw.md,ai-interfaces,"人工智能（Artificial Intelligence, AI）",AI
-文本转语音,Text-to-Speech,TTS,docs/08-advanced-applications/45-voice-ai-openclaw.md,ai-interfaces,"文本转语音（Text-to-Speech, TTS）",TTS
+人工智能,Artificial Intelligence,AI,docs/08-advanced-applications/46-voice-ai-openclaw.md,ai-interfaces,"人工智能（Artificial Intelligence, AI）",AI
+文本转语音,Text-to-Speech,TTS,docs/08-advanced-applications/46-voice-ai-openclaw.md,ai-interfaces,"文本转语音（Text-to-Speech, TTS）",TTS

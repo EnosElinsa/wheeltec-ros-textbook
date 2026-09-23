@@ -699,7 +699,7 @@ docs/02-bringup/06-identify-configuration.md
 docs/04-ros2-development/21-launch-and-parameters.md
   -> docs/05-ros2-development/25-launch-and-parameters.md
 docs/09-deployment-maintenance/46-system-acceptance.md
-  -> docs/10-deployment-maintenance/50-system-acceptance.md
+  -> docs/10-deployment-maintenance/51-system-acceptance.md
 ```
 
 Move `system-acceptance-checklist.md` with the deployment part without numbering it.
