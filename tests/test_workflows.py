@@ -14,7 +14,7 @@ from workspace_paths import find_process_root, find_source_root
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
-SOURCE_REVISION = "6dc844bc35afc26477f3573c9191a2481b219a2d"
+SOURCE_REVISION = "62aacaed782091b06060ace276c64e9aaf84ae6b"
 
 
 class WorkflowContractTests(unittest.TestCase):

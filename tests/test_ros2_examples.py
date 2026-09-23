@@ -6,7 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_REPOSITORY_URL = "https://github.com/EnosElinsa/wheeltec-ros-source-reference"
-SOURCE_REVISION = "6dc844bc35afc26477f3573c9191a2481b219a2d"
+SOURCE_REVISION = "62aacaed782091b06060ace276c64e9aaf84ae6b"
 
 
 class Ros2ExampleBundleTests(unittest.TestCase):

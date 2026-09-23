@@ -85,7 +85,7 @@ ros2 topic info /cmd_vel --verbose
 常见问题包括：目标顺序与列表索引不一致、路径的 `frame_id` 错误、路径点落在障碍物内、探索节点重复选择同一 frontier，以及取消动作后任务线程仍在发送新目标。排查时先确认 Nav2 基础链和 TF 正常，再检查任务节点自己的状态机。
 
 !!! example "本章代码：路径跟踪"
-    仓库目录：[`ros2/navigation/path-follow/wheeltec_path_follow`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/6dc844bc35afc26477f3573c9191a2481b219a2d/ros2/navigation/path-follow/wheeltec_path_follow)
+    仓库目录：[`ros2/navigation/path-follow/wheeltec_path_follow`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/62aacaed782091b06060ace276c64e9aaf84ae6b/ros2/navigation/path-follow/wheeltec_path_follow)
 
     可先查看 `package.xml`、`launch/follow_path.launch.py` 和 `scripts/follow_path.py`，确认路径消息如何产生以及动作接口如何调用。该示例只说明任务层程序的入口，不替代实机的急停和低速测试。
 

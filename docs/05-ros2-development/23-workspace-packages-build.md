@@ -66,13 +66,13 @@ ros2 pkg prefix <包名>
 
 ### 构建配套发布订阅实验
 
-代码仓库提供两个独立功能包：[C++ 示例](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/6dc844bc35afc26477f3573c9191a2481b219a2d/examples/ros2/pubsub/cpp)和 [Python 示例](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/6dc844bc35afc26477f3573c9191a2481b219a2d/examples/ros2/pubsub/python)。把它们放进同一工作空间的 `src/` 后构建：
+代码仓库提供两个独立功能包：[C++ 示例](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/62aacaed782091b06060ace276c64e9aaf84ae6b/examples/ros2/pubsub/cpp)和 [Python 示例](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/62aacaed782091b06060ace276c64e9aaf84ae6b/examples/ros2/pubsub/python)。把它们放进同一工作空间的 `src/` 后构建：
 
 ```bash
 mkdir -p ~/wheeltec_course_ws/src
 cd ~/wheeltec_course_ws/src
 git clone https://github.com/EnosElinsa/wheeltec-ros-source-reference.git
-git -C wheeltec-ros-source-reference checkout 6dc844bc35afc26477f3573c9191a2481b219a2d
+git -C wheeltec-ros-source-reference checkout 62aacaed782091b06060ace276c64e9aaf84ae6b
 cp -r wheeltec-ros-source-reference/examples/ros2/pubsub/cpp ./cpp_pubsub
 cp -r wheeltec-ros-source-reference/examples/ros2/pubsub/python ./py_pubsub
 cd ..

@@ -121,7 +121,7 @@ ros2 param get <底盘节点名> odom_frame_id
 若源码默认值、Launch 传入值和运行值不同，先确认实际加载的工作空间和 Launch 入口，再决定是否调整参数。
 
 !!! example "本章代码：底盘启动链"
-    仓库目录：[ros2/robot/turn-on-wheeltec-robot](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/6dc844bc35afc26477f3573c9191a2481b219a2d/ros2/robot/turn-on-wheeltec-robot)
+    仓库目录：[ros2/robot/turn-on-wheeltec-robot](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/62aacaed782091b06060ace276c64e9aaf84ae6b/ros2/robot/turn-on-wheeltec-robot)
 
     使用 `launch/turn_on_wheeltec_robot.launch.py`、`launch/base_serial.launch.py`、`launch/robot_mode_description.launch.py` 和 `src/wheeltec_robot.cpp` 静态追踪入口、底盘节点和车型分支。验收：能定位入口 Launch 与底盘节点关系。边界：外部机器人模型包未随本资源发布，不能据此启动机器人。
 

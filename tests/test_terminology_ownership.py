@@ -7,7 +7,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 
-from terminology_audit import audit_rules, find_public_pages, load_rules  # noqa: E402
+from terminology_audit import (  # noqa: E402
+    TERM_DEFINITION_BOLD,
+    audit_rules,
+    disallowed_bold,
+    find_public_pages,
+    load_rules,
+)
 
 
 FULL = "控制器局域网（Controller Area Network, CAN）"
@@ -138,10 +144,17 @@ def test_firmware_full_form_is_not_reintroduced() -> None:
     ]
 
 
-def test_public_reader_pages_have_no_inline_bold() -> None:
+def test_public_reader_pages_bold_only_term_definitions() -> None:
     offenders = [
         path.relative_to(ROOT).as_posix()
         for path in find_public_pages(ROOT)
-        if "**" in path.read_text(encoding="utf-8")
+        if "**" in TERM_DEFINITION_BOLD.sub("", path.read_text(encoding="utf-8"))
     ]
     assert offenders == []
+
+
+def test_term_definition_bold_is_allowed_but_other_bold_is_not() -> None:
+    assert not disallowed_bold("称为**视差**（Disparity），记为 d。")
+    assert not disallowed_bold("**视觉里程计**（Visual Odometry, VO）和**基线**（Baseline）")
+    assert disallowed_bold("**只有红外可用。** 这台相机的外参为零。")
+    assert disallowed_bold("检查 **CAN** 总线。")

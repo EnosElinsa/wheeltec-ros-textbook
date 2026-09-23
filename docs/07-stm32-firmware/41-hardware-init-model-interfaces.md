@@ -11,7 +11,7 @@ status: complete
 UART是微控制器中的串行通信外设。它按约定的波特率和帧格式逐位收发数据，常用于控制板调试或与 ROS 主控交换命令。日常所说的“串口”通常指 UART 外设及其电气接口、线缆和软件配置组成的整条链路。
 
 !!! example "本节代码：UART 实验"
-    仓库目录：[`stm32/labs/uart/stm32f103-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/6dc844bc35afc26477f3573c9191a2481b219a2d/stm32/labs/uart/stm32f103-stdperiph)。完整文件集见 `metadata/code-resource-manifests/uart.txt`。验收：能定位串口初始化。边界：仅静态核对。
+    仓库目录：[`stm32/labs/uart/stm32f103-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/62aacaed782091b06060ace276c64e9aaf84ae6b/stm32/labs/uart/stm32f103-stdperiph)。完整文件集见 `metadata/code-resource-manifests/uart.txt`。验收：能定位串口初始化。边界：仅静态核对。
 
 ## 41.2 适用范围 {#stm32-pwm-lab}
 
@@ -20,7 +20,7 @@ C30D、C50 系列等资料覆盖的底盘控制板。引脚和电位器位置按
 PWM在固定周期内改变有效电平所占时间。控制板用它表达电机驱动强度，也可以控制舵机或灯光；微控制器引脚输出的 PWM 信号本身不能直接为电机供电。
 
 !!! example "本节代码：PWM 实验"
-    仓库目录：[`stm32/labs/pwm/stm32f103-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/6dc844bc35afc26477f3573c9191a2481b219a2d/stm32/labs/pwm/stm32f103-stdperiph)。完整文件集见 `metadata/code-resource-manifests/pwm.txt`。验收：能定位定时器与占空比。边界：仅静态核对。
+    仓库目录：[`stm32/labs/pwm/stm32f103-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/62aacaed782091b06060ace276c64e9aaf84ae6b/stm32/labs/pwm/stm32f103-stdperiph)。完整文件集见 `metadata/code-resource-manifests/pwm.txt`。验收：能定位定时器与占空比。边界：仅静态核对。
 
 ## 41.3 操作前检查 {#stm32-encoder-lab}
 
@@ -29,7 +29,7 @@ PWM在固定周期内改变有效电平所占时间。控制板用它表达电�
 - 不用其他板卡的引脚表推断本机。
 
 !!! example "本节代码：编码器实验"
-    仓库目录：[`stm32/labs/encoder/stm32f103-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/6dc844bc35afc26477f3573c9191a2481b219a2d/stm32/labs/encoder/stm32f103-stdperiph)。完整文件集见 `metadata/code-resource-manifests/encoder.txt`。验收：能定位编码器计数。边界：仅静态核对。
+    仓库目录：[`stm32/labs/encoder/stm32f103-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/62aacaed782091b06060ace276c64e9aaf84ae6b/stm32/labs/encoder/stm32f103-stdperiph)。完整文件集见 `metadata/code-resource-manifests/encoder.txt`。验收：能定位编码器计数。边界：仅静态核对。
 
 ## 41.4 工作原理
 

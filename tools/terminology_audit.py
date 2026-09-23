@@ -100,6 +100,17 @@ def _line_for(lines: list[tuple[int, str]], needle: str) -> int:
     return next((number for number, text in lines if needle in text), 1)
 
 
+BOLD = re.compile(r"\*\*[^*\n]+\*\*")
+# A term defined at its first use may be bold when the English name follows in
+# full-width parentheses: **中文名**（English Name, ABBR）.
+TERM_DEFINITION_BOLD = re.compile(r"\*\*[^*\n]+\*\*（[A-Za-z]")
+
+
+def disallowed_bold(line: str) -> bool:
+    """True when the line has bold other than a term definition."""
+    return bool(BOLD.search(TERM_DEFINITION_BOLD.sub("", line)))
+
+
 def audit_rules(
     root: Path,
     rules: list[TermRule],
@@ -114,14 +125,15 @@ def audit_rules(
 
     for page, lines in visible.items():
         for number, line in lines:
-            if re.search(r"\*\*[^*\n]+\*\*", line):
+            if disallowed_bold(line):
                 issues.append(
                     TerminologyIssue(
                         "inline bold",
                         "",
                         page.relative_to(root).as_posix(),
                         number,
-                        "public prose must use headings, tables, or admonitions",
+                        "only a term definition **中文名**（English …） may be bold; "
+                        "use headings, tables, or admonitions otherwise",
                     )
                 )
 
