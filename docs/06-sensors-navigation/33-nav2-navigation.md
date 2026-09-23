@@ -147,7 +147,7 @@ Nav2 不只看机器人中心点。代价地图还要根据机器人的外形判
 只有当地图、定位、TF 和传感器输入都正常时，才调整规划器或控制器参数。一次只改一个参数，并记录修改前后的路径、速度和日志。
 
 !!! note "教材代码资源"
-    本节使用 `ros2/navigation/nav2-waypoint-cycle` 中的 `package.xml` 与 `nav2_waypoint_cycle/waypoint_cycle.py`，用于静态追踪航点动作客户端和循环入口。源码固定在 [ebae2342](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/ros2/navigation/nav2-waypoint-cycle)。验收：能说明航点动作客户端与循环逻辑；边界：运行前核对 Nav2 发行版。
+    本节使用 `ros2/navigation/nav2-waypoint-cycle` 中的 `package.xml` 与 `nav2_waypoint_cycle/waypoint_cycle.py`，用于静态追踪航点动作客户端和循环入口。源码固定在 [6dc844bc](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/6dc844bc35afc26477f3573c9191a2481b219a2d/ros2/navigation/nav2-waypoint-cycle)。验收：能说明航点动作客户端与循环逻辑；边界：运行前核对 Nav2 发行版。
 
 ## 章节导航
 

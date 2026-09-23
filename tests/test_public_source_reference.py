@@ -7,7 +7,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-APPROVED_SOURCE_BASELINE = "ebae2342709c756cb8fa387ccdbd6e5733f9219a"
+APPROVED_SOURCE_BASELINE = "6dc844bc35afc26477f3573c9191a2481b219a2d"
 sys.path.insert(0, str(ROOT / "tools"))
 
 import validate_code_resources  # noqa: E402
@@ -18,7 +18,7 @@ class PublicSourceReferenceTests(unittest.TestCase):
     def test_production_code_resource_map_pins_curated_source_contract(self) -> None:
         mapping = validate_code_resources.load_code_resources(ROOT / "metadata/code-resources.yml")
         self.assertEqual(mapping.source_revision, APPROVED_SOURCE_BASELINE)
-        self.assertEqual(len(mapping.resources), 13)
+        self.assertEqual(len(mapping.resources), 14)
         source_root = find_source_root(ROOT)
         if source_root is None:
             self.skipTest("standalone textbook checkout has no local public-source Git checkout")

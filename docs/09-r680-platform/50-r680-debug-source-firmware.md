@@ -11,7 +11,7 @@ status: complete
 ## 50.2 适用范围
 
 !!! example "唯一可消费资源：C50C/F407 麦轮霍尔/serial-can"
-    资源目录：`r680/firmware/c50c/f407-mecanum-hall-single-serial-can-b01/`。查看 `USER/WHEELTEC.uvprojx`、`USER/main.c`、`HARDWARE/usartx.c`、`HARDWARE/can.c`。源码固定在 [ebae2342](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/r680/firmware/c50c/f407-mecanum-hall-single-serial-can-b01)。
+    资源目录：`r680/firmware/c50c/f407-mecanum-hall-single-serial-can-b01/`。查看 `USER/WHEELTEC.uvprojx`、`USER/main.c`、`HARDWARE/usartx.c`、`HARDWARE/can.c`。源码固定在 [6dc844bc](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/6dc844bc35afc26477f3573c9191a2481b219a2d/r680/firmware/c50c/f407-mecanum-hall-single-serial-can-b01)。
 
     验收：能定位工程、主循环和双协议接口。边界：无匹配实机照片、接线与测量证据时，只能静态阅读；不得烧录或声明硬件验证。
 

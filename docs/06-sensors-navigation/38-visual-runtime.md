@@ -8,11 +8,14 @@ status: complete
 
 ---
 
-# 过程概要
+# 过程概要 {#vision-nav-code-resource}
 
 车头深度相机采集红外图像和深度图像，并合成同一条消息。估计车相对本次出发的平移和转动时，用的就是这条消息。估计出的平移和转动再连接到车体与场地，然后建立地图。地图不再写入新地点之后，在已有地图上定位，接着在图上指定目标点，规划到目标的路径，并按路径把速度发给底盘。
 
 ![过程概要](diagrams/vision-runtime-overview.svg)
+
+!!! example "本章代码：视觉建图与导航功能包"
+    仓库目录：[`ros2/navigation/vision-nav/wheeltec_vision_nav`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/6dc844bc35afc26477f3573c9191a2481b219a2d/ros2/navigation/vision-nav/wheeltec_vision_nav)。完整文件集见 `metadata/code-resource-manifests/vision-nav.txt`。验收：能从启动文件追踪到配对、融合、建图、定位与导航各节点。边界：需要本车 R680 底盘、D435C 相机与出厂 wheeltec 功能包，电机使能与急停由现场人员负责。
 
 ---
 

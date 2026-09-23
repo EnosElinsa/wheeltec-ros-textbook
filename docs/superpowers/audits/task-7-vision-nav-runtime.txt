@@ -1,0 +1,24 @@
+Resource: ros2.navigation.vision-nav
+Source commit: 6dc844bc35afc26477f3573c9191a2481b219a2d
+Robot: WHEELTEC R680 (senior_akm), Jetson Orin NX 16 GB, ROS 2 Humble, RealSense D435C (firmware via realsense2_camera 4.55.1), rtabmap 0.22.1
+Date: 2026-09-23
+
+Build and unit tests on the robot
+  colcon build --base-paths src --merge-install --symlink-install --packages-select wheeltec_vision_nav   -> finished
+  python3 -m pytest -q tests                                                                             -> 81 passed
+
+Stationary runtime check (robot not moving, motors not commanded)
+  ros2 launch wheeltec_vision_nav vision_mapping.launch.py start_base:=true wipe_db:=true capture:=true
+  /vision/emitter_pair/status   source=image, 30 IR frames/s, 15 pairs/s,
+                                infrared bright-dot density median 0.0003 (paired, projector off) vs 0.0027 (projector on)
+  /odom                         published by vision_ekf, frame odom -> base_footprint, ~20 Hz
+  /odom_vo                      ~8 Hz (was ~4 Hz before pairing was fixed)
+  vision_rtabmap params         odom_frame_id=odom, odom_tf_angular_variance=0.0005
+  TF parents (capture summary)  base_footprint->base_link->camera_link->camera_*; odom->base_footprint; map->odom; base_footprint->wheel_odom
+  Heading drift at rest         60 s: 0.02 rad before ekf_inputs, 9e-5 rad after (gyro bias 8e-4 rad/s removed)
+
+Map database check on the pre-fix database (inspect_map_db)
+  neighbor yaw information 0.001, 10 of 199 closures disagree with odometry, correction jump 1.6 m / 56 deg -> WARN
+  (the tool reproduces the defects found by hand in the 2026-09-23 captures)
+
+Not yet verified: a moving mapping loop and navigation to goals with the fixed package.

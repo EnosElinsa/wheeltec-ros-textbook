@@ -11,14 +11,14 @@ status: complete
 比例—积分—微分控制（Proportional-Integral-Derivative Control, PID）根据目标值与测量值之间的误差计算控制输出。底盘速度环常使用其中的比例和积分两项，简称 PI 控制；微分项并非每个速度环都需要。本章观察的是“目标轮速 → 误差 → PWM → 实际轮速”这条闭环。
 
 !!! example "本节代码：电机控制"
-    仓库目录：[`stm32/control/motor/stm32f4-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/control/motor/stm32f4-stdperiph)。完整文件集见 `metadata/code-resource-manifests/motor.txt`。验收：能定位电机映射。边界：无编译器与实机证据。
+    仓库目录：[`stm32/control/motor/stm32f4-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/6dc844bc35afc26477f3573c9191a2481b219a2d/stm32/control/motor/stm32f4-stdperiph)。完整文件集见 `metadata/code-resource-manifests/motor.txt`。验收：能定位电机映射。边界：无编译器与实机证据。
 
 ## 42.2 适用范围 {#stm32-pid-control}
 
 直流编码器电机速度环；舵机位置环和速度/位置串级控制采用同一误差反馈思路，但参数与输出不同。
 
 !!! example "本节代码：PID 控制"
-    仓库目录：[`stm32/control/pid/stm32f4-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/ebae2342709c756cb8fa387ccdbd6e5733f9219a/stm32/control/pid/stm32f4-stdperiph)。完整文件集见 `metadata/code-resource-manifests/pid.txt`。验收：能定位 PID 常量。边界：无编译器与实机证据。
+    仓库目录：[`stm32/control/pid/stm32f4-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/6dc844bc35afc26477f3573c9191a2481b219a2d/stm32/control/pid/stm32f4-stdperiph)。完整文件集见 `metadata/code-resource-manifests/pid.txt`。验收：能定位 PID 常量。边界：无编译器与实机证据。
 
 ## 42.3 闭环前置检查 {#closed-loop-prechecks}
 
