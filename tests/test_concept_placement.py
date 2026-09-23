@@ -65,7 +65,7 @@ class ConceptPlacementTests(unittest.TestCase):
 
     def test_container_boundary_lives_in_chapter_44(self) -> None:
         self.assertPageContains(
-            "docs/10-deployment-maintenance/49-network-docker-images.md",
+            "docs/10-deployment-maintenance/51-network-docker-images.md",
             ("宿主", "容器", "USB", "GPU", "网络", "时间"),
         )
 

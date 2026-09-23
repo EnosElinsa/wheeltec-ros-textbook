@@ -62,26 +62,28 @@
 4. [第 32 章：地图保存、定位与坐标验证](06-sensors-navigation/32-map-localization-tf.md)
 5. [第 33 章：Nav2 导航](06-sensors-navigation/33-nav2-navigation.md)
 
+R680 用 D435C 红外与深度建图导航时，读完第 29～30 章后阅读第 38 章 [运行过程](06-sensors-navigation/38-visual-runtime.md) 与第 39 章 [操作](06-sensors-navigation/39-visual-operation.md)。
+
 ## STM32 固件开发
 
 前置知识：完成第 10～14 章，确认控制板型号和底盘基线；烧录前必须准备恢复方式。
 
-1. [第 38 章：固件架构与 FreeRTOS](07-stm32-firmware/38-firmware-architecture-freertos.md)
-2. [第 39 章：硬件初始化、车型与接口](07-stm32-firmware/39-hardware-init-model-interfaces.md)
-3. [第 40 章：电机控制与 PID](07-stm32-firmware/40-motor-control-pid.md)
-4. [第 41 章：编译、烧录与回滚](07-stm32-firmware/41-build-flash-rollback.md)
-5. [第 42 章：ROS 2 与 STM32 联调](07-stm32-firmware/42-ros2-stm32-integration.md)
+1. [第 40 章：固件架构与 FreeRTOS](07-stm32-firmware/40-firmware-architecture-freertos.md)
+2. [第 41 章：硬件初始化、车型与接口](07-stm32-firmware/41-hardware-init-model-interfaces.md)
+3. [第 42 章：电机控制与 PID](07-stm32-firmware/42-motor-control-pid.md)
+4. [第 43 章：编译、烧录与回滚](07-stm32-firmware/43-build-flash-rollback.md)
+5. [第 44 章：ROS 2 与 STM32 联调](07-stm32-firmware/44-ros2-stm32-integration.md)
 
 ## R680 维护
 
 前置知识：完成第 10 章的配置识别和第 21 章的底盘标定；涉及固件时，先确认控制板、编码器和车型。
 
 ```text
-10 → 21 → 47 → 48 → 50
+10 → 21 → 49 → 50 → 52
 ```
 
 1. [第 10 章：识别机器人配置](03-bringup/10-identify-configuration.md)
 2. [第 21 章：标定与底盘故障](04-chassis-control/21-calibration-and-faults.md)
-3. [第 47 章：R680 硬件、接线与 OLED](09-r680-platform/47-r680-hardware-wiring-oled.md)
-4. [第 48 章：R680 调试、源码与固件](09-r680-platform/48-r680-debug-source-firmware.md)
-5. [第 50 章：日志、备份、升级与恢复](10-deployment-maintenance/50-logs-backup-upgrade-recovery.md)
+3. [第 49 章：R680 硬件、接线与 OLED](09-r680-platform/49-r680-hardware-wiring-oled.md)
+4. [第 50 章：R680 调试、源码与固件](09-r680-platform/50-r680-debug-source-firmware.md)
+5. [第 52 章：日志、备份、升级与恢复](10-deployment-maintenance/52-logs-backup-upgrade-recovery.md)

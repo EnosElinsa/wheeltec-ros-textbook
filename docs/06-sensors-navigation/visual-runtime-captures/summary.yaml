@@ -1,0 +1,299 @@
+infra_encoding: mono8
+infra_frame_id: camera_infra1_optical_frame
+infra_size:
+  - 848
+  - 480
+depth_encoding: 16UC1
+depth_frame_id: camera_depth_optical_frame
+depth_size:
+  - 848
+  - 480
+paired_stamp_delta_sec: 0.0
+camera_fx: 421.3739929199219
+camera_fy: 421.3739929199219
+camera_cx: 420.7453308105469
+camera_cy: 239.2834930419922
+map_resolution: 0.05000000074505806
+map_size:
+  - 168
+  - 272
+map_frame_id: map
+odom_frame_id: odom
+odom_child_frame_id: base_footprint
+odom_quat_norm: 1.0
+odom_lost: false
+odom_inliers: 238
+odom_features: 553
+tf_base_footprint_parent: odom
+guess_frame_id: null
+publish_tf: null
+vx_min: -0.5
+hz:
+  /vision/paired/infra1/image_rect_raw: 13.80772986398389
+  /vision/paired/depth/image_rect_raw: 11.704593949741426
+  /tf: 120.81659250918932
+  /odom: 19.903842180588303
+  /wheel/odom: 19.930362949849343
+  /camera/infra1/image_rect_raw: 14.924969627913876
+  /camera/depth/image_rect_raw: 11.32197814737333
+  /camera/infra1/camera_info: 14.916894127111728
+  /camera/metadata: 29.294760083504197
+  /rtabmap/rgbd_image: 6.919594133707956
+  /vision/vo_status: 12.869581937661408
+  /odom_info_lite: 6.139219023232347
+  /map: 0.0
+  /cmd_vel: 0.0
+  /cmd_vel_safe: 20.00424793167698
+emitter_keys:
+  - frame_number
+  - clock_domain
+  - frame_timestamp
+  - hw_timestamp
+  - time_of_arrival
+  - backend_timestamp
+  - actual_fps
+  - raw_frame_size
+images:
+  - paired_infra1_000.png
+  - paired_depth_000.png
+  - infra1_000.png
+  - depth_000.png
+  - rgbd_rgb_000.png
+  - rgbd_depth_000.png
+  - paired_infra1_001.png
+  - paired_depth_001.png
+  - infra1_001.png
+  - depth_001.png
+  - rgbd_rgb_001.png
+  - rgbd_depth_001.png
+  - map_000.png
+  - paired_infra1_002.png
+  - paired_depth_002.png
+  - infra1_002.png
+  - depth_002.png
+  - rgbd_rgb_002.png
+  - rgbd_depth_002.png
+  - paired_infra1_003.png
+  - paired_depth_003.png
+  - infra1_003.png
+  - depth_003.png
+  - rgbd_rgb_003.png
+  - rgbd_depth_003.png
+  - paired_infra1_004.png
+  - paired_depth_004.png
+  - depth_004.png
+  - infra1_004.png
+  - rgbd_rgb_004.png
+  - rgbd_depth_004.png
+  - paired_infra1_005.png
+  - paired_depth_005.png
+  - depth_005.png
+  - infra1_005.png
+  - rgbd_rgb_005.png
+  - rgbd_depth_005.png
+  - paired_infra1_006.png
+  - paired_depth_006.png
+  - depth_006.png
+  - infra1_006.png
+  - rgbd_rgb_006.png
+  - rgbd_depth_006.png
+  - paired_infra1_007.png
+  - paired_depth_007.png
+  - depth_007.png
+  - infra1_007.png
+  - rgbd_rgb_007.png
+  - rgbd_depth_007.png
+session: /home/wheeltec/vision_captures/20260921-154642-100790
+samples:
+  paired_infra:
+    encoding: mono8
+    width: 848
+    height: 480
+    frame_id: camera_infra1_optical_frame
+    stamp_sec: 1789977033.275979
+    step: 848
+    data_len: 407040
+  paired_depth:
+    encoding: 16UC1
+    width: 848
+    height: 480
+    frame_id: camera_depth_optical_frame
+    stamp_sec: 1789977033.275979
+    step: 1696
+    data_len: 814080
+  odom:
+    frame_id: odom
+    child_frame_id: base_footprint
+    quat_norm: 1.0
+    covariance0: 0.001
+  wheel_odom:
+    frame_id: wheel_odom
+    child_frame_id: base_footprint
+  infra:
+    encoding: mono8
+    width: 848
+    height: 480
+    frame_id: camera_infra1_optical_frame
+    stamp_sec: 1789977033.275979
+    step: 848
+    data_len: 407040
+  depth:
+    encoding: 16UC1
+    width: 848
+    height: 480
+    frame_id: camera_depth_optical_frame
+    stamp_sec: 1789977033.275979
+    step: 1696
+    data_len: 814080
+  camera_info_k:
+    - 421.3739929199219
+    - 0.0
+    - 420.7453308105469
+    - 0.0
+    - 421.3739929199219
+    - 239.2834930419922
+    - 0.0
+    - 0.0
+    - 1.0
+  camera_info:
+    frame_id: camera_infra1_optical_frame
+    width: 848
+    height: 480
+    distortion_model: plumb_bob
+  metadata_json_preview: "{\"frame_number\":28,\"clock_domain\":\"global_time\",\"frame_timestamp\":1789976804525.784668,\"hw_timestamp\":2177857442,\"time_of_arrival\":1789976804531,\"backend_timestamp\":1789976804524,\"actual_fps\":7541,\"raw_frame_size\":407040}"
+  rgbd:
+    rgb:
+      encoding: mono8
+      width: 848
+      height: 480
+      frame_id: camera_infra1_optical_frame
+      stamp_sec: 1789977033.275979
+      step: 848
+      data_len: 407040
+    depth:
+      encoding: 16UC1
+      width: 848
+      height: 480
+      frame_id: camera_depth_optical_frame
+      stamp_sec: 1789977033.275979
+      step: 1696
+      data_len: 814080
+    header_frame_id: camera_infra1_optical_frame
+    stamp_sec: 1789977033.275979
+  vo_status: ok
+  odom_info:
+    lost: false
+    inliers: 238
+    features: 553
+  map:
+    frame_id: map
+    resolution: 0.05000000074505806
+    width: 168
+    height: 272
+    origin:
+      x: -3.504183769226074
+      y: -5.976480960845947
+  cmd_vel:
+    linear_x: 0.0
+    angular_z: 0.0
+  cmd_vel_safe:
+    linear_x: 0.0
+    angular_z: 0.0
+  params:
+    local_costmap/local_costmap.plugins:
+      - static_layer
+      - voxel_layer
+      - inflation_layer
+    local_costmap/local_costmap.static_layer.map_topic: /map
+    controller_server.FollowPath.vx_min: -0.5
+    vision_rtabmap.database_path: /home/wheeltec/.ros/vision_rtabmap_mapping.db
+    vision_rtabmap.Mem/IncrementalMemory: false
+    bt_navigator.default_nav_to_pose_bt_xml: /home/wheeltec/vision_ws/install/share/wheeltec_vision_nav/behavior_trees/navigate_w_replanning_ackermann.xml
+  tf_parents:
+    camera_infra1_frame: camera_link
+    camera_infra1_optical_frame: camera_aligned_depth_to_infra1_frame
+    camera_aligned_depth_to_infra1_frame: camera_link
+    camera_depth_frame: camera_link
+    camera_depth_optical_frame: camera_depth_frame
+    base_footprint: odom
+    odom: map
+    wheel_odom: base_footprint
+    lb_wheel_link: base_link
+    lf_wheel_link: base_link
+    rb_wheel_link: base_link
+    rf_wheel_link: base_link
+  hz:
+    /vision/paired/infra1/image_rect_raw: 13.80772986398389
+    /vision/paired/depth/image_rect_raw: 11.704593949741426
+    /tf: 120.81659250918932
+    /odom: 19.903842180588303
+    /wheel/odom: 19.930362949849343
+    /camera/infra1/image_rect_raw: 14.924969627913876
+    /camera/depth/image_rect_raw: 11.32197814737333
+    /camera/infra1/camera_info: 14.916894127111728
+    /camera/metadata: 29.294760083504197
+    /rtabmap/rgbd_image: 6.919594133707956
+    /vision/vo_status: 12.869581937661408
+    /odom_info_lite: 6.139219023232347
+    /map: 0.0
+    /cmd_vel: 0.0
+    /cmd_vel_safe: 20.00424793167698
+  emitter_keys:
+    - frame_number
+    - clock_domain
+    - frame_timestamp
+    - hw_timestamp
+    - time_of_arrival
+    - backend_timestamp
+    - actual_fps
+    - raw_frame_size
+  images:
+    - paired_infra1_000.png
+    - paired_depth_000.png
+    - infra1_000.png
+    - depth_000.png
+    - rgbd_rgb_000.png
+    - rgbd_depth_000.png
+    - paired_infra1_001.png
+    - paired_depth_001.png
+    - infra1_001.png
+    - depth_001.png
+    - rgbd_rgb_001.png
+    - rgbd_depth_001.png
+    - map_000.png
+    - paired_infra1_002.png
+    - paired_depth_002.png
+    - infra1_002.png
+    - depth_002.png
+    - rgbd_rgb_002.png
+    - rgbd_depth_002.png
+    - paired_infra1_003.png
+    - paired_depth_003.png
+    - infra1_003.png
+    - depth_003.png
+    - rgbd_rgb_003.png
+    - rgbd_depth_003.png
+    - paired_infra1_004.png
+    - paired_depth_004.png
+    - depth_004.png
+    - infra1_004.png
+    - rgbd_rgb_004.png
+    - rgbd_depth_004.png
+    - paired_infra1_005.png
+    - paired_depth_005.png
+    - depth_005.png
+    - infra1_005.png
+    - rgbd_rgb_005.png
+    - rgbd_depth_005.png
+    - paired_infra1_006.png
+    - paired_depth_006.png
+    - depth_006.png
+    - infra1_006.png
+    - rgbd_rgb_006.png
+    - rgbd_depth_006.png
+    - paired_infra1_007.png
+    - paired_depth_007.png
+    - depth_007.png
+    - infra1_007.png
+    - rgbd_rgb_007.png
+    - rgbd_depth_007.png

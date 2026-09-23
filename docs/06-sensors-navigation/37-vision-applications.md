@@ -57,4 +57,4 @@ ROS 2 视觉跟随、巡线、目标跟踪、视觉标签和 Web 视频节点。
 
 ## 章节导航
 
-[上一章：相机内参与坐标标定](36-camera-calibration.md) · [返回本篇](index.md) · [下一章：固件架构与 FreeRTOS 任务](../07-stm32-firmware/38-firmware-architecture-freertos.md)
+[上一章：相机内参与坐标标定](36-camera-calibration.md) · [返回本篇](index.md) · [下一章：视觉建图与导航的运行过程](38-visual-runtime.md)

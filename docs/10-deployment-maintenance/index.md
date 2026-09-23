@@ -6,4 +6,4 @@ status: draft
 
 功能跑通之后，还要留下可恢复的配置、源码、固件、地图和系统镜像。本篇给出部署选择、升级记录和全系统验收方法。
 
-[从第 49 章开始](49-network-docker-images.md)
+[从第 51 章开始](51-network-docker-images.md)

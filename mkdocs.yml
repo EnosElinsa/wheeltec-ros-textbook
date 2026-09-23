@@ -80,28 +80,30 @@ nav:
       - 35 摄像头与 OpenCV: 06-sensors-navigation/35-camera-opencv-images.md
       - 36 相机标定: 06-sensors-navigation/36-camera-calibration.md
       - 37 视觉应用: 06-sensors-navigation/37-vision-applications.md
+      - 38 视觉建图与导航的运行过程: 06-sensors-navigation/38-visual-runtime.md
+      - 39 视觉建图与导航操作: 06-sensors-navigation/39-visual-operation.md
   - 第七篇 STM32 与底盘固件:
       - 本篇说明: 07-stm32-firmware/index.md
-      - 38 固件架构与 FreeRTOS: 07-stm32-firmware/38-firmware-architecture-freertos.md
-      - 39 初始化、车型与接口: 07-stm32-firmware/39-hardware-init-model-interfaces.md
-      - 40 电机控制与 PID: 07-stm32-firmware/40-motor-control-pid.md
-      - 41 编译、烧录与回滚: 07-stm32-firmware/41-build-flash-rollback.md
-      - 42 ROS 2 与 STM32 联调: 07-stm32-firmware/42-ros2-stm32-integration.md
+      - 40 固件架构与 FreeRTOS: 07-stm32-firmware/40-firmware-architecture-freertos.md
+      - 41 初始化、车型与接口: 07-stm32-firmware/41-hardware-init-model-interfaces.md
+      - 42 电机控制与 PID: 07-stm32-firmware/42-motor-control-pid.md
+      - 43 编译、烧录与回滚: 07-stm32-firmware/43-build-flash-rollback.md
+      - 44 ROS 2 与 STM32 联调: 07-stm32-firmware/44-ros2-stm32-integration.md
   - 第八篇 高级应用:
       - 本篇说明: 08-advanced-applications/index.md
-      - 43 Gazebo 仿真: 08-advanced-applications/43-gazebo-simulation.md
-      - 44 多机与 Qt: 08-advanced-applications/44-multi-robot-and-qt.md
-      - 45 毫米波、人体与深度学习: 08-advanced-applications/45-mmwave-human-deep-learning.md
-      - 46 语音、AI 与 OpenClaw: 08-advanced-applications/46-voice-ai-openclaw.md
+      - 45 Gazebo 仿真: 08-advanced-applications/45-gazebo-simulation.md
+      - 46 多机与 Qt: 08-advanced-applications/46-multi-robot-and-qt.md
+      - 47 毫米波、人体与深度学习: 08-advanced-applications/47-mmwave-human-deep-learning.md
+      - 48 语音、AI 与 OpenClaw: 08-advanced-applications/48-voice-ai-openclaw.md
   - 第九篇 R680 平台:
       - 本篇说明: 09-r680-platform/index.md
-      - 47 R680 硬件、接线与 OLED: 09-r680-platform/47-r680-hardware-wiring-oled.md
-      - 48 R680 调试、源码与固件: 09-r680-platform/48-r680-debug-source-firmware.md
+      - 49 R680 硬件、接线与 OLED: 09-r680-platform/49-r680-hardware-wiring-oled.md
+      - 50 R680 调试、源码与固件: 09-r680-platform/50-r680-debug-source-firmware.md
   - 第十篇 部署、备份与维护:
       - 本篇说明: 10-deployment-maintenance/index.md
-      - 49 网络、Docker 与镜像: 10-deployment-maintenance/49-network-docker-images.md
-      - 50 日志、备份、升级与恢复: 10-deployment-maintenance/50-logs-backup-upgrade-recovery.md
-      - 51 全系统验收: 10-deployment-maintenance/51-system-acceptance.md
+      - 51 网络、Docker 与镜像: 10-deployment-maintenance/51-network-docker-images.md
+      - 52 日志、备份、升级与恢复: 10-deployment-maintenance/52-logs-backup-upgrade-recovery.md
+      - 53 全系统验收: 10-deployment-maintenance/53-system-acceptance.md
       - 验收记录表: 10-deployment-maintenance/system-acceptance-checklist.md
   - 附录:
       - A ROS 1 维护: appendices/a-ros1-maintenance.md

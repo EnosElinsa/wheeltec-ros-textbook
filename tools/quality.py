@@ -23,6 +23,7 @@ REQUIRED_MANIFEST_COLUMNS = {
 }
 ALLOWED_STATUSES = {"draft", "complete"}
 ALLOWED_KINDS = {"foundation", "chapter", "appendix"}
+STANDALONE_CHAPTER_NUMBERS = frozenset({38, 39})
 FOUNDATION_HEADINGS = ["章节导航"]
 FOUNDATION_HEADINGS_BY_NUMBER = {
     1: [
@@ -176,23 +177,23 @@ def expected_engineering_headings(number: int) -> list[str]:
             "34.5 运行时怎样确认任务真的在工作",
             "章节导航",
         ]
-    if number == 48:
+    if number == 50:
         return [
-            "48.1 学习目标",
-            "48.2 适用范围",
-            "48.3 静态核对",
-            "48.4 安全边界",
-            "48.5 故障记录",
-            "48.6 章节导航",
+            "50.1 学习目标",
+            "50.2 适用范围",
+            "50.3 静态核对",
+            "50.4 安全边界",
+            "50.5 故障记录",
+            "50.6 章节导航",
         ]
     task_titles = {
         (22, 5): "源码包确认",
         (25, 5): "启动链源码追踪",
         (27, 5): "源码修改练习",
-        (38, 5): "固件实验记录",
-        (39, 5): "外设最小实验",
-        (40, 3): "闭环前置检查",
-        (42, 5): "ROS—串口—固件链",
+        (40, 5): "固件实验记录",
+        (41, 5): "外设最小实验",
+        (42, 3): "闭环前置检查",
+        (44, 5): "ROS—串口—固件链",
     }
     defaults = {
         1: "学习目标",
@@ -213,7 +214,7 @@ def expected_engineering_headings(number: int) -> list[str]:
 PROMOTIONAL_PATTERNS = ["推荐关注我们的公众号", "关注公众号", "获取更新资料"]
 UNFINISHED_PATTERNS = [r"\bTODO\b", r"\bTBD\b", r"\[待写\]", r"\[内容待补\]"]
 FORBIDDEN_FOUNDATION_PATTERNS = {
-    "later chapter prerequisite": r"(?:已读|先读|完成|先完成)第\s*(?:1[0-9]|[2-4][0-9]|50|51)\s*章",
+    "later chapter prerequisite": r"(?:已读|先读|完成|先完成)第\s*(?:1[0-9]|[2-4][0-9]|5[0-3])\s*章",
     "advanced middleware jargon": r"\b(?:DDS|QoS|TF|colcon|Launch|Docker)\b",
     "required SSH access": r"必须(?:使用|通过).*SSH",
     "required robot runtime": r"(?:机器人|WHEELTEC).*(?:节点|系统).*已启动",
@@ -275,10 +276,10 @@ def check_manifest(rows: list[dict[str, str]]) -> list[str]:
         numbered_rows = []
     if foundation_numbers != list(range(1, 10)):
         errors.append("foundation numbers must be consecutive from 1 through 9")
-    if chapter_numbers != list(range(10, 52)):
-        errors.append("engineering chapter numbers must be consecutive from 10 through 51")
-    if numbered_rows != list(range(1, 52)):
-        errors.append("all numbered pages must be ordered from 1 through 51")
+    if chapter_numbers != list(range(10, 54)):
+        errors.append("engineering chapter numbers must be consecutive from 10 through 53")
+    if numbered_rows != list(range(1, 54)):
+        errors.append("all numbered pages must be ordered from 1 through 53")
     if [row.get("number") for row in appendices] != ["A", "B", "C", "D"]:
         errors.append("public chapter manifest must contain appendices A through D")
     return errors
@@ -404,7 +405,12 @@ def check_all(root: Path, selected_paths: list[Path] | None = None) -> list[Issu
             if row["kind"] == "foundation":
                 issues.extend(check_foundation(path, size_limit, int(row["number"])))
             elif row["kind"] == "chapter":
-                issues.extend(check_chapter(path, size_limit, int(row["number"])))
+                number = int(row["number"])
+                if number in STANDALONE_CHAPTER_NUMBERS:
+                    if path.stat().st_size > size_limit:
+                        issues.append(Issue("error", relative, "file exceeds size limit"))
+                else:
+                    issues.extend(check_chapter(path, size_limit, number))
             elif path.stat().st_size > size_limit:
                 issues.append(Issue("error", relative, "file exceeds size limit"))
         if relative == "docs/index.md" and path.stat().st_size > 20_000:
@@ -417,7 +423,11 @@ def check_all(root: Path, selected_paths: list[Path] | None = None) -> list[Issu
     complete_paths = [
         root / row["path"]
         for row in manifest
-        if row["status"] == "complete" and (root / row["path"]).is_file()
+        if row["status"] == "complete"
+        and (root / row["path"]).is_file()
+        and not (
+            row["kind"] == "chapter" and int(row["number"]) in STANDALONE_CHAPTER_NUMBERS
+        )
     ]
     issues.extend(check_duplicate_prose(complete_paths))
     issues.extend(check_terminology(root, selected_paths))

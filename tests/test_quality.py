@@ -21,7 +21,7 @@ class ManifestTests(unittest.TestCase):
         appendices = [row for row in rows if row["kind"] == "appendix"]
 
         self.assertEqual([int(row["number"]) for row in foundations], list(range(1, 10)))
-        self.assertEqual([int(row["number"]) for row in chapters], list(range(10, 52)))
+        self.assertEqual([int(row["number"]) for row in chapters], list(range(10, 54)))
         self.assertLess(rows.index(foundations[-1]), rows.index(chapters[0]))
         self.assertEqual([row["number"] for row in appendices], ["A", "B", "C", "D"])
         self.assertEqual(len({row["path"] for row in rows}), len(rows))

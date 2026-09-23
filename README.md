@@ -21,7 +21,7 @@
 | [第三篇：实机接入与首次启动](https://enoselinsa.github.io/wheeltec-ros-textbook/03-bringup/) | 识别配置、供电接线、首次上电、连接主控和基线检查 |
 | [第四篇：底盘控制与运动学](https://enoselinsa.github.io/wheeltec-ros-textbook/04-chassis-control/) | 坐标系、遥控、`cmd_vel`、协议、里程计与标定 |
 | [第五篇：ROS 2 开发](https://enoselinsa.github.io/wheeltec-ros-textbook/05-ros2-development/) | 环境、工作空间、功能包、通信、Launch、参数、TF 与进程管理 |
-| [第六篇：传感器、建图与导航](https://enoselinsa.github.io/wheeltec-ros-textbook/06-sensors-navigation/) | 雷达、摄像头、SLAM、定位、Nav2、多点导航和视觉应用 |
+| [第六篇：传感器、建图与导航](https://enoselinsa.github.io/wheeltec-ros-textbook/06-sensors-navigation/) | 雷达、摄像头、SLAM、定位、Nav2、多点导航和视觉应用；R680 红外深度建图见 [第 38 章](https://enoselinsa.github.io/wheeltec-ros-textbook/06-sensors-navigation/38-visual-runtime/) 与 [第 39 章](https://enoselinsa.github.io/wheeltec-ros-textbook/06-sensors-navigation/39-visual-operation/) |
 | [第七篇：STM32 与底盘固件](https://enoselinsa.github.io/wheeltec-ros-textbook/07-stm32-firmware/) | 固件架构、FreeRTOS、车型配置、电机控制、烧录与联调 |
 | [第八篇：高级应用](https://enoselinsa.github.io/wheeltec-ros-textbook/08-advanced-applications/) | Gazebo、多机器人、Qt、毫米波雷达、深度学习和语音交互 |
 | [第九篇：R680 平台](https://enoselinsa.github.io/wheeltec-ros-textbook/09-r680-platform/) | R680 硬件、接线、OLED、源码分支和固件维护 |

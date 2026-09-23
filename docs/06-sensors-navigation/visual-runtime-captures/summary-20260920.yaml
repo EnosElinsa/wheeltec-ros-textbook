@@ -1,0 +1,248 @@
+infra_encoding: mono8
+infra_frame_id: camera_infra1_optical_frame
+infra_size:
+  - 848
+  - 480
+depth_encoding: 16UC1
+depth_frame_id: camera_depth_optical_frame
+depth_size:
+  - 848
+  - 480
+paired_stamp_delta_sec: 0.06667304039001465
+camera_fx: 421.3739929199219
+camera_fy: 421.3739929199219
+camera_cx: 420.7453308105469
+camera_cy: 239.2834930419922
+map_resolution: 0.05000000074505806
+map_size:
+  - 94
+  - 75
+map_frame_id: map
+odom_frame_id: odom
+odom_child_frame_id: base_footprint
+odom_quat_norm: 1.0
+odom_lost: false
+odom_inliers: 573
+odom_features: 747
+tf_base_footprint_parent: odom
+guess_frame_id: null
+publish_tf: null
+vx_min: null
+hz:
+  /camera/infra1/image_rect_raw: 15.036187281444327
+  /tf: 19.054507771511783
+  /camera/depth/image_rect_raw: 13.413051097654261
+  /vision/paired/infra1/image_rect_raw: 20.193744967854762
+  /camera/infra1/camera_info: 15.048550593567152
+  /camera/metadata: 30.60883676643427
+  /vision/paired/depth/image_rect_raw: 18.78058980773647
+  /rtabmap/rgbd_image: 8.141817869215688
+  /odom: 5.394289271267493
+  /odom_info_lite: 5.387310425436949
+  /map: 0.0
+emitter_keys:
+  - frame_number
+  - clock_domain
+  - frame_timestamp
+  - hw_timestamp
+  - time_of_arrival
+  - backend_timestamp
+  - actual_fps
+  - raw_frame_size
+images:
+  - infra1_000.png
+  - depth_000.png
+  - paired_infra1_000.png
+  - paired_depth_000.png
+  - rgbd_rgb_000.png
+  - rgbd_depth_000.png
+  - map_000.png
+  - infra1_001.png
+  - depth_001.png
+  - paired_infra1_001.png
+  - paired_depth_001.png
+  - rgbd_rgb_001.png
+  - rgbd_depth_001.png
+  - infra1_002.png
+  - depth_002.png
+  - paired_infra1_002.png
+  - paired_depth_002.png
+  - rgbd_rgb_002.png
+  - rgbd_depth_002.png
+  - infra1_003.png
+  - depth_003.png
+  - paired_infra1_003.png
+  - paired_depth_003.png
+  - rgbd_rgb_003.png
+  - rgbd_depth_003.png
+  - depth_004.png
+  - infra1_004.png
+  - paired_infra1_004.png
+  - paired_depth_004.png
+  - rgbd_rgb_004.png
+  - rgbd_depth_004.png
+  - depth_005.png
+  - infra1_005.png
+  - paired_infra1_005.png
+  - paired_depth_005.png
+  - rgbd_rgb_005.png
+  - rgbd_depth_005.png
+  - depth_006.png
+  - infra1_006.png
+  - paired_infra1_006.png
+  - paired_depth_006.png
+session: /home/wheeltec/vision_captures/20260920-212137-49632
+samples:
+  infra:
+    encoding: mono8
+    width: 848
+    height: 480
+    frame_id: camera_infra1_optical_frame
+    stamp_sec: 1789910529.0692391
+    step: 848
+    data_len: 407040
+  depth:
+    encoding: 16UC1
+    width: 848
+    height: 480
+    frame_id: camera_depth_optical_frame
+    stamp_sec: 1789910529.0692391
+    step: 1696
+    data_len: 814080
+  paired_infra:
+    encoding: mono8
+    width: 848
+    height: 480
+    frame_id: camera_infra1_optical_frame
+    stamp_sec: 1789910529.0692391
+    step: 848
+    data_len: 407040
+  camera_info_k:
+    - 421.3739929199219
+    - 0.0
+    - 420.7453308105469
+    - 0.0
+    - 421.3739929199219
+    - 239.2834930419922
+    - 0.0
+    - 0.0
+    - 1.0
+  camera_info:
+    frame_id: camera_infra1_optical_frame
+    width: 848
+    height: 480
+    distortion_model: plumb_bob
+  metadata_json_preview: "{\"frame_number\":8,\"clock_domain\":\"global_time\",\"frame_timestamp\":1789910497140.821289,\"hw_timestamp\":683532511,\"time_of_arrival\":1789910497141,\"backend_timestamp\":1789910497133,\"actual_fps\":14784,\"raw_frame_size\":407040}"
+  paired_depth:
+    encoding: 16UC1
+    width: 848
+    height: 480
+    frame_id: camera_depth_optical_frame
+    stamp_sec: 1789910529.002566
+    step: 1696
+    data_len: 814080
+  rgbd:
+    rgb:
+      encoding: mono8
+      width: 848
+      height: 480
+      frame_id: camera_infra1_optical_frame
+      stamp_sec: 1789910528.0691543
+      step: 848
+      data_len: 407040
+    depth:
+      encoding: 16UC1
+      width: 848
+      height: 480
+      frame_id: camera_depth_optical_frame
+      stamp_sec: 1789910528.0691543
+      step: 1696
+      data_len: 814080
+    header_frame_id: camera_infra1_optical_frame
+    stamp_sec: 1789910528.0691543
+  odom:
+    frame_id: odom
+    child_frame_id: base_footprint
+    quat_norm: 1.0
+    covariance0: 1.7770702272100608e-05
+  odom_info:
+    lost: false
+    inliers: 573
+    features: 747
+  map:
+    frame_id: map
+    resolution: 0.05000000074505806
+    width: 94
+    height: 75
+    origin:
+      x: -0.5249872803688049
+      y: -1.7979636192321777
+  params:
+    vision_rtabmap.database_path: /tmp/vision_doc_capture.db
+    vision_rtabmap.Mem/IncrementalMemory: true
+  tf_parents:
+    base_footprint: odom
+    odom: map
+  hz:
+    /camera/infra1/image_rect_raw: 15.036187281444327
+    /tf: 19.054507771511783
+    /camera/depth/image_rect_raw: 13.413051097654261
+    /vision/paired/infra1/image_rect_raw: 20.193744967854762
+    /camera/infra1/camera_info: 15.048550593567152
+    /camera/metadata: 30.60883676643427
+    /vision/paired/depth/image_rect_raw: 18.78058980773647
+    /rtabmap/rgbd_image: 8.141817869215688
+    /odom: 5.394289271267493
+    /odom_info_lite: 5.387310425436949
+    /map: 0.0
+  emitter_keys:
+    - frame_number
+    - clock_domain
+    - frame_timestamp
+    - hw_timestamp
+    - time_of_arrival
+    - backend_timestamp
+    - actual_fps
+    - raw_frame_size
+  images:
+    - infra1_000.png
+    - depth_000.png
+    - paired_infra1_000.png
+    - paired_depth_000.png
+    - rgbd_rgb_000.png
+    - rgbd_depth_000.png
+    - map_000.png
+    - infra1_001.png
+    - depth_001.png
+    - paired_infra1_001.png
+    - paired_depth_001.png
+    - rgbd_rgb_001.png
+    - rgbd_depth_001.png
+    - infra1_002.png
+    - depth_002.png
+    - paired_infra1_002.png
+    - paired_depth_002.png
+    - rgbd_rgb_002.png
+    - rgbd_depth_002.png
+    - infra1_003.png
+    - depth_003.png
+    - paired_infra1_003.png
+    - paired_depth_003.png
+    - rgbd_rgb_003.png
+    - rgbd_depth_003.png
+    - depth_004.png
+    - infra1_004.png
+    - paired_infra1_004.png
+    - paired_depth_004.png
+    - rgbd_rgb_004.png
+    - rgbd_depth_004.png
+    - depth_005.png
+    - infra1_005.png
+    - paired_infra1_005.png
+    - paired_depth_005.png
+    - rgbd_rgb_005.png
+    - rgbd_depth_005.png
+    - depth_006.png
+    - infra1_006.png
+    - paired_infra1_006.png
+    - paired_depth_006.png

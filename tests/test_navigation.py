@@ -32,7 +32,7 @@ class NavigationTests(unittest.TestCase):
         numbered = [
             row for row in rows if row["kind"] in {"foundation", "chapter"}
         ]
-        self.assertEqual(len(numbered), 51)
+        self.assertEqual(len(numbered), 53)
         for index, row in enumerate(numbered):
             path = ROOT / row["path"]
             links = linked_markdown_paths(path)
@@ -67,10 +67,33 @@ class NavigationTests(unittest.TestCase):
                 offenders.append(path.relative_to(ROOT).as_posix())
         self.assertEqual(offenders, [])
 
-    def test_mkdocs_has_ten_parts_and_51_numbered_entries(self) -> None:
+    def test_mkdocs_has_ten_parts_and_53_numbered_entries(self) -> None:
         config = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")
         self.assertEqual(len(re.findall(r"^  - 第(?:[一二三四五六七八九]|十)篇 ", config, re.MULTILINE)), 10)
-        self.assertEqual(len(re.findall(r"^      - (?:[1-9]|[1-4][0-9]|50|51) ", config, re.MULTILINE)), 51)
+        self.assertEqual(len(re.findall(r"^      - (?:[1-9]|[1-4][0-9]|5[0-3]) ", config, re.MULTILINE)), 53)
+
+    def test_r680_vision_chapters_are_numbered_in_part_six(self) -> None:
+        config = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")
+        self.assertIn("06-sensors-navigation/38-visual-runtime.md", config)
+        self.assertIn("06-sensors-navigation/39-visual-operation.md", config)
+        runtime = ROOT / "docs" / "06-sensors-navigation" / "38-visual-runtime.md"
+        operation = ROOT / "docs" / "06-sensors-navigation" / "39-visual-operation.md"
+        self.assertTrue(runtime.is_file())
+        self.assertTrue(operation.is_file())
+        self.assertTrue((ROOT / "docs" / "06-sensors-navigation" / "diagrams" / "vision-mapping.svg").is_file())
+        self.assertTrue(
+            (ROOT / "docs" / "06-sensors-navigation" / "visual-runtime-captures" / "infra1_000.png").is_file()
+        )
+        runtime_text = runtime.read_text(encoding="utf-8")
+        operation_text = operation.read_text(encoding="utf-8")
+        self.assertRegex(
+            next(line for line in runtime_text.splitlines() if line.startswith("# ")),
+            r"^# 38\.\s+视觉建图与导航的运行过程$",
+        )
+        self.assertRegex(
+            next(line for line in operation_text.splitlines() if line.startswith("# ")),
+            r"^# 39\.\s+视觉建图与导航操作$",
+        )
 
     def test_entry_pages_use_current_paths(self) -> None:
         combined = "\n".join(
@@ -119,7 +142,7 @@ class NavigationTests(unittest.TestCase):
             "1 → 4 → 5 → 22",
             "10 → 11 → 12 → 13 → 14",
             "29 → 30 → 31 → 32 → 33",
-            "10 → 21 → 47 → 48 → 50",
+            "10 → 21 → 49 → 50 → 52",
         ):
             self.assertIn(sequence, text)
         self.assertGreaterEqual(text.count("前置能力"), 3)
