@@ -513,6 +513,10 @@ twist:
 
 ## 3.3 变换的发布
 
+TF 发布的不是“某个坐标系自己的位姿”，而是两个坐标系之间的坐标变换。一条变换有一个父坐标系和一个子坐标系，含义是把点在子坐标系中的坐标换算到父坐标系中。发布者把这段关系封装成 `TransformStamped`，其中包括父坐标系名 `header.frame_id`、子坐标系名 `child_frame_id`、三维平移 `translation`、四元数转动 `rotation` 和时间戳。动态关系发布在 `/tf`，固定安装关系发布在 `/tf_static`。
+
+坐标链就是这些变换按父子关系连续相乘。例如，查询相机光学坐标系中的一点到车身坐标系的位置时，TF 会依次使用 `base_footprint→camera_link` 和 `camera_link→` 光学坐标系的变换。以相机光学中心为例，它在光学坐标系中是 $(0,0,0)$，经过这条链后，在 `base_footprint` 中落在相机安装位置 $(0.187,0.0175,0.132)\,\mathrm{m}$。这里的坐标链做的是坐标换算，节点不需要自己手动寻找和拼接中间坐标系。
+
 从 `map` 到相机的各段变换由不同的节点发布，下表按从场地到相机的顺序列出。
 
 | 段                             | 发布者                                                                             | 话题           |
@@ -528,22 +532,7 @@ twist:
 
 ![坐标系树。从 map、odom、base_footprint 到相机的光学坐标系，以及挂在 base_footprint 下的 wheel_odom。方框中为发布者](diagrams/tf-tree.svg)
 
-`map→odom` 由 RTAB-Map 在处理第一帧之后开始发布，之后每次回环或定位修正时更新，第 4 节写它怎样得到修正量。`odom→base_footprint` 与 `/odom` 是同一个位姿，时间戳也相同。
-
-`map→odom` 的发布可以按两步理解。第一步，RTAB-Map 根据当前图像与数据库记录的匹配，得到车在 `map` 中应处的位姿。第二步，它读取同一时刻 EKF 提供的 `odom→base_footprint`，把两者相减得到 `map→odom`，使下面的坐标链满足
-
-$$
-map\to base\_footprint
- = (map\to odom)\,(odom\to base\_footprint).
-$$
-
-这个修正使用变换的求逆与相乘。若记 RTAB-Map 得到的地图位姿为 $T_{map,base}$，EKF 位姿为 $T_{odom,base}$，发布的修正就是
-
-$$
-T_{map,odom}=T_{map,base}\,T_{odom,base}^{-1}.
-$$
-
-RTAB-Map 把这段结果封装成 `TransformStamped`，父坐标系是 `map`，子坐标系是 `odom`，内容包括平移和四元数转动，随后通过 `/tf` 发布。之后 TF 查询 `map→base_footprint` 时，会自动把这段修正和连续的 `odom→base_footprint` 接起来。回环或重新定位时，前一项发生变化，所以 `map→odom` 会跳变，`odom→base_footprint` 仍保持连续。
+`odom→base_footprint` 与 `/odom` 描述的是同一段融合运动，时间戳也相同。`map→odom` 的具体修正过程放在第 4 节建图和第 5 节定位中说明。读者在这里先记住它的职责即可：它把环境坐标系和连续里程计坐标系接起来，使 TF 能够查询车在地图中的位置。
 
 `base_footprint→base_link` 与 `base_link→camera_link` 描述车身本身。`base_link` 是车身主连杆上的坐标系，相对 `base_footprint` 有一个固定高度，由出厂的车型配置给出。车身各连杆之间的位置写在 [URDF](../05-ros2-development/26-tf-urdf-rviz.md#model-tf-rviz) 车身模型里，由 robot_state_publisher 发布。
 
