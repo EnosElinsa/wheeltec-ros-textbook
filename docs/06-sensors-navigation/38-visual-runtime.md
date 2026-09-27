@@ -507,9 +507,9 @@ twist:
 
 更具体地说，`map` 的原点和方向由地图建立时确定，$x$、$y$ 在地面上，$z$ 向上。`odom` 的原点是本次启动时车身所在的位置，轴向在启动时与车身对齐，此后固定不动。`base_footprint` 的原点是车身投影到地面的中心，$x$ 向车头、$y$ 向左、$z$ 向上。`wheel_odom` 的轴向也按底盘方向约定，原点取上电时的参考位置。
 
-下图用三维坐标轴把这些关系画在一起。红、绿、蓝三根箭头分别表示一个坐标系的 $x$、$y$、$z$ 轴。图中 `camera_link` 与光学坐标系的原点重合，因此只单独画出光学坐标系的轴向。
+下图把这两层关系拆开画。左侧先看 `map→odom→base_footprint` 和 `base_footprint→wheel_odom` 的 TF 主链，红、绿箭头分别表示俯视图中的 $x$、$y$ 轴；右侧再看车身到相机的安装偏移，以及 `camera_link` 与光学坐标系的轴向差异。两者原点重合，但车身轴和光学轴的正方向不同。
 
-![主要坐标系的三维关系。map 固定在环境中，odom 从本次出发处开始，base_footprint 随车运动，相机光学坐标系位于车身前上方，wheel_odom 是轮速参考坐标系](assets/coordinate-frames-3d.png?v=1)
+![主要坐标系的空间关系。左侧是 map、odom、base_footprint 与 wheel_odom 的 TF 关系，右侧是车身到相机的安装位置和车身轴、光学轴的转换](assets/coordinate-frames-3d.png?v=2)
 
 ## 3.3 变换的发布
 

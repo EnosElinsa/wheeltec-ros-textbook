@@ -6,6 +6,7 @@ theme:
   language: zh
   features:
     - navigation.sections
+    - navigation.expand
     - navigation.path
     - navigation.footer
     - search.suggest
