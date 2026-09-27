@@ -400,7 +400,7 @@ $$
 
 ## 2.5 融合一条运动
 
-前面得到三路输入，但它们承担的职责不同。轮速位姿 `/wheel/odom` 提供车轮运动学得到的前进、横向和转动速度；扣除零偏后的陀螺仪 `/vision/imu` 只提供绕竖直轴的角速度；视觉位姿 `/vision/odom_vo` 的消息虽然同时包含位姿和速度，但当前 EKF 配置只取其中的前进速度和转动速度。EKF 不直接把三条轨迹拼接，也不把三份位姿相加，而是把这些速度测量放进同一个状态估计中，输出一条连续的 `/odom` 运动。
+前面得到三路输入，但它们承担的职责不同。轮速位姿 `/wheel/odom` 提供车轮运动学得到的前进、横向和转动速度。扣除零偏后的陀螺仪 `/vision/imu` 只提供绕竖直轴的角速度。视觉位姿 `/vision/odom_vo` 的消息虽然同时包含位姿和速度，但当前 EKF 配置只取其中的前进速度和转动速度。EKF 不直接把三条轨迹拼接，也不把三份位姿相加，而是把这些速度测量放进同一个状态估计中，输出一条连续的 `/odom` 运动。
 
 ### 2.5.1 EKF 的状态和输入
 
@@ -503,6 +503,14 @@ twist:
 | `odom`           | 本次出发时车身所在处 | 相对出发处累计的运动，平滑但带累计误差         |
 | `base_footprint` | 车身在地面上的投影   | 车身坐标系，$x$ 向前、$y$ 向左、$z$ 向上 |
 
+本章还会用到三个附属坐标系。`camera_link` 的原点在相机安装位置，轴向与车身方向一致。相机的光学坐标系与 `camera_link` 原点重合，但轴向遵循相机约定，$Z_c$ 向前、$X_c$ 向右、$Y_c$ 向下。`wheel_odom` 以底盘上电时的位置为参考，用来表达轮速位姿。它不替代 `odom`，只为视觉里程计提供轮速运动预测。
+
+更具体地说，`map` 的原点和方向由地图建立时确定，$x$、$y$ 在地面上，$z$ 向上。`odom` 的原点是本次启动时车身所在的位置，轴向在启动时与车身对齐，此后固定不动。`base_footprint` 的原点是车身投影到地面的中心，$x$ 向车头、$y$ 向左、$z$ 向上。`wheel_odom` 的轴向也按底盘方向约定，原点取上电时的参考位置。
+
+下图用三维坐标轴把这些关系画在一起。红、绿、蓝三根箭头分别表示一个坐标系的 $x$、$y$、$z$ 轴。图中 `camera_link` 与光学坐标系的原点重合，因此只单独画出光学坐标系的轴向。
+
+![主要坐标系的三维关系。map 固定在环境中，odom 从本次出发处开始，base_footprint 随车运动，相机光学坐标系位于车身前上方，wheel_odom 是轮速参考坐标系](assets/coordinate-frames-3d.png?v=1)
+
 ## 3.3 变换的发布
 
 从 `map` 到相机的各段变换由不同的节点发布，下表按从场地到相机的顺序列出。
@@ -521,6 +529,21 @@ twist:
 ![坐标系树。从 map、odom、base_footprint 到相机的光学坐标系，以及挂在 base_footprint 下的 wheel_odom。方框中为发布者](diagrams/tf-tree.svg)
 
 `map→odom` 由 RTAB-Map 在处理第一帧之后开始发布，之后每次回环或定位修正时更新，第 4 节写它怎样得到修正量。`odom→base_footprint` 与 `/odom` 是同一个位姿，时间戳也相同。
+
+`map→odom` 的发布可以按两步理解。第一步，RTAB-Map 根据当前图像与数据库记录的匹配，得到车在 `map` 中应处的位姿。第二步，它读取同一时刻 EKF 提供的 `odom→base_footprint`，把两者相减得到 `map→odom`，使下面的坐标链满足
+
+$$
+map\to base\_footprint
+ = (map\to odom)\,(odom\to base\_footprint).
+$$
+
+这里的“相减”是变换的求逆与相乘。若记 RTAB-Map 得到的地图位姿为 $T_{map,base}$，EKF 位姿为 $T_{odom,base}$，发布的修正就是
+
+$$
+T_{map,odom}=T_{map,base}\,T_{odom,base}^{-1}.
+$$
+
+RTAB-Map 把这段结果封装成 `TransformStamped`，父坐标系是 `map`，子坐标系是 `odom`，内容包括平移和四元数转动，随后通过 `/tf` 发布。之后 TF 查询 `map→base_footprint` 时，会自动把这段修正和连续的 `odom→base_footprint` 接起来。回环或重新定位时，前一项发生变化，所以 `map→odom` 会跳变，`odom→base_footprint` 仍保持连续。
 
 `base_footprint→base_link` 与 `base_link→camera_link` 描述车身本身。`base_link` 是车身主连杆上的坐标系，相对 `base_footprint` 有一个固定高度，由出厂的车型配置给出。车身各连杆之间的位置写在 [URDF](../05-ros2-development/26-tf-urdf-rviz.md#model-tf-rviz) 车身模型里，由 robot_state_publisher 发布。
 
