@@ -84,7 +84,6 @@ nav:
       - 38 视觉建图与导航的运行过程: 06-sensors-navigation/38-visual-runtime.md
       - 39 视觉建图与导航操作: 06-sensors-navigation/39-visual-operation.md
       - 40 MID360 与 FAST-LIO 三维建图: 06-sensors-navigation/40-mid360-fast-lio.md
-      - 41 MID360 三维点云到二维建图: 06-sensors-navigation/41-mid360-2d-mapping.md
       - MID360 三维导航方案调研: 06-sensors-navigation/mid360-3d-navigation-research.md
   - 第七篇 STM32 与底盘固件:
       - 本篇说明: 07-stm32-firmware/index.md
