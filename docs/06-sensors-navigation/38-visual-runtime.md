@@ -706,9 +706,42 @@ $$
 
 定位的任务是根据当前图像，在已经建立的地图和地点记录中找到车所在的位置，并持续发布车在 `map` 中的位姿。切换到定位时，相机、图像配对与合成、视觉里程计和运动融合仍照常运行。RTAB-Map 读取建图时的数据库，载入地点记录，但不再写入新记录。它还用这些记录重新拼出占用栅格，发布到 `/map`。
 
-定位时，RTAB-Map 按下面的顺序工作。它先用当前红外图像在数据库的全部地点记录中筛选可能的旧地点，再按 2.3 节的方法，把当前图像与候选记录中的图像进行特征匹配，求出两者之间的相对位姿。候选记录在 `map` 中的位姿是已知的，把这段相对位姿接到候选记录的地图位姿上，就得到车当前在 `map` 中的位置和朝向。随后，RTAB-Map 读取同一时刻 `/odom` 提供的 `odom→base_footprint`，计算并发布对应的 `map→odom`。
+定位可以分成一次绝对修正和两次修正之间的连续推进。RTAB-Map 先按 4.3.1 节的视觉单词方法，从数据库中筛选可能对应当前图像的地点记录，再做特征匹配和几何验证。设通过验证的候选记录为 $K$，当前正在处理的图像为 $C$。
 
-两次成功识别之间，RTAB-Map 不需要每一帧都重新认出地点。车身在地图中的短时运动由连续的 `odom→base_footprint` 推进，上一时刻的 `map→odom` 继续作为地图修正。下一次识别成功后，RTAB-Map 再更新 `map→odom`。如果长时间认不出旧地点，车在地图中的位置会随着 `odom` 的累计误差逐渐偏离。如果数据库中没有当前地点的记录，定位也无从匹配。
+这里用 $T_{A\leftarrow B}$ 表示把点在坐标系 $B$ 中的坐标换到坐标系 $A$。候选记录在 `map` 中的车身位姿记为 $T_{\mathrm{map}\leftarrow K}$。2.3 节的特征匹配和 PnP 得到两帧之间的相对变换。把它整理成“当前车身坐标换到候选记录坐标”的形式，记为 $T_{K\leftarrow C}$，就可以直接组合出当前车身在 `map` 中的位姿：
+
+$$
+T_{\mathrm{map}\leftarrow C}
+=T_{\mathrm{map}\leftarrow K}\,T_{K\leftarrow C}.
+$$
+
+同一时刻，`/odom` 给出 `odom→base_footprint`，记为 $T_{\mathrm{odom}\leftarrow C}$。`map→odom` 的作用是把 `odom` 中的坐标换到 `map` 中，因此它要满足
+
+$$
+T_{\mathrm{map}\leftarrow C}
+=T_{\mathrm{map}\leftarrow\mathrm{odom}}\,T_{\mathrm{odom}\leftarrow C}.
+$$
+
+由这个关系即可算出 RTAB-Map 发布的地图修正
+
+$$
+T_{\mathrm{map}\leftarrow\mathrm{odom}}
+=T_{\mathrm{map}\leftarrow C}\,T_{\mathrm{odom}\leftarrow C}^{-1}.
+$$
+
+视觉匹配得到当前车身在地图中的位姿，`/odom` 给出同一时刻车身相对出发处的运动，`map→odom` 则把这两段关系接成一条坐标链。图中展示了一次成功识别以及随后依靠 `/odom` 连续推进的过程。
+
+![定位更新过程。识别成功时由候选记录和相对位姿得到当前地图位姿，再计算 map→odom；两次识别之间保持 map→odom，用 odom 推进车身位姿](assets/localization-update.png)
+
+两次成功识别之间，RTAB-Map 不需要每一帧都重新认出地点。它暂时保持上一时刻的 $T_{\mathrm{map}\leftarrow\mathrm{odom}}$，每当 `/odom` 更新，就按
+
+$$
+T_{\mathrm{map}\leftarrow C}(t)
+=T_{\mathrm{map}\leftarrow\mathrm{odom}}(t_0)
+\,T_{\mathrm{odom}\leftarrow C}(t).
+$$
+
+推进车身在地图中的位置。下一次识别成功后，再用新的绝对位姿重新计算 $T_{\mathrm{map}\leftarrow\mathrm{odom}}$。如果候选筛选或几何验证失败，系统暂时没有新的绝对修正，车身位置继续依靠 `/odom` 推进，累计误差会逐渐显现。如果数据库中没有当前地点的记录，就无法通过图像得到新的地图位姿，只能等待重新进入已记录区域或使用初始位姿。
 
 下图是定位时相机拍到的左红外图像，以及画在已有 `/map` 上的车身。识别得到的车身位置和朝向用橙箭头表示，蓝框是车身在地面上的投影，蓝线连接建图时的地点记录，用来对照当前位置落在原路程的哪一段。
 
