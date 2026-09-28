@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560">
+  <title>MID360 点云 UDP 载荷的字节布局</title>
+  <desc>按 Livox SDK2 的打包结构标出 36 字节协议头和 14 字节高精度笛卡尔点记录，并用当前 1380 字节载荷计算出 96 个点。</desc>
+  <rect width="1200" height="560" fill="#fbfcfe"/>
+  <style>
+    .title { font:700 23px sans-serif; fill:#17304d; }
+    .label { font:17px sans-serif; fill:#23384f; }
+    .small { font:14px sans-serif; fill:#53677c; }
+    .tiny { font:13px sans-serif; fill:#53677c; }
+    .seg { stroke:#234; stroke-width:1.5; }
+    .brace { stroke:#4169a1; stroke-width:2; fill:none; }
+  </style>
+  <text x="40" y="42" class="title">官方 SDK2 结构与本次 MID360 点云包的可核对样例</text>
+
+  <text x="45" y="95" class="label">UDP 载荷长度：1380 字节（本次抓包）</text>
+  <rect x="45" y="120" width="78" height="78" class="seg" fill="#f3e3e9"/>
+  <text x="60" y="151" class="small">0–35</text><text x="56" y="176" class="small">36 B</text>
+  <rect x="123" y="120" width="135" height="78" class="seg" fill="#e8eef7"/>
+  <text x="143" y="151" class="small">36–49</text><text x="141" y="176" class="small">点 0：14 B</text>
+  <rect x="258" y="120" width="810" height="78" class="seg" fill="#eaf4ed"/>
+  <text x="565" y="151" class="label">其余 95 个高精度笛卡尔点</text>
+  <text x="590" y="176" class="small">95 × 14 B = 1330 B</text>
+  <path d="M45 215 L45 235 L1068 235 L1068 215" class="brace"/>
+  <text x="465" y="258" class="small">36 + 96 × 14 = 1380 字节</text>
+
+  <rect x="45" y="300" width="1025" height="78" class="seg" fill="#fff1df"/>
+  <text x="70" y="333" class="label">LivoxLidarEthernetPacket 头（固定 36 字节，#pragma pack(1)）</text>
+  <text x="70" y="361" class="small">version · length · time_interval · dot_num · udp_cnt · frame_cnt · data_type · time_type · rsvd · crc32 · timestamp</text>
+
+  <rect x="45" y="420" width="1025" height="78" class="seg" fill="#e8f2f7"/>
+  <text x="70" y="452" class="label">一个高精度笛卡尔点（14 字节）</text>
+  <text x="70" y="480" class="small">x:int32(mm) · y:int32(mm) · z:int32(mm) · reflectivity:uint8 · tag:uint8</text>
+
+  <text x="45" y="535" class="tiny">若 data_type=0x01，1380 字节载荷正好对应 96 个 14 字节点记录；这是根据官方结构和本次载荷长度推导的样例，不是伪造的完整十六进制转储。</text>
+</svg>

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="430" viewBox="0 0 1160 430">
+  <title>FAST-LIO 坐标、输出话题和 RViz2</title>
+  <desc>FAST-LIO 在 camera_init 中估计 body 位姿，使用雷达外参处理 livox_frame，并发布位姿、点云和轨迹供 RViz2 显示。</desc>
+  <rect width="1160" height="430" fill="#f7f9fc"/>
+  <style>
+    .box { fill:#fff; stroke:#234; stroke-width:2; rx:12; }
+    .title { font:700 19px sans-serif; fill:#123; }
+    .text { font:15px sans-serif; fill:#234; }
+    .label { font:15px sans-serif; fill:#234; }
+    .small { font:13px sans-serif; fill:#456; }
+    .axis { stroke:#4169a1; stroke-width:3; fill:none; marker-end:url(#arrow); }
+    .dash { stroke:#9a6a2e; stroke-width:2.5; stroke-dasharray:8 7; fill:none; marker-end:url(#arrow2); }
+    .topic { fill:#eef4fb; stroke:#4169a1; stroke-width:1.5; rx:8; }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4169a1"/>
+    </marker>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#9a6a2e"/>
+    </marker>
+  </defs>
+  <text x="38" y="38" class="title">FAST-LIO 的坐标关系和输出</text>
+  <rect x="35" y="86" width="320" height="265" class="box"/>
+  <text x="62" y="122" class="title">算法内部的空间关系</text>
+  <circle cx="110" cy="250" r="8" fill="#234"/>
+  <line x1="110" y1="250" x2="275" y2="250" class="axis"/>
+  <line x1="110" y1="250" x2="110" y2="150" class="axis"/>
+  <text x="78" y="286" class="label">camera_init</text>
+  <circle cx="275" cy="250" r="9" fill="#d64b35"/>
+  <text x="260" y="286" class="text">body</text>
+  <path d="M160 235 C190 190 225 190 262 230" class="axis"/>
+  <text x="147" y="174" class="small">/tf：camera_init → body</text>
+  <circle cx="275" cy="165" r="8" fill="#4f9b65"/>
+  <text x="294" y="170" class="text">livox_frame</text>
+  <path d="M275 235 C275 210 275 188 275 175" class="dash"/>
+  <text x="145" y="325" class="small">雷达—机体外参由配置/算法使用，不能只看名字猜位置</text>
+  <rect x="425" y="86" width="300" height="265" class="box"/>
+  <text x="452" y="122" class="title">FAST-LIO 发布</text>
+  <rect x="452" y="144" width="245" height="35" class="topic"/>
+  <text x="470" y="167" class="text">/Odometry + /tf</text>
+  <rect x="452" y="190" width="245" height="35" class="topic"/>
+  <text x="470" y="213" class="text">/cloud_registered</text>
+  <rect x="452" y="236" width="245" height="35" class="topic"/>
+  <text x="470" y="259" class="text">/Laser_map</text>
+  <rect x="452" y="282" width="245" height="35" class="topic"/>
+  <text x="470" y="305" class="text">/path</text>
+  <path d="M355 218 L425 218" class="axis"/>
+  <rect x="805" y="86" width="315" height="265" class="box"/>
+  <text x="832" y="122" class="title">RViz2 显示</text>
+  <text x="832" y="163" class="text">当前点：/cloud_registered</text>
+  <text x="832" y="201" class="text">累计点：/Laser_map</text>
+  <text x="832" y="239" class="text">轨迹：/path</text>
+  <text x="832" y="277" class="text">箭头/坐标：/tf</text>
+  <text x="832" y="318" class="small">Fixed Frame：camera_init</text>
+  <path d="M725 218 L805 218" class="axis"/>
+  <text x="44" y="392" class="small">当前 FAST-LIO 输出不是二维导航默认的 map → odom → base_link → laser；后续接 Nav2 时还要设计投影和坐标转换。</text>
+</svg>

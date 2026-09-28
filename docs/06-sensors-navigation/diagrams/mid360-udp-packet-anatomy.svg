@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="470" viewBox="0 0 1200 470">
+  <title>一个 MID360 UDP 包的分层结构</title>
+  <desc>以太网帧包含 IP 头、UDP 头和 Livox 设备协议载荷，载荷再包含协议头和点云或 IMU 数据。</desc>
+  <rect width="1200" height="470" fill="#fbfcfe"/>
+  <style>
+    .title { font:700 23px sans-serif; fill:#17304d; }
+    .label { font:17px sans-serif; fill:#23384f; }
+    .small { font:14px sans-serif; fill:#53677c; }
+    .layer { stroke:#234; stroke-width:2; rx:10; }
+    .arrow { stroke:#4169a1; stroke-width:3; fill:none; marker-end:url(#arrow); }
+    .brace { stroke:#9a6a2e; stroke-width:2; fill:none; }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#4169a1"/>
+    </marker>
+  </defs>
+  <text x="40" y="42" class="title">一个 UDP 包不是一个点：网络包装和设备载荷的关系</text>
+
+  <rect x="45" y="95" width="210" height="92" class="layer" fill="#e8eef7"/>
+  <text x="83" y="133" class="label">以太网头</text>
+  <text x="83" y="162" class="small">源/目标 MAC</text>
+
+  <rect x="275" y="95" width="210" height="92" class="layer" fill="#eaf4ed"/>
+  <text x="322" y="133" class="label">IP 头</text>
+  <text x="322" y="162" class="small">源/目标 IP</text>
+
+  <rect x="505" y="95" width="210" height="92" class="layer" fill="#fff1df"/>
+  <text x="550" y="133" class="label">UDP 头</text>
+  <text x="550" y="162" class="small">端口、长度、校验和</text>
+
+  <rect x="735" y="75" width="420" height="132" class="layer" fill="#f7e8ee"/>
+  <text x="778" y="113" class="label">UDP 载荷：Livox/MID360 二进制</text>
+  <rect x="778" y="132" width="145" height="46" rx="7" fill="#fff" stroke="#a85a6c" stroke-width="1.5"/>
+  <text x="797" y="161" class="small">设备协议头</text>
+  <rect x="938" y="132" width="180" height="46" rx="7" fill="#fff" stroke="#a85a6c" stroke-width="1.5"/>
+  <text x="958" y="161" class="small">测量数据</text>
+
+  <path d="M150 187 L150 238" class="arrow"/>
+  <path d="M380 187 L380 238" class="arrow"/>
+  <path d="M610 187 L610 238" class="arrow"/>
+  <path d="M945 207 L945 238" class="arrow"/>
+  <text x="46" y="268" class="small">网络层的“包装”，帮助数据到达 Jetson</text>
+  <text x="735" y="268" class="small">SDK2 需要读取的设备数据</text>
+
+  <rect x="105" y="305" width="455" height="92" class="layer" fill="#f1eafa"/>
+  <text x="140" y="342" class="label">点云包的数据部分</text>
+  <text x="140" y="372" class="small">一批紧凑编码的激光测量记录，不是完整 ROS 2 点云</text>
+
+  <rect x="640" y="305" width="455" height="92" class="layer" fill="#e8f2f7"/>
+  <text x="675" y="342" class="label">IMU 包的数据部分</text>
+  <text x="675" y="372" class="small">加速度/角速度记录，不是 sensor_msgs/msg/Imu</text>
+
+  <path d="M940 239 C800 240 585 275 330 303" class="brace"/>
+  <path d="M950 239 C970 260 1000 280 865 303" class="brace"/>
+  <text x="42" y="438" class="small">当前抓包中：点云 UDP 载荷约 1380 字节（56300），IMU UDP 载荷约 60 字节（56400）。准确字段由设备协议和 SDK2 解码，不能按长度直接猜字段。</text>
+</svg>

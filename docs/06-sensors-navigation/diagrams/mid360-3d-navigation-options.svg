@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="820" viewBox="0 0 1500 820">
+  <rect width="1500" height="820" fill="#ffffff"/>
+  <style>
+    .title{font:700 30px sans-serif;fill:#172b4d}.head{font:700 23px sans-serif;fill:#172b4d}.text{font:19px sans-serif;fill:#243b53}.small{font:16px sans-serif;fill:#53677c}.box{fill:#f7fbff;stroke:#b9cce0;stroke-width:2;rx:16}.input{fill:#fff7e7;stroke:#e0ad52;stroke-width:2;rx:16}.two{fill:#eef7ff;stroke:#75a5d0;stroke-width:2;rx:16}.half{fill:#edf9f4;stroke:#78b99e;stroke-width:2;rx:16}.three{fill:#f4efff;stroke:#a98ed3;stroke-width:2;rx:16}.arrow{stroke:#426b9f;stroke-width:3;fill:none;marker-end:url(#arrow)}
+  </style>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#426b9f"/></marker></defs>
+  <text x="42" y="46" class="title">MID360/D435i 三维感知进入三种导航方案</text>
+  <text x="42" y="76" class="small">三维地图只是输入；最终方案还要决定怎样表示障碍、怎样规划路径以及怎样控制轮式底盘。</text>
+
+  <rect x="45" y="125" width="300" height="170" class="input"/>
+  <text x="75" y="165" class="head">传感器</text>
+  <text x="75" y="202" class="text">MID360 点云 + IMU</text>
+  <text x="75" y="232" class="text">D435i 图像/深度</text>
+  <text x="75" y="264" class="small">远距离几何 + 近距离深度/纹理</text>
+  <path d="M345 210 L455 210" class="arrow"/>
+
+  <rect x="475" y="125" width="340" height="170" class="box"/>
+  <text x="505" y="165" class="head">定位与建图</text>
+  <text x="505" y="204" class="text">FAST-LIO / FAST-LIVO2</text>
+  <text x="505" y="235" class="text">当前位姿 + 三维点云地图</text>
+  <text x="505" y="266" class="small">camera_init → body</text>
+
+  <path d="M645 295 L645 365" class="arrow"/>
+  <text x="670" y="340" class="small">按任务选择</text>
+
+  <rect x="45" y="400" width="390" height="255" class="two"/>
+  <text x="75" y="442" class="head">A  三维感知 + 二维 Nav2</text>
+  <text x="75" y="480" class="text">高度过滤 / 点云投影</text>
+  <text x="75" y="512" class="text">二维占用栅格或代价地图</text>
+  <text x="75" y="544" class="text">Nav2：x、y、yaw</text>
+  <text x="75" y="590" class="small">平整室内地面，最容易落地</text>
+  <text x="75" y="620" class="small">输出：/cmd_vel</text>
+
+  <rect x="555" y="400" width="390" height="255" class="half"/>
+  <text x="585" y="442" class="head">B  2.5D 地形导航</text>
+  <text x="585" y="480" class="text">elevation_mapping / grid_map</text>
+  <text x="585" y="512" class="text">高度、坡度、粗糙度</text>
+  <text x="585" y="544" class="text">地面路径 + 可通行性代价</text>
+  <text x="585" y="590" class="small">坡道、草地、碎石、不平地面</text>
+  <text x="585" y="620" class="small">仍受轮式底盘约束</text>
+
+  <rect x="1065" y="400" width="390" height="255" class="three"/>
+  <text x="1095" y="442" class="head">C  真正三维规划</text>
+  <text x="1095" y="480" class="text">Voxblox / Nvblox / 体素地图</text>
+  <text x="1095" y="512" class="text">ESDF + 三维碰撞检查</text>
+  <text x="1095" y="544" class="text">FAR Planner 等专用规划器</text>
+  <text x="1095" y="590" class="small">多层空间、复杂立体障碍</text>
+  <text x="1095" y="620" class="small">不能直接等同于普通 Nav2</text>
+
+  <path d="M645 365 L240 400" class="arrow"/><path d="M645 365 L750 400" class="arrow"/><path d="M645 365 L1260 400" class="arrow"/>
+  <line x1="45" y1="710" x2="1455" y2="710" stroke="#a6b7c9" stroke-width="2"/>
+  <text x="45" y="755" class="text">当前轮式小车推荐：先走 A，再根据地形需要走 B；只有确实需要三维空间规划时再评估 C。</text>
+</svg>

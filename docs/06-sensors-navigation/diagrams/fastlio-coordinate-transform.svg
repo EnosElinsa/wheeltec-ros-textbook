@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="720" viewBox="0 0 1560 720">
+  <rect width="1560" height="720" fill="#ffffff"/>
+  <style>
+    .panel { fill:#fbfdff; stroke:#c8d4e3; stroke-width:2; rx:16; }
+    .title { font:700 29px sans-serif; fill:#172b4d; }
+    .head { font:700 22px sans-serif; fill:#172b4d; }
+    .label { font:19px sans-serif; fill:#243b53; }
+    .small { font:16px sans-serif; fill:#53677c; }
+    .tiny { font:14px sans-serif; fill:#53677c; }
+    .robot { fill:#4f8fc9; stroke:#17456f; stroke-width:3; }
+    .robotGhost { fill:#b9cde0; stroke:#7895b0; stroke-width:2; }
+    .lidar { fill:#f39b3d; stroke:#9b5b12; stroke-width:2; }
+    .wall { stroke:#526b84; stroke-width:7; stroke-linecap:round; }
+    .beam { stroke:#6c91b6; stroke-width:2.5; stroke-dasharray:7 5; }
+    .point { fill:#f39b3d; stroke:#9b5b12; stroke-width:2; }
+    .pointGood { fill:#2c9b76; stroke:#135a43; stroke-width:2; }
+    .axis { stroke:#4169a1; stroke-width:3; marker-end:url(#blueArrow); }
+    .green { stroke:#2c9b76; stroke-width:3; fill:none; marker-end:url(#greenArrow); }
+    .blue { stroke:#4169a1; stroke-width:3; fill:none; marker-end:url(#blueArrow); }
+    .note { fill:#eef5fb; stroke:#b8cfe3; stroke-width:1.5; rx:8; }
+    .goodNote { fill:#edf9f4; stroke:#a8d7c4; stroke-width:1.5; rx:8; }
+  </style>
+  <defs>
+    <marker id="blueArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#4169a1"/></marker>
+    <marker id="greenArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2c9b76"/></marker>
+  </defs>
+
+  <text x="38" y="42" class="title">坐标变换：同一个墙面点，怎样从雷达坐标进入建图坐标</text>
+  <text x="38" y="72" class="small">点的距离没有被重新测量，只是先补上雷达的安装位置，再补上车此刻走到的位置。</text>
+
+  <!-- Panel 1 -->
+  <rect x="30" y="105" width="470" height="500" class="panel"/>
+  <text x="55" y="143" class="head">1. 雷达消息中的点</text>
+  <text x="55" y="171" class="small">`livox_frame`：以雷达为原点</text>
+  <circle cx="125" cy="410" r="9" class="lidar"/>
+  <line x1="125" y1="410" x2="205" y2="410" class="axis"/>
+  <line x1="125" y1="410" x2="125" y2="330" class="axis"/>
+  <text x="210" y="417" class="small">前方 x</text>
+  <text x="132" y="322" class="small">上方 z</text>
+  <line x1="134" y1="410" x2="410" y2="410" class="beam"/>
+  <line x1="410" y1="245" x2="410" y2="540" class="wall"/>
+  <circle cx="410" cy="410" r="8" class="point"/>
+  <text x="85" y="455" class="label">p_lidar=(2.0, 0, 0)</text>
+  <text x="85" y="480" class="small">“墙在雷达前方 2 m”</text>
+  <text x="342" y="230" class="small">真实墙面</text>
+
+  <!-- connector 1 -->
+  <path d="M510 355 L575 355" class="blue"/>
+  <text x="510" y="325" class="small">固定安装关系</text>
+  <text x="518" y="385" class="tiny">extrinsic_R、T</text>
+
+  <!-- Panel 2 -->
+  <rect x="580" y="105" width="400" height="500" class="panel"/>
+  <text x="605" y="143" class="head">2. 先换到车体坐标</text>
+  <text x="605" y="171" class="small">`body`：以车体为原点</text>
+  <path d="M665 430 L735 390 L735 470 Z" class="robot"/>
+  <line x1="735" y1="430" x2="880" y2="430" class="axis"/>
+  <text x="885" y="437" class="small">车头方向</text>
+  <circle cx="760" cy="430" r="9" class="lidar"/>
+  <line x1="760" y1="430" x2="930" y2="430" class="beam"/>
+  <circle cx="930" cy="430" r="8" class="point"/>
+  <path d="M760 402 L735 402" class="green"/>
+  <text x="615" y="520" class="label">雷达在车体前方 0.2 m</text>
+  <text x="615" y="548" class="small">所以 p_body≈(2.2, 0, 0)</text>
+  <rect x="610" y="220" width="315" height="70" class="note"/>
+  <text x="630" y="248" class="label">这一段关系是固定的</text>
+  <text x="630" y="274" class="small">换雷达安装位置，就要改外参</text>
+
+  <!-- connector 2 -->
+  <path d="M990 355 L1055 355" class="green"/>
+  <text x="995" y="325" class="small">当前车体位姿</text>
+  <text x="1003" y="385" class="tiny">R(t)、t(t)</text>
+
+  <!-- Panel 3 -->
+  <rect x="1060" y="105" width="470" height="500" class="panel"/>
+  <text x="1085" y="143" class="head">3. 放入固定建图坐标</text>
+  <text x="1085" y="171" class="small">`camera_init`：建图开始时固定的参考</text>
+  <line x1="1430" y1="225" x2="1430" y2="540" class="wall"/>
+  <text x="1360" y="210" class="small">同一面墙</text>
+
+  <!-- t0 -->
+  <g transform="translate(1135 455)">
+    <path d="M-35 20 L35 -20 L35 60 Z" class="robotGhost"/>
+    <circle cx="20" cy="20" r="7" class="lidar"/>
+  </g>
+  <line x1="1155" y1="475" x2="1430" y2="475" class="beam"/>
+  <circle cx="1430" cy="475" r="8" class="pointGood"/>
+  <text x="1085" y="520" class="small">t0：车在 x=0</text>
+  <text x="1085" y="545" class="tiny">0+2.2=2.2 m</text>
+
+  <!-- t1 -->
+  <g transform="translate(1240 455)">
+    <path d="M-35 20 L35 -20 L35 60 Z" class="robot"/>
+    <circle cx="20" cy="20" r="7" class="lidar"/>
+  </g>
+  <line x1="1260" y1="475" x2="1430" y2="475" class="beam"/>
+  <circle cx="1430" cy="475" r="8" class="pointGood"/>
+  <text x="1190" y="520" class="small">t1：车前进 0.5 m</text>
+  <text x="1190" y="545" class="tiny">0.5+1.7=2.2 m</text>
+
+  <rect x="1085" y="235" width="310" height="72" class="goodNote"/>
+  <text x="1105" y="263" class="label">两次测量落在同一位置</text>
+  <text x="1105" y="289" class="small">所以不同帧可以叠成地图</text>
+  <text x="1078" y="580" class="small">输出 p_init，交给下一步局部地图匹配</text>
+
+  <line x1="100" y1="650" x2="1460" y2="650" stroke="#a6b7c9" stroke-width="3"/>
+  <text x="90" y="690" class="label">雷达坐标：相对雷达</text>
+  <text x="650" y="690" class="label">车体坐标：补安装偏移</text>
+  <text x="1190" y="690" class="label">建图坐标：补车体运动</text>
+</svg>

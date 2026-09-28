@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360">
+  <rect width="1200" height="360" fill="#f7f9fc"/>
+  <style>
+    .box { fill:#fff; stroke:#234; stroke-width:2; rx:12; }
+    .title { font:700 18px sans-serif; fill:#123; }
+    .text { font:15px sans-serif; fill:#234; }
+    .small { font:13px sans-serif; fill:#456; }
+    .arrow { stroke:#4169a1; stroke-width:3; fill:none; marker-end:url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4169a1"/>
+    </marker>
+  </defs>
+  <text x="42" y="38" class="title">MID360 → ROS 2 → FAST-LIO → RViz2 的实际数据流</text>
+  <rect x="35" y="80" width="190" height="180" class="box"/>
+  <text x="58" y="112" class="title">MID360</text>
+  <text x="58" y="145" class="text">激光测距</text>
+  <text x="58" y="172" class="text">内置 IMU</text>
+  <text x="58" y="207" class="small">UDP 56300：点云</text>
+  <text x="58" y="231" class="small">UDP 56400：IMU</text>
+  <rect x="280" y="80" width="205" height="180" class="box"/>
+  <text x="304" y="112" class="title">Livox SDK2</text>
+  <text x="304" y="145" class="text">校验、解码</text>
+  <text x="304" y="172" class="text">按设备协议还原</text>
+  <text x="304" y="199" class="text">点、时间与 IMU</text>
+  <rect x="540" y="80" width="205" height="180" class="box"/>
+  <text x="565" y="112" class="title">livox_ros_driver2</text>
+  <text x="565" y="145" class="text">/livox/lidar</text>
+  <text x="565" y="172" class="small">CustomMsg</text>
+  <text x="565" y="205" class="text">/livox/imu</text>
+  <text x="565" y="232" class="small">sensor_msgs/Imu</text>
+  <rect x="800" y="55" width="205" height="230" class="box"/>
+  <text x="824" y="87" class="title">FAST-LIO</text>
+  <text x="824" y="120" class="text">IMU 预测</text>
+  <text x="824" y="145" class="text">点云去畸变</text>
+  <text x="824" y="170" class="text">扫描匹配</text>
+  <text x="824" y="195" class="text">误差状态滤波更新</text>
+  <text x="824" y="220" class="text">ikd-Tree 地图</text>
+  <text x="824" y="257" class="small">位姿、配准点云、地图</text>
+  <rect x="1060" y="80" width="105" height="180" class="box"/>
+  <text x="1082" y="119" class="title">RViz2</text>
+  <text x="1077" y="153" class="small">PointCloud2</text>
+  <text x="1077" y="179" class="small">Path / TF</text>
+  <text x="1077" y="205" class="small">三维地图</text>
+  <path d="M225 170 L280 170" class="arrow"/>
+  <path d="M485 170 L540 170" class="arrow"/>
+  <path d="M745 170 L800 170" class="arrow"/>
+  <path d="M1005 170 L1060 170" class="arrow"/>
+  <text x="42" y="320" class="small">同一帧中的点带有 offset_time；FAST-LIO 用 IMU 估计运动，把每个点校正到统一时刻，再与局部地图匹配。</text>
+</svg>

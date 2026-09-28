@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="390" viewBox="0 0 1100 390">
+  <rect width="1100" height="390" fill="#f7f9fc"/>
+  <style>
+    .box { fill:#fff; stroke:#234; stroke-width:2; rx:12; }
+    .title { font:700 18px sans-serif; fill:#123; }
+    .text { font:15px sans-serif; fill:#234; }
+    .small { font:13px sans-serif; fill:#456; }
+    .arrow { stroke:#4169a1; stroke-width:3; fill:none; marker-end:url(#arrow); }
+    .loop { stroke:#a65a2b; stroke-width:2.5; fill:none; marker-end:url(#arrow2); }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4169a1"/>
+    </marker>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#a65a2b"/>
+    </marker>
+  </defs>
+  <text x="38" y="36" class="title">FAST-LIO 每帧的估计—匹配—更新循环</text>
+  <rect x="35" y="88" width="165" height="150" class="box"/>
+  <text x="58" y="122" class="title">输入</text>
+  <text x="58" y="156" class="text">IMU 高频样本</text>
+  <text x="58" y="184" class="text">点云 + offset_time</text>
+  <rect x="245" y="88" width="165" height="150" class="box"/>
+  <text x="268" y="122" class="title">预测</text>
+  <text x="268" y="156" class="text">重力/偏置</text>
+  <text x="268" y="184" class="text">R、v、p</text>
+  <rect x="455" y="88" width="165" height="150" class="box"/>
+  <text x="478" y="122" class="title">去畸变</text>
+  <text x="478" y="156" class="text">统一参考时刻</text>
+  <text x="478" y="184" class="text">外参变换/过滤</text>
+  <rect x="665" y="88" width="165" height="150" class="box"/>
+  <text x="688" y="122" class="title">匹配</text>
+  <text x="688" y="156" class="text">ikd-Tree 近邻</text>
+  <text x="688" y="184" class="text">局部平面</text>
+  <rect x="875" y="88" width="185" height="150" class="box"/>
+  <text x="898" y="122" class="title">更新与发布</text>
+  <text x="898" y="156" class="text">点到平面残差</text>
+  <text x="898" y="184" class="text">IKFoM / 地图</text>
+  <path d="M200 163 L245 163" class="arrow"/>
+  <path d="M410 163 L455 163" class="arrow"/>
+  <path d="M620 163 L665 163" class="arrow"/>
+  <path d="M830 163 L875 163" class="arrow"/>
+  <path d="M967 238 C967 300 150 300 150 238" class="loop"/>
+  <text x="370" y="332" class="small">更新后的姿态用于发布 /Odometry、/tf，并决定当前点如何加入 /Laser_map。</text>
+</svg>

@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <title>MID360 三维测量几何示意图</title>
+  <desc>以雷达原点为中心，使用透视坐标轴、水平投影和空间测量射线说明距离、水平角和俯仰角如何形成 x y z。</desc>
+  <rect width="1200" height="700" fill="#fbfcfe"/>
+  <style>
+    .axisx { stroke:#bd5151; stroke-width:3; fill:none; marker-end:url(#arrowx); }
+    .axisy { stroke:#4e9966; stroke-width:3; fill:none; marker-end:url(#arrowy); }
+    .axisz { stroke:#3f78b5; stroke-width:3; fill:none; marker-end:url(#arrowz); }
+    .construction { stroke:#687888; stroke-width:2; stroke-dasharray:8 7; fill:none; }
+    .ray { stroke:#e05a3f; stroke-width:4; fill:none; marker-end:url(#arrowray); }
+    .arc { stroke:#8058a6; stroke-width:3; fill:none; }
+    .plane { fill:#e8f0f5; opacity:.6; stroke:#9aa8b4; stroke-width:1.5; }
+    .title { font:700 24px sans-serif; fill:#17304d; }
+    .label { font:18px sans-serif; fill:#23384f; }
+    .small { font:15px sans-serif; fill:#53677c; }
+    .formula { font:20px sans-serif; fill:#17304d; }
+    .point { fill:#e05a3f; stroke:#fff; stroke-width:3; }
+    .origin { fill:#17304d; }
+    .panel { fill:#fff; stroke:#bdc8d2; stroke-width:2; rx:16; }
+  </style>
+  <defs>
+    <marker id="arrowx" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#bd5151"/></marker>
+    <marker id="arrowy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#4e9966"/></marker>
+    <marker id="arrowz" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#3f78b5"/></marker>
+    <marker id="arrowray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#e05a3f"/></marker>
+  </defs>
+
+  <text x="40" y="48" class="title">MID360：一次回波如何变成三维坐标</text>
+
+  <!-- perspective coordinate frame and xy plane -->
+  <polygon points="170,540 650,540 430,390" class="plane"/>
+  <line x1="170" y1="540" x2="700" y2="540" class="axisx"/>
+  <line x1="170" y1="540" x2="430" y2="390" class="axisy"/>
+  <line x1="170" y1="540" x2="170" y2="125" class="axisz"/>
+  <text x="710" y="547" class="label" fill="#a13d3d">x：前方</text>
+  <text x="438" y="380" class="label" fill="#347347">y：左方</text>
+  <text x="184" y="130" class="label" fill="#315c8e">z：向上</text>
+
+  <!-- point and projections -->
+  <line x1="170" y1="540" x2="505" y2="345" class="construction"/>
+  <line x1="505" y1="345" x2="505" y2="260" class="construction"/>
+  <line x1="170" y1="540" x2="505" y2="260" class="ray"/>
+  <circle cx="170" cy="540" r="9" class="origin"/>
+  <circle cx="505" cy="345" r="7" fill="#e05a3f"/>
+  <circle cx="505" cy="260" r="11" class="point"/>
+  <text x="130" y="580" class="label">O：雷达原点</text>
+  <text x="530" y="256" class="label">P=(x,y,z)</text>
+  <text x="525" y="370" class="small">P 在 xy 平面上的投影</text>
+  <text x="330" y="390" class="label" fill="#c44d32">r=5 m</text>
+
+  <!-- theta arc on xy plane -->
+  <path d="M 260 540 A 90 90 0 0 0 246 488" class="arc"/>
+  <text x="270" y="492" class="label" fill="#8058a6">θ=30°</text>
+
+  <!-- phi annotation -->
+  <path d="M 230 508 A 65 65 0 0 1 239 493" class="arc"/>
+  <text x="238" y="458" class="label" fill="#8058a6">φ=10°</text>
+
+  <text x="55" y="640" class="small">橙色射线是一次激光测量；灰色虚线把目标点投影到水平面和高度方向。</text>
+  <text x="55" y="665" class="small">示意图不按真实比例，方向和坐标轴以当前驱动的 frame 约定为准。</text>
+
+  <!-- calculation panel -->
+  <rect x="780" y="105" width="370" height="430" class="panel"/>
+  <text x="815" y="150" class="title" style="font-size:21px">本例的坐标计算</text>
+  <text x="815" y="195" class="formula">ρ = r cosφ ≈ 4.92 m</text>
+  <text x="815" y="245" class="formula">x = ρ cosθ ≈ 4.26 m</text>
+  <text x="815" y="295" class="formula">y = ρ sinθ ≈ 2.46 m</text>
+  <text x="815" y="345" class="formula">z = r sinφ ≈ 0.87 m</text>
+  <line x1="815" y1="375" x2="1115" y2="375" stroke="#d1dae3"/>
+  <text x="815" y="420" class="label">P≈(4.26, 2.46, 0.87) m</text>
+  <text x="815" y="465" class="small">点首先在 livox_frame 中表达，</text>
+  <text x="815" y="490" class="small">之后才由 FAST-LIO 变换到</text>
+  <text x="815" y="515" class="small">camera_init 参与建图。</text>
+</svg>

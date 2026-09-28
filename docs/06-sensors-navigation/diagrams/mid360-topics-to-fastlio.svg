@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560">
+  <title>点云和 IMU 话题进入 FAST-LIO</title>
+  <desc>展示 livox_ros_driver2 发布两个 ROS 2 话题，FAST-LIO laser_mapping 节点订阅这两个话题并输出算法结果。</desc>
+  <rect width="1200" height="560" fill="#fbfcfe"/>
+  <style>
+    .title { font:700 24px sans-serif; fill:#17304d; }
+    .label { font:700 18px sans-serif; fill:#23384f; }
+    .small { font:15px sans-serif; fill:#53677c; }
+    .topic { font:700 16px monospace; fill:#17304d; }
+    .box { stroke:#23384f; stroke-width:2; rx:12; }
+    .arrow { stroke:#4169a1; stroke-width:3; fill:none; marker-end:url(#arrow); }
+    .dash { stroke:#8398ad; stroke-width:2; stroke-dasharray:7 6; fill:none; }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#4169a1"/>
+    </marker>
+  </defs>
+  <text x="40" y="42" class="title">ROS 2 话题怎样进入 FAST-LIO</text>
+  <text x="40" y="72" class="small">SDK2 不直接连接 FAST-LIO；驱动先发布话题，FAST-LIO 再通过 ROS 2/DDS 订阅。</text>
+
+  <rect x="48" y="130" width="255" height="210" class="box" fill="#f7e8ee"/>
+  <text x="102" y="170" class="label">livox_ros_driver2</text>
+  <text x="86" y="214" class="small">SDK2 解码结果</text>
+  <text x="86" y="246" class="small">填写时间和 frame_id</text>
+  <text x="86" y="278" class="small">按 xfer_format 发布</text>
+  <text x="86" y="310" class="small">不做建图</text>
+
+  <rect x="430" y="118" width="300" height="235" class="box" fill="#e8eef7"/>
+  <text x="510" y="160" class="label">ROS 2 / DDS</text>
+  <text x="510" y="190" class="small">发布者 → 订阅者</text>
+  <rect x="464" y="218" width="230" height="48" class="box" fill="#ffffff"/>
+  <text x="494" y="248" class="topic">/livox/lidar</text>
+  <text x="486" y="286" class="small">CustomMsg 或 PointCloud2</text>
+  <rect x="464" y="303" width="230" height="48" class="box" fill="#ffffff"/>
+  <text x="494" y="333" class="topic">/livox/imu</text>
+  <text x="490" y="371" class="small">sensor_msgs/msg/Imu</text>
+
+  <rect x="860" y="130" width="290" height="210" class="box" fill="#eaf4ed"/>
+  <text x="928" y="170" class="label">FAST-LIO</text>
+  <text x="930" y="198" class="small">/laser_mapping</text>
+  <text x="900" y="238" class="small">点云回调：x、y、z、时间</text>
+  <text x="900" y="270" class="small">IMU 回调：角速度、加速度</text>
+  <text x="900" y="302" class="small">预测、去畸变、匹配</text>
+  <text x="900" y="334" class="small">输出位姿与地图</text>
+
+  <path d="M303 220 L430 242" class="arrow"/>
+  <path d="M303 287 L430 325" class="arrow"/>
+  <path d="M730 242 L860 220" class="arrow"/>
+  <path d="M730 325 L860 280" class="arrow"/>
+  <text x="330" y="206" class="small">发布</text>
+  <text x="330" y="314" class="small">发布</text>
+  <text x="765" y="204" class="small">订阅</text>
+  <text x="765" y="314" class="small">订阅</text>
+
+  <path d="M1005 340 L1005 420" class="arrow"/>
+  <rect x="770" y="430" width="470" height="82" class="box" fill="#fff1df"/>
+  <text x="820" y="463" class="label">/Odometry · /path · /cloud_registered · /Laser_map · /tf</text>
+  <text x="902" y="490" class="small">FAST-LIO 算法输出</text>
+
+  <text x="48" y="530" class="small">话题类型必须匹配；同名但类型不一致时，FAST-LIO 仍然不能正确接收输入。</text>
+</svg>

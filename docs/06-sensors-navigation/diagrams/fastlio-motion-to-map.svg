@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="720" viewBox="0 0 1500 720">
+  <rect width="1500" height="720" fill="#ffffff"/>
+  <style>
+    .panel { fill:#fbfdff; stroke:#d0d9e3; stroke-width:2; rx:16; }
+    .title { font:700 25px sans-serif; fill:#172b4d; }
+    .subtitle { font:700 20px sans-serif; fill:#172b4d; }
+    .text { font:18px sans-serif; fill:#234; }
+    .small { font:16px sans-serif; fill:#456; }
+    .tiny { font:14px sans-serif; fill:#567; }
+    .fixed { stroke:#2b9a58; stroke-width:3; fill:none; }
+    .axis { stroke:#2b9a58; stroke-width:3; fill:none; marker-end:url(#greenArrow); }
+    .wall { stroke:#606d7a; stroke-width:9; stroke-linecap:round; }
+    .wall2 { stroke:#aeb8c3; stroke-width:9; stroke-linecap:round; stroke-dasharray:10 10; }
+    .scan { stroke:#5a91d4; stroke-width:3; fill:none; opacity:.8; }
+    .mapdot { fill:#2d8f72; }
+    .path { stroke:#2169b2; stroke-width:5; fill:none; marker-end:url(#blueArrow); }
+    .pathThin { stroke:#2169b2; stroke-width:4; fill:none; }
+    .pred { stroke:#e2a321; stroke-width:3; fill:none; stroke-dasharray:9 7; }
+    .correction { stroke:#d34f3f; stroke-width:3; fill:none; marker-end:url(#redArrow); }
+    .car { fill:#2d78bd; stroke:#17456f; stroke-width:3; }
+    .carCorrected { fill:#d95b4b; stroke:#8b2f27; stroke-width:3; }
+    .heading { stroke:#17456f; stroke-width:3; marker-end:url(#blueArrow); }
+    .headingCorrected { stroke:#8b2f27; stroke-width:3; marker-end:url(#redArrow); }
+    .labelBlue { font:700 17px sans-serif; fill:#2169b2; }
+    .labelRed { font:700 17px sans-serif; fill:#b33c31; }
+    .labelGreen { font:700 17px sans-serif; fill:#20834a; }
+  </style>
+  <defs>
+    <marker id="blueArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2169b2"/>
+    </marker>
+    <marker id="redArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#d34f3f"/>
+    </marker>
+    <marker id="greenArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2b9a58"/>
+    </marker>
+  </defs>
+
+  <text x="44" y="42" class="title">FAST-LIO：IMU 预测的位置，怎样被点云匹配修正</text>
+  <text x="44" y="72" class="small">蓝色表示连续位姿估计，红色表示点云匹配后的修正；绿色点表示已经放入 camera_init 的环境点。</text>
+
+  <!-- Left: prediction -->
+  <rect x="35" y="105" width="690" height="500" class="panel"/>
+  <text x="65" y="145" class="subtitle">① IMU 先给出一个预测位置</text>
+  <text x="65" y="175" class="small">机器人从 P0 移动到 P1，IMU 积分得到短时位姿</text>
+
+  <!-- Fixed frame axes -->
+  <path d="M105 535 L225 535" class="axis"/><path d="M105 535 L105 420" class="axis"/>
+  <text x="232" y="542" class="labelGreen">camera_init x</text><text x="72" y="414" class="labelGreen">y</text>
+  <text x="72" y="568" class="tiny">固定的建图参考坐标系</text>
+
+  <!-- Environment wall/map points -->
+  <line x1="575" y1="235" x2="575" y2="535" class="wall"/>
+  <circle cx="575" cy="280" r="6" class="mapdot"/><circle cx="575" cy="325" r="6" class="mapdot"/><circle cx="575" cy="370" r="6" class="mapdot"/><circle cx="575" cy="415" r="6" class="mapdot"/><circle cx="575" cy="460" r="6" class="mapdot"/>
+  <text x="500" y="215" class="labelGreen">历史地图中的墙面</text>
+
+  <!-- P0 car -->
+  <path d="M170 482 L205 462 L205 502 Z" class="car"/>
+  <line x1="205" y1="482" x2="260" y2="482" class="heading"/>
+  <text x="155" y="523" class="labelBlue">P0</text>
+  <text x="130" y="555" class="tiny">上一帧位姿</text>
+
+  <!-- path and predicted P1 -->
+  <path d="M205 482 C300 480 365 455 430 400" class="path"/>
+  <path d="M430 400 C485 350 525 315 565 285" class="pred"/>
+  <path d="M430 400 C475 355 515 335 552 325" class="pathThin"/>
+  <path d="M430 400 L430 405" class="pathThin"/>
+  <path d="M440 402 L458 386" class="correction"/>
+
+  <!-- predicted car -->
+  <path d="M535 300 L568 285 L568 322 Z" class="car" opacity=".45"/>
+  <line x1="568" y1="304" x2="610" y2="285" class="heading" opacity=".55"/>
+  <text x="555" y="270" class="labelBlue">IMU 预测 P1</text>
+  <text x="548" y="345" class="tiny">可能有漂移</text>
+  <path d="M568 304 C575 315 575 325 560 337" class="correction"/>
+  <text x="575" y="355" class="labelRed">点云匹配修正</text>
+
+  <!-- scan rays from predicted pose, not aligned -->
+  <path d="M552 304 L575 280" class="scan"/><path d="M552 304 L575 325" class="scan"/><path d="M552 304 L575 370" class="scan"/>
+  <text x="270" y="225" class="text">IMU 只说明“这一小段时间怎样动”</text>
+  <text x="270" y="250" class="small">单独积分会逐渐漂移，所以还要看点云</text>
+
+  <!-- Right: matching and outputs -->
+  <rect x="775" y="105" width="690" height="500" class="panel"/>
+  <text x="805" y="145" class="subtitle">② 点云与墙面匹配，得到修正后的位置</text>
+  <text x="805" y="175" class="small">修正后的点和历史点落在同一面墙上，位姿才被接受</text>
+
+  <path d="M850 535 L970 535" class="axis"/><path d="M850 535 L850 420" class="axis"/>
+  <text x="978" y="542" class="labelGreen">camera_init x</text><text x="818" y="414" class="labelGreen">y</text>
+
+  <!-- wall and accumulated map -->
+  <line x1="1320" y1="235" x2="1320" y2="535" class="wall"/>
+  <circle cx="1320" cy="280" r="6" class="mapdot"/><circle cx="1320" cy="325" r="6" class="mapdot"/><circle cx="1320" cy="370" r="6" class="mapdot"/><circle cx="1320" cy="415" r="6" class="mapdot"/><circle cx="1320" cy="460" r="6" class="mapdot"/>
+  <circle cx="1302" cy="300" r="5" class="mapdot"/><circle cx="1302" cy="345" r="5" class="mapdot"/><circle cx="1302" cy="390" r="5" class="mapdot"/><circle cx="1302" cy="435" r="5" class="mapdot"/>
+  <text x="1240" y="215" class="labelGreen">/Laser_map</text>
+
+  <!-- path and positions -->
+  <path d="M940 482 C1035 480 1100 455 1165 400" class="path"/>
+  <path d="M1165 400 C1210 360 1240 330 1278 304" class="path"/>
+  <path d="M940 482 L1165 400" class="pathThin"/>
+  <path d="M940 482 L975 482" class="heading"/>
+  <path d="M1158 382 L1192 365" class="headingCorrected"/>
+  <text x="920" y="523" class="labelBlue">P0</text><text x="1140" y="350" class="labelRed">修正后的 P1</text>
+
+  <!-- corrected car and scan aligned to wall -->
+  <path d="M1135 382 L1168 365 L1168 402 Z" class="carCorrected"/>
+  <path d="M1168 384 L1320 280" class="scan"/><path d="M1168 384 L1320 325" class="scan"/><path d="M1168 384 L1320 370" class="scan"/>
+  <circle cx="1320" cy="280" r="4" class="mapdot"/><circle cx="1320" cy="325" r="4" class="mapdot"/><circle cx="1320" cy="370" r="4" class="mapdot"/>
+
+  <!-- output boxes -->
+  <rect x="895" y="220" width="200" height="82" fill="#eaf3ff" stroke="#8bb6e2" stroke-width="2" rx="10"/>
+  <text x="920" y="250" class="labelBlue">/Odometry</text>
+  <text x="920" y="276" class="tiny">当前修正后的 P1</text>
+  <rect x="895" y="315" width="200" height="82" fill="#eaf8ef" stroke="#90c9a7" stroke-width="2" rx="10"/>
+  <text x="920" y="345" class="labelGreen">/path</text>
+  <text x="920" y="371" class="tiny">P0 → P1 → …</text>
+  <path d="M1095 260 L1130 365" class="correction"/>
+  <text x="800" y="570" class="text">路径来自连续的位姿 P0、P1、P2…；地图来自每一帧变换后点的累积。</text>
+  <text x="800" y="592" class="small">FAST-LIO 输出的是“已经走过的轨迹”，不是 Nav2 的未来规划路线。</text>
+
+  <text x="45" y="665" class="tiny">图意：左侧的虚线车是 IMU 预测位置，右侧的红色车是点云匹配修正后的位置。修正后的位姿同时用于发布 /Odometry、追加 /path，以及把当前点放入 /Laser_map。</text>
+</svg>

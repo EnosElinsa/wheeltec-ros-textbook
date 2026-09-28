@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480">
+  <title>FAST-LIO 从点云到地图和轨迹</title>
+  <desc>原始雷达点经过 IMU 去畸变、坐标变换和局部地图匹配后，加入三维地图并由连续位姿形成轨迹。</desc>
+  <rect width="1200" height="480" fill="#f7f9fc"/>
+  <style>
+    .box { fill:#fff; stroke:#234; stroke-width:2; rx:12; }
+    .title { font:700 18px sans-serif; fill:#123; }
+    .text { font:15px sans-serif; fill:#234; }
+    .small { font:13px sans-serif; fill:#456; }
+    .arrow { stroke:#4169a1; stroke-width:3; fill:none; marker-end:url(#arrow); }
+    .wall { stroke:#7c8792; stroke-width:5; }
+    .mapdot { fill:#2e8b75; }
+    .pose { fill:#d64b35; stroke:#fff; stroke-width:2; }
+    .path { stroke:#d64b35; stroke-width:3; fill:none; }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4169a1"/>
+    </marker>
+  </defs>
+  <text x="35" y="38" class="title">FAST-LIO 怎样把一帧点变成地图中的点，并形成 /path</text>
+
+  <rect x="30" y="90" width="190" height="260" class="box"/>
+  <text x="55" y="126" class="title">1 原始点云</text>
+  <text x="55" y="158" class="text">/livox/lidar</text>
+  <text x="55" y="184" class="small">livox_frame</text>
+  <circle cx="75" cy="245" r="4" fill="#d64b35"/><circle cx="100" cy="225" r="4" fill="#d6a42f"/><circle cx="128" cy="260" r="4" fill="#3987b4"/><circle cx="157" cy="218" r="4" fill="#4d9c61"/><circle cx="179" cy="247" r="4" fill="#d64b35"/>
+  <text x="55" y="304" class="small">每点含 x、y、z、</text>
+  <text x="55" y="325" class="small">reflectivity、offset_time</text>
+
+  <rect x="265" y="90" width="205" height="260" class="box"/>
+  <text x="290" y="126" class="title">2 时间校正</text>
+  <text x="290" y="158" class="text">/livox/imu</text>
+  <text x="290" y="184" class="small">高频运动预测</text>
+  <text x="290" y="225" class="text">按点 offset_time</text>
+  <text x="290" y="252" class="text">去畸变到同一时刻</text>
+  <text x="290" y="304" class="small">否则墙面会被拉弯、</text>
+  <text x="290" y="325" class="small">同一物体会出现重影</text>
+
+  <rect x="515" y="90" width="210" height="260" class="box"/>
+  <text x="540" y="126" class="title">3 坐标变换</text>
+  <text x="540" y="164" class="text">livox_frame</text>
+  <text x="540" y="191" class="text">→ body</text>
+  <text x="540" y="218" class="text">→ camera_init</text>
+  <text x="540" y="262" class="small">p_world = R p_body + t</text>
+  <text x="540" y="305" class="small">所有历史点必须进入</text>
+  <text x="540" y="326" class="small">同一个建图参考系</text>
+
+  <rect x="770" y="90" width="190" height="260" class="box"/>
+  <text x="795" y="126" class="title">4 几何匹配</text>
+  <text x="795" y="163" class="text">ikd-Tree 近邻</text>
+  <text x="795" y="190" class="text">拟合局部平面</text>
+  <text x="795" y="217" class="text">点到平面残差</text>
+  <text x="795" y="264" class="small">残差修正位置、</text>
+  <text x="795" y="285" class="small">姿态、速度和偏置</text>
+  <text x="795" y="326" class="small">迭代误差状态滤波</text>
+
+  <rect x="1005" y="90" width="165" height="260" class="box"/>
+  <text x="1030" y="126" class="title">5 输出</text>
+  <line x1="1028" y1="285" x2="1150" y2="285" class="wall"/>
+  <circle cx="1040" cy="260" r="4" class="mapdot"/><circle cx="1060" cy="242" r="4" class="mapdot"/><circle cx="1081" cy="258" r="4" class="mapdot"/><circle cx="1104" cy="235" r="4" class="mapdot"/><circle cx="1128" cy="252" r="4" class="mapdot"/>
+  <path d="M1035 205 C1060 215 1062 230 1085 220 C1105 210 1110 195 1140 204" class="path"/>
+  <circle cx="1035" cy="205" r="6" class="pose"/><circle cx="1085" cy="220" r="6" class="pose"/><circle cx="1140" cy="204" r="6" class="pose"/>
+  <text x="1028" y="165" class="text">/Laser_map</text>
+  <text x="1028" y="317" class="small">/path：连续位姿</text>
+  <text x="1028" y="336" class="small">不是导航规划路径</text>
+
+  <path d="M220 220 L265 220" class="arrow"/>
+  <path d="M470 220 L515 220" class="arrow"/>
+  <path d="M725 220 L770 220" class="arrow"/>
+  <path d="M960 220 L1005 220" class="arrow"/>
+  <text x="40" y="410" class="small">每次更新得到一个新的 body 位姿；把这些 PoseStamped 按时间顺序放进 nav_msgs/msg/Path，就得到 FAST-LIO 的估计轨迹。</text>
+  <text x="40" y="435" class="small">Nav2 的路径则是规划器根据目标点和地图计算出来的另一种 Path，二者不能混为一谈。</text>
+</svg>

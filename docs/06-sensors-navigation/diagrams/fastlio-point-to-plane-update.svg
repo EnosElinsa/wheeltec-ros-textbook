@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1380" height="620" viewBox="0 0 1380 620">
+  <rect width="1380" height="620" fill="#ffffff"/>
+  <style>
+    .panel { fill:#fbfdff; stroke:#d0d9e3; stroke-width:2; rx:16; }
+    .title { font:700 24px sans-serif; fill:#172b4d; }
+    .text { font:18px sans-serif; fill:#234; }
+    .small { font:16px sans-serif; fill:#456; }
+    .wall { stroke:#2d8f72; stroke-width:9; stroke-linecap:round; }
+    .wallOld { stroke:#aeb8c3; stroke-width:9; stroke-linecap:round; stroke-dasharray:10 10; }
+    .point { fill:#e2a321; stroke:#9b6f10; stroke-width:2; }
+    .pointGood { fill:#2d8f72; }
+    .car { fill:#2d78bd; stroke:#17456f; stroke-width:3; }
+    .carGood { fill:#d34f3f; stroke:#8b2f27; stroke-width:3; }
+    .residual { stroke:#d34f3f; stroke-width:4; fill:none; marker-end:url(#redArrow); }
+    .normal { stroke:#4169a1; stroke-width:3; fill:none; marker-end:url(#blueArrow); }
+    .arrow { stroke:#4169a1; stroke-width:4; fill:none; marker-end:url(#blueArrow); }
+    .box { fill:#eef5ff; stroke:#8bb6e2; stroke-width:2; rx:10; }
+  </style>
+  <defs>
+    <marker id="redArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#d34f3f"/></marker>
+    <marker id="blueArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4169a1"/></marker>
+  </defs>
+  <text x="40" y="42" class="title">点云匹配：点到平面的误差怎样修正机器人位姿</text>
+  <text x="40" y="72" class="small">FAST-LIO 不把误差大的点直接加入地图，而是先用局部几何关系修正当前位姿。</text>
+
+  <rect x="35" y="105" width="385" height="390" class="panel"/>
+  <text x="65" y="145" class="title">1. 找邻域</text>
+  <text x="65" y="175" class="small">ikd-Tree 找到附近的历史点</text>
+  <line x1="300" y1="220" x2="300" y2="455" class="wall"/>
+  <circle cx="300" cy="270" r="6" class="pointGood"/><circle cx="300" cy="325" r="6" class="pointGood"/><circle cx="300" cy="380" r="6" class="pointGood"/><circle cx="300" cy="435" r="6" class="pointGood"/>
+  <circle cx="245" cy="345" r="8" class="point"/>
+  <path d="M245 345 L300 325" class="residual"/>
+  <text x="90" y="350" class="small">当前点</text>
+  <text x="315" y="205" class="small">历史墙面点</text>
+  <text x="95" y="455" class="small">距离较近的点拟合局部平面</text>
+
+  <rect x="480" y="105" width="385" height="390" class="panel"/>
+  <text x="510" y="145" class="title">2. 计算残差</text>
+  <text x="510" y="175" class="small">当前点没有落在拟合平面上</text>
+  <line x1="745" y1="220" x2="745" y2="455" class="wallOld"/>
+  <circle cx="745" cy="270" r="6" class="pointGood"/><circle cx="745" cy="325" r="6" class="pointGood"/><circle cx="745" cy="380" r="6" class="pointGood"/><circle cx="745" cy="435" r="6" class="pointGood"/>
+  <circle cx="665" cy="345" r="8" class="point"/>
+  <path d="M665 345 L745 345" class="residual"/>
+  <path d="M705 345 L705 275" class="normal"/>
+  <text x="675" y="255" class="small">法向量 n</text>
+  <text x="575" y="455" class="small">r = nᵀ(p - q)，距离越大说明位姿越不准</text>
+
+  <rect x="925" y="105" width="420" height="390" class="panel"/>
+  <text x="955" y="145" class="title">3. 更新位姿</text>
+  <text x="955" y="175" class="small">滤波器修正位置和姿态后重新放置点</text>
+  <line x1="1245" y1="220" x2="1245" y2="455" class="wall"/>
+  <circle cx="1245" cy="270" r="6" class="pointGood"/><circle cx="1245" cy="325" r="6" class="pointGood"/><circle cx="1245" cy="380" r="6" class="pointGood"/><circle cx="1245" cy="435" r="6" class="pointGood"/>
+  <circle cx="1245" cy="345" r="8" class="pointGood"/>
+  <path d="M1115 345 C1150 320 1185 320 1235 340" class="arrow"/>
+  <path d="M1020 430 L1055 410 L1055 450 Z" class="carGood"/>
+  <text x="965" y="455" class="small">点与墙面重合，可加入 /Laser_map</text>
+  <rect x="1015" y="210" width="245" height="62" class="box"/>
+  <text x="1040" y="247" class="text">更新后的位姿</text>
+
+  <path d="M425 300 L470 300" class="arrow"/><path d="M870 300 L915 300" class="arrow"/>
+  <text x="45" y="550" class="text">IMU 给出预测 → 点云与地图给出误差 → 迭代误差状态滤波修正位姿 → 当前点才被写入地图。</text>
+  <text x="45" y="580" class="small">修正后的状态同时用于 /Odometry、/tf 和下一帧点云的初始预测。</text>
+</svg>

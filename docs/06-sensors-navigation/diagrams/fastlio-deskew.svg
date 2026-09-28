@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="720" viewBox="0 0 1600 720">
+  <rect width="1600" height="720" fill="#ffffff"/>
+  <style>
+    .panel { fill:#fbfdff; stroke:#c8d4e3; stroke-width:2; rx:16; }
+    .title { font:700 29px sans-serif; fill:#172b4d; }
+    .head { font:700 22px sans-serif; fill:#172b4d; }
+    .label { font:19px sans-serif; fill:#243b53; }
+    .small { font:16px sans-serif; fill:#53677c; }
+    .tiny { font:14px sans-serif; fill:#53677c; }
+    .robot { fill:#4f8fc9; stroke:#17456f; stroke-width:3; }
+    .lidar { fill:#f39b3d; stroke:#9b5b12; stroke-width:2; }
+    .heading { stroke:#17456f; stroke-width:4; marker-end:url(#blueArrow); }
+    .beam { stroke:#7b9abb; stroke-width:2.5; stroke-dasharray:7 5; }
+    .wallReal { stroke:#526b84; stroke-width:7; stroke-linecap:round; }
+    .wallGood { stroke:#2c9b76; stroke-width:7; stroke-linecap:round; }
+    .pointReal { fill:#f39b3d; stroke:#9b5b12; stroke-width:2; }
+    .pointBad { fill:#d24f43; stroke:#8f3028; stroke-width:2; }
+    .pointGood { fill:#2c9b76; stroke:#135a43; stroke-width:2; }
+    .badLine { stroke:#d24f43; stroke-width:3; stroke-dasharray:8 6; fill:none; }
+    .noteBad { fill:#fff1ef; stroke:#e2aaa4; stroke-width:1.5; rx:8; }
+    .noteGood { fill:#edf9f4; stroke:#a8d7c4; stroke-width:1.5; rx:8; }
+  </style>
+  <defs>
+    <marker id="blueArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#17456f"/></marker>
+  </defs>
+
+  <text x="38" y="42" class="title">点云去畸变：机器人向墙面靠近时，为什么要按时间补偿</text>
+  <text x="38" y="72" class="small">为避免把平移和转动混在一起，本图只画“向墙面前进”；真实 FAST-LIO 还会同时补偿车体转动。</text>
+
+  <!-- 1. Actual measurement -->
+  <rect x="30" y="105" width="495" height="500" class="panel"/>
+  <text x="55" y="143" class="head">1. 实际测量：车越来越靠近墙</text>
+  <text x="55" y="170" class="small">三条射线长度不同，但三个橙色点都在真实墙面上。</text>
+  <line x1="455" y1="205" x2="455" y2="535" class="wallReal"/>
+  <text x="397" y="190" class="small">真实墙面</text>
+
+  <g transform="translate(105 470)">
+    <rect x="-34" y="-20" width="68" height="40" rx="7" class="robot"/>
+    <line x1="0" y1="0" x2="50" y2="0" class="heading"/>
+    <circle cx="0" cy="0" r="6" class="lidar"/>
+  </g>
+  <line x1="105" y1="470" x2="455" y2="450" class="beam"/>
+  <circle cx="455" cy="450" r="7" class="pointReal"/>
+  <text x="70" y="515" class="label">t0</text>
+  <text x="63" y="538" class="tiny">车在较远处</text>
+
+  <g transform="translate(175 470)">
+    <rect x="-34" y="-20" width="68" height="40" rx="7" class="robot"/>
+    <line x1="0" y1="0" x2="50" y2="0" class="heading"/>
+    <circle cx="0" cy="0" r="6" class="lidar"/>
+  </g>
+  <line x1="175" y1="470" x2="455" y2="350" class="beam"/>
+  <circle cx="455" cy="350" r="7" class="pointReal"/>
+  <text x="150" y="515" class="label">t0+0.05 s</text>
+  <text x="158" y="538" class="tiny">车更靠近墙</text>
+
+  <g transform="translate(245 470)">
+    <rect x="-34" y="-20" width="68" height="40" rx="7" class="robot"/>
+    <line x1="0" y1="0" x2="50" y2="0" class="heading"/>
+    <circle cx="0" cy="0" r="6" class="lidar"/>
+  </g>
+  <line x1="245" y1="470" x2="455" y2="250" class="beam"/>
+  <circle cx="455" cy="250" r="7" class="pointReal"/>
+  <text x="240" y="515" class="label">t1</text>
+  <text x="218" y="538" class="tiny">车离墙最近</text>
+  <text x="78" y="580" class="small">真实点和真实墙面重合</text>
+
+  <!-- 2. Wrong accumulation -->
+  <rect x="550" y="105" width="495" height="500" class="panel"/>
+  <text x="575" y="143" class="head">2. 不补偿：误以为车一直在 t0</text>
+  <text x="575" y="170" class="small">后面测到的点被放到了错误的距离，向墙的左侧偏移。</text>
+  <line x1="950" y1="205" x2="950" y2="535" class="wallReal"/>
+  <text x="892" y="190" class="small">真实墙面</text>
+
+  <!-- exact translation error: later points are placed progressively left -->
+  <circle cx="950" cy="450" r="8" class="pointBad"/>
+  <circle cx="890" cy="350" r="8" class="pointBad"/>
+  <circle cx="830" cy="250" r="8" class="pointBad"/>
+  <path d="M950 450 L890 350 L830 250" class="badLine"/>
+  <line x1="950" y1="450" x2="950" y2="450" class="beam"/>
+  <line x1="890" y1="350" x2="950" y2="350" class="beam"/>
+  <line x1="830" y1="250" x2="950" y2="250" class="beam"/>
+  <text x="605" y="230" class="label" fill="#a53b32">红点：错误位置</text>
+  <text x="605" y="258" class="small">t0 的点仍在墙上；</text>
+  <text x="605" y="280" class="small">后面的点越来越偏左</text>
+  <rect x="600" y="470" width="290" height="70" class="noteBad"/>
+  <text x="620" y="498" class="label" fill="#a53b32">不是墙真的变斜</text>
+  <text x="620" y="524" class="small">而是车移动后仍套用 t0 位置</text>
+  <text x="665" y="580" class="small">这里不会画成波浪曲线</text>
+
+  <!-- 3. Corrected -->
+  <rect x="1070" y="105" width="495" height="500" class="panel"/>
+  <text x="1095" y="143" class="head">3. 去畸变：统一到 t1</text>
+  <text x="1095" y="170" class="small">IMU 估计车已经前进的距离，把点补偿回同一参考位置。</text>
+  <line x1="1470" y1="205" x2="1470" y2="535" class="wallGood"/>
+  <circle cx="1470" cy="450" r="8" class="pointGood"/>
+  <circle cx="1470" cy="350" r="8" class="pointGood"/>
+  <circle cx="1470" cy="250" r="8" class="pointGood"/>
+  <text x="1412" y="190" class="small">校正后的墙面</text>
+
+  <g transform="translate(1170 470)">
+    <rect x="-34" y="-20" width="68" height="40" rx="7" class="robot"/>
+    <line x1="0" y1="0" x2="50" y2="0" class="heading"/>
+    <circle cx="0" cy="0" r="6" class="lidar"/>
+  </g>
+  <line x1="1170" y1="470" x2="1470" y2="450" class="beam"/>
+  <line x1="1170" y1="470" x2="1470" y2="350" class="beam"/>
+  <line x1="1170" y1="470" x2="1470" y2="250" class="beam"/>
+  <rect x="1110" y="220" width="275" height="70" class="noteGood"/>
+  <text x="1130" y="248" class="label" fill="#216f57">绿点：补偿后的点</text>
+  <text x="1130" y="274" class="small">三个点重新落在同一面墙上</text>
+  <text x="1150" y="580" class="small">再交给坐标变换和地图匹配</text>
+
+  <line x1="100" y1="650" x2="1500" y2="650" stroke="#a6b7c9" stroke-width="3"/>
+  <line x1="210" y1="640" x2="210" y2="660" stroke="#4169a1" stroke-width="3"/>
+  <line x1="800" y1="640" x2="800" y2="660" stroke="#4169a1" stroke-width="3"/>
+  <line x1="1390" y1="640" x2="1390" y2="660" stroke="#4169a1" stroke-width="3"/>
+  <text x="155" y="690" class="label">t0：较远</text>
+  <text x="700" y="690" class="label">t0+0.05 s：更近</text>
+  <text x="1340" y="690" class="label">t1：最近</text>
+</svg>

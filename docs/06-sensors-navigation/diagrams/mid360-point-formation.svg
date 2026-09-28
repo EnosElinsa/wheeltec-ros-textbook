@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="340" viewBox="0 0 1000 340">
+  <rect width="1000" height="340" fill="#f7f9fc"/>
+  <style>
+    .box { fill:#fff; stroke:#234; stroke-width:2; rx:12; }
+    .title { font:700 18px sans-serif; fill:#123; }
+    .text { font:15px sans-serif; fill:#234; }
+    .small { font:13px sans-serif; fill:#456; }
+    .arrow { stroke:#4169a1; stroke-width:3; fill:none; marker-end:url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4169a1"/>
+    </marker>
+  </defs>
+  <text x="38" y="36" class="title">一个 MID360 测量点怎样形成</text>
+  <rect x="35" y="85" width="175" height="150" class="box"/>
+  <text x="58" y="120" class="title">发射与接收</text>
+  <text x="58" y="151" class="text">发出激光脉冲</text>
+  <text x="58" y="178" class="text">接收目标回波</text>
+  <text x="58" y="210" class="small">记录 Δt、强度</text>
+  <rect x="275" y="85" width="175" height="150" class="box"/>
+  <text x="298" y="120" class="title">测距</text>
+  <text x="298" y="157" class="text">r = cΔt / 2</text>
+  <text x="298" y="191" class="small">往返时间除以 2</text>
+  <rect x="515" y="85" width="175" height="150" class="box"/>
+  <text x="538" y="120" class="title">方向与标定</text>
+  <text x="538" y="153" class="text">θ：水平角</text>
+  <text x="538" y="180" class="text">φ：俯仰角</text>
+  <text x="538" y="211" class="small">设备扫描/标定表</text>
+  <rect x="755" y="70" width="205" height="180" class="box"/>
+  <text x="778" y="105" class="title">CustomPoint</text>
+  <text x="778" y="140" class="text">x、y、z（m）</text>
+  <text x="778" y="167" class="text">reflectivity</text>
+  <text x="778" y="194" class="text">offset_time</text>
+  <text x="778" y="224" class="small">livox_frame 坐标系</text>
+  <path d="M210 160 L275 160" class="arrow"/>
+  <path d="M450 160 L515 160" class="arrow"/>
+  <path d="M690 160 L755 160" class="arrow"/>
+  <text x="48" y="296" class="small">x = r cosφ cosθ，y = r cosφ sinθ，z = r sinφ；实际 ROS 2 驱动通常直接发布 SDK 已解码的 x、y、z。</text>
+</svg>

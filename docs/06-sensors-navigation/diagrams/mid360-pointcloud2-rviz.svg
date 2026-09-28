@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="400" viewBox="0 0 1160 400">
+  <title>PointCloud2 在 RViz2 中显示</title>
+  <desc>FAST-LIO 把输入点处理成 PointCloud2，TF 把坐标变换接到 Fixed Frame，RViz2 绘制点云。</desc>
+  <rect width="1160" height="400" fill="#f7f9fc"/>
+  <style>
+    .box { fill:#fff; stroke:#234; stroke-width:2; rx:12; }
+    .title { font:700 19px sans-serif; fill:#123; }
+    .text { font:15px sans-serif; fill:#234; }
+    .small { font:13px sans-serif; fill:#456; }
+    .arrow { stroke:#4169a1; stroke-width:3; fill:none; marker-end:url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4169a1"/>
+    </marker>
+  </defs>
+  <text x="38" y="38" class="title">点云消息怎样变成 RViz2 中的点</text>
+  <rect x="35" y="96" width="220" height="190" class="box"/>
+  <text x="60" y="132" class="title">输入点</text>
+  <text x="60" y="169" class="text">CustomMsg</text>
+  <text x="60" y="204" class="text">x、y、z、强度</text>
+  <text x="60" y="239" class="text">offset_time</text>
+  <rect x="315" y="96" width="230" height="190" class="box"/>
+  <text x="340" y="132" class="title">FAST-LIO 处理</text>
+  <text x="340" y="169" class="text">去畸变和坐标变换</text>
+  <text x="340" y="204" class="text">扫描匹配</text>
+  <text x="340" y="239" class="text">写入 PointCloud2</text>
+  <rect x="605" y="76" width="250" height="230" class="box"/>
+  <text x="630" y="112" class="title">PointCloud2</text>
+  <text x="630" y="150" class="text">frame_id: camera_init</text>
+  <text x="630" y="182" class="text">height / width</text>
+  <text x="630" y="214" class="text">fields / point_step</text>
+  <text x="630" y="246" class="text">data：二进制点数组</text>
+  <rect x="915" y="96" width="210" height="190" class="box"/>
+  <text x="940" y="132" class="title">RViz2</text>
+  <text x="940" y="169" class="text">Fixed Frame</text>
+  <text x="940" y="204" class="text">TF 坐标变换</text>
+  <text x="940" y="239" class="text">绘制点、轨迹、地图</text>
+  <path d="M255 191 L315 191" class="arrow"/>
+  <path d="M545 191 L605 191" class="arrow"/>
+  <path d="M855 191 L915 191" class="arrow"/>
+  <text x="52" y="350" class="small">RViz2 不负责测距或配准；它读取 PointCloud2 的字段，并根据 frame_id 和 TF 把点放到 Fixed Frame 中。</text>
+</svg>
