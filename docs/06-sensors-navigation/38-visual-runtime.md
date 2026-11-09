@@ -1098,4 +1098,6 @@ ros2 run wheeltec_vision_nav inspect_map_db /home/wheeltec/.ros/vision_rtabmap_m
 
 ## 章节导航
 
+延伸阅读：[VINS：视觉惯性里程计的工作原理](vins-principles.md)，介绍图像特征与 IMU 测量如何在估计器内部联合求解。
+
 [上一章：视觉跟随、巡线、KCF、AR 标签与网页视频](37-vision-applications.md) · [返回本篇](index.md) · [下一章：视觉建图与导航操作](39-visual-operation.md)

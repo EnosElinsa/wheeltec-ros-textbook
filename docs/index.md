@@ -32,6 +32,7 @@ ROS 2 是正文默认环境。使用 ROS 1 旧设备时，请查看[ROS 1 兼容
 - 已经能连接主控，准备做 ROS 2 开发：进入[ROS 2 环境与源码版本选择](05-ros2-development/22-environment-and-source-selection.md)。
 - 准备建图和导航：先完成[传感器自检](06-sensors-navigation/29-sensor-checks.md)。
 - R680 视觉建图与导航：第 38 章 [运行过程](06-sensors-navigation/38-visual-runtime.md)、第 39 章 [操作](06-sensors-navigation/39-visual-operation.md)。
+- 视觉与 IMU 的联合运动估计：[VINS 视觉惯性里程计原理](06-sensors-navigation/vins-principles.md)。
 - 维护 R680：先查看[R680 硬件、接线与 OLED 状态](09-r680-platform/49-r680-hardware-wiring-oled.md)。
 
 完整的章节组合见[阅读路径](reading-paths.md)。术语不清楚时可查[术语表](glossary.md)。

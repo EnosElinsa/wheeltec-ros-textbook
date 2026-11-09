@@ -20,6 +20,11 @@ markdown_extensions:
   - admonition
   - attr_list
   - tables
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.arithmatex:
       generic: true
   - toc:
@@ -83,6 +88,7 @@ nav:
       - 37 视觉应用: 06-sensors-navigation/37-vision-applications.md
       - 38 视觉建图与导航的运行过程: 06-sensors-navigation/38-visual-runtime.md
       - 39 视觉建图与导航操作: 06-sensors-navigation/39-visual-operation.md
+      - VINS 视觉惯性里程计原理: 06-sensors-navigation/vins-principles.md
       - 40 MID360 与 FAST-LIO 三维建图: 06-sensors-navigation/40-mid360-fast-lio.md
       - MID360 三维导航方案调研: 06-sensors-navigation/mid360-3d-navigation-research.md
   - 第七篇 STM32 与底盘固件:
