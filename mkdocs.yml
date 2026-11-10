@@ -133,6 +133,7 @@ nav:
       - 51 多机编队与 Qt 控制界面: 08-advanced-applications/51-multi-robot-and-qt.md
       - 52 毫米波雷达、人体跟踪与深度学习: 08-advanced-applications/52-mmwave-human-deep-learning.md
       - 53 语音、多模态 AI 与 OpenClaw: 08-advanced-applications/53-voice-ai-openclaw.md
+      - 开源项目与参考价值: 08-advanced-applications/open-source-projects.md
   - 第九篇 R680 平台:
       - 本篇说明: 09-r680-platform/index.md
       - 54 R680 硬件、接线与 OLED 状态: 09-r680-platform/54-r680-hardware-wiring-oled.md

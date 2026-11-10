@@ -31,6 +31,8 @@
 
 不知道从哪里开始时，可以查看[阅读路径](https://enoselinsa.github.io/wheeltec-ros-textbook/reading-paths/)；遇到术语问题，可以查[术语表](https://enoselinsa.github.io/wheeltec-ros-textbook/glossary/)。
 
+选择算法基线或可复用模块时，可查阅[开源项目与参考价值](docs/08-advanced-applications/open-source-projects.md)，按六个主题了解各项目的用途与借鉴方向。
+
 ## 本地预览
 
 项目使用 MkDocs Material 构建。在 Windows PowerShell 中运行：
