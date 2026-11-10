@@ -31,9 +31,10 @@ ROS 2 是正文默认环境。使用 ROS 1 旧设备时，请查看[ROS 1 兼容
 - 第一次使用机器人：完成第二篇后，从[识别你的机器人配置](03-bringup/10-identify-configuration.md)开始。
 - 已经能连接主控，准备做 ROS 2 开发：进入[ROS 2 环境与源码版本选择](05-ros2-development/22-environment-and-source-selection.md)。
 - 准备建图和导航：先完成[传感器自检](06-sensors-navigation/29-sensor-checks.md)。
-- R680 视觉建图与导航：第 38 章 [运行过程](06-sensors-navigation/38-visual-runtime.md)、第 39 章 [操作](06-sensors-navigation/39-visual-operation.md)。
-- 视觉与 IMU 的联合运动估计：[VINS 视觉惯性里程计原理](06-sensors-navigation/vins-principles.md)。
-- 维护 R680：先查看[R680 硬件、接线与 OLED 状态](09-r680-platform/49-r680-hardware-wiring-oled.md)。
+- 调研丢失定位后的恢复方法与地图依赖：[第 33 章：移动机器人重定位方案与全局地图依赖](06-sensors-navigation/33-relocalization-map-dependence.md)。
+- R680 视觉建图与导航：第 40 章 [运行过程](06-sensors-navigation/40-visual-runtime.md)、第 41 章 [操作](06-sensors-navigation/41-visual-operation.md)。
+- 视觉与 IMU 的联合运动估计：[VINS 视觉惯性里程计原理](06-sensors-navigation/39-vins-principles.md)。
+- 维护 R680：先查看[R680 硬件、接线与 OLED 状态](09-r680-platform/54-r680-hardware-wiring-oled.md)。
 
 完整的章节组合见[阅读路径](reading-paths.md)。术语不清楚时可查[术语表](glossary.md)。
 

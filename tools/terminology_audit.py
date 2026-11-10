@@ -223,6 +223,8 @@ def audit_rules(
         for supplied in narrative_paths:
             page = supplied if supplied.is_absolute() else root / supplied
             for number, line in _visible_lines(page):
+                if re.match(r"^#{1,6}\s+(?:\d+\.\d+\s+)?章节导航\s*$", line):
+                    break
                 if line.lstrip().startswith("#"):
                     continue
                 ordered_text.append(line)

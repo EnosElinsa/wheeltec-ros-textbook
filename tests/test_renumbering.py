@@ -45,14 +45,14 @@ class RenumberingTests(unittest.TestCase):
             ],
         )
 
-    def test_manifest_has_contiguous_chapters_1_to_53(self) -> None:
+    def test_manifest_has_contiguous_chapters_1_to_58(self) -> None:
         rows = quality.load_manifest(ROOT / "metadata" / "chapter-manifest.csv")
         numbered = [
             int(row["number"])
             for row in rows
             if row["kind"] in {"foundation", "chapter"}
         ]
-        self.assertEqual(numbered, list(range(1, 54)))
+        self.assertEqual(numbered, list(range(1, 59)))
         self.assertEqual(quality.check_manifest(rows), [])
 
     def test_final_part_directories_exist(self) -> None:

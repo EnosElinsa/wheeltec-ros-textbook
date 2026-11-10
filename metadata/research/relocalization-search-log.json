@@ -1,0 +1,228 @@
+{
+  "review_date_local": "2026-11-09",
+  "timezone": "America/Tijuana",
+  "review_type": "focused narrative review; targeted full-text reading; no exhaustive coverage claim",
+  "executor": {
+    "host": "codex"
+  },
+  "local_catalog_records": 534,
+  "local_full_text_papers": 17,
+  "local_codes": [
+    "M35",
+    "S03",
+    "SC-P195",
+    "R05",
+    "R06",
+    "S26",
+    "M21",
+    "M34",
+    "R10",
+    "E56",
+    "S36",
+    "E03",
+    "M28",
+    "SC-M039",
+    "SC-M043",
+    "SC-P134",
+    "R11"
+  ],
+  "local_catalog_sha256": "0e486352c5335d16f1aebec2ce6f5ec1bb5aee8100fd041a58565706fb05f198",
+  "local_screening_terms": [
+    "relocalization",
+    "global localization",
+    "place recognition",
+    "map representation",
+    "mapless",
+    "Monte Carlo localization",
+    "semantic scene matching",
+    "cross-modal localization",
+    "localization integrity"
+  ],
+  "external_search_plan": {
+    "question_type": "claim-citation",
+    "research_question": "Does kidnapped mobile robot global relocalization require a complete dense global map, or can sparse map references, learned scene priors, and external anchors recover a globally referenced pose?",
+    "queries": [
+      {
+        "kind": "direct",
+        "query": "Does kidnapped mobile robot global relocalization require a complete dense global map, or can sparse map references, learned scene priors, and external anchors recover a globally referenced pose? Wheeled indoor robots with 2D LiDAR, MID360, RGB-D camera and IMU; separate local collision avoidance from recovery of pose in a previously defined map frame global localization relocalization sparse maps kidnapped robot",
+        "rationale": "Search the user's exact research question and its closest terminology."
+      },
+      {
+        "kind": "mechanism-decomposition",
+        "query": "Wheeled indoor robots with 2D LiDAR, MID360, RGB-D camera and IMU; separate local collision avoidance from recovery of pose in a previously defined map frame global localization relocalization sparse maps kidnapped robot Identify the reference information and pose degrees of freedom; do not equate place recognition or resumed odometry with global pose recovery",
+        "rationale": "Search scenario, mechanism, decisions, objectives, and constraints separately and in pairwise combinations."
+      },
+      {
+        "kind": "citation-expansion",
+        "query": "references citations related works for 10.1002/rob.22149 10.1109/tro.2026.3672514",
+        "rationale": "Expand backward citations, forward citations, and graph-nearest papers."
+      },
+      {
+        "kind": "falsification",
+        "query": "prior work equivalent method counterexample already solves Wheeled indoor robots with 2D LiDAR, MID360, RGB-D camera and IMU; separate local collision avoidance from recovery of pose in a previously defined map frame global localization relocalization sparse maps kidnapped robot Identify the reference information and pose degrees of freedom; do not equate place recognition or resumed odometry with global pose recovery",
+        "rationale": "Actively seek prior or equivalent work that would falsify the proposed gap."
+      }
+    ],
+    "graph_requests": [
+      {
+        "seed": "10.1002/rob.22149",
+        "directions": [
+          "references",
+          "citations",
+          "related"
+        ]
+      },
+      {
+        "seed": "10.1109/tro.2026.3672514",
+        "directions": [
+          "references",
+          "citations",
+          "related"
+        ]
+      }
+    ]
+  },
+  "external_candidate_count": 17,
+  "external_decisions": [
+    {
+      "candidate_id": "9c0c05983436bd786a8a7152",
+      "doi": "10.1109/iccar.2019.8813720",
+      "title": "A Novel Global Relocalization Method Based on Hierarchical Registration of 3D Point Cloud Map for Mobile Robot",
+      "decision": "exclude",
+      "reason": "Hierarchical point-cloud registration is covered more directly by newer global pose pipelines; not needed for the two claim boundaries."
+    },
+    {
+      "candidate_id": "699b79d83dbc6fecfcfdf13b",
+      "doi": "10.5772/5454",
+      "title": "An Evolutionary MAP Filter for Mobile Robot Global Localization",
+      "decision": "exclude",
+      "reason": "Evolutionary MAP filtering is tangential to representation dependence; local MCL full text already directly covers this mechanism."
+    },
+    {
+      "candidate_id": "794d57242affb20b241c886c",
+      "doi": "10.1007/s10898-006-9054-8",
+      "title": "Mobile Robot Global Localization using an Evolutionary MAP Filter",
+      "decision": "exclude",
+      "reason": "Evolutionary MAP optimization does not add a reference-information mechanism beyond the local MCL evidence."
+    },
+    {
+      "candidate_id": "0cff9230ad17b0c390026c31",
+      "doi": "10.7210/jrsj.31.896",
+      "title": "Global Localization for Mobile Robot using Large-scale 3D Environmental Map and RGB-D Camera",
+      "decision": "exclude",
+      "reason": "Dense RGB-D map localization duplicates locally available cross-modal full texts."
+    },
+    {
+      "candidate_id": "23736c8588740d2048784d65",
+      "doi": "10.7551/mitpress/3121.003.0024",
+      "title": "Global Localization and Topological Map Learning for Robot Navigation",
+      "decision": "exclude",
+      "reason": "Topological learning is background; local Area Graph study gives a closer sparse metric-reference example."
+    },
+    {
+      "candidate_id": "1b94af3bc8864626cc8727af",
+      "doi": "10.1109/cca.2006.286166",
+      "title": "Improved Global Localization and Pose Tracking of an Autonomous Mobile Robot Via Fuzzy Adaptive Extended Information Filtering",
+      "decision": "exclude",
+      "reason": "Pose-tracking filter adaptation is outside the map-representation comparison."
+    },
+    {
+      "candidate_id": "5f266da5e597260cdc4bffbe",
+      "doi": "10.48550/arxiv.2512.21883",
+      "title": "Reloc-VGGT: Visual Re-localization with Geometry Grounded Transformer",
+      "decision": "exclude",
+      "reason": "Preprint multi-view localization is not needed to resolve the reference-frame question, already directly addressed by local S26."
+    },
+    {
+      "candidate_id": "2ea80176d9b963faba136833",
+      "doi": "10.1109/access.2026.3722756",
+      "title": "Sparse Voxel Meets View: Bridging Local Geometry and Global Semantics via Linear Attention in Place Recognition",
+      "decision": "exclude",
+      "reason": "Descriptor retrieval study; local UniLGL and LiteFT-PR already cover recognition versus metric pose."
+    },
+    {
+      "candidate_id": "98c148cd6c6f2efa5c345291",
+      "doi": "10.48550/arxiv.2609.18092",
+      "title": "ReRadar: Robust Radar Global Localization via Rotation-Equivariant Descriptor Learning",
+      "decision": "exclude",
+      "reason": "Radar preprint; local peer-reviewed LiDAR-teach/radar-repeat study covers cross-modal route references."
+    },
+    {
+      "candidate_id": "c839c0c787b687b8aa05a1ac",
+      "doi": "10.5302/j.icros.2011.17.9.916",
+      "title": "Hausdorff Distance Matching for Elevation Map-based Global Localization of an Outdoor Mobile Robot",
+      "decision": "exclude",
+      "reason": "Elevation-map matching adds no new prior-reference class beyond local sparse and dense maps."
+    },
+    {
+      "candidate_id": "30629f6336177d3ae417fa09",
+      "doi": "10.1109/cacsd-cca-isic.2006.4776916",
+      "title": "Improved global localization and pose tracking of an autonomous mobile robot via fuzzy adaptive extended information filtering",
+      "decision": "exclude",
+      "reason": "Near-duplicate fuzzy information filter study; tracking adaptation is outside this comparison."
+    },
+    {
+      "candidate_id": "0e7493d04949d6a16009e06e",
+      "doi": "10.1503/cjs.016712",
+      "title": "Canadian Surgery Forum1 Is laparoscopic sleeve gastrectomy a reasonable stand-alone procedure for super morbidly obese patients?2 Postoperative monitoring requirements of patients with obstructive sleep apnea undergoing bariatric surgery3 Role of relaparoscopy in the diagnosis and treatment of bariatric complications in the early postoperative period4 Changes of active and total ghrelin, GLP-1 and PYY following restrictive bariatric surgery and their impact on satiety: comparison of sleeve gastrectomy and adjustable gastric banding5 Prioritization and willingness to pay for bariatric surgery: the patient perspective6 Ventral hernia at the time of laparoscopic gastric bypass surgery: Should it be repaired?7 Linear stapled gastrojejunostomy with transverse handsewn enterotomy closure significantly reduces strictures for laparoscopic Roux-en-Y bypass8 Laparoscopic biliopancreatic diversion with duodenal switch as second stage for super super morbidly obese patients. Do all patients benefit?9 Sleeve gastrectomy in the super super morbidly obese (BMI &gt; 60 kg/m<sup>2</sup>): a Canadian experience10 Laparoscopic gastric bypass for the treatment of refractory idiopathic gastroparesis: a report of 2 cases11 Duodeno-ileal switch as a primary bariatric and metabolic surgical option for the severely obese patient with comorbidities: review of a single-institution case series of duodeno-ileal intestinal bypass12 Management of large paraesophageal hernias in morbidly obese patients with laparoscopic sleeve gastrectomy: a case series13 Early results of the Ontario bariatric surgical program: using the bariatric registry14 Improving access to bariatric surgical care: Is universal health care the answer?15 Early and liberal postoperative exploration can reduce morbidity and mortality in patients undergoing bariatric surgery16 Withdrawn17 Identification and assessment of technical errors in laparoscopic Roux-en-Y gastric bypass18 A valid and reliable tool for assessment of surgical skill in laparoscopic Roux-en-Y gastric bypass19 Psychiatric predictors of presurgery drop-out following suitability assessment for bariatric surgery20 Predictors of outcomes following Roux-en-Y gastric bypass surgery at The Ottawa Hospital21 Prophylactic management of cholelithiasis in bariatric patients: Is routine cholecystectomy warranted?22 Early outcomes of Roux-en-Y gastric bypass in a publicly funded obesity program23 Similar incidence of gastrojejunal anastomotic stricture formation with hand-sewn and 21 mm circular stapler techniques during Roux-en-Y gastric bypass24 (CAGS Basic Science Award) Exogenous glucagon-like peptide-1 improves clinical, morphological and histological outcomes of intestinal adaptation in a distal-intestinal resection piglet model of short bowel syndrome25 (CAGS Clinical Research Award) Development and validation of a comprehensive curriculum to teach an advanced minimally invasive procedure: a randomized controlled trial26 Negative-pressure wound therapy (iVAC) on closed, high-risk incisions following abdominal wall reconstruction27 The impact of seed granting on research in the University of British Columbia Department of Surgery28 Quality of surgical care is inadequate for elderly patients29 Recurrence of inguinal hernia in general and hernia specialty hospitals in Ontario, Canada30 Oncostatin M receptor deficiency results in increased mortality in an intestinal ischemia reperfusion model in mice31 Laparoscopic repair of large paraesophageal hernias with anterior gastropexy: a multicentre trial32 Response to preoperative medical therapy predicts success of laparoscopic splenectomy for immune thrombocytopenic purpura33 Perioperative sepsis, but not hemorrhagic shock, promotes the development of cancer metastases in a murine model34 Measuring the impact of implementing an acute care surgery service on the management of acute biliary disease35 Patient flow and efficiency in an acute care surgery service36 The relationship between treatment factors and postoperative complications after radical surgery for rectal cancer37 Risk of ventral hernia after laparoscopic colon surgery38 Urinary metabolomics as a tool for early detection of Barrett’s and esophageal cancer39 Construct validity of individual and summary performance metrics associated with a computer-based laparo-scopic simulator40 Impact of a city-wide health system reorganization on emergency department visits in hospitals in surrounding communities41 Transcatheter aortic valve implantation for the nonoperative management of aortic stenosis: a cost-effectiveness analysis42 Breast cancer: racial differences in age of onset. A potential confounder in Canadian screening recommendations43 Risk taking in surgery: in and out of the comfort zone44 A tumour board in the office: Track those cancer patients!45 Increased patient BMI is not associated with advanced colon cancer stage or grade on presentation: a retrospective chart review46 Consensus statements regarding the multidisciplinary care of limb amputation patients in disasters or humanitarian emergencies. Report of the 2011 Humanitarian Action Summit Surgical Working Group on amputations following disasters or conflict47 Learning the CanMEDS role of professional: a pilot project of supervised discussion groups addressing the hidden curriculum48 Assessing the changing scope of training in Canadian general surgery programs: expected versus actual experience49 Predicting need for surgical management for massive gastrointestinal hemorrhage50 International health care experience: using CanMEDS to evaluate learning outcomes following a surgical mission in Mampong, Ghana51 The open abdomen: risk factors for mortality and rates of closure52 How surgeons think: an exploration of mental practice in surgical preparation53 The surgery wiki: a novel method for delivery of under-graduate surgical education54 Understanding surgical residents’ postoperative practices before implementing an enhanced recovery after surgery (ERAS) guideline at the University of Toronto55 From laparoscopic transabdominal to posterior retroperitoneal adrenalectomy: a paradigm shift in operative approach56 A retrospective audit of outcomes in patients over the age of 80 undergoing acute care abdominal surgery57 Canadian general surgery residents’ perspectives on work-hour regulations58 Timing of surgical intervention and its outcomes in acute appendicitis59 Preparing surgical trainees to deal with adverse events. An outline of learning issues60 Acute care surgical service: surgeon agreement at the time of handover61 Predicting discharge of elderly patients to prehospitalization residence following emergency general surgery62 Morbidity and mortality after emergency abdominal surgery in octo- and nonagenarians63 The impact of acute abdominal illness and urgent admission to hospital on the living situation of elderly patients64 A comparison of laparoscopic versus open subtotal gastrectomy for antral gastric adenocarcinoma: a North American perspective65 Minimally invasive excision of ectopic mediastinal parathyroid adenomas66 Perioperative outcomes of laparoscopic hernia repair in a tertiary care centre: a single institution’s experience67 Evaluation of a student-run, practical and didactic curriculum for preclerkship medical students68 Joseph Lister: Father of Modern Surgery69 Comparisons of melanoma sentinel lymph node biopsy prediction nomograms in a cohort of Canadian patients70 Local experience with myocutaneous flaps after extensive pelvic surgery71 The treatment of noncirrhotic splanchnic vein thrombosis: Is anticoagulation enough?72 Implementation of an acute care surgery service does not affect wait-times for elective cancer surgeries: an institutional experience73 Use of human collagen mesh for closure of a large abdominal wall defect, after colon cancer surgery, a case report74 The role of miR-200b in pulmonary hypoplasia associated with congenital diaphragmatic hernia75 Systematic review and meta-analysis of electrocautery versus scalpel for incising epidermis and dermis76 Accuracy of sentinel lymph node biopsy for early breast cancer in the community setting in St. John’s, New-foundland: results of a retrospective review77 Acute surgical outcomes in the 80 plus population78 The liberal use of platelets transfusions in the acute phase of trauma resuscitation: a systematic review79 Implementation of an acute care surgical on call program in a Canadian community hospital80 Short-term outcomes following paraesophageal hernia repair in the elderly patient81 First experience with single incision surgery: feasibility in the pediatric population and cost evaluation82 The impact of the establishment of an acute care surgery unit on the outcomes of appendectomies and cholecystectomies83 Description and preliminary evaluation of a low-cost simulator for training and evaluation of flexible endoscopic skills84 Tumour lysis syndrome in metastatic colon cancer: a case report85 Acute care surgery service model implementation study at a single institution86 Colonic disasters approached by emergent subtotal and total colectomy: lessons learned from 120 consecutive cases87 Acellular collagen matrix stent to protect bowel anastomoses88 Lessons we learned from preoperative MRI-guided wire localization of breast lesions: the University Health Network (UHN) experience89 Interim cost comparison for the use of platinum micro-coils in the operative localization of small peripheral lung nodules90 Routine barium esophagram has minimal impact on the postoperative management of patients undergoing esophagectomy for esophageal cancer91 Iron deficiency anemia is a common presenting issue with giant paraesophageal hernia and resolves following repair92 A randomized comparison of different ventilation strategies during thoracotomy and lung resection93 The Canadian Lung Volume Reduction Surgery study: an 8-year follow-up94 A comparison of minimally invasive versus open Ivor-Lewis esophagectomy95 A new paradigm in the follow-up after curative resection for lung cancer: minimal-dose CT scan allows for early detection of asymptomatic cancer activity96 Predictors of lymph node metastasis in early esophageal adenocarcinoma: Is endoscopic resection worth the risk?97 How well can thoracic surgery residents operate? Comparing resident and program director opinions98 The impact of extremes of age on short- and long-term outcomes following surgical resection of esophageal malignancy99 Epidermal growth factor receptor targeted gold nanoparticles for the enhanced radiation treatment of non–small cell lung cancer100 Laparoscopic Heller myotomy results in excellent outcomes in all subtypes of achalasia as defined by the Chicago classification101 Neoadjuvant chemoradiation versus surgery in managing esophageal cancer102 Quality of life postesophagectomy for cancer!103 The implementation, evolution and translocation of standardized clinical pathways can improve perioperative outcomes following surgical treatment of esophageal cancer104 A tissue-mimicking phantom for applications in thoracic surgical simulation105 Sublobar resection compared with lobectomy for early stage non–small cell lung cancer: a single institution study106 Not all reviews are equal: the quality of systematic reviews and meta-analyses in thoracic surgery107 Do postoperative complications affect health-related quality of life after video-assisted thoracoscopic lobectomy for patients with lung cancer? A cohort study108 Thoracoscopic plication for palliation of dyspnea secondary to unilateral diaphragmatic paralysis: A worthwhile venture?109 Thoracic surgery experience in Canadian general surgery residency programs110 Perioperative morbidity and pathologic response rates following neoadjuvant chemotherapy and chemoradiation for locally advanced esophageal carcinoma111 An enhanced recovery pathway reduces length of stay after esophagectomy112 Predictors of dysplastic and neoplastic progression of Barrett’s esophagus113 Recurrent esophageal cancer complicated by tracheoesophageal fistula: management by means of palliative airway stenting114 Pancreaticopleural fistula-induced empyema thoracis: principles and results of surgical management115 Prognostic factors of early postoperative mortality following right extended hepatectomy116 Optimizing steatotic livers for transplantation using a cell-penetrating peptide CPP-fused heme oxygenase117 Video outlining the technical steps for a robot-assisted laparoscopic pancreaticoduodenectomy118 Establishment of a collaborative group to conduct innovative clinical trials in Canada119 Hepatic resection for metastatic malignant melanoma: a systematic review and meta-analysis120 Acellular normothermic ex vivo liver perfusion for donor liver preservation121 Pancreatic cancer and predictors of survival: comparing the CA 19–9/bilirubin ratio with the McGill Brisbane Scoring System122 Staged liver resections for bilobar hepatic colorectal metastases: a single centre experience123 Economic model of observation versus immediate resection of hepatic adenomas124 Resection of colorectal liver metastasis in the elderly125 Acceptable long-term survival in patients undergoing liver resection for metastases from noncolorectal, non-neuroendocrine, nonsarcoma malignancies126 Patient and clinicopathological features and prognosis of CK19+ hepatocellular carcinomas: a case–control study127 The management of blunt hepatic trauma in the age of angioembolization: a single centre experience128 Liver resections for noncolorectal and non-neuroendocrine metastases: an evaluation of oncologic outcomes129 Developing an evidence-based clinical pathway for patients undergoing pancreaticoduodenectomy130 Hepatitis C infection and hepatocellular carcinoma in liver transplant: a 20 year experience131 The effect of medication on the risk of post-ERCP pancreatitis132 Temporal trends in the use of diagnostic imaging for patients with hepato-pancreato-biliary (HPB) conditions: How much ionizing radiation are we really using?196 A phase II study of aggressive metastasectomy for intra-and extrahepatic metastases from colorectal cancer133 Why do women choose mastectomy for breast cancer treatment? A conceptual framework for understanding surgical decision-making in early-stage breast cancer134 Synoptic operative reporting: documentation of quality of care data for rectal cancer surgery135 Learning curve analysis for cytoreductive surgery: a useful application of the cumulative sum (CUSUM) method136 Pancreatic cancer is strongly associated with a unique urinary metabolomic signature137 Concurrent neoadjuvant chemo/radiation in locally advanced breast cancer138 Impact of positron emission tomography on clinical staging of newly diagnosed rectal cancer: a specialized single centre retrospective study139 An evaluation of intraoperative Faxitron microradiography versus conventional specimen radiography for the excision of nonpalpable breast lesions140 Comparison of breast cancer treatment wait-times in the Southern Interior of British Columbia in 2006 and 2010141 Factors affecting lymph nodes harvest in colorectal carcinoma142 Laparoscopic adrenalectomy for metastases143 You have a message! Social networking as a motivator for fundamentals of laparoscopic surgery (FLS) training144 The evaluation and validation of a rapid diagnostic and support clinic for women assessment for breast cancer145 Oncoplastic breast surgery: oncologic benefits and limitations146 A qualitative study on rectal cancer patients’ preferences for location of surgical care147 The effect of surgery on local recurrence in young women with breast cancer148 Elevated IL-6 and IL-8 levels in tumour microenvironment is not associated with increased serum levels in humans with Pseudomyxoma peritonei and peritoneal mesothelioma149 Conversion from laparoscopic to open approach during gastrectomy: a population-based analysis150 A scoping review of surgical process improvement tools (SPITs) in cancer surgery151 Splenectomy during gastric cancer surgery: a population-based study152 Defining the polo-like kinase 4 (Plk4) interactome in cancer cell protrusions153 Neoadjuvant imatinib mesylate for locally advanced gastrointestinal stromal tumours154 Implementing results from ACOSOG Z0011: Practice-changing or practice-affirming?155 Should lymph node retrieval be a surgical quality indicator in colon cancer?156 Long-term outcomes following resection of retroperitoneal recurrence of colorectal cancer157 Clinical research in surgical oncology: an analysis of clinicaltrials.gov158 Radiation therapy after breast conserving surgery: When are we missing the mark?159 The accuracy of endorectal ultrasound in staging rectal lesions in patients undergoing transanal endoscopic microsurgery160 Quality improvement in gastrointestinal cancer surgery: expert panel recommendations for priority research areas161 Factors influencing the quality of local management of ductal carcinoma in situ: a cohort study162 Papillary thyroid microcarcinoma: Does size matter?163 Hyperthermic isolated limb perfusion for extremity soft tissue sarcomas: systematic review of clinical efficacy and quality assessment of reported trials164 Adherence to antiestrogen therapy in seniors with breast cancer: How well are we doing?165 Parathyroid carcinoma: Challenging the surgical dogma?166 A qualitative assessment of the journey to delayed breast reconstruction195 The role of yoga therapy in breast cancer patients167 Outcomes reported in comparative studies of surgical interventions168 Enhanced recovery pathways decrease length of stay following colorectal surgery, but how quickly do patients actually recover?169 The impact of complications on bed utilization after elective colorectal resection170 Impact of trimodal prehabilitation program on functional recovery after colorectal cancer surgery: a pilot study171 Complex fistula-in-ano: Should the plug be abandoned in favour of the LIFT or BioLIFT?172 Prognostic utility of cyclooxygenase-2 expression by colon and rectal cancer173 Laparoscopic right hemicolectomy with complete mesocolic excision provides acceptable perioperative outcomes but is complex and time-consuming: analysis of learning curves for a novice minimally invasive surgeon174 Intraoperative quality assessment following double stapled circular colorectal anastomosis175 Improving patient outcomes through quality assessment of rectal cancer care176 Are physicians willing to accept a decrease in treatment effectiveness for improved functional outcomes for low rectal cancer?177 Turnbull-Cutait delayed coloanal anastomosis for the treatment of distal rectal cancer: a prospective cohort study178 Preoperative high-dose rate brachytherapy in preparation for sphincter preservation surgery for patients with advanced cancer of the lower rectum179 Impact of an enhanced recovery program on short-term outcomes after scheduled laparoscopic colon resection180 The clinical results of the Turnbull-Cutait delayed coloanal anastomosis: a systematic review181 Is a vertical rectus abdominus flap (VRAM) necessary? An analysis of perineal wound complications182 Fistula plug versus endorectal anal advancement flap for the treatment of high transsphincteric cryptoglandular anal fistulas: a systematic review and meta-analysis183 Maternal and neonatal outcomes following colorectal cancer surgery184 Transanal drainage to treat anastomotic leaks after low anterior resection for rectal cancer: a valuable option185 Trends in colon cancer in Ontario: 2002–2009186 Validation of electronically derived short-term outcomes in colorectal surgery187 A population-based assessment of transanal and endoscopic resection for adenocarcinoma of the rectum188 Laparoscopic colorectal surgery in the emergency setting: trends in the province of Ontario from 2002 to 2009189 Prevention of perineal hernia after laparoscopic and robotic abdominoperineal resection: review with case series of internal hernia through pelvic mesh which was placed in attempt to prevent perineal hernia190 Effect of rectal cancer treatments on quality of life191 The use of antibacterial sutures as an adjunctive preventative strategy for surgical site infection in Canada: an economic analysis192 Impact of socioeconomic status on colorectal cancer screening and stage at presentation: preliminary results of a population-based study from an urban Canadian centre193 Initial perioperative results of the first transanal endoscopic microsurgery (TEM) program in the province of Quebec194 Use of negative pressure wound therapy decreases perineal wound infections following abdominal perineal resection",
+      "decision": "exclude",
+      "reason": "False-positive retrieval: surgical conference proceedings, unrelated to mobile robot localization."
+    },
+    {
+      "candidate_id": "35f8514a7f1443723e5de228",
+      "doi": "10.1109/tro.2025.3585385",
+      "title": "BEVPlace++: Fast, Robust, and Lightweight LiDAR Global Localization for Autonomous Ground Vehicles",
+      "decision": "include",
+      "reason": "Directly tests bird-eye-view LiDAR place retrieval followed by 3-DoF pose recovery and separates it from six-degree pose claims."
+    },
+    {
+      "candidate_id": "ab0d3af96e0b9bdca1322686",
+      "doi": "10.1016/j.isprsjprs.2022.05.005",
+      "title": "A LiDAR-based single-shot global localization solution using a cross-section shape context descriptor",
+      "decision": "exclude",
+      "reason": "Single-shot descriptor localization is covered by the selected OneShot study; no additional reference class needed."
+    },
+    {
+      "candidate_id": "752356dad57080ddfe3d9ad3",
+      "doi": "10.1109/icra40945.2020.9197458",
+      "title": "OneShot Global Localization: Instant LiDAR-Visual Pose Estimation",
+      "decision": "include",
+      "reason": "Direct six-degree-of-freedom single-scan global localization counterexample to requiring continuous motion or a monolithic occupancy map."
+    },
+    {
+      "candidate_id": "ee6357b700cf312a866908fe",
+      "doi": "10.1016/j.measurement.2021.109212",
+      "title": "Efficient re-localization of mobile robot using strategy of finding a missing person",
+      "decision": "exclude",
+      "reason": "Search strategy paper adds no new reference representation relative to local MCL and selected single-shot work."
+    },
+    {
+      "candidate_id": "29076943c272bd606d1a4abf",
+      "doi": "10.1109/tase.2026.3744418",
+      "title": "UniMPR: A Unified Framework for Multimodal Place Recognition With Heterogeneous Sensor Configurations",
+      "decision": "exclude",
+      "reason": "Multimodal descriptor/place-recognition robustness is already represented in local full-text evidence."
+    }
+  ],
+  "official_pair_verified": [
+    "10.1109/ICRA40945.2020.9197458"
+  ],
+  "acquisition_pending": [
+    {
+      "doi": "10.1109/TRO.2025.3585385",
+      "state": "retryable",
+      "reason": "network_transient",
+      "message": "IEEE PDF request timed out",
+      "attempts": 2,
+      "used_as_full_text_evidence": false
+    }
+  ],
+  "search_saturation_signals": [
+    "citation_frontier_growing",
+    "provider_failures"
+  ],
+  "coverage_limitation": "Citation frontier was still growing and some provider requests failed; no field-wide completeness or absence-of-prior-work claim.",
+  "source_quotes_checked_against_publisher_pdfs": 18,
+  "physical_pdf_page_number_convention": "1-based page index in the acquired PDF file; may differ from printed journal pages",
+  "citation_policy": "Publisher raw BibTeX preserved unchanged outside the textbook; human-readable references derived from those artifacts; no generated BibTeX."
+}

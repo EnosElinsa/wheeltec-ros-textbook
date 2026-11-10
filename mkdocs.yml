@@ -12,6 +12,33 @@ theme:
     - search.suggest
     - search.highlight
 plugins:
+  - redirects:
+      redirect_maps:
+        06-sensors-navigation/33-nav2-navigation.md: 06-sensors-navigation/34-nav2-navigation.md
+        06-sensors-navigation/34-waypoints-path-exploration.md: 06-sensors-navigation/35-waypoints-path-exploration.md
+        06-sensors-navigation/35-camera-opencv-images.md: 06-sensors-navigation/36-camera-opencv-images.md
+        06-sensors-navigation/36-camera-calibration.md: 06-sensors-navigation/37-camera-calibration.md
+        06-sensors-navigation/37-vision-applications.md: 06-sensors-navigation/38-vision-applications.md
+        06-sensors-navigation/38-visual-runtime.md: 06-sensors-navigation/40-visual-runtime.md
+        06-sensors-navigation/39-visual-operation.md: 06-sensors-navigation/41-visual-operation.md
+        06-sensors-navigation/40-mid360-fast-lio.md: 06-sensors-navigation/42-mid360-fast-lio.md
+        07-stm32-firmware/40-firmware-architecture-freertos.md: 07-stm32-firmware/45-firmware-architecture-freertos.md
+        07-stm32-firmware/41-hardware-init-model-interfaces.md: 07-stm32-firmware/46-hardware-init-model-interfaces.md
+        07-stm32-firmware/42-motor-control-pid.md: 07-stm32-firmware/47-motor-control-pid.md
+        07-stm32-firmware/43-build-flash-rollback.md: 07-stm32-firmware/48-build-flash-rollback.md
+        07-stm32-firmware/44-ros2-stm32-integration.md: 07-stm32-firmware/49-ros2-stm32-integration.md
+        08-advanced-applications/45-gazebo-simulation.md: 08-advanced-applications/50-gazebo-simulation.md
+        08-advanced-applications/46-multi-robot-and-qt.md: 08-advanced-applications/51-multi-robot-and-qt.md
+        08-advanced-applications/47-mmwave-human-deep-learning.md: 08-advanced-applications/52-mmwave-human-deep-learning.md
+        08-advanced-applications/48-voice-ai-openclaw.md: 08-advanced-applications/53-voice-ai-openclaw.md
+        09-r680-platform/49-r680-hardware-wiring-oled.md: 09-r680-platform/54-r680-hardware-wiring-oled.md
+        09-r680-platform/50-r680-debug-source-firmware.md: 09-r680-platform/55-r680-debug-source-firmware.md
+        10-deployment-maintenance/51-network-docker-images.md: 10-deployment-maintenance/56-network-docker-images.md
+        10-deployment-maintenance/52-logs-backup-upgrade-recovery.md: 10-deployment-maintenance/57-logs-backup-upgrade-recovery.md
+        10-deployment-maintenance/53-system-acceptance.md: 10-deployment-maintenance/58-system-acceptance.md
+        06-sensors-navigation/vins-principles.md: 06-sensors-navigation/39-vins-principles.md
+        06-sensors-navigation/mid360-fast-lio-data-flow.md: 06-sensors-navigation/43-mid360-fast-lio-data-flow.md
+        06-sensors-navigation/mid360-3d-navigation-research.md: 06-sensors-navigation/44-mid360-3d-navigation-research.md
   - search:
       lang:
         - zh
@@ -52,70 +79,72 @@ nav:
       - 9 底盘运动与闭环控制: 02-hardware-basics/09-chassis-motion-control.md
   - 第三篇 实机接入与首次启动:
       - 本篇说明: 03-bringup/index.md
-      - 10 识别机器人配置: 03-bringup/10-identify-configuration.md
-      - 11 电源与接线安全: 03-bringup/11-power-and-wiring.md
-      - 12 首次上电: 03-bringup/12-first-power-on.md
-      - 13 连接主控: 03-bringup/13-connect-controller.md
-      - 14 基线诊断: 03-bringup/14-baseline-diagnosis.md
+      - 10 识别你的机器人配置: 03-bringup/10-identify-configuration.md
+      - 11 电源、供电与接线安全: 03-bringup/11-power-and-wiring.md
+      - 12 首次上电与基线检查: 03-bringup/12-first-power-on.md
+      - 13 连接主控：显示器、SSH 与远程桌面: 03-bringup/13-connect-controller.md
+      - 14 第一次功能验收与问题分层: 03-bringup/14-baseline-diagnosis.md
   - 第四篇 底盘控制与运动学:
       - 本篇说明: 04-chassis-control/index.md
       - 15 坐标系与底盘类型: 04-chassis-control/15-coordinate-frames-and-chassis.md
-      - 16 遥控底盘: 04-chassis-control/16-remote-control.md
-      - 17 键盘与 cmd_vel: 04-chassis-control/17-keyboard-and-cmd-vel.md
-      - 18 串口协议: 04-chassis-control/18-serial-protocol.md
-      - 19 CAN 协议: 04-chassis-control/19-can-protocol.md
+      - 16 遥控底盘：APP、PS2 与航模遥控: 04-chassis-control/16-remote-control.md
+      - 17 键盘与 ROS 2 速度控制: 04-chassis-control/17-keyboard-and-cmd-vel.md
+      - 18 串口通信协议: 04-chassis-control/18-serial-protocol.md
+      - 19 CAN 通信协议: 04-chassis-control/19-can-protocol.md
       - 20 里程计、编码器、IMU 与 PID: 04-chassis-control/20-odometry-encoder-imu-pid.md
-      - 21 标定与底盘故障: 04-chassis-control/21-calibration-and-faults.md
+      - 21 直线纠偏、转向标定和常见底盘故障: 04-chassis-control/21-calibration-and-faults.md
   - 第五篇 ROS 2 开发:
       - 本篇说明: 05-ros2-development/index.md
-      - 22 环境与源码选择: 05-ros2-development/22-environment-and-source-selection.md
+      - 22 ROS 2 环境与源码版本选择: 05-ros2-development/22-environment-and-source-selection.md
       - 23 工作空间、功能包与构建: 05-ros2-development/23-workspace-packages-build.md
       - 24 节点、话题、服务与动作: 05-ros2-development/24-nodes-topics-services-actions.md
-      - 25 Launch 与参数: 05-ros2-development/25-launch-and-parameters.md
+      - 25 Launch、参数与运行配置: 05-ros2-development/25-launch-and-parameters.md
       - 26 TF、URDF 与 RViz: 05-ros2-development/26-tf-urdf-rviz.md
-      - 27 修改、编译与回滚: 05-ros2-development/27-modify-build-rollback.md
-      - 28 开机启动与进程: 05-ros2-development/28-autostart-and-processes.md
+      - 27 修改、编译并回滚机器人源码: 05-ros2-development/27-modify-build-rollback.md
+      - 28 开机启动与进程管理: 05-ros2-development/28-autostart-and-processes.md
   - 第六篇 传感器、建图与导航:
       - 本篇说明: 06-sensors-navigation/index.md
       - 29 传感器、驱动与话题自检: 06-sensors-navigation/29-sensor-checks.md
       - 30 里程计、TF 与时间: 06-sensors-navigation/30-odometry-tf-time.md
-      - 31 雷达与二维建图: 06-sensors-navigation/31-lidar-and-mapping.md
-      - 32 地图、定位与 TF: 06-sensors-navigation/32-map-localization-tf.md
-      - 33 Nav2 导航: 06-sensors-navigation/33-nav2-navigation.md
-      - 34 多点、路径与探索: 06-sensors-navigation/34-waypoints-path-exploration.md
-      - 35 摄像头与 OpenCV: 06-sensors-navigation/35-camera-opencv-images.md
-      - 36 相机标定: 06-sensors-navigation/36-camera-calibration.md
-      - 37 视觉应用: 06-sensors-navigation/37-vision-applications.md
-      - 38 视觉建图与导航的运行过程: 06-sensors-navigation/38-visual-runtime.md
-      - 39 视觉建图与导航操作: 06-sensors-navigation/39-visual-operation.md
-      - VINS 视觉惯性里程计原理: 06-sensors-navigation/vins-principles.md
-      - 40 MID360 与 FAST-LIO 三维建图: 06-sensors-navigation/40-mid360-fast-lio.md
-      - MID360 三维导航方案调研: 06-sensors-navigation/mid360-3d-navigation-research.md
+      - 31 激光雷达与二维建图: 06-sensors-navigation/31-lidar-and-mapping.md
+      - 32 地图保存、定位与坐标验证: 06-sensors-navigation/32-map-localization-tf.md
+      - 33 移动机器人重定位方案与全局地图依赖: 06-sensors-navigation/33-relocalization-map-dependence.md
+      - 34 Nav2 导航: 06-sensors-navigation/34-nav2-navigation.md
+      - 35 多点导航、路径跟踪与自主探索: 06-sensors-navigation/35-waypoints-path-exploration.md
+      - 36 摄像头、OpenCV 与图像话题: 06-sensors-navigation/36-camera-opencv-images.md
+      - 37 相机内参与坐标标定: 06-sensors-navigation/37-camera-calibration.md
+      - 38 视觉跟随、巡线、KCF、AR 标签与网页视频: 06-sensors-navigation/38-vision-applications.md
+      - 39 VINS：视觉惯性里程计的工作原理: 06-sensors-navigation/39-vins-principles.md
+      - 40 视觉建图与导航的运行过程: 06-sensors-navigation/40-visual-runtime.md
+      - 41 视觉建图与导航操作: 06-sensors-navigation/41-visual-operation.md
+      - 42 MID360 与 FAST-LIO 三维建图的运行过程: 06-sensors-navigation/42-mid360-fast-lio.md
+      - 43 MID360 与 FAST-LIO 三维建图的数据流: 06-sensors-navigation/43-mid360-fast-lio-data-flow.md
+      - 44 MID360 三维导航方案调研: 06-sensors-navigation/44-mid360-3d-navigation-research.md
   - 第七篇 STM32 与底盘固件:
       - 本篇说明: 07-stm32-firmware/index.md
-      - 40 固件架构与 FreeRTOS: 07-stm32-firmware/40-firmware-architecture-freertos.md
-      - 41 初始化、车型与接口: 07-stm32-firmware/41-hardware-init-model-interfaces.md
-      - 42 电机控制与 PID: 07-stm32-firmware/42-motor-control-pid.md
-      - 43 编译、烧录与回滚: 07-stm32-firmware/43-build-flash-rollback.md
-      - 44 ROS 2 与 STM32 联调: 07-stm32-firmware/44-ros2-stm32-integration.md
+      - 45 固件架构与 FreeRTOS 任务: 07-stm32-firmware/45-firmware-architecture-freertos.md
+      - 46 硬件初始化、车型选择与接口: 07-stm32-firmware/46-hardware-init-model-interfaces.md
+      - 47 电机控制与 PID 实现: 07-stm32-firmware/47-motor-control-pid.md
+      - 48 修改、编译、烧录与回滚固件: 07-stm32-firmware/48-build-flash-rollback.md
+      - 49 ROS 2 与 STM32 联调: 07-stm32-firmware/49-ros2-stm32-integration.md
   - 第八篇 高级应用:
       - 本篇说明: 08-advanced-applications/index.md
-      - 45 Gazebo 仿真: 08-advanced-applications/45-gazebo-simulation.md
-      - 46 多机与 Qt: 08-advanced-applications/46-multi-robot-and-qt.md
-      - 47 毫米波、人体与深度学习: 08-advanced-applications/47-mmwave-human-deep-learning.md
-      - 48 语音、AI 与 OpenClaw: 08-advanced-applications/48-voice-ai-openclaw.md
+      - 50 仿真与 Gazebo: 08-advanced-applications/50-gazebo-simulation.md
+      - 51 多机编队与 Qt 控制界面: 08-advanced-applications/51-multi-robot-and-qt.md
+      - 52 毫米波雷达、人体跟踪与深度学习: 08-advanced-applications/52-mmwave-human-deep-learning.md
+      - 53 语音、多模态 AI 与 OpenClaw: 08-advanced-applications/53-voice-ai-openclaw.md
   - 第九篇 R680 平台:
       - 本篇说明: 09-r680-platform/index.md
-      - 49 R680 硬件、接线与 OLED: 09-r680-platform/49-r680-hardware-wiring-oled.md
-      - 50 R680 调试、源码与固件: 09-r680-platform/50-r680-debug-source-firmware.md
+      - 54 R680 硬件、接线与 OLED 状态: 09-r680-platform/54-r680-hardware-wiring-oled.md
+      - 55 R680 底盘调试、源码与固件维护: 09-r680-platform/55-r680-debug-source-firmware.md
   - 第十篇 部署、备份与维护:
       - 本篇说明: 10-deployment-maintenance/index.md
-      - 51 网络、Docker 与镜像: 10-deployment-maintenance/51-network-docker-images.md
-      - 52 日志、备份、升级与恢复: 10-deployment-maintenance/52-logs-backup-upgrade-recovery.md
-      - 53 全系统验收: 10-deployment-maintenance/53-system-acceptance.md
+      - 56 网络、Docker、系统镜像与主控差异: 10-deployment-maintenance/56-network-docker-images.md
+      - 57 日志、备份、升级与恢复: 10-deployment-maintenance/57-logs-backup-upgrade-recovery.md
+      - 58 全系统验收清单: 10-deployment-maintenance/58-system-acceptance.md
       - 验收记录表: 10-deployment-maintenance/system-acceptance-checklist.md
   - 附录:
-      - A ROS 1 维护: appendices/a-ros1-maintenance.md
-      - B 平台矩阵: appendices/b-platform-matrix.md
-      - C 软件与工具: appendices/c-software-tools.md
-      - D 教材代码资源: appendices/d-public-source-reference.md
+      - A ROS 1 兼容与旧设备维护: appendices/a-ros1-maintenance.md
+      - B 车型、主控与控制板矩阵: appendices/b-platform-matrix.md
+      - C 软件、驱动与工具索引: appendices/c-software-tools.md
+      - D 公开源码参考: appendices/d-public-source-reference.md

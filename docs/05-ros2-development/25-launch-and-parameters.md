@@ -145,4 +145,4 @@ ros2 param get <底盘节点名> odom_frame_id
 
 ## 章节导航
 
-[上一章：节点、话题、服务与动作](24-nodes-topics-services-actions.md) · [返回本篇](index.md) · [下一章：机器人模型与坐标变换](26-tf-urdf-rviz.md)
+[上一章：节点、话题、服务与动作](24-nodes-topics-services-actions.md) · [返回本篇](index.md) · [下一章：TF、URDF 与 RViz](26-tf-urdf-rviz.md)

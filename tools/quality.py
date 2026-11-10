@@ -23,7 +23,8 @@ REQUIRED_MANIFEST_COLUMNS = {
 }
 ALLOWED_STATUSES = {"draft", "complete"}
 ALLOWED_KINDS = {"foundation", "chapter", "appendix"}
-STANDALONE_CHAPTER_NUMBERS = frozenset({38, 39})
+STANDALONE_CHAPTER_NUMBERS = frozenset({33, 39, 40, 41, 42, 43, 44})
+LAST_CHAPTER_NUMBER = 58
 FOUNDATION_HEADINGS = ["章节导航"]
 FOUNDATION_HEADINGS_BY_NUMBER = {
     1: [
@@ -158,42 +159,42 @@ def expected_engineering_headings(number: int) -> list[str]:
             "32.6 常见问题",
             "章节导航",
         ]
-    if number == 33:
-        return [
-            "33.1 Nav2 接收什么，又输出什么",
-            "33.2 Nav2 内部怎样实现一次导航",
-            "33.3 启动前先确认接口",
-            "33.4 第一次发送导航目标",
-            "33.5 代价地图和 footprint 为什么重要",
-            "33.6 导航失败时怎样定位问题",
-            "章节导航",
-        ]
     if number == 34:
         return [
-            "34.1 多点导航：把多个目标交给 Nav2",
-            "34.2 路径跟踪：已经有路线时怎样走",
-            "34.3 自主探索：从未知区域选择下一个目标",
-            "34.4 这些算法有什么区别",
-            "34.5 运行时怎样确认任务真的在工作",
+            "34.1 Nav2 接收什么，又输出什么",
+            "34.2 Nav2 内部怎样实现一次导航",
+            "34.3 启动前先确认接口",
+            "34.4 第一次发送导航目标",
+            "34.5 代价地图和 footprint 为什么重要",
+            "34.6 导航失败时怎样定位问题",
             "章节导航",
         ]
-    if number == 50:
+    if number == 35:
         return [
-            "50.1 学习目标",
-            "50.2 适用范围",
-            "50.3 静态核对",
-            "50.4 安全边界",
-            "50.5 故障记录",
-            "50.6 章节导航",
+            "35.1 多点导航：把多个目标交给 Nav2",
+            "35.2 路径跟踪：已经有路线时怎样走",
+            "35.3 自主探索：从未知区域选择下一个目标",
+            "35.4 这些算法有什么区别",
+            "35.5 运行时怎样确认任务真的在工作",
+            "章节导航",
+        ]
+    if number == 55:
+        return [
+            "55.1 学习目标",
+            "55.2 适用范围",
+            "55.3 静态核对",
+            "55.4 安全边界",
+            "55.5 故障记录",
+            "章节导航",
         ]
     task_titles = {
         (22, 5): "源码包确认",
         (25, 5): "启动链源码追踪",
         (27, 5): "源码修改练习",
-        (40, 5): "固件实验记录",
-        (41, 5): "外设最小实验",
-        (42, 3): "闭环前置检查",
-        (44, 5): "ROS—串口—固件链",
+        (45, 5): "固件实验记录",
+        (46, 5): "外设最小实验",
+        (47, 3): "闭环前置检查",
+        (49, 5): "ROS—串口—固件链",
     }
     defaults = {
         1: "学习目标",
@@ -276,10 +277,10 @@ def check_manifest(rows: list[dict[str, str]]) -> list[str]:
         numbered_rows = []
     if foundation_numbers != list(range(1, 10)):
         errors.append("foundation numbers must be consecutive from 1 through 9")
-    if chapter_numbers != list(range(10, 54)):
-        errors.append("engineering chapter numbers must be consecutive from 10 through 53")
-    if numbered_rows != list(range(1, 54)):
-        errors.append("all numbered pages must be ordered from 1 through 53")
+    if chapter_numbers != list(range(10, LAST_CHAPTER_NUMBER + 1)):
+        errors.append(f"engineering chapter numbers must be consecutive from 10 through {LAST_CHAPTER_NUMBER}")
+    if numbered_rows != list(range(1, LAST_CHAPTER_NUMBER + 1)):
+        errors.append(f"all numbered pages must be ordered from 1 through {LAST_CHAPTER_NUMBER}")
     if [row.get("number") for row in appendices] != ["A", "B", "C", "D"]:
         errors.append("public chapter manifest must contain appendices A through D")
     return errors
@@ -335,7 +336,15 @@ def check_foundation(path: Path, size_limit: int, number: int | None = None) -> 
 
 def check_links(path: Path, docs_root: Path) -> list[Issue]:
     issues: list[Issue] = []
-    text = path.read_text(encoding="utf-8")
+    lines: list[str] = []
+    in_fence = False
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if line.lstrip().startswith(("```", "~~~")):
+            in_fence = not in_fence
+            continue
+        if not in_fence:
+            lines.append(re.sub(r"`[^`]*`", "", line))
+    text = "\n".join(lines)
     for match in LINK_PATTERN.finditer(text):
         raw = match.group(1).strip()
         if raw.startswith(("http://", "https://", "mailto:", "data:", "#")):

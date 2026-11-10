@@ -57,4 +57,4 @@ $$
 
 ## 章节导航
 
-[上一章：传感器与状态反馈](08-sensors-and-feedback.md) · [返回本篇](index.md) · [下一章：识别机器人配置](../03-bringup/10-identify-configuration.md)
+[上一章：传感器与状态反馈](08-sensors-and-feedback.md) · [返回本篇](index.md) · [下一章：识别你的机器人配置](../03-bringup/10-identify-configuration.md)

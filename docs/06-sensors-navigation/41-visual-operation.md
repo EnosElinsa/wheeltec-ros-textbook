@@ -1,13 +1,13 @@
 ---
 status: complete
 ---
-# 39. 视觉建图与导航操作
+# 41. 视觉建图与导航操作
 
 功能包 `wheeltec_vision_nav`。车上工作空间为 `/home/wheeltec/vision_ws`。建图启动 `vision_mapping.launch.py`，导航启动 `vision_navigation.launch.py`。不使用激光雷达。新开的每个终端都执行 `source /home/wheeltec/vision_ws/source_overlay.bash`。建图进程与导航进程不同时运行。
 
 ---
 
-# 过程概要
+## 过程概要
 
 建图把沿途观测写入磁盘数据库，并发布俯视占用栅格。导航读取已有数据库，确定车在地图中的位置，再规划路径、向底盘发送速度。视觉里程计跟丢时，发给底盘的速度置为零。
 
@@ -43,7 +43,7 @@ status: complete
 
 ---
 
-# 工作空间
+## 工作空间
 
 远程登录后加载覆盖安装，再启动本包节点。覆盖安装脚本同时加载本包以及底层工作空间中的 RTAB-Map、Nav2 与底盘包。
 
@@ -77,7 +77,7 @@ pkill -f hold_odom_tf
 
 ---
 
-# 建图
+## 建图
 
 建图启动相机、配对、同步、视觉里程计和 RTAB-Map。观测写入磁盘数据库，占用栅格发布在 `/map`。`start_base:=true` 时启动底盘，`/wheel/odom` 和 `/imu/data_raw` 进入融合，写入 `/odom` 的是 EKF 融合后的运动。用手推动时编码器随轮转动。相机对准 0.5～3 m 有纹理的墙面或家具。地面、白墙、强光玻璃上特征不足，视觉里程计保持跟丢，外观关键帧变少。
 
@@ -85,7 +85,7 @@ pkill -f hold_odom_tf
 
 启动文件不启动 RViz。抓包随 `capture:=true` 一并启动。
 
-## 启动
+### 启动
 
 新终端：
 
@@ -123,7 +123,7 @@ ros2 launch wheeltec_vision_nav capture_runtime.launch.py \
 
 该启动文件的参数名是 `output_dir`。建图、导航启动文件里的参数名是 `capture_dir`。
 
-## 检查
+### 检查
 
 另开终端，每条命令前加载覆盖安装：
 
@@ -146,7 +146,7 @@ ros2 run tf2_ros tf2_echo map odom
 
 建图启动日志中 `Odom: quality=` 后的数字非长期为 0。`rtabmap` 不再连续输出 `no odometry provided. Image 0 is ignored`。`Registration failed` 且 `between -1 and` 表示外观尚未建立：面对有纹理表面，放慢推动。`/map` 的 `width`、`height` 随绕场增大。`odom→base_footprint` 随 `/odom` 更新，发布者为 `vision_ekf`，底盘不启动时为 `vision_hold_odom_tf`。`base_footprint` 的父坐标系为 `odom`。推动约 1 m 后 `/odom` 的 x 或 y 约为米级。`/vision/emitter_pair/status` 的 `paired` 约为 `ir_frames` 的一半。车静止时 `/vision/imu` 的角速度接近 0。
 
-## 结束
+### 结束
 
 在建图 launch 终端按 Ctrl+C。数据库留在 `database_path` 指定的文件中。抓包进程随 launch 退出，目录保留。
 
@@ -160,7 +160,7 @@ ros2 run wheeltec_vision_nav inspect_map_db /home/wheeltec/.ros/vision_rtabmap_m
 
 ---
 
-# 定位
+## 定位
 
 定位启动与建图相同的感知和视觉里程计，RTAB-Map 读取已有数据库，不再向库中追加地点。`Mem/IncrementalMemory` 为 false。空文件或建图阶段一直跟丢得到的库无法定位。
 
@@ -168,7 +168,7 @@ ros2 run wheeltec_vision_nav inspect_map_db /home/wheeltec/.ros/vision_rtabmap_m
 
 `autostart:=true` 时 Nav2 生命周期节点进入激活。`autostart:=false` 时节点保持未激活，发送目标不会执行。电机使能由车载控制器完成。周围留出空间。
 
-## 启动
+### 启动
 
 建图已结束。新终端：
 
@@ -182,7 +182,7 @@ ros2 launch wheeltec_vision_nav vision_navigation.launch.py \
   database_path:=/home/wheeltec/.ros/vision_rtabmap_mapping.db
 ```
 
-## 检查
+### 检查
 
 ```bash
 source /home/wheeltec/vision_ws/source_overlay.bash
@@ -202,7 +202,7 @@ ros2 topic echo --once /wheel/odom --qos-reliability best_effort --no-arr --fiel
 
 ---
 
-# 规划
+## 规划
 
 定位完成后，车上已有 `/map` 和车体在地图中的位姿。Nav2 根据目标点计算路径。局部代价地图坐标系为 `odom`，没有静态层，体素层订阅 `/vision/obstacles`，这些障碍点由配对后的深度直接生成。全局代价地图坐标系为 `map`，静态层订阅 `/map`。
 
@@ -238,7 +238,7 @@ ros2 param dump /global_costmap/global_costmap > "${CAP}global_costmap.yaml"
 
 ---
 
-# 执行
+## 执行
 
 控制器按路径计算速度，发布到 `/cmd_vel`。看门狗订阅 `/cmd_vel`、`/odom_info_lite` 和 `/odom_vo`，底盘启动时还订阅 `/wheel/odom` 和 `/localization_pose`，向 `/cmd_vel_safe` 转发或发布全零。导航时底盘订阅 `/cmd_vel_safe`。`linear.x` 为正表示前进，为负表示倒车。阿克曼无法原地转向。
 
@@ -251,7 +251,7 @@ ros2 topic echo --once /vision/vo_status
 
 发送目标后车辆完全不动且路径长度为 0，属于规划失败。有路径但倒车或绕行，是控制器依据局部代价和底盘约束计算的速度。
 
-## 视觉跟丢
+### 视觉跟丢
 
 看门狗在定位启动时运行。内点下限 10，连续 5 帧低于下限判定为跟丢。四元数模长小于 0.5 或 `OdomInfo.lost` 为真时立即跟丢。底盘不启动时，跟丢即向 `/cmd_vel_safe` 发布全零，并调用 `/navigate_to_pose/_action/cancel_goal`。底盘启动时，跟丢期间轮速仍在 0.3 s 内更新、`/localization_pose` 在 5 s 内出现过，看门狗继续转发速度，状态为 `lost_wheel_backup`。其中任一条件不满足才发布全零并取消导航。`/cmd_vel` 仍可能非零。控制器超过 0.5 s 没有新速度时，看门狗也发布全零。状态发布在 `/vision/vo_status`：`ok`、`lost`、`lost_wheel_backup`、`recovering`。
 
@@ -267,7 +267,7 @@ ros2 topic echo /cmd_vel_safe
 
 ---
 
-# 显示
+## 显示
 
 启动文件不启动 RViz。在有图形界面的会话中加载车上配置。Fixed Frame 为 `map`。显示红外、`/map`、`/odom`、`/vision/obstacles` 和 URDF。相机节点在启动后约 2 s 才打开。RTAB-Map 处理第一帧之后才发布 `map→odom`，在此之前 Map 显示为 Warn。第一张占用栅格到达后 Map 为 Ok，车模随 `/odom` 在栅格上移动。
 
@@ -280,7 +280,7 @@ rviz2 -d /home/wheeltec/.rviz2/vision_mapping.rviz
 
 ---
 
-# 抓包文件
+## 抓包文件
 
 每次抓包进程启动时新建目录 `/home/wheeltec/vision_captures/<YYYYMMDD-HHMMSS>-<pid>/`。内容包括红外与深度 PNG、占用栅格 PNG、`summary.yaml`。`summary.yaml` 还记录配对状态、EKF 的输入话题、RTAB-Map 的里程计来源，以及包括 `/tf_static` 在内的坐标系父子关系。建图目录中 `vx_min` 为 null，没有 `/cmd_vel_safe`。导航目录在 Nav2 激活后写入 `vx_min`、控制频率、代价地图插件和行为树路径，定位成功后出现 `localization_pose`。发送目标后 `summary.yaml` 中才会出现非零 `/cmd_vel`。遮挡镜头后才会出现 `vo_status: lost`。
 
@@ -294,11 +294,11 @@ cat "$(ls -td /home/wheeltec/vision_captures/*/ | sed -n '1p')summary.yaml"
 
 ---
 
-# 话题
+## 话题
 
 建图或导航运行时，另开终端执行。部分话题只在对应启动运行之后才出现。
 
-## 消息类型
+### 消息类型
 
 ```bash
 source /home/wheeltec/vision_ws/source_overlay.bash
@@ -314,7 +314,7 @@ ros2 interface show sensor_msgs/msg/Imu
 ros2 interface show tf2_msgs/msg/TFMessage
 ```
 
-## 图像与 RGB-D
+### 图像与 RGB-D
 
 ```bash
 source /home/wheeltec/vision_ws/source_overlay.bash
@@ -333,7 +333,7 @@ ros2 topic echo --once /odom_info_lite --qos-reliability best_effort --no-arr --
 
 红外 `encoding` 为 `mono8`，深度为 `16UC1`。同步后的 `RGBDImage` 内两条图像 stamp 相同。
 
-## `/map`
+### `/map`
 
 ```bash
 source /home/wheeltec/vision_ws/source_overlay.bash
@@ -342,7 +342,7 @@ ros2 topic echo --once /map --qos-durability transient_local --field info
 
 读取 `resolution`、`width`、`height`、`origin`。
 
-## TF
+### TF
 
 ```bash
 source /home/wheeltec/vision_ws/source_overlay.bash
@@ -361,7 +361,7 @@ ros2 topic echo --once /wheel/odom --qos-reliability best_effort --no-arr --fiel
 ros2 topic echo --once /wheel/odom --qos-reliability best_effort --no-arr --field child_frame_id
 ```
 
-## 参数与 IMU
+### 参数与 IMU
 
 ```bash
 source /home/wheeltec/vision_ws/source_overlay.bash
@@ -381,7 +381,7 @@ ros2 topic echo --once /vision/imu --field angular_velocity
 
 底盘不启动时 `guess_frame_id` 为空，`start_base:=true` 时为 `wheel_odom`。`publish_tf` 为 false。`/vision_rtabmap` 的 `odom_frame_id` 为 `odom`，里程计由 TF 读取。EKF 的 `imu0` 为 `/vision/imu`，`odom1` 为 `/vision/odom_vo`。IMU 话题在 `start_base:=true` 之后出现。视觉里程计不订阅 IMU。
 
-## metadata
+### metadata
 
 ```bash
 source /home/wheeltec/vision_ws/source_overlay.bash
@@ -393,4 +393,4 @@ ros2 topic echo --once /camera/depth/metadata --qos-reliability best_effort
 
 ## 章节导航
 
-[上一章：视觉建图与导航的运行过程](38-visual-runtime.md) · [返回本篇](index.md) · [下一章：固件架构与 FreeRTOS 任务](../07-stm32-firmware/40-firmware-architecture-freertos.md)
+[上一章：视觉建图与导航的运行过程](40-visual-runtime.md) · [返回本篇](index.md) · [下一章：MID360 与 FAST-LIO 三维建图的运行过程](42-mid360-fast-lio.md)

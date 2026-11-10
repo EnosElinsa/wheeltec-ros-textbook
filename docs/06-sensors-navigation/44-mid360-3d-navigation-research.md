@@ -2,9 +2,9 @@
 status: draft
 ---
 
-# MID360 三维导航方案调研
+# 44. MID360 三维导航方案调研
 
-前面的 FAST-LIO 和 FAST-LIVO2 主要解决两件事：估计机器人当前位姿，以及把传感器数据放到共同坐标系中形成地图。**有了三维地图，不等于已经完成导航。** 导航还需要把地图变成可碰撞检查的数据，接收目标点，搜索一条可行路径，再将路径转换为底盘速度。
+前面的 FAST-LIO 和 FAST-LIVO2 主要解决两件事：估计机器人当前位姿，以及把传感器数据放到共同坐标系中形成地图。有了三维地图，不等于已经完成导航。 导航还需要把地图变成可碰撞检查的数据，接收目标点，搜索一条可行路径，再将路径转换为底盘速度。
 
 对于普通轮式小车，最常见、也最容易落地的方案不是在三维空间中任意飞行式规划，而是：
 
@@ -21,7 +21,7 @@ status: draft
 
 *图 41-1　同一套 MID360/D435i 三维感知数据，可以根据地面和任务需求进入二维、2.5D 或真正三维的导航分支。*
 
-## 1. 先分清“建图”“定位”和“导航”
+## 44.1 先分清“建图”“定位”和“导航”
 
 在我们的系统中，三者并不是同一个节点完成的：
 
@@ -33,9 +33,9 @@ status: draft
 
 FAST-LIO 或 FAST-LIVO2 主要提供前两项。它们估计 `camera_init → body`，并发布三维点云、轨迹和当前位姿；它们不会自动接收一个目标点，也不会替 Nav2 产生 `/cmd_vel`。所以，FAST-LIVO2 的 RViz2 画面即使很漂亮，也只能说明定位和建图链路在工作，不能单独证明机器人已经具备自主导航能力。
 
-## 2. 三种导航层次
+## 44.2 三种导航层次
 
-### 2.1 三维感知，二维导航
+### 44.2.1 三维感知，二维导航
 
 这是室内轮式小车最常用的方案。MID360 或 D435i 先提供三维点云，处理节点再做高度筛选和投影：
 
@@ -52,7 +52,7 @@ FAST-LIO 或 FAST-LIVO2 主要提供前两项。它们估计 `camera_init → bo
 
 这种方案的优点是可以直接使用 Nav2 的 `planner_server`、`controller_server`、代价地图和恢复行为。缺点是地图中的高度信息在投影时被压缩了，不能很好地表达悬空障碍、陡坡和多层地面。
 
-### 2.2 2.5D 地形导航
+### 44.2.2 2.5D 地形导航
 
 2.5D 不是把环境完全压成一张黑白平面，而是对每个水平位置保存一个或多个地形属性：
 
@@ -67,11 +67,11 @@ FAST-LIO 或 FAST-LIVO2 主要提供前两项。它们估计 `camera_init → bo
 - 地面不完全平整的仓库或园区；
 - 需要判断“这条路虽然没有障碍，但车能不能开上去”的任务。
 
-经典工作是 Fankhauser 等人的 **Robot-Centric Elevation Mapping with Uncertainty Estimates**。相关 ROS 工具通常以 `grid_map` 或 `elevation_mapping` 表达高程、方差和派生地形信息。
+经典工作是 Fankhauser 等人的 Robot-Centric Elevation Mapping with Uncertainty Estimates。相关 ROS 工具通常以 `grid_map` 或 `elevation_mapping` 表达高程、方差和派生地形信息。
 
 对轮式小车来说，2.5D 往往是三维导航的实用折中：保留高度和地形代价，但不要求规划器在空中或楼梯空间中任意搜索 `z`。
 
-### 2.3 真正三维导航
+### 44.2.3 真正三维导航
 
 真正三维导航把环境表示成体素、TSDF、ESDF 或其他三维空间结构，规划器直接在三维空间中搜索。状态可能包含：
 
@@ -94,11 +94,11 @@ FAST-LIO 或 FAST-LIVO2 主要提供前两项。它们估计 `camera_init → bo
 
 对于普通差速轮式小车，真正的三维规划并不会因为“地图是三维的”就自动变得合理。规划器还必须知道车轮接触地面的约束、最大坡度、最小离地间隙、车体碰撞模型和控制器能否跟踪带高度变化的轨迹。
 
-## 3. 相关论文和开源系统
+## 44.3 相关论文和开源系统
 
-### 3.1 Elevation Mapping：用高程描述地面
+### 44.3.1 Elevation Mapping：用高程描述地面
 
-**论文：** Robot-Centric Elevation Mapping with Uncertainty Estimates，Fankhauser、Bloesch、Hutter，ICRA 2014。
+论文： Robot-Centric Elevation Mapping with Uncertainty Estimates，Fankhauser、Bloesch、Hutter，ICRA 2014。
 
 它把传感器观测融合成机器人周围的高程网格，并为高度保存不确定度。后续节点可以由高程差计算坡度和粗糙度，再生成可通行性代价。
 
@@ -112,15 +112,15 @@ FAST-LIO 或 FAST-LIVO2 主要提供前两项。它们估计 `camera_init → bo
 
 参考实现：[`ANYbotics/elevation_mapping`](https://github.com/ANYbotics/elevation_mapping) 和 [`ANYbotics/grid_map`](https://github.com/ANYbotics/grid_map)。这些项目的原始使用场景包含腿式机器人，但高程地图本身并不限定机器人必须是腿式；轮式小车同样可以使用，只需重新定义轮式底盘的坡度和粗糙度阈值。
 
-### 3.2 Voxblox：用 ESDF 表示离障碍物的距离
+### 44.3.2 Voxblox：用 ESDF 表示离障碍物的距离
 
-**论文：** Voxblox: Incremental 3D Euclidean Signed Distance Fields for On-Board MAV Planning，Oleynikova 等，IROS 2017。
+论文： Voxblox: Incremental 3D Euclidean Signed Distance Fields for On-Board MAV Planning，Oleynikova 等，IROS 2017。
 
 Voxblox 的核心不是某一条底盘路径，而是维护一个可以查询的三维距离场。规划器可以快速判断一个候选位置离障碍物还有多远，并利用距离梯度生成较平滑的轨迹。
 
 参考实现：[`ethz-asl/voxblox`](https://github.com/ethz-asl/voxblox)。论文示例主要面向飞行器，但 TSDF/ESDF 这种三维地图表达同样可以作为地面机器人的碰撞查询基础。
 
-### 3.3 Nvblox：Jetson/ROS 2 上的三维重建组件
+### 44.3.3 Nvblox：Jetson/ROS 2 上的三维重建组件
 
 Nvblox 是 NVIDIA 提供的 GPU 加速三维重建和距离场系统，能够将深度相机或激光雷达观测转换为 TSDF、ESDF、网格和障碍物信息。它更像是“导航前的三维地图与碰撞数据层”，而不是一个完整的轮式三维规划器。
 
@@ -134,19 +134,19 @@ Nvblox 是 NVIDIA 提供的 GPU 加速三维重建和距离场系统，能够将
 
 这条路线和 Jetson 平台比较匹配，也适合把 MID360 的远距离几何信息与 D435i 的近距离深度信息结合起来。
 
-### 3.4 FAR Planner：面向未知复杂环境的三维激光导航
+### 44.3.4 FAR Planner：面向未知复杂环境的三维激光导航
 
-可以检索论文 **FAR Planner: Fast, Robust, and Versatile 3D LiDAR Based Autonomous Navigation in Complex and Unknown Environments**。它面向使用三维激光雷达的移动机器人，在未知环境中进行障碍物感知、碰撞检查、路径搜索和轨迹生成，比“只把点云投影成 `/scan`”更接近完整的三维激光导航。
+可以检索论文 FAR Planner: Fast, Robust, and Versatile 3D LiDAR Based Autonomous Navigation in Complex and Unknown Environments。它面向使用三维激光雷达的移动机器人，在未知环境中进行障碍物感知、碰撞检查、路径搜索和轨迹生成，比“只把点云投影成 `/scan`”更接近完整的三维激光导航。
 
 它值得参考的地方是：地图不是最终目的，三维点云要继续参与可见性判断、碰撞检查和局部规划。移植时仍需要根据轮式底盘重新实现运动约束和速度控制，不能直接把论文中的规划器当作可执行的 `/cmd_vel` 节点。
 
-### 3.5 TARE Planner：三维探索和移动规划
+### 44.3.5 TARE Planner：三维探索和移动规划
 
-可以检索 **TARE Planner: A Hierarchical Framework for Efficiently Exploring Complex 3D Environments**。它关注大范围未知三维环境中的探索：选择值得前往的区域，规划到探索目标的路线，并减少重复覆盖。
+可以检索 TARE Planner: A Hierarchical Framework for Efficiently Exploring Complex 3D Environments。它关注大范围未知三维环境中的探索：选择值得前往的区域，规划到探索目标的路线，并减少重复覆盖。
 
 它与普通 Nav2 的差别在于，目标不只是用户给出的一个二维坐标，而是还要回答“下一块未知区域在哪里”。因此它更适合自主探索、地下空间和大范围户外场景，而不是简单的室内点到点导航。
 
-## 4. MID360、D435i 与这些方案怎样组合
+## 44.4 MID360、D435i 与这些方案怎样组合
 
 MID360 和 D435i 的作用并不完全相同：
 
@@ -171,9 +171,9 @@ D435i 图像 ──┘                         │
 
 这里要注意，FAST-LIVO2 的彩色三维地图主要用于定位、建图和观察；它不会自动决定“哪些点是轮子会撞到的障碍”。导航前还要进行地面分割、障碍物高度筛选、动态物体处理和机器人碰撞模型匹配。
 
-### 4.1 FAST-LIVO2 比 FAST-LIO 多了什么
+### 44.4.1 FAST-LIVO2 比 FAST-LIO 多了什么
 
-当前工程使用的是 **FAST-LIO**：输入为 MID360 点云和 IMU，不包含相机。除了 FAST-LIO，还可以把 MID360 与 Intel RealSense D435i 组合，使用 **FAST-LIVO2**（Fast LiDAR-Inertial-Visual Odometry）。它在 FAST-LIO 的激光雷达—IMU 估计基础上，再加入相机图像约束，因此属于“激光雷达 + IMU + 相机”的紧耦合里程计与建图方法。
+当前工程使用的是 FAST-LIO：输入为 MID360 点云和 IMU，不包含相机。除了 FAST-LIO，还可以把 MID360 与 Intel RealSense D435i 组合，使用 **FAST-LIVO2**（Fast LiDAR-Inertial-Visual Odometry）。它在 FAST-LIO 的激光雷达—IMU 估计基础上，再加入相机图像约束，因此属于“激光雷达 + IMU + 相机”的紧耦合里程计与建图方法。
 
 FAST-LIO 主要用两类信息：
 
@@ -197,7 +197,7 @@ D435i 彩色图像/相机内参：图像中的纹理、边缘和亮度变化
 
 这里的“视觉”不是把 D435i 的画面直接贴到 RViz2 上，而是把三维地图点按照相机内参和雷达—相机外参投影到图像中，再用图像信息参与状态更新。D435i 的深度流是否直接作为 FAST-LIVO2 输入，要以具体版本的驱动接口为准；不能看到设备有深度图，就默认算法已经使用了深度图。
 
-### 4.2 FAST-LIVO2 的计算主线
+### 44.4.2 FAST-LIVO2 的计算主线
 
 FAST-LIVO2 与 FAST-LIO 的前半段相同：先用 IMU 预测状态，按点的时间去畸变，再把 MID360 点变换到统一的建图坐标。区别在于，点云与地图匹配后，还会把地图中的三维点投影到 D435i 图像：
 
@@ -250,16 +250,16 @@ $$
 
 所以 FAST-LIVO2 不是“先用 FAST-LIO 建图，再把相机图片贴上去”，而是在同一轮状态估计中同时使用几何残差和视觉残差。最终的位姿、轨迹和点云地图仍然要经过统一坐标系变换后发布。
 
-### 4.3 MID360 + D435i 需要额外准备什么
+### 44.4.3 MID360 + D435i 需要额外准备什么
 
 如果以后要在本工程中尝试 FAST-LIVO2，除了安装两个设备，还要重新确认以下接口和标定参数：
 
-1. **图像话题**：D435i 的彩色图像话题名、编码、分辨率和发布频率；
-2. **相机内参**：焦距、主点和畸变参数，通常通过 `CameraInfo` 提供；
-3. **雷达—相机外参**：雷达坐标与相机坐标之间的旋转和平移 `T_CL`；
-4. **IMU 选择**：明确使用 MID360 IMU、D435i IMU，还是经过校准后的统一 IMU，不能未经时间同步就把两颗 IMU 的数据混在一起；
-5. **时间同步**：点云、IMU 和图像的时间戳要处于同一时间基准，并检查相机曝光延迟；
-6. **计算资源**：图像解码、特征/光度残差和点云匹配会增加 Jetson 的 CPU、GPU、内存和带宽负担。
+1. 图像话题：D435i 的彩色图像话题名、编码、分辨率和发布频率；
+2. 相机内参：焦距、主点和畸变参数，通常通过 `CameraInfo` 提供；
+3. 雷达—相机外参：雷达坐标与相机坐标之间的旋转和平移 `T_CL`；
+4. IMU 选择：明确使用 MID360 IMU、D435i IMU，还是经过校准后的统一 IMU，不能未经时间同步就把两颗 IMU 的数据混在一起；
+5. 时间同步：点云、IMU 和图像的时间戳要处于同一时间基准，并检查相机曝光延迟；
+6. 计算资源：图像解码、特征/光度残差和点云匹配会增加 Jetson 的 CPU、GPU、内存和带宽负担。
 
 因此，FAST-LIVO2 的移植重点不只是“把一个 launch 文件名改掉”，而是要同时对上：
 
@@ -285,7 +285,7 @@ MID360 点云字段和时间
 
 进一步阅读可参考 [FAST-LIVO2 官方仓库](https://github.com/hku-mars/FAST-LIVO2)。实际移植时应以所选版本的 README、配置文件、消息接口和相机驱动要求为准。
 
-## 5. 对本项目的三条可选路线
+## 44.5 对本项目的三条可选路线
 
 ### 路线 A：三维感知 + Nav2 二维导航
 
@@ -332,7 +332,7 @@ FAST-LIO/FAST-LIVO2
 
 Nav2 可以继续承担任务管理、目标接口或部分二维控制工作，但不能把普通 `planner_server` 当成任意三维空间规划器。真正的三维规划器还需要解决轨迹高度、车体姿态、碰撞模型和底盘控制接口的问题。
 
-## 6. 结合当前工程的推荐实施顺序
+## 44.6 结合当前工程的推荐实施顺序
 
 不要一开始同时更换算法、传感器和导航接口。可以按以下顺序逐层验证：
 
@@ -353,7 +353,7 @@ Nav2 可以继续承担任务管理、目标接口或部分二维控制工作，
 输出路径如何转换为底盘可执行的速度
 ```
 
-## 7. 调研结论
+## 44.7 调研结论
 
 对于当前轮式小车，最现实的技术路线是：
 
@@ -364,7 +364,7 @@ FAST-LIO/FAST-LIVO2：三维定位和建图
 Nav2：二维路径规划和速度控制
 ```
 
-这可以概括为：**三维感知，二维或 2.5D 导航。**
+这可以概括为：三维感知，二维或 2.5D 导航。
 
 真正三维导航并不是把 RViz2 中的点云直接交给 Nav2，而是要增加三维地图表达、碰撞检查、运动约束、专用规划器和轨迹控制器。FAR Planner、TARE Planner、Voxblox/Nvblox 和 Elevation Mapping 分别代表了三维激光导航、三维探索、三维距离场和高程地形建模等方向，可以作为后续算法移植和方案选型的参考。
 
@@ -378,3 +378,7 @@ Nav2：二维路径规划和速度控制
 - [Voxblox](https://github.com/ethz-asl/voxblox)：增量 TSDF/ESDF 三维地图。
 - [NVIDIA Isaac ROS Nvblox](https://github.com/nvidia-isaac/nvblox)：Jetson/ROS 2 方向的 GPU 三维重建与距离场。
 - FAR Planner、TARE Planner：可用论文标题检索其三维激光导航和三维探索实现；实际移植前应以对应版本的源码、许可证和输入输出接口为准。
+
+## 章节导航
+
+[上一章：MID360 与 FAST-LIO 三维建图的数据流](43-mid360-fast-lio-data-flow.md) · [返回本篇](index.md) · [下一章：固件架构与 FreeRTOS 任务](../07-stm32-firmware/45-firmware-architecture-freertos.md)

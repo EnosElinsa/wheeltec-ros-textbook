@@ -109,4 +109,4 @@ ros2 topic echo /course/chatter --once
 
 ## 章节导航
 
-[上一章：工作空间、功能包与构建](23-workspace-packages-build.md) · [返回本篇](index.md) · [下一章：启动与运行配置](25-launch-and-parameters.md)
+[上一章：工作空间、功能包与构建](23-workspace-packages-build.md) · [返回本篇](index.md) · [下一章：Launch、参数与运行配置](25-launch-and-parameters.md)

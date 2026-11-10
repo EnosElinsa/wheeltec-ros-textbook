@@ -31,27 +31,32 @@ chapter,29,06-sensors-navigation,docs/06-sensors-navigation/29-sensor-checks.md,
 chapter,30,06-sensors-navigation,docs/06-sensors-navigation/30-odometry-tf-time.md,里程计、TF 与时间,complete,150000
 chapter,31,06-sensors-navigation,docs/06-sensors-navigation/31-lidar-and-mapping.md,激光雷达与二维建图,complete,150000
 chapter,32,06-sensors-navigation,docs/06-sensors-navigation/32-map-localization-tf.md,地图保存、定位与坐标验证,complete,150000
-chapter,33,06-sensors-navigation,docs/06-sensors-navigation/33-nav2-navigation.md,Nav2 导航,complete,150000
-chapter,34,06-sensors-navigation,docs/06-sensors-navigation/34-waypoints-path-exploration.md,多点导航、路径跟踪与自主探索,complete,150000
-chapter,35,06-sensors-navigation,docs/06-sensors-navigation/35-camera-opencv-images.md,摄像头、OpenCV 与图像话题,complete,150000
-chapter,36,06-sensors-navigation,docs/06-sensors-navigation/36-camera-calibration.md,相机内参与坐标标定,complete,150000
-chapter,37,06-sensors-navigation,docs/06-sensors-navigation/37-vision-applications.md,视觉跟随、巡线、KCF、AR 标签与网页视频,complete,150000
-chapter,38,06-sensors-navigation,docs/06-sensors-navigation/38-visual-runtime.md,视觉建图与导航的运行过程,complete,150000
-chapter,39,06-sensors-navigation,docs/06-sensors-navigation/39-visual-operation.md,视觉建图与导航操作,complete,150000
-chapter,40,07-stm32-firmware,docs/07-stm32-firmware/40-firmware-architecture-freertos.md,固件架构与 FreeRTOS 任务,complete,150000
-chapter,41,07-stm32-firmware,docs/07-stm32-firmware/41-hardware-init-model-interfaces.md,硬件初始化、车型选择与接口,complete,150000
-chapter,42,07-stm32-firmware,docs/07-stm32-firmware/42-motor-control-pid.md,电机控制与 PID 实现,complete,150000
-chapter,43,07-stm32-firmware,docs/07-stm32-firmware/43-build-flash-rollback.md,修改、编译、烧录与回滚固件,complete,150000
-chapter,44,07-stm32-firmware,docs/07-stm32-firmware/44-ros2-stm32-integration.md,ROS 2 与 STM32 联调,complete,150000
-chapter,45,08-advanced-applications,docs/08-advanced-applications/45-gazebo-simulation.md,仿真与 Gazebo,complete,150000
-chapter,46,08-advanced-applications,docs/08-advanced-applications/46-multi-robot-and-qt.md,多机编队与 Qt 控制界面,complete,150000
-chapter,47,08-advanced-applications,docs/08-advanced-applications/47-mmwave-human-deep-learning.md,毫米波雷达、人体跟踪与深度学习,complete,150000
-chapter,48,08-advanced-applications,docs/08-advanced-applications/48-voice-ai-openclaw.md,语音、多模态 AI 与 OpenClaw,complete,150000
-chapter,49,09-r680-platform,docs/09-r680-platform/49-r680-hardware-wiring-oled.md,R680 硬件、接线与 OLED 状态,complete,150000
-chapter,50,09-r680-platform,docs/09-r680-platform/50-r680-debug-source-firmware.md,R680 底盘调试、源码与固件维护,complete,150000
-chapter,51,10-deployment-maintenance,docs/10-deployment-maintenance/51-network-docker-images.md,网络、Docker、系统镜像与主控差异,complete,150000
-chapter,52,10-deployment-maintenance,docs/10-deployment-maintenance/52-logs-backup-upgrade-recovery.md,日志、备份、升级与恢复,complete,150000
-chapter,53,10-deployment-maintenance,docs/10-deployment-maintenance/53-system-acceptance.md,全系统验收清单,complete,150000
+chapter,33,06-sensors-navigation,docs/06-sensors-navigation/33-relocalization-map-dependence.md,移动机器人重定位方案与全局地图依赖,complete,150000
+chapter,34,06-sensors-navigation,docs/06-sensors-navigation/34-nav2-navigation.md,Nav2 导航,complete,150000
+chapter,35,06-sensors-navigation,docs/06-sensors-navigation/35-waypoints-path-exploration.md,多点导航、路径跟踪与自主探索,complete,150000
+chapter,36,06-sensors-navigation,docs/06-sensors-navigation/36-camera-opencv-images.md,摄像头、OpenCV 与图像话题,complete,150000
+chapter,37,06-sensors-navigation,docs/06-sensors-navigation/37-camera-calibration.md,相机内参与坐标标定,complete,150000
+chapter,38,06-sensors-navigation,docs/06-sensors-navigation/38-vision-applications.md,视觉跟随、巡线、KCF、AR 标签与网页视频,complete,150000
+chapter,39,06-sensors-navigation,docs/06-sensors-navigation/39-vins-principles.md,VINS：视觉惯性里程计的工作原理,complete,150000
+chapter,40,06-sensors-navigation,docs/06-sensors-navigation/40-visual-runtime.md,视觉建图与导航的运行过程,complete,150000
+chapter,41,06-sensors-navigation,docs/06-sensors-navigation/41-visual-operation.md,视觉建图与导航操作,complete,150000
+chapter,42,06-sensors-navigation,docs/06-sensors-navigation/42-mid360-fast-lio.md,MID360 与 FAST-LIO 三维建图的运行过程,draft,150000
+chapter,43,06-sensors-navigation,docs/06-sensors-navigation/43-mid360-fast-lio-data-flow.md,MID360 与 FAST-LIO 三维建图的数据流,draft,150000
+chapter,44,06-sensors-navigation,docs/06-sensors-navigation/44-mid360-3d-navigation-research.md,MID360 三维导航方案调研,draft,150000
+chapter,45,07-stm32-firmware,docs/07-stm32-firmware/45-firmware-architecture-freertos.md,固件架构与 FreeRTOS 任务,complete,150000
+chapter,46,07-stm32-firmware,docs/07-stm32-firmware/46-hardware-init-model-interfaces.md,硬件初始化、车型选择与接口,complete,150000
+chapter,47,07-stm32-firmware,docs/07-stm32-firmware/47-motor-control-pid.md,电机控制与 PID 实现,complete,150000
+chapter,48,07-stm32-firmware,docs/07-stm32-firmware/48-build-flash-rollback.md,修改、编译、烧录与回滚固件,complete,150000
+chapter,49,07-stm32-firmware,docs/07-stm32-firmware/49-ros2-stm32-integration.md,ROS 2 与 STM32 联调,complete,150000
+chapter,50,08-advanced-applications,docs/08-advanced-applications/50-gazebo-simulation.md,仿真与 Gazebo,complete,150000
+chapter,51,08-advanced-applications,docs/08-advanced-applications/51-multi-robot-and-qt.md,多机编队与 Qt 控制界面,complete,150000
+chapter,52,08-advanced-applications,docs/08-advanced-applications/52-mmwave-human-deep-learning.md,毫米波雷达、人体跟踪与深度学习,complete,150000
+chapter,53,08-advanced-applications,docs/08-advanced-applications/53-voice-ai-openclaw.md,语音、多模态 AI 与 OpenClaw,complete,150000
+chapter,54,09-r680-platform,docs/09-r680-platform/54-r680-hardware-wiring-oled.md,R680 硬件、接线与 OLED 状态,complete,150000
+chapter,55,09-r680-platform,docs/09-r680-platform/55-r680-debug-source-firmware.md,R680 底盘调试、源码与固件维护,complete,150000
+chapter,56,10-deployment-maintenance,docs/10-deployment-maintenance/56-network-docker-images.md,网络、Docker、系统镜像与主控差异,complete,150000
+chapter,57,10-deployment-maintenance,docs/10-deployment-maintenance/57-logs-backup-upgrade-recovery.md,日志、备份、升级与恢复,complete,150000
+chapter,58,10-deployment-maintenance,docs/10-deployment-maintenance/58-system-acceptance.md,全系统验收清单,complete,150000
 appendix,A,appendices,docs/appendices/a-ros1-maintenance.md,ROS 1 兼容与旧设备维护,complete,150000
 appendix,B,appendices,docs/appendices/b-platform-matrix.md,车型、主控与控制板矩阵,complete,150000
 appendix,C,appendices,docs/appendices/c-software-tools.md,软件、驱动与工具索引,complete,150000

@@ -58,19 +58,19 @@ class PublicSourceReferenceTests(unittest.TestCase):
             "docs/05-ros2-development/27-modify-build-rollback.md",
             "docs/06-sensors-navigation/29-sensor-checks.md",
             "docs/06-sensors-navigation/31-lidar-and-mapping.md",
-            "docs/06-sensors-navigation/33-nav2-navigation.md",
-            "docs/06-sensors-navigation/35-camera-opencv-images.md",
-            "docs/06-sensors-navigation/37-vision-applications.md",
-            "docs/07-stm32-firmware/40-firmware-architecture-freertos.md",
-            "docs/07-stm32-firmware/41-hardware-init-model-interfaces.md",
-            "docs/07-stm32-firmware/42-motor-control-pid.md",
-            "docs/07-stm32-firmware/44-ros2-stm32-integration.md",
-            "docs/08-advanced-applications/45-gazebo-simulation.md",
-            "docs/08-advanced-applications/46-multi-robot-and-qt.md",
-            "docs/08-advanced-applications/47-mmwave-human-deep-learning.md",
-            "docs/08-advanced-applications/48-voice-ai-openclaw.md",
-            "docs/09-r680-platform/50-r680-debug-source-firmware.md",
-            "docs/10-deployment-maintenance/52-logs-backup-upgrade-recovery.md",
+            "docs/06-sensors-navigation/34-nav2-navigation.md",
+            "docs/06-sensors-navigation/36-camera-opencv-images.md",
+            "docs/06-sensors-navigation/38-vision-applications.md",
+            "docs/07-stm32-firmware/45-firmware-architecture-freertos.md",
+            "docs/07-stm32-firmware/46-hardware-init-model-interfaces.md",
+            "docs/07-stm32-firmware/47-motor-control-pid.md",
+            "docs/07-stm32-firmware/49-ros2-stm32-integration.md",
+            "docs/08-advanced-applications/50-gazebo-simulation.md",
+            "docs/08-advanced-applications/51-multi-robot-and-qt.md",
+            "docs/08-advanced-applications/52-mmwave-human-deep-learning.md",
+            "docs/08-advanced-applications/53-voice-ai-openclaw.md",
+            "docs/09-r680-platform/55-r680-debug-source-firmware.md",
+            "docs/10-deployment-maintenance/57-logs-backup-upgrade-recovery.md",
             "docs/appendices/a-ros1-maintenance.md",
         )
         generic = [
@@ -93,4 +93,3 @@ class PublicSourceReferenceTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
