@@ -23,8 +23,8 @@ REQUIRED_MANIFEST_COLUMNS = {
 }
 ALLOWED_STATUSES = {"draft", "complete"}
 ALLOWED_KINDS = {"foundation", "chapter", "appendix"}
-STANDALONE_CHAPTER_NUMBERS = frozenset({33, 39, 40, 41, 42, 43, 44})
-LAST_CHAPTER_NUMBER = 58
+STANDALONE_CHAPTER_NUMBERS = frozenset({33, 39, 40, 41, 42, 43, 44, 54})
+LAST_CHAPTER_NUMBER = 59
 FOUNDATION_HEADINGS = ["章节导航"]
 FOUNDATION_HEADINGS_BY_NUMBER = {
     1: [
@@ -178,13 +178,13 @@ def expected_engineering_headings(number: int) -> list[str]:
             "35.5 运行时怎样确认任务真的在工作",
             "章节导航",
         ]
-    if number == 55:
+    if number == 56:
         return [
-            "55.1 学习目标",
-            "55.2 适用范围",
-            "55.3 源码阅读顺序",
-            "55.4 实机维护准备",
-            "55.5 故障记录",
+            "56.1 学习目标",
+            "56.2 适用范围",
+            "56.3 源码阅读顺序",
+            "56.4 实机维护准备",
+            "56.5 故障记录",
             "章节导航",
         ]
     task_titles = {

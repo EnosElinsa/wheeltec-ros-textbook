@@ -67,7 +67,7 @@ class FoundationSchemaTests(unittest.TestCase):
                     "size_limit_bytes": "150000",
                 }
             )
-        for number in range(10, 59):
+        for number in range(10, 60):
             rows.append(
                 {
                     "kind": "chapter",

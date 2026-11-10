@@ -50,7 +50,7 @@
 | 增强现实标签（Augmented Reality Tag, AR Tag） | 在图像中识别带编码图案并估计其位姿的标记。 | 第 38 章 |
 | Gazebo Simulation Platform（Gazebo） | 用物理模型计算机器人、环境和虚拟传感器行为的平台。 | 第 50 章 |
 | Qt Application Framework（Qt） | 用于开发桌面图形界面的跨平台软件框架。 | 第 51 章 |
-| 网络文件系统（Network File System, NFS） | 通过网络把远程计算机目录挂载到本地的文件系统协议。 | 第 56 章 |
+| 网络文件系统（Network File System, NFS） | 通过网络把远程计算机目录挂载到本地的文件系统协议。 | 第 57 章 |
 | Docker Container Platform（Docker） | 用镜像隔离运行进程、文件和依赖的软件平台。 | 第 22 章 |
 | 应用程序编程接口（Application Programming Interface, API） | 程序之间调用功能和交换数据时遵循的接口约定。 | 第 53 章 |
 | 互联网协议地址（Internet Protocol Address, IP Address） | 标识网络中设备的地址，常简称 IP。 | 第 13 章 |
@@ -74,7 +74,7 @@
 | YAML 配置格式（YAML Ain't Markup Language, YAML） | 用缩进表示层次结构的文本配置格式。 | 第 25 章 |
 | 世界（World） | Gazebo 仿真中描述地面、墙体和障碍物的场景文件。 | 第 50 章 |
 | 插件（Plugin） | 在宿主程序中加载、扩展特定功能的软件模块。 | 第 50 章 |
-| 哈希值（Hash Value） | 根据文件内容计算出的固定长度结果，用于校验复制前后是否一致。 | 第 57 章 |
+| 哈希值（Hash Value） | 根据文件内容计算出的固定长度结果，用于校验复制前后是否一致。 | 第 58 章 |
 | 数据分发服务（Data Distribution Service, DDS） | ROS 2 使用的通信中间件标准，负责发现参与者并传递数据。 | 第 24 章 |
 | 服务质量（Quality of Service, QoS） | 描述消息可靠性、持久性和时延等通信策略的配置。 | 第 24 章 |
 | 统一机器人描述格式（Unified Robot Description Format, URDF） | 用 XML 描述机器人连杆、关节、几何外观和坐标关系的格式。 | 第 26 章 |

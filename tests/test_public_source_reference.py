@@ -69,8 +69,8 @@ class PublicSourceReferenceTests(unittest.TestCase):
             "docs/08-advanced-applications/51-multi-robot-and-qt.md",
             "docs/08-advanced-applications/52-mmwave-human-deep-learning.md",
             "docs/08-advanced-applications/53-voice-ai-openclaw.md",
-            "docs/09-r680-platform/55-r680-debug-source-firmware.md",
-            "docs/10-deployment-maintenance/57-logs-backup-upgrade-recovery.md",
+            "docs/09-r680-platform/56-r680-debug-source-firmware.md",
+            "docs/10-deployment-maintenance/58-logs-backup-upgrade-recovery.md",
             "docs/appendices/a-ros1-maintenance.md",
         )
         generic = [

@@ -31,14 +31,20 @@ plugins:
         08-advanced-applications/46-multi-robot-and-qt.md: 08-advanced-applications/51-multi-robot-and-qt.md
         08-advanced-applications/47-mmwave-human-deep-learning.md: 08-advanced-applications/52-mmwave-human-deep-learning.md
         08-advanced-applications/48-voice-ai-openclaw.md: 08-advanced-applications/53-voice-ai-openclaw.md
-        09-r680-platform/49-r680-hardware-wiring-oled.md: 09-r680-platform/54-r680-hardware-wiring-oled.md
-        09-r680-platform/50-r680-debug-source-firmware.md: 09-r680-platform/55-r680-debug-source-firmware.md
-        10-deployment-maintenance/51-network-docker-images.md: 10-deployment-maintenance/56-network-docker-images.md
-        10-deployment-maintenance/52-logs-backup-upgrade-recovery.md: 10-deployment-maintenance/57-logs-backup-upgrade-recovery.md
-        10-deployment-maintenance/53-system-acceptance.md: 10-deployment-maintenance/58-system-acceptance.md
+        09-r680-platform/49-r680-hardware-wiring-oled.md: 09-r680-platform/55-r680-hardware-wiring-oled.md
+        09-r680-platform/50-r680-debug-source-firmware.md: 09-r680-platform/56-r680-debug-source-firmware.md
+        10-deployment-maintenance/51-network-docker-images.md: 10-deployment-maintenance/57-network-docker-images.md
+        10-deployment-maintenance/52-logs-backup-upgrade-recovery.md: 10-deployment-maintenance/58-logs-backup-upgrade-recovery.md
+        10-deployment-maintenance/53-system-acceptance.md: 10-deployment-maintenance/59-system-acceptance.md
         06-sensors-navigation/vins-principles.md: 06-sensors-navigation/39-vins-principles.md
         06-sensors-navigation/mid360-fast-lio-data-flow.md: 06-sensors-navigation/43-mid360-fast-lio-data-flow.md
         06-sensors-navigation/mid360-3d-navigation-research.md: 06-sensors-navigation/44-mid360-3d-navigation-research.md
+        08-advanced-applications/open-source-projects.md: 08-advanced-applications/54-open-source-projects.md
+        09-r680-platform/54-r680-hardware-wiring-oled.md: 09-r680-platform/55-r680-hardware-wiring-oled.md
+        09-r680-platform/55-r680-debug-source-firmware.md: 09-r680-platform/56-r680-debug-source-firmware.md
+        10-deployment-maintenance/56-network-docker-images.md: 10-deployment-maintenance/57-network-docker-images.md
+        10-deployment-maintenance/57-logs-backup-upgrade-recovery.md: 10-deployment-maintenance/58-logs-backup-upgrade-recovery.md
+        10-deployment-maintenance/58-system-acceptance.md: 10-deployment-maintenance/59-system-acceptance.md
   - search:
       lang:
         - zh
@@ -133,16 +139,16 @@ nav:
       - 51 多机编队与 Qt 控制界面: 08-advanced-applications/51-multi-robot-and-qt.md
       - 52 毫米波雷达、人体跟踪与深度学习: 08-advanced-applications/52-mmwave-human-deep-learning.md
       - 53 语音、多模态 AI 与 OpenClaw: 08-advanced-applications/53-voice-ai-openclaw.md
-      - 开源项目与参考价值: 08-advanced-applications/open-source-projects.md
+      - 54 开源项目与参考价值: 08-advanced-applications/54-open-source-projects.md
   - 第九篇 R680 平台:
       - 本篇说明: 09-r680-platform/index.md
-      - 54 R680 硬件、接线与 OLED 状态: 09-r680-platform/54-r680-hardware-wiring-oled.md
-      - 55 R680 底盘调试、源码与固件维护: 09-r680-platform/55-r680-debug-source-firmware.md
+      - 55 R680 硬件、接线与 OLED 状态: 09-r680-platform/55-r680-hardware-wiring-oled.md
+      - 56 R680 底盘调试、源码与固件维护: 09-r680-platform/56-r680-debug-source-firmware.md
   - 第十篇 部署、备份与维护:
       - 本篇说明: 10-deployment-maintenance/index.md
-      - 56 网络、Docker、系统镜像与主控差异: 10-deployment-maintenance/56-network-docker-images.md
-      - 57 日志、备份、升级与恢复: 10-deployment-maintenance/57-logs-backup-upgrade-recovery.md
-      - 58 全系统验收清单: 10-deployment-maintenance/58-system-acceptance.md
+      - 57 网络、Docker、系统镜像与主控差异: 10-deployment-maintenance/57-network-docker-images.md
+      - 58 日志、备份、升级与恢复: 10-deployment-maintenance/58-logs-backup-upgrade-recovery.md
+      - 59 全系统验收清单: 10-deployment-maintenance/59-system-acceptance.md
       - 验收记录表: 10-deployment-maintenance/system-acceptance-checklist.md
   - 附录:
       - A ROS 1 兼容与旧设备维护: appendices/a-ros1-maintenance.md

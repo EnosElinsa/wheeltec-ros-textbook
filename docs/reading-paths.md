@@ -88,6 +88,6 @@ R680 用 D435C 红外与深度建图导航时，读完第 29～30 章后阅读�
 
 1. [第 10 章：识别机器人配置](03-bringup/10-identify-configuration.md)
 2. [第 21 章：标定与底盘故障](04-chassis-control/21-calibration-and-faults.md)
-3. [第 54 章：R680 硬件、接线与 OLED](09-r680-platform/54-r680-hardware-wiring-oled.md)
-4. [第 55 章：R680 调试、源码与固件](09-r680-platform/55-r680-debug-source-firmware.md)
-5. [第 57 章：日志、备份、升级与恢复](10-deployment-maintenance/57-logs-backup-upgrade-recovery.md)
+3. [第 55 章：R680 硬件、接线与 OLED](09-r680-platform/55-r680-hardware-wiring-oled.md)
+4. [第 56 章：R680 调试、源码与固件](09-r680-platform/56-r680-debug-source-firmware.md)
+5. [第 58 章：日志、备份、升级与恢复](10-deployment-maintenance/58-logs-backup-upgrade-recovery.md)

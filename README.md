@@ -14,7 +14,7 @@
 
 ## 教材结构
 
-正文按第 1～58 章连续编排。第六篇新增[重定位方案与地图依赖](https://enoselinsa.github.io/wheeltec-ros-textbook/06-sensors-navigation/33-relocalization-map-dependence/)，并将 VINS 原理、MID360 建图、数据流与三维导航调研依次纳入第 39～44 章。
+正文按第 1～59 章连续编排。第六篇新增[重定位方案与地图依赖](https://enoselinsa.github.io/wheeltec-ros-textbook/06-sensors-navigation/33-relocalization-map-dependence/)，并将 VINS 原理、MID360 建图、数据流与三维导航调研依次纳入第 39～44 章。
 
 | 部分 | 主要内容 |
 |---|---|
@@ -31,7 +31,7 @@
 
 不知道从哪里开始时，可以查看[阅读路径](https://enoselinsa.github.io/wheeltec-ros-textbook/reading-paths/)；遇到术语问题，可以查[术语表](https://enoselinsa.github.io/wheeltec-ros-textbook/glossary/)。
 
-选择算法基线或可复用模块时，可查阅[开源项目与参考价值](docs/08-advanced-applications/open-source-projects.md)，按六个主题了解各项目的用途与借鉴方向。
+选择算法基线或可复用模块时，可查阅[第 54 章：开源项目与参考价值](docs/08-advanced-applications/54-open-source-projects.md)，按六个主题了解各项目的用途与借鉴方向。
 
 ## 本地预览
 

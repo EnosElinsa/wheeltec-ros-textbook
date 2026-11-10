@@ -32,7 +32,7 @@ class NavigationTests(unittest.TestCase):
         numbered = [
             row for row in rows if row["kind"] in {"foundation", "chapter"}
         ]
-        self.assertEqual(len(numbered), 58)
+        self.assertEqual(len(numbered), 59)
         for index, row in enumerate(numbered):
             path = ROOT / row["path"]
             links = linked_markdown_paths(path)
@@ -67,11 +67,11 @@ class NavigationTests(unittest.TestCase):
                 offenders.append(path.relative_to(ROOT).as_posix())
         self.assertEqual(offenders, [])
 
-    def test_mkdocs_has_ten_parts_and_58_numbered_entries(self) -> None:
+    def test_mkdocs_has_ten_parts_and_59_numbered_entries(self) -> None:
         config = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")
         self.assertEqual(len(re.findall(r"^  - 第(?:[一二三四五六七八九]|十)篇 ", config, re.MULTILINE)), 10)
         numbers = [int(value) for value in re.findall(r"^      - (\d+) ", config, re.MULTILINE)]
-        self.assertEqual(numbers, list(range(1, 59)))
+        self.assertEqual(numbers, list(range(1, 60)))
 
     def test_r680_vision_chapters_are_numbered_in_part_six(self) -> None:
         config = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")

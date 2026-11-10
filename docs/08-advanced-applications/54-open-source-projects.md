@@ -2,13 +2,17 @@
 status: complete
 ---
 
-# 开源项目与参考价值
+# 54. 开源项目与参考价值
 
-这些项目可用于学习算法实现、选择实验基线或复用功能模块。选项目时，先看它解决什么问题，再看值得借鉴的模块，以及输入和运动模型是否适合自己的机器人。
+前面的章节已经把传感器、定位、建图、规划和上层任务连接起来。继续改进系统时，问题会变得更具体：白墙前的定位怎样更稳定，机器人怎样自己选择探索方向，或者怎样把“找到一把椅子”这样的语言目标转换为可执行任务。开源项目提供了相应的算法实现、实验环境和分析工具，可以用来比较方案，也可以从中复用一个模块。
+
+选择项目时，先确定要改进哪项能力，再把项目放回机器人数据流中：它接收什么观测，输出位姿、地图、路径还是任务目标，又要与现有哪个节点连接。例如，新的视觉里程计可以放进原有融合链路中比较；语言导航模块可以提出目标，再交给 Nav2 执行。这样更容易判断项目的参考价值，也能逐步查明改进来自哪里。
+
+本章按定位融合、建图探索、规划控制、多机器人、语义导航和实验工具六个主题展开。每个项目先介绍方法与用途，再说明可借鉴的实现和接入条件。开头的任务表用于选择阅读起点，后续各节用于比较同一类问题的不同方案；项目对应的论文放在介绍之后，便于继续阅读方法原理。
 
 R680 的现有基础是 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外与深度图像，以及轮速和 IMU。依赖 RGB、三维雷达或原地转向的实现需要额外适配；实际运行速度还取决于计算平台。
 
-## 从哪里开始
+## 54.1 按任务选择起点
 
 | 想解决的问题 | 建议先看 |
 |---|---|
@@ -19,7 +23,9 @@ R680 的现有基础是 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D4
 | 根据语言寻找物体或位置 | VLFM、LeLaN、HOV-SG |
 | 评估退化、故障和恢复 | rosbag2、evo、slam-under-perturbation、ScaleNav |
 
-## 定位与传感器融合
+## 54.2 定位与传感器融合
+
+这一组项目解决“机器人怎样连续估计自身运动”。可以从现有 EKF 融合链路出发，分别考察新的视觉、惯性或轮速约束；在比较估计器之前，先用标定工具确认输入参数。
 
 ### robot_localization：多传感器状态融合
 
@@ -77,7 +83,9 @@ R680 的现有基础是 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D4
 
 框架论文：[A Modular Optimization Framework for Localization and Mapping](https://doi.org/10.15607/RSS.2019.XV.043)（RSS，2019）。
 
-## 建图与自主探索
+## 54.3 建图与自主探索
+
+运动估计提供传感器的位置，建图再把连续观测组织成环境表示，自主探索则决定下一步去哪里采集信息。以下项目分别适合已有地图复用、动态场景处理和探索目标选择。
 
 ### RTAB-Map：视觉建图与重定位
 
@@ -127,7 +135,9 @@ R680 的现有基础是 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D4
 
 论文：[NVMS-SLAM: Normal Vector-Based Multi-Session LiDAR SLAM in Indoor Environments](https://doi.org/10.1109/TASE.2026.3682733)（IEEE T-ASE，2026）。
 
-## 规划与运动控制
+## 54.4 规划与运动控制
+
+定位与地图可用后，规划器需要生成可走的路线，控制器再把路线转换为底盘指令。对 Ackermann 车辆，比较方法时要同时考虑转弯半径、倒车能力和轨迹跟踪；车辆仿真可作为接入实机前的实验起点。
 
 ### Nav2：规划、控制与任务执行框架
 
@@ -185,7 +195,9 @@ R680 的现有基础是 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D4
 
 论文：[F1TENTH: An Open-Source Evaluation Environment for Continuous Control and Reinforcement Learning](https://proceedings.mlr.press/v123/o-kelly20a.html)（PMLR 123，2020）。
 
-## 多机器人与协同建图
+## 54.5 多机器人与协同建图
+
+多机器人系统需要把各自的观测和轨迹连接到共同坐标系，还要处理通信开销与错误关联。下面从较容易接入的前沿探索和地图合并，逐步扩展到分布式优化、协同定位与语义建图。
 
 ### m-explore-ros2：前沿探索与地图合并
 
@@ -241,7 +253,9 @@ R680 的现有基础是 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D4
 
 论文：[Kimera-Multi: Robust, Distributed, Dense Metric-Semantic SLAM for Multi-Robot Systems](https://doi.org/10.1109/TRO.2021.3137751)（IEEE T-RO，2022）。
 
-## 语义地图与语言导航
+## 54.6 语义地图与语言导航
+
+几何导航使用坐标目标，语义导航进一步把物体、房间或语言描述与空间位置关联起来。这里可分别参考目标选择、近距离接近和语义地图查询，再与已有的几何规划及避障模块组合。
 
 ### VLFM：用语言目标评价探索方向
 
@@ -291,7 +305,9 @@ R680 的现有基础是 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D4
 
 平台论文：[Habitat: A Platform for Embodied AI Research](https://openaccess.thecvf.com/content_ICCV_2019/html/Savva_Habitat_A_Platform_for_Embodied_AI_Research_ICCV_2019_paper.html)（ICCV，2019）。
 
-## 退化恢复与实验工具
+## 54.7 退化恢复与实验工具
+
+比较算法时，需要让不同方案处理相同输入，并同时观察轨迹、控制量和故障状态。录包回放、扰动实验、轨迹评估和时序分析工具共同组成实验基础，恢复策略则用于研究失败后如何继续任务。
 
 ### ScaleNav：学习导航失败后的恢复
 
@@ -333,6 +349,12 @@ R680 的现有基础是 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D4
 
 例如出现路径跟踪抖动时，可同时查看目标转向、实际角速度和估计航向，判断问题先出现在控制、执行还是定位环节。它适合故障分析与参数调整；用于 Humble 时，应选择匹配的数据加载与流式插件。
 
-## 相关章节
+## 54.8 从项目选择到对照实验
 
-[VINS 原理](../06-sensors-navigation/39-vins-principles.md) · [视觉建图运行过程](../06-sensors-navigation/40-visual-runtime.md) · [Nav2 导航](../06-sensors-navigation/34-nav2-navigation.md) · [返回高级应用](index.md)
+先用当前系统录制一段有代表性的路线，保存传感器输入和原有结果，再选择一个模块进行替换。定位实验可比较轨迹误差、跟踪中断和恢复时间；规划控制实验可比较完成率、路径偏差、最小障碍距离和计算时间。保留相同输入与评价方法后，再逐步增加探索或语言任务，便于判断每个新增模块的作用。
+
+需要进一步理解估计器时，可读[第 39 章 VINS 原理](../06-sensors-navigation/39-vins-principles.md)；要确定模块在现有系统中的接入位置，可对照[第 40 章视觉建图运行过程](../06-sensors-navigation/40-visual-runtime.md)和[第 34 章 Nav2 导航](../06-sensors-navigation/34-nav2-navigation.md)。
+
+## 章节导航
+
+[上一章：语音、多模态 AI 与 OpenClaw](53-voice-ai-openclaw.md) · [返回本篇](index.md) · [下一章：R680 硬件、接线与 OLED 状态](../09-r680-platform/55-r680-hardware-wiring-oled.md)

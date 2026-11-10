@@ -52,4 +52,4 @@ AI 可以把“去实验室门口”这样的自然语言转换成导航目标�
 
 ## 章节导航
 
-[上一章：毫米波雷达、人体跟踪与深度学习](52-mmwave-human-deep-learning.md) · [返回本篇](index.md) · [下一章：R680 硬件、接线与 OLED 状态](../09-r680-platform/54-r680-hardware-wiring-oled.md)
+[上一章：毫米波雷达、人体跟踪与深度学习](52-mmwave-human-deep-learning.md) · [返回本篇](index.md) · [下一章：开源项目与参考价值](54-open-source-projects.md)
