@@ -4,11 +4,13 @@ status: complete
 
 # 47. 电机控制与 PID 实现
 
+相同的驱动输出在空载和负载下可能产生不同轮速。要让轮子接近目标速度，控制板需要不断读取编码器，把实际速度与目标比较，再调整 PWM。这个反复测量与修正的过程，就是电机速度闭环。
+
+比例—积分—微分控制（Proportional-Integral-Derivative Control, PID）根据目标值与测量值的误差计算输出；底盘速度环常使用比例和积分两项，简称 PI。本章沿“目标轮速、误差、PWM、实际轮速”阅读实现，解释增量 PI、输出限幅和积分处理，再通过目标、反馈与输出曲线观察参数效果。
+
 ## 47.1 学习目标 {#stm32-motor-control}
 
-从编码器计数得到轮速，理解增量 PI 怎样更新 PWM，并根据目标值、测量值和输出曲线调整参数。仅凭电机声音无法判断控制误差和稳定性。
-
-比例—积分—微分控制（Proportional-Integral-Derivative Control, PID）根据目标值与测量值之间的误差计算控制输出。底盘速度环常使用其中的比例和积分两项，简称 PI 控制；微分项并非每个速度环都需要。本章观察的是“目标轮速 → 误差 → PWM → 实际轮速”这条闭环。
+根据目标轮速、编码器计数、测量轮速和 PWM 曲线，检查反馈方向与控制周期，并观察 PI 参数变化对误差和稳定性的影响。
 
 !!! example "本节代码：电机控制"
     [电机控制源码](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/62aacaed782091b06060ace276c64e9aaf84ae6b/stm32/control/motor/stm32f4-stdperiph)：从 `USER/main.c` 追踪电机编号、方向控制和 PWM 输出。

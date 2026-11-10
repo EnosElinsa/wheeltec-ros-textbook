@@ -3,29 +3,19 @@ status: complete
 ---
 # 41. 视觉建图与导航操作
 
-功能包 `wheeltec_vision_nav`。车上工作空间为 `/home/wheeltec/vision_ws`。建图启动 `vision_mapping.launch.py`，导航启动 `vision_navigation.launch.py`。不使用激光雷达。新开的每个终端都执行 `source /home/wheeltec/vision_ws/source_overlay.bash`。建图进程与导航进程不同时运行。
+上一章解释了视觉建图与导航怎样协作，本章把这条链路落实为 R680 上的操作顺序。完整过程分成两个阶段：先采集沿途观测建立地图数据库，再读取该数据库完成定位，随后向 Nav2 发送目标。
+
+这里使用 D435C 的红外与深度图像观察环境，底盘启动时加入轮速和陀螺仪融合，不使用激光雷达。操作从加载工作空间开始，依次检查图像、里程计和地图，再进入定位、规划与执行。遇到异常时，沿这一顺序查看数据，能更快判断问题停在哪个环节。
 
 ---
 
 ## 过程概要
 
-建图把沿途观测写入磁盘数据库，并发布俯视占用栅格。导航读取已有数据库，确定车在地图中的位置，再规划路径、向底盘发送速度。视觉里程计跟丢时，发给底盘的速度置为零。
+建图和导航共用图像与运动估计链路，但使用地图的方式不同：建图沿途写入数据库，导航读取已有数据库来确定车的位置，再规划到目标的路径。两种启动方式分开运行。
 
-相机为 D435C。它发布左红外图像和深度图像。左红外是单通道亮度，深度是每个像素到场景的距离。镜头前有红外投射器：打开时深度更稳定，关闭时红外图像没有散斑。驱动按帧交替开关投射器。配对节点 `vision_emitter_pair` 按红外图像里的亮点比例判断每一帧投射器的开关，把关掉投射器的红外和相邻一帧打开投射器的深度配对，再写入一条同时含亮度和深度的 `rtabmap_msgs/msg/RGBDImage`，发布在 `/rtabmap/rgbd_image`。
+操作时先确认红外与深度图像能够配对，再检查里程计、TF 和地图；地图可用后再进入定位与导航。执行阶段由看门狗结合视觉、轮速和定位状态判断是否继续转发速度，具体停止条件在“执行”一节检查。
 
-视觉里程计订阅该消息，估计车相对本次出发的位姿，发布 `/odom_vo`。底盘启动时，输入整理节点 `vision_ekf_inputs` 扣除陀螺仪零偏、给视觉速度设方差下限，EKF 节点 `vision_ekf` 融合 `/wheel/odom`、`/vision/imu` 和 `/vision/odom_vo`，写入 `/odom` 和 `odom→base_footprint`。底盘不启动时，节点 `vision_hold_odom_tf` 转发视觉位姿，跟丢时在同一图像时间戳上转发上次有效位姿。
-
-红外像素、里程计位姿、占用栅格处在不同坐标系中。变换顺序为 `map → odom → base_footprint`。`map` 固连环境。`odom` 固连本次出发时的姿态。`base_footprint` 固连车体在地面上的投影。短时运动记在 `odom→base_footprint`，相对环境的偏差记在 `map→odom`。相机连接在 `base_footprint` 下。有底盘时，轮速坐标系连在车体下，使 `base_footprint` 只有一个父坐标系。
-
-建图订阅同步后的 RGB-D，并由 TF 读取 `odom→base_footprint`。车相对上一关键帧移动足够远时写入新关键帧，存进 `.db`。深度投影到地面得到占用栅格，发布在 `/map`。`.db` 在进程退出后仍在磁盘上。`/map` 随进程结束停止发布。
-
-定位仍运行感知和视觉里程计。它读取已有数据库，将当前观测与库中节点配准，得到车在 `/map` 中的位置，并发布 `map→odom`。空数据库无法定位。
-
-规划在定位之后进行。车上已有 `/map` 和由 TF 得到的车体位姿。Nav2 根据目标点在栅格上计算路径。占用格周围扩大成高代价区域，称为代价地图。本车是阿克曼底盘，前轮转向，不能原地转向。
-
-控制器按路径计算速度，发布 `geometry_msgs/msg/Twist`。导航时底盘订阅 `/cmd_vel_safe`。看门狗接在控制器与底盘之间，正常时转发 `/cmd_vel`。底盘不启动时，视觉跟丢即发布全零并取消导航。底盘启动时，视觉跟丢并且轮速中断或超过 5 s 没有定位成功，才发布全零并取消导航。
-
-抓包节点订阅红外、深度、`/map`、里程计、TF 和导航相关话题，查询部分参数，把 PNG 预览和 `summary.yaml` 写入 `/home/wheeltec/vision_captures/<日期时间>-<pid>/`。建图会话与导航会话各产生一个目录。
+每次运行可保存图像预览、地图和状态摘要，便于把各检查点的现象对应到同一次建图或导航会话。
 
 数据按以下顺序传递：
 
@@ -45,7 +35,9 @@ status: complete
 
 ## 工作空间
 
-远程登录后加载覆盖安装，再启动本包节点。覆盖安装脚本同时加载本包以及底层工作空间中的 RTAB-Map、Nav2 与底盘包。
+功能包为 `wheeltec_vision_nav`，车上工作空间为 `/home/wheeltec/vision_ws`。建图入口是 `vision_mapping.launch.py`，导航入口是 `vision_navigation.launch.py`。
+
+新开的每个终端都执行 `source /home/wheeltec/vision_ws/source_overlay.bash`，加载本包以及底层工作空间中的 RTAB-Map、Nav2 与底盘包，再运行对应命令。
 
 ```bash
 ssh wheeltec@192.168.0.100
@@ -79,7 +71,11 @@ pkill -f hold_odom_tf
 
 ## 建图
 
-建图启动相机、配对、同步、视觉里程计和 RTAB-Map。观测写入磁盘数据库，占用栅格发布在 `/map`。`start_base:=true` 时启动底盘，`/wheel/odom` 和 `/imu/data_raw` 进入融合，写入 `/odom` 的是 EKF 融合后的运动。用手推动时编码器随轮转动。相机对准 0.5～3 m 有纹理的墙面或家具。地面、白墙、强光玻璃上特征不足，视觉里程计保持跟丢，外观关键帧变少。
+相机为 D435C。它发布左红外图像和深度图像。左红外是单通道亮度，深度是每个像素到场景的距离。镜头前有红外投射器：打开时深度更稳定，关闭时红外图像没有散斑。驱动按帧交替开关投射器。配对节点 `vision_emitter_pair` 按红外图像里的亮点比例判断每一帧投射器的开关，把关掉投射器的红外和相邻一帧打开投射器的深度配对，再写入一条同时含亮度和深度的 `rtabmap_msgs/msg/RGBDImage`，发布在 `/rtabmap/rgbd_image`。
+
+建图订阅同步后的 RGB-D，并由 TF 读取 `odom→base_footprint`。车相对上一关键帧移动足够远时写入新关键帧，存进 `.db`。深度投影到地面得到占用栅格，发布在 `/map`。`.db` 在进程退出后仍在磁盘上。`/map` 随进程结束停止发布。
+
+建图启动相机、配对、同步、视觉里程计和 RTAB-Map。`start_base:=true` 时启动底盘，`/wheel/odom` 和 `/imu/data_raw` 进入融合，写入 `/odom` 的是 EKF 融合后的运动。用手推动时编码器随轮转动。相机对准 0.5～3 m 有纹理的墙面或家具。地面、白墙、强光玻璃上特征不足，视觉里程计保持跟丢，外观关键帧变少。
 
 `wipe_db:=true` 时启动带 `-d`，先清空数据库再写。路径为 `/home/wheeltec/.ros/vision_rtabmap_mapping.db`。导航读取同一文件。再次用 `wipe_db:=true` 启动建图会清空已有地图。在已有库上继续建图时设 `wipe_db:=false`。
 
@@ -162,7 +158,7 @@ ros2 run wheeltec_vision_nav inspect_map_db /home/wheeltec/.ros/vision_rtabmap_m
 
 ## 定位
 
-定位启动与建图相同的感知和视觉里程计，RTAB-Map 读取已有数据库，不再向库中追加地点。`Mem/IncrementalMemory` 为 false。空文件或建图阶段一直跟丢得到的库无法定位。
+定位启动与建图相同的感知和视觉里程计。RTAB-Map 读取已有数据库，将当前观测与库中节点配准，确定车在地图中的位置，并发布 `map→odom`。此时 `Mem/IncrementalMemory` 为 false，不再向库中追加地点。空文件或建图阶段一直跟丢得到的库无法定位。
 
 导航启动文件同时启动定位、Nav2 和看门狗。底盘由 `start_base:=true` 启动，轮速发布在 `/wheel/odom`，逆变换发布为 `base_footprint→wheel_odom`。视觉里程计的 `guess_frame_id` 为 `wheel_odom`，以轮速位姿作运动预测。写入 `/odom` 的是 EKF 融合后的运动。
 
@@ -204,7 +200,9 @@ ros2 topic echo --once /wheel/odom --qos-reliability best_effort --no-arr --fiel
 
 ## 规划
 
-定位完成后，车上已有 `/map` 和车体在地图中的位姿。Nav2 根据目标点计算路径。局部代价地图坐标系为 `odom`，没有静态层，体素层订阅 `/vision/obstacles`，这些障碍点由配对后的深度直接生成。全局代价地图坐标系为 `map`，静态层订阅 `/map`。
+定位完成后，Nav2 根据 `/map`、由 TF 得到的车体位姿和目标点计算路径。本车是前轮转向的阿克曼底盘，路径需要满足无法原地转向的运动约束。
+
+规划使用代价地图描述障碍物和附近的高代价区域。局部代价地图坐标系为 `odom`，没有静态层，体素层订阅 `/vision/obstacles`，这些障碍点由配对后的深度直接生成。全局代价地图坐标系为 `map`，静态层订阅 `/map`。
 
 规划动作为 `ComputePathToPose`，`planner_id=GridBased`。`/goal_pose` 的 `frame_id` 为 `map`。输出 `nav_msgs/msg/Path`。长度为 0 表示规划失败，车辆不运动。
 
@@ -282,7 +280,9 @@ rviz2 -d /home/wheeltec/.rviz2/vision_mapping.rviz
 
 ## 抓包文件
 
-每次抓包进程启动时新建目录 `/home/wheeltec/vision_captures/<YYYYMMDD-HHMMSS>-<pid>/`。内容包括红外与深度 PNG、占用栅格 PNG、`summary.yaml`。`summary.yaml` 还记录配对状态、EKF 的输入话题、RTAB-Map 的里程计来源，以及包括 `/tf_static` 在内的坐标系父子关系。建图目录中 `vx_min` 为 null，没有 `/cmd_vel_safe`。导航目录在 Nav2 激活后写入 `vx_min`、控制频率、代价地图插件和行为树路径，定位成功后出现 `localization_pose`。发送目标后 `summary.yaml` 中才会出现非零 `/cmd_vel`。遮挡镜头后才会出现 `vo_status: lost`。
+抓包节点订阅红外、深度、`/map`、里程计、TF 和导航相关话题，并查询部分参数。每次启动时新建目录 `/home/wheeltec/vision_captures/<YYYYMMDD-HHMMSS>-<pid>/`，保存红外与深度 PNG、占用栅格 PNG 和 `summary.yaml`；建图与导航会话分别保存。
+
+`summary.yaml` 记录配对状态、EKF 输入话题、RTAB-Map 的里程计来源，以及包括 `/tf_static` 在内的坐标系父子关系。建图目录中 `vx_min` 为 null，没有 `/cmd_vel_safe`。导航目录在 Nav2 激活后写入 `vx_min`、控制频率、代价地图插件和行为树路径，定位成功后出现 `localization_pose`。发送目标后 `summary.yaml` 中才会出现非零 `/cmd_vel`。遮挡镜头后才会出现 `vo_status: lost`。
 
 ```bash
 ls -lt /home/wheeltec/vision_captures
@@ -344,6 +344,8 @@ ros2 topic echo --once /map --qos-durability transient_local --field info
 
 ### TF
 
+红外像素、里程计位姿、占用栅格处在不同坐标系中。变换顺序为 `map → odom → base_footprint`。`map` 固连环境。`odom` 固连本次出发时的姿态。`base_footprint` 固连车体在地面上的投影。短时运动记在 `odom→base_footprint`，相对环境的偏差记在 `map→odom`。相机连接在 `base_footprint` 下。有底盘时，轮速坐标系连在车体下，使 `base_footprint` 只有一个父坐标系。
+
 ```bash
 source /home/wheeltec/vision_ws/source_overlay.bash
 ros2 run tf2_ros tf2_echo odom base_footprint
@@ -362,6 +364,8 @@ ros2 topic echo --once /wheel/odom --qos-reliability best_effort --no-arr --fiel
 ```
 
 ### 参数与 IMU
+
+视觉里程计订阅同步后的 `rtabmap_msgs/msg/RGBDImage`，估计车相对本次出发的位姿，发布 `/odom_vo`。底盘启动时，输入整理节点 `vision_ekf_inputs` 扣除陀螺仪零偏、给视觉速度设方差下限，EKF 节点 `vision_ekf` 融合 `/wheel/odom`、`/vision/imu` 和 `/vision/odom_vo`，写入 `/odom` 和 `odom→base_footprint`。底盘不启动时，节点 `vision_hold_odom_tf` 转发视觉位姿，跟丢时在同一图像时间戳上转发上次有效位姿。
 
 ```bash
 source /home/wheeltec/vision_ws/source_overlay.bash
