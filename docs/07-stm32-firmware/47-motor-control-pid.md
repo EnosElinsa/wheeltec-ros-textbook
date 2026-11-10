@@ -11,18 +11,18 @@ status: complete
 比例—积分—微分控制（Proportional-Integral-Derivative Control, PID）根据目标值与测量值之间的误差计算控制输出。底盘速度环常使用其中的比例和积分两项，简称 PI 控制；微分项并非每个速度环都需要。本章观察的是“目标轮速 → 误差 → PWM → 实际轮速”这条闭环。
 
 !!! example "本节代码：电机控制"
-    仓库目录：[`stm32/control/motor/stm32f4-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/62aacaed782091b06060ace276c64e9aaf84ae6b/stm32/control/motor/stm32f4-stdperiph)。完整文件集见 `metadata/code-resource-manifests/motor.txt`。验收：能定位电机映射。边界：无编译器与实机证据。
+    [电机控制源码](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/62aacaed782091b06060ace276c64e9aaf84ae6b/stm32/control/motor/stm32f4-stdperiph)：从 `USER/main.c` 追踪电机编号、方向控制和 PWM 输出。
 
 ## 47.2 适用范围 {#stm32-pid-control}
 
 直流编码器电机速度环；舵机位置环和速度/位置串级控制采用同一误差反馈思路，但参数与输出不同。
 
 !!! example "本节代码：PID 控制"
-    仓库目录：[`stm32/control/pid/stm32f4-stdperiph`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/62aacaed782091b06060ace276c64e9aaf84ae6b/stm32/control/pid/stm32f4-stdperiph)。完整文件集见 `metadata/code-resource-manifests/pid.txt`。验收：能定位 PID 常量。边界：无编译器与实机证据。
+    [PID 控制源码](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/62aacaed782091b06060ace276c64e9aaf84ae6b/stm32/control/pid/stm32f4-stdperiph)：从 `USER/main.c` 查看 PID 参数，以及目标值、反馈值和控制输出之间的关系。
 
 ## 47.3 闭环前置检查 {#closed-loop-prechecks}
 
-进入闭环前先逐项检查三个最小外设实验的停止条件；任一项触发即停止，不把外设观察外推为整车控制结论。
+进入闭环前，先检查串口、PWM 和编码器实验结果。出现以下任一情况时，停止实验并排查。
 
 ### 串口实验停止条件
 
@@ -40,7 +40,7 @@ status: complete
 - 探头接入导致复位、波形严重畸变或电源限流；
 - 为获得波形需要取消安全使能、短接驱动器或提高供电电压。
 
-该实验只验收 MCU 引脚波形。要进入电机实验，必须另行核对驱动器、使能、方向、限流和急停。
+测得 MCU 引脚波形后，继续核对电机驱动器、使能、方向、限流和急停，再接入电机。
 
 ### 编码器实验停止条件
 
@@ -94,9 +94,8 @@ $$
 | 左右轮参数差异很大 | 电机、驱动、轮胎和负载差异 |
 | PWM 饱和仍达不到速度 | 供电、负载、减速比或目标不现实 |
 
-
 !!! example "本章代码：电机与 PID"
-    使用 `stm32/control/motor/stm32f4-stdperiph/USER/main.c` 与 `stm32/control/pid/stm32f4-stdperiph/USER/main.c` 及完整 F4 CMSIS/StdPeriph/BSP 依赖。验收：静态核对电机映射和 PID 常量；边界：未提供编译器与实机证据。
+    两个工程均从 `USER/main.c` 开始阅读，分别追踪电机映射和 PID 参数。构建依赖工程中的 STM32F4 CMSIS、标准外设库和板级支持代码。
 
 ## 章节导航
 

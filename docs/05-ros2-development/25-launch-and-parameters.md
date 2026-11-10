@@ -60,7 +60,7 @@ wheeltec_sensors.launch.py
 
 这张树只是追踪方法，不是所有版本的保证。实际入口可能只启动底盘，也可能把雷达和相机一起启动；以当前工作空间的源码和运行节点为准。
 
-启动链闭合不等于数据链闭合：某个雷达或相机进程被启动，只能证明 Launch 创建了它；还要检查状态估计配置、重映射（remap）、话题类型、频率和 TF，才能证明数据真正被消费。
+雷达或相机节点启动后，继续检查状态估计配置、重映射（remap）、话题类型、频率和 TF，确认算法节点正在接收并使用传感器数据。
 
 #### 从工作空间根执行构建和启动
 
@@ -86,7 +86,7 @@ ros2 launch turn_on_wheeltec_robot <入口.launch.py>
 - `robot_frame_id`：里程计消息的子坐标系；
 - `odom_frame_id`：里程计消息的父坐标系。
 
-参数名存在不代表运行值正确。启动后必须用 `ros2 param get` 回读节点实际值。
+启动后用 `ros2 param get` 回读节点实际值，并与预期配置比较。
 
 #### 机器人组合入口
 
@@ -123,7 +123,7 @@ ros2 param get <底盘节点名> odom_frame_id
 !!! example "本章代码：底盘启动链"
     仓库目录：[ros2/robot/turn-on-wheeltec-robot](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/62aacaed782091b06060ace276c64e9aaf84ae6b/ros2/robot/turn-on-wheeltec-robot)
 
-    使用 `launch/turn_on_wheeltec_robot.launch.py`、`launch/base_serial.launch.py`、`launch/robot_mode_description.launch.py` 和 `src/wheeltec_robot.cpp` 静态追踪入口、底盘节点和车型分支。验收：能定位入口 Launch 与底盘节点关系。边界：外部机器人模型包未随本资源发布，不能据此启动机器人。
+    从 `launch/turn_on_wheeltec_robot.launch.py` 追踪组合入口，在 `launch/base_serial.launch.py` 中查看底盘节点参数，在 `launch/robot_mode_description.launch.py` 中查看车型分支，再阅读 `src/wheeltec_robot.cpp`。模型加载需要另行安装 `wheeltec_robot_urdf`、`mini_mec` 或 `mini_diff` 等对应模型包。
 
 ## 25.6 验收标准
 

@@ -49,10 +49,6 @@ Gazebo 中的世界（World）描述地面、墙体和障碍物，机器人模�
 | 时间戳异常 | `/use_sim_time` 和 `/clock` |
 | 仿真能导航、实机不能 | 回到传感器、TF、里程计和制动能力 |
 
-
-!!! note "代码资源边界"
-    教材源码仓库没有与本章绑定的完整 Gazebo 世界、模型和插件组合；仿真配置应来自读者当前工程。
-
 ## 章节导航
 
 [上一章：ROS 2 与 STM32 联调](../07-stm32-firmware/49-ros2-stm32-integration.md) · [返回本篇](index.md) · [下一章：多机编队与 Qt 控制界面](51-multi-robot-and-qt.md)

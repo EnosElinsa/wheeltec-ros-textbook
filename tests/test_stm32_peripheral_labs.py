@@ -31,17 +31,15 @@ class Stm32PeripheralLabMigrationTests(unittest.TestCase):
             self.assertIn("#### 预期观察", section)
         self.assertGreaterEqual(self.control.count("停止条件"), 3)
 
-    def test_labs_do_not_present_f103_examples_as_portable_firmware(self) -> None:
+    def test_labs_identify_target_hardware_and_build_requirements(self) -> None:
         combined = self.architecture + self.labs + self.control
         for phrase in (
             "STM32F103C8T6",
-            "不能据此形成烧录建议",
-            "不提供可直接烧录的固件文件",
-            "待实机验证",
-            "静态校对",
-            "历史构建",
-            "当前构建",
-            "实机验证",
+            "Keil MDK 5.33",
+            "Arm Compiler 5.06 update 7",
+            "STM32F1 标准外设库",
+            "重新配置芯片、引脚、时钟、下载地址和电平",
+            "原固件与恢复方法",
         ):
             self.assertIn(phrase, combined)
 

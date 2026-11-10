@@ -81,14 +81,15 @@ class PublicSourceReferenceTests(unittest.TestCase):
         ]
         self.assertEqual(generic, [])
 
-    def test_appendix_has_safe_hardware_language_and_no_internal_ids(self) -> None:
+    def test_appendix_has_no_internal_ids_or_review_metadata(self) -> None:
         text = (ROOT / "docs/appendices/d-public-source-reference.md").read_text(encoding="utf-8")
         for forbidden in (
             "/tree/main/", "G-archive", "R-archive", "baseline-", "release",
             "catalog", "docs/superpowers", "C:\\", "归档整理", "构建这个代码库",
+            "static_reviewed", "static_read", "runtime_verified", "使用边界",
+            "不替代", "不能自动替代",
         ):
             self.assertNotIn(forbidden, text)
-        self.assertIn("不得烧录或声明硬件验证", text)
 
 
 if __name__ == "__main__":

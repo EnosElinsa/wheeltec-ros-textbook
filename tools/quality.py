@@ -182,8 +182,8 @@ def expected_engineering_headings(number: int) -> list[str]:
         return [
             "55.1 学习目标",
             "55.2 适用范围",
-            "55.3 静态核对",
-            "55.4 安全边界",
+            "55.3 源码阅读顺序",
+            "55.4 实机维护准备",
             "55.5 故障记录",
             "章节导航",
         ]

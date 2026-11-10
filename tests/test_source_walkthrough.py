@@ -18,8 +18,8 @@ class SourceWalkthroughMigrationTests(unittest.TestCase):
         combined = "\n".join(path.read_text(encoding="utf-8") for path in pages)
         for phrase in (
             "当前工作空间不自包含",
-            "启动链闭合不等于数据链闭合",
-            "只能报告 ROS 图上的静态或运行时接口证据",
+            "确认算法节点正在接收并使用传感器数据",
+            "观察下行串口帧",
             "ros2 topic pub --once /cmd_vel geometry_msgs/msg/Twist",
             "如果安装前缀、`colcon list` 和准备修改的目录不能对应",
         ):

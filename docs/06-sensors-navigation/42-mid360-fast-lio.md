@@ -4,7 +4,6 @@ status: draft
 
 # 42. MID360 与 FAST-LIO 三维建图的运行过程
 
-
 ## 过程概要
 
 MID360 用激光测出距离，再结合测量方向和设备标定得到雷达坐标系中的 `x、y、z`；内置 IMU 同时输出角速度和加速度。
@@ -39,7 +38,6 @@ FAST-LIO /laser_mapping
 
 ![MID360 → ROS 2 → FAST-LIO → RViz2 的实际数据流](diagrams/mid360-fast-lio-overview.svg)
 
-
 ---
 
 ## 42.1 MID360 怎样从光返回中得到一个点
@@ -52,7 +50,7 @@ $$
 r = \frac{c\,\Delta t}{2}.
 $$
 
-除以 2 是因为光走了“从雷达到物体、再从物体返回雷达”两段路。真实设备还会做阈值判断、时间标定、温度和内部延迟补偿，所以教材中的公式用于理解原理，不等于重新实现 MID360 的测距固件。
+除以 2 是因为光走了“从雷达到物体、再从物体返回雷达”两段路。真实设备还会做阈值判断、时间标定、温度和内部延迟补偿。
 
 返回信号的强弱会被记录为反射强度。在 ROS 2 的 `CustomPoint` 中，它对应 `reflectivity`。深色、倾斜或吸收性强的材料可能反射较弱；玻璃、镜面和很远的目标也可能产生少量、跳变或无效回波。因此“没有点”不一定说明网络或驱动故障，还可能是测量条件不适合。
 
@@ -233,7 +231,6 @@ IMU 记录在官方 SDK2 中是 6 个 `float`：`gyro_x、gyro_y、gyro_z、acc_
 
 ![把 tcpdump 偏移映射到 MID360 UDP 载荷](diagrams/mid360-tcpdump-offsets.svg)
 
-
 ### 42.2.4 从雷达通信到 ROS 2 话题
 
 #### 先看雷达怎样把数据发给 Jetson
@@ -318,7 +315,7 @@ livox_ros_driver2
 0 packets dropped by kernel
 ```
 
-这组数字只说明网络上收到了 UDP 数据，不代表 ROS 2 话题已经正确发布。要确认数据已经走到 ROS 2，需要在驱动启动后检查：
+收到 UDP 数据后，启动驱动并检查 ROS 2 话题：
 
 ```bash
 ros2 topic list -t
@@ -595,10 +592,10 @@ FAST-LIO 能否正常工作，首先取决于这两个订阅接口是否对得�
 | `/livox/lidar` | `x/y/z`、`offset_time`、`header.stamp`、`frame_id` | 点云去畸变、扫描匹配和地图更新 |
 | `/livox/imu` | 三轴角速度、三轴加速度、时间戳、`frame_id` | 初始化、运动预测和姿态更新 |
 
-这里有两个容易混淆的边界：
+两个节点的分工如下：
 
-1. `livox_ros_driver2` 负责把设备协议变成 ROS 2 消息；它不做点云配准和建图。
-2. FAST-LIO 只订阅 ROS 2 消息；它不应该直接读取 MID360 UDP 包，也不应该绕过 `livox_ros_driver2` 调用 SDK2。
+1. `livox_ros_driver2` 通过 SDK2 接收设备数据，转换并发布 ROS 2 消息。
+2. FAST-LIO 订阅点云与 IMU 消息，进行配准、状态估计和建图。
 
 在当前工程中，启动 FAST-LIO 后可以用下面的命令确认这条连接是否真的建立：
 
@@ -661,8 +658,7 @@ imu_sub_ = create_subscription<sensor_msgs::msg::Imu>(
 
 `publish()` 把消息交给 ROS 2 中间件，订阅者收到消息后才执行对应的回调函数。回调函数不是再次访问网口，也不是再次调用 SDK2，而是读取驱动已经封装好的字段；真实 FAST-LIO 还会在回调后继续进行缓存、时间排序和状态估计。
 
-如果驱动启动文件设置 `xfer_format=0`，`/livox/lidar` 的类型会变成 `sensor_msgs/msg/PointCloud2`，订阅者就必须把上面点云订阅的类型替换为 `sensor_msgs::msg::PointCloud2`，再使用 PointCloud2 的字段迭代器读取 `x/y/z`。话题名相同并不代表消息类型相同。
-
+如果驱动启动文件设置 `xfer_format=0`，`/livox/lidar` 的类型会变成 `sensor_msgs/msg/PointCloud2`，订阅者就必须把上面点云订阅的类型替换为 `sensor_msgs::msg::PointCloud2`，再使用 PointCloud2 的字段迭代器读取 `x/y/z`。
 
 ## 42.5 FAST-LIO 怎样把点云和 IMU 变成三维地图
 
@@ -679,7 +675,7 @@ FAST-LIO 把两者结合起来，估计当前位姿，再把点放到同一个�
 
 上图中的“预测”来自 IMU，“匹配”来自点云和局部地图的几何关系，“更新”把两种信息合在一起。算法完成一轮更新后，再处理下一批点云；它不是把点不加判断地堆在一起。
 
-官方实现和论文可作为源码对照：[`hku-mars/FAST_LIO`](https://github.com/hku-mars/FAST_LIO) 中的 `src/laserMapping.cpp` 展示了 ROS 2/ROS 接口、IMU 预测、地图匹配和发布流程；算法思想可参考 [FAST-LIO2 论文](https://arxiv.org/abs/2107.06829)。本章的代码片段是按当前工程流程整理的教学伪代码，不替代具体版本的完整源码。
+官方实现和论文可作为源码对照：[`hku-mars/FAST_LIO`](https://github.com/hku-mars/FAST_LIO) 中的 `src/laserMapping.cpp` 展示了 ROS 接口、IMU 预测、地图匹配和发布流程；算法思想可参考 [FAST-LIO2 论文](https://arxiv.org/abs/2107.06829)。以下代码片段用伪代码展示处理流程。
 
 ### 42.5.1 总流程：两组输入怎样变成位姿、路径和地图
 
@@ -726,8 +722,6 @@ IMU 运动预测
 
 这里的“路径”不是 Nav2 规划出来的未来路线，而是 FAST-LIO 根据连续位姿记录的“机器人已经怎样移动”。“地图”也不是雷达直接给出的图片，而是算法利用每一时刻的位姿，把多帧点云放到同一个参考坐标系后逐步累积出的三维点集合。
 
-本节只回答“输入经过哪些大步骤、输出是什么”。后面的 5.3—5.7 再分别解释 IMU 预测、点云去畸变、坐标变换、地图匹配和位姿修正；其中 `P0`、`P1` 的小车示意图属于这些内部计算的例子，不是总流程图。
-
 本章先记住三套坐标的分工，后面再看变换公式：
 
 ```text
@@ -768,7 +762,6 @@ camera_init   FAST-LIO 启动时建立的局部建图参考坐标系
 ```
 
 当一批点云的时间范围和对应的 IMU 数据准备好后，FAST-LIO 才开始这一轮计算。也就是说，算法真正使用的不是“两个话题的名字”，而是已经按时间对齐的点、每个点的采样时刻，以及同一时间段内的 IMU 样本。
-
 
 用一句话说，FAST-LIO 不是把 `/livox/lidar` 原样转发出去，而是先维护一个内部状态：
 
@@ -1104,7 +1097,7 @@ t1：车向墙前进了 0.5 m，雷达测到墙距 1.7 m
 
 输出是已经位于 `camera_init` 中的点 `p_init`。5.6 不再拿“雷达前方 2 m”去查地图，而是拿“这个点在固定建图坐标中的位置”去找邻近墙面或地面。若外参或当前位姿错了，点就会整体偏移、墙面变厚或出现双层；消息本身仍可能正常发布，所以必须同时检查坐标关系。
 
-更换 MID360 的安装位置或角度时，重点重新检查 `extrinsic_R`、`extrinsic_T` 和消息 `frame_id`。这段外参通常写在 `mid360.yaml` 中，不等于系统一定已经自动发布了同名 ROS 2 TF；它可能由 FAST-LIO 在算法内部使用。
+更换 MID360 的安装位置或角度时，重点重新检查 `extrinsic_R`、`extrinsic_T` 和消息 `frame_id`。`mid360.yaml` 中的外参供 FAST-LIO 内部计算使用；系统需要的 ROS 2 TF 应另外检查发布节点和变换内容。
 
 ### 42.5.6 第四步：过滤点，并在局部地图中找对应位置
 

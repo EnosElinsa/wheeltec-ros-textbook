@@ -26,9 +26,7 @@ status: complete
 
 ### ROS 1 Bag 离线传感器诊断
 
-ROS 1 Bag 可以在没有实机时重放话题，用来检查数据类型、频率、时间戳、frame 和 TF。它记录的是某次运行的消息，不包含完整驱动、参数、URDF 或硬件配置；Bag 能回放也不代表当前机器人兼容，更不能证明 WHEELTEC 兼容。
-
-本文使用两个已核对的 ROS 1 样本说明诊断方法，但不提供 Bag 文件下载。公开页面不包含原始 Bag、系统镜像、驱动或本地存储信息。
+ROS 1 Bag 保存一次运行的话题消息。离线回放可以检查数据类型、频率、时间戳、frame 和 TF；复现建图时，还需要配套消息定义、算法参数和传感器安装关系。
 
 ### 先判断格式和使用环境
 
@@ -55,7 +53,7 @@ rosbag info --yaml "$BAG_COPY" > bag-info.yaml
 printf 'Audit directory: %s\n' "$AUDIT_DIR"
 ```
 
-把 `BAG_SOURCE` 改成实际绝对路径；引号保留，以处理空格。严格模式会让路径、哈希或复制失败立即停止；两个哈希非空且 `cmp` 退出码为 0 才继续。后续操作只针对 `BAG_COPY`。若 `rosbag info` 失败，不要对 Bag 原件执行 `reindex` 或 `fix`；只在副本上诊断。结束前把 `bag-info.yaml`、两个哈希文件和实验记录移到长期保存位置，临时目录才可以删除。
+把 `BAG_SOURCE` 改成实际绝对路径，保留引号以处理空格。脚本复制文件并比较哈希，任一步失败都会停止。后续诊断、`reindex` 或 `fix` 均在 `BAG_COPY` 上进行。结束后保存 `bag-info.yaml`、哈希文件和实验记录。
 
 ### 第一阶段：只读盘点
 
@@ -67,7 +65,7 @@ printf 'Audit directory: %s\n' "$AUDIT_DIR"
 - 是否包含 `/clock`、`/tf`、`/tf_static`、里程计、扫描、IMU、图像、控制命令或地图；
 - 是否出现自定义消息或当前环境未知的旧类型。
 
-用消息数除以整个 Bag 持续时间只能得到粗略频率；某话题开始较晚或提前结束时会失真。较准确的录制频率应使用该话题自身首末记录时间或相邻 `header.stamp`。这些计算可以筛查数量级，但不能单独解释局部停顿、突发或时间回跳。
+用消息数除以整个 Bag 持续时间可估算频率；若某话题开始较晚或提前结束，应改用该话题自身的首末记录时间。检查停顿、突发和时间回跳时，逐条比较相邻 `header.stamp`。
 
 #### 建图所需信息检查
 
@@ -79,13 +77,11 @@ printf 'Audit directory: %s\n' "$AUDIT_DIR"
 4. 里程计或与所选算法匹配的运动估计；
 5. 一致的录制时钟。
 
-缺少其中一项不等于 Bag 损坏，但必须把用途降级。例如只有扫描和 IMU 的 Bag 可以检查频率、frame 和数值范围，却不能凭空补出 `odom → base_link → laser` 链。
+只有扫描和 IMU 时，可以先检查频率、frame 和数值范围。若所选建图算法需要 `odom → base_link → laser`，则需补充对应的运动估计和传感器安装变换。
 
 ### 第二阶段：隔离并暂停回放
 
 先审查完整话题清单，建立只包含诊断输入的白名单，排除 `cmd_vel`、执行器命令、服务触发和其他控制接口。使用独立 ROS master，避免白名单话题触发现有机器人节点。三个终端都设置相同的隔离地址；不要连接真实底盘或运行会订阅控制话题的节点。
-
-ROS 图隔离不等于恶意文件沙箱或绝对物理安全边界。来源不明的 Bag 应放在非特权、无设备映射的隔离系统中解析；不要让回放环境访问串口、CAN、GPIO 或机器人网络。
 
 终端 A：
 
@@ -110,9 +106,9 @@ DIAG_TOPICS=(/tf /odom /scan /imu/data_raw)
 rosbag play --clock --pause --rate 0.5 "$BAG_COPY" --topics "${DIAG_TOPICS[@]}"
 ```
 
-如果准备步骤已在另一个终端运行，普通 shell 变量不会自动传到终端 B。先把当时打印的实际目录重新赋给 `AUDIT_DIR`，再令 `BAG_COPY="$AUDIT_DIR/input.bag"`；上面的变量门禁和可读检查通过后才回放。
+如果准备步骤已在另一个终端运行，把打印的目录赋给终端 B 中的 `AUDIT_DIR`，再设置 `BAG_COPY="$AUDIT_DIR/input.bag"`。
 
-回放以暂停状态开始。先启动观察工具，再按空格继续；再次按空格可暂停。`--clock` 根据 Bag 记录时间轴生成 `/clock`，它不证明消息自己的 `header.stamp` 正确。`/use_sim_time` 让随后启动的 ROS 节点使用模拟时间；若观察节点在设置参数前已经启动，应重启该节点。
+回放以暂停状态开始。先启动观察工具，再按空格继续；再次按空格可暂停。`--clock` 根据 Bag 记录时间轴生成 `/clock`，消息自身的 `header.stamp` 则需单独检查。`/use_sim_time` 让随后启动的 ROS 节点使用模拟时间；若观察节点在设置参数前已经启动，应重启该节点。
 
 #### 选择唯一权威时钟
 
@@ -135,7 +131,7 @@ rostopic hz "$TOPIC"
 rostopic echo -n 1 "$TOPIC"
 ```
 
-不要照抄案例话题名。以当前 Bag 的 `rosbag info` 和回放后的 `rostopic list` 为准。
+用当前 Bag 的 `rosbag info` 和回放后的 `rostopic list` 确定话题名。
 
 ### 第三阶段：逐层检查数据
 
@@ -172,39 +168,27 @@ rostopic echo -n 1 "$ODOM_TOPIC"
 
 在回放推进期间运行 `view_frames`；它可能需要 Graphviz 才能生成 PDF。分别记录里程计的 `header.frame_id`、`child_frame_id`、pose/twist covariance 和 TF 中的 parent/child。Odometry 的 pose 由 `header.frame_id` 表达，twist 以 `child_frame_id` 为参考；空 `child_frame_id` 会削弱消息语义，但不自动否定独立存在的 TF 链。
 
-Bag 里存在 `/tf` 只说明记录过变换；它不保证目标 frame 连通，也不保证里程计消息自身字段完整。回放后的 `rostopic info /tf` 通常只看到 rosbag player，不能恢复原始发布者。冲突诊断应检查同一 child 的 parent 变化、重复变换和时间关系；若要追溯原始发布节点，需要额外检查 Bag 的 connection header 与 `callerid`，并记录所用读取工具。
+检查 `/tf` 中的目标 frame 是否连通，并核对里程计字段。回放后的 `rostopic info /tf` 通常显示 rosbag player；追溯原始发布节点时，读取 Bag 的 connection header 与 `callerid`。出现 TF 冲突时，检查同一 child 的 parent 变化、重复变换和时间关系。
 
 #### RViz 观察
 
 在同一隔离 master 和模拟时间设置下启动 RViz，先选择一个实际存在且连通的 Fixed Frame，再添加 LaserScan、TF、Odometry 或 Image。若扫描不显示，先看状态栏错误、消息 frame、TF 和时间，不要先修改数据。
 
-### 两个样本的审计结果
+### 常见数据问题
 
-下表只陈述消息层事实，用于说明怎样根据缺口降低结论等级。由于 Bag 不公开，这些属于不可独立复核的示例审计结果，不是读者当前文件的证据；样本名称也不表示车型或来源。读者必须对自己的 Bag 重新运行本页命令。
+| 现象 | 检查与处理 |
+|---|---|
+| 里程计 `child_frame_id` 为空 | 查明速度参考坐标系，同时检查 `odom → base_link` 的 TF |
+| 雷达、IMU 和相机使用不同 frame，Bag 中缺少 TF | 从采集时的 URDF 或标定文件补充安装变换 |
+| `orientation_covariance[0]` 为 `-1` | 姿态未提供估计；角速度和加速度分别检查 |
+| covariance 全零 | 协方差未知，按传感器规格或标定结果配置 |
+| 扫描类型为 `sensor_msgs/MultiEchoLaserScan` | 确认算法支持多回波，或明确选择回波的转换规则 |
+| 平均频率与名义扫描周期不符 | 比较相邻时间戳，检查缺帧、录制间隙和局部抖动 |
+| 压缩图像回放正常，但视觉算法无法启动 | 检查图像解码、`CameraInfo`、内参与图像时间同步 |
 
-| 样本 | 已观察内容 | 能做什么 | 不能得出什么 |
-|---|---|---|---|
-| 多模态样本 A，约 246 秒 | `/tf`、约 48.5 Hz 里程计、约 40 Hz 的 720 点 `LaserScan`、约 8.2 Hz 压缩 RGB/深度图 | 检查 TF 树、扫描 frame、里程计字段、图像消息和多话题时间关系 | 不能证明 WHEELTEC 兼容，也不能证明地图已经正确生成 |
-| 传感器样本 B，约 244 秒 | 约 197 Hz IMU、约 36～37 Hz 水平和垂直 `sensor_msgs/MultiEchoLaserScan` | 检查 IMU 协方差、双扫描 frame、回波结构和频率 | 没有里程计、TF 或地图，不能单独完成建图链路验收 |
+### 转换到 ROS 2
 
-#### 样本 A 暴露的边界
-
-- 里程计话题属于另一套机器人命名空间；不能因为消息类型是 `nav_msgs/Odometry` 就把参数用于当前机器人。
-- 里程计 `header.frame_id` 为 `odom`，但 `child_frame_id` 为空；与此同时 `/tf` 中记录了 `odom → base_footprint → base_link → base_laser_link`。这适合演示“TF 看似存在，里程计字段仍可能不完整”。
-- 激光 frame 为 `base_laser_link`，相机消息使用另一光学 frame。要做融合，必须逐段证明 TF 和时间关系。
-- 图像话题能回放，只能证明压缩消息被记录，不能证明当前机器有相同相机、内参或驱动。
-
-#### 样本 B 暴露的边界
-
-- IMU frame、水平雷达 frame 和垂直雷达 frame 彼此不同，但 Bag 没有 TF，无法仅靠话题名恢复安装关系。
-- IMU 的 `orientation_covariance[0]` 为 `-1`，所以不能宣称姿态可用；角速度和线加速度的 covariance 为全零，表示其协方差未知，仍需分别判断数值是否可用。
-- 两个扫描话题每帧包含 1079 个角位置并使用多回波消息。使用前要确认消费者是否支持 `MultiEchoLaserScan`。
-- 消息数量和持续时间给出的平均频率与消息中的名义扫描周期并不完全一致，应在回放中检查疑似缺帧或记录间隙、时间戳和局部抖动；原因可能发生在传感器、驱动、网络或录包阶段，需要其他证据定位。
-- 该 Bag 自身不足以完成当前建图链路验收；若外部提供经过验证的 TF、运动估计或适配算法，运行条件可能改变，必须作为新的实验重新记录。
-
-### ROS 2 使用边界
-
-不要把“能在 ROS 1 回放”扩展为“已转换到 ROS 2”。转换或桥接前至少要处理：
+转换或桥接时，逐项检查：
 
 1. 旧消息类型到 ROS 2 类型的映射，例如 `tf/tfMessage` 到 `tf2_msgs/msg/TFMessage`；
 2. 自定义消息是否在两侧具有完全一致的定义；
@@ -224,14 +208,9 @@ Bag 里存在 `/tf` 只说明记录过变换；它不保证目标 frame 连通�
 | 时间 | 开始/结束、持续时间、是否使用 `/clock`、回放倍率 |
 | 连接表 | 话题、类型、消息数、连接数 |
 | 数据检查 | 实测频率、时间戳、frame、数值范围、缺失字段 |
-| TF/里程计 | 目标链、断点、冲突 parent/child、里程计两个 frame 字段；原发布者需要 connection header/callerid 证据 |
-| 使用结论 | 可做元数据检查 / 可回放 / 可做传感器诊断 / 建图条件不足 |
+| TF/里程计 | 目标链、断点、冲突 parent/child、里程计两个 frame 字段；原始发布节点可查 connection header/callerid |
+| 待解决问题 | 缺失话题、TF、标定文件或消息定义及其处理方式 |
 | 转换状态 | 未转换 / 转换待验证 / 已逐项对照验证 |
-
-只有同一工作副本、同一消息定义和同一回放设置下的记录才能支持结论。缺少完整 TF、里程计和传感器时间证据时，结论写为“建图条件不足”。“Bag 可用”或“建图成功”超出了现有证据。
-
-!!! note "代码资源边界"
-    本节使用读者自己的 ROS 1 Bag 工作副本和 ROS 1 命令，不依赖教材源码仓库；教材不提供 Bag 下载。
 
 ## 常见故障
 
@@ -244,8 +223,8 @@ Bag 里存在 `/tf` 只说明记录过变换；它不保证目标 frame 连通�
 
 ## 相关资料
 
-- 本附录只保留维护旧设备所需的关键差异；新项目优先采用 ROS 2 主线。
-- 新开发优先返回第五篇和第六篇的 ROS 2 章节。
+- [第五篇：ROS 2 开发](../05-ros2-development/index.md)
+- [第六篇：传感器、建图与导航](../06-sensors-navigation/index.md)
 
 ## 章节导航
 

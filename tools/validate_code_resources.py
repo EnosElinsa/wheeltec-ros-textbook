@@ -354,9 +354,7 @@ def render_appendix(mapping: CodeResourceMap) -> str:
         "",
         "# D. 教材代码资源",
         "",
-        "本附录是教材使用的代码资源索引。教材正文中的代码入口是主要使用位置；本页用于按用途集中查找同一批资源，不替代正文给出的文件范围、验收方法和安全边界。",
-        "",
-        f"所有源码链接固定到提交 `{mapping.source_revision}`。同名目录或后续版本不能自动替代本页所列资源。",
+        "按用途查找示例代码、关键文件和对应章节。",
     ]
     for category in APPENDIX_CATEGORIES:
         resources = sorted(grouped[category], key=lambda item: item.repository_path)
@@ -366,10 +364,6 @@ def render_appendix(mapping: CodeResourceMap) -> str:
         for resource in resources:
             files = sorted({file for consumer in resource.consumers for file in consumer.files})
             consumers = sorted(resource.consumers, key=lambda item: (item.page, item.anchor, item.role))
-            modes = "、".join(sorted({consumer.mode for consumer in consumers}))
-            boundaries = "；".join(
-                dict.fromkeys(boundary for consumer in consumers for boundary in consumer.boundaries)
-            )
             lines.extend(
                 (
                     "",
@@ -378,8 +372,6 @@ def render_appendix(mapping: CodeResourceMap) -> str:
                     f"- 代码目录：[`{resource.repository_path}`]({immutable_tree_url(mapping.source_repository, mapping.source_revision, resource.repository_path)})",
                     f"- 正文入口：{'；'.join(_consumer_link(consumer) for consumer in consumers)}",
                     f"- 关键文件：{'、'.join(f'`{file}`' for file in files)}",
-                    f"- 核验状态：`{resource.verification.level}`；使用方式：`{modes}`。",
-                    f"- 使用边界：{boundaries}",
                 )
             )
     rendered = "\n".join(lines) + "\n"

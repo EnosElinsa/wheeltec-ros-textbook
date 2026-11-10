@@ -21,16 +21,14 @@ class Ros1BagDiagnosticsMigrationTests(unittest.TestCase):
         ):
             self.assertIn(phrase, text)
 
-    def test_worked_samples_remain_bounded_to_observed_capabilities(self) -> None:
+    def test_common_data_problems_have_diagnostic_guidance(self) -> None:
         text = PAGE.read_text(encoding="utf-8")
         for phrase in (
-            "约 246 秒",
             "`child_frame_id` 为空",
-            "约 244 秒",
             "`sensor_msgs/MultiEchoLaserScan`",
-            "没有里程计、TF 或地图",
-            "不能证明 WHEELTEC 兼容",
-            "不提供 Bag 文件下载",
+            "从采集时的 URDF 或标定文件补充安装变换",
+            "姿态未提供估计",
+            "检查图像解码",
         ):
             self.assertIn(phrase, text)
 
@@ -45,8 +43,6 @@ class Ros1BagDiagnosticsMigrationTests(unittest.TestCase):
             "全零矩阵表示协方差未知",
             "connection header",
             "callerid",
-            "不可独立复核的示例审计结果",
-            "ROS 图隔离不等于",
             'test -r "$BAG_COPY"',
         ):
             self.assertIn(phrase, text)

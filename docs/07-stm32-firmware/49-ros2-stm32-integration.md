@@ -44,7 +44,7 @@ status: complete
   → EKF、TF 与上层导航
 ```
 
-静态源码只能证明某条路径被实现，不能证明当前机器人正在走这条路径。运行时继续核对节点、类型、发布者/订阅者和消息内容：
+阅读源码后，启动节点并核对消息类型、发布者、订阅者和消息内容：
 
 ```bash
 ros2 node info <底盘节点名>
@@ -57,9 +57,9 @@ ros2 run tf2_ros tf2_echo odom_combined base_footprint
 
 将 `/odom` 的 `header.frame_id`、`child_frame_id` 与节点参数比较；将 IMU 的 `header.frame_id` 与 TF 树比较；同时记录 `ros2 topic hz` 的频率。命名空间会给一组接口增加名称前缀，重映射（Remapping）则在启动时把原接口名替换为另一个名称。因此，实际话题名应以 `ros2 node info` 的运行结果为准。
 
-这些命令仍不能单独证明波特率已经生效、节点确实打开了预期设备或 STM32 已正确执行帧。硬件证据至少应包括：节点打开串口的日志或设备句柄、在电机失能/架空条件下观察到零速下行帧，以及 STM32 返回帧被节点接收并转成预期话题。缺少其中任一项，只能报告 ROS 图上的静态或运行时接口证据。
+继续检查节点打开串口的日志或设备句柄，核对端口与波特率。在电机失能或车轮架空时发送零速命令，观察下行串口帧，再检查 STM32 返回帧是否被节点接收并转换为里程计、IMU 和电压话题。
 
-代码入口与完整文件集见第 25 章的[底盘启动链资源块](../05-ros2-development/25-launch-and-parameters.md#bringup-launch-chain)；本节只定义 ROS、串口与固件之间的验证边界，不新增独立代码资源。
+代码入口见第 25 章的[底盘启动链示例](../05-ros2-development/25-launch-and-parameters.md#bringup-launch-chain)。
 
 ## 49.6 验收标准
 
@@ -67,7 +67,7 @@ ros2 run tf2_ros tf2_echo odom_combined base_footprint
 - ROS 速度和协议整数的缩放可手算复核。
 - OLED、轮速、里程计和 IMU 符号一致。
 - 停止、节点退出和通信断开都能让底盘安全停机。
-- 记录中包含 ROS 包版本、固件版本和抓帧证据。
+- 记录中包含 ROS 包版本、固件版本和抓帧记录。
 
 ## 49.7 故障排查
 

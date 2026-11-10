@@ -48,7 +48,7 @@ ros2 topic echo --once /robot_description
 
 ### 修改模型并验证
 
-修改 URDF 时先调整一个 link/joint，检查父子关系、平移单位（米）、旋转单位（弧度）和网格路径。重新启动模型发布节点后，用 `/robot_description` 和 TF 验证运行结果；刷新 RViz 只能更新显示，不能证明节点已加载新模型。
+修改 URDF 时先调整一个 link/joint，检查父子关系、平移单位（米）、旋转单位（弧度）和网格路径。重新启动模型发布节点后，检查 `/robot_description` 和 TF，再在 RViz 中观察新模型。
 
 主控和虚拟机各自保留模型副本时，两端必须同步；否则 RViz 可能显示旧模型而主控运行新坐标。
 

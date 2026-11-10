@@ -49,9 +49,8 @@ status: complete
 | 毫米波停障过敏 | 阈值、安装角度、静态杂波和滤波 |
 | 推理卡顿 | 输入尺寸、硬件加速、模型版本和 CPU/GPU 占用 |
 
-
 !!! example "本章代码：人体骨架消息与跟随节点"
-    使用 `ros1/maintenance/bodyreader` 的 `package.xml`、`launch/bodyfollow.launch`、`src/bodydata_process.cpp`、`src/follower.cpp` 和 `msg/body.msg`。验收：能定位人体消息与跟随节点；边界：依赖 Astra/OpenNI 运行时和相机，当前只作静态阅读。
+    在 `ros1/maintenance/bodyreader` 中，`msg/body.msg` 定义人体消息，`src/bodydata_process.cpp` 处理数据，`src/follower.cpp` 实现跟随，`launch/bodyfollow.launch` 组织启动。运行依赖 ROS 1、Astra 相机和 OpenNI 运行时，包依赖见 `package.xml`。
 
 ## 章节导航
 

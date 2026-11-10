@@ -79,7 +79,7 @@ source ~/wheeltec_course_ws/install/setup.bash
 ros2 run py_pubsub listener
 ```
 
-另开终端检查通信契约：
+另开终端检查消息类型和通信配置：
 
 ```bash
 source ~/wheeltec_course_ws/install/setup.bash
@@ -94,7 +94,7 @@ ros2 topic echo /course/chatter --once
 - 能从底盘节点找出订阅的速度话题和发布的里程计/IMU。
 - 能说明一个传感器话题的类型、频率和发布者。
 - 能指出服务与动作相对话题的区别。
-- 多机通信时记录 Domain ID 和 QoS；`ping` 只能说明网络层可达，不能证明 ROS 2 接口匹配。
+- 多机通信时先用 `ping` 检查网络连通，再核对 Domain ID、消息类型和 QoS。
 
 ## 24.7 故障排查
 

@@ -57,10 +57,6 @@ ros2 topic echo --once <camera_info话题>
 | 帧率低 | USB 带宽、分辨率、压缩和 CPU |
 | `camera_info` 空 | 标定文件路径和相机名 |
 
-
-!!! note "代码资源边界"
-    本章使用相机驱动、ROS 图像工具和 OpenCV 最小片段，不依赖源码仓库中的专用代码资源。
-
 ## 章节导航
 
 [上一章：多点导航、路径跟踪与自主探索](35-waypoints-path-exploration.md) · [返回本篇](index.md) · [下一章：相机内参与坐标标定](37-camera-calibration.md)
