@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 350" role="img" aria-labelledby="title desc">
+  <title id="title">相邻图像时刻与 IMU 采样区间</title>
+  <desc id="desc">以图像 20 Hz、IMU 200 Hz 为例，相邻图像时刻相隔 0.05 秒。其间的 IMU 采样用于预积分，得到相对旋转、速度增量和位置增量。示意包含区间端点，实际由时间戳确定积分范围。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse">
+      <path d="M0 0L8 4L0 8Z" fill="#64748b"></path>
+    </marker>
+  </defs>
+  <rect width="960" height="350" rx="12" fill="#fff"></rect>
+  <g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" fill="#1e293b">
+    <text x="32" y="38" font-size="24" font-weight="600">同一段运动，两种采样频率</text>
+    <rect x="260" y="68" width="480" height="157" fill="#eff6ff"></rect>
+    <path d="M260 62V232M740 62V232" stroke="#94a3b8" stroke-dasharray="6 5"></path>
+    <text x="32" y="112" font-size="20">图像 · 20 Hz</text>
+    <path d="M210 106H888" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"></path>
+    <g fill="#2563eb" stroke="#fff" stroke-width="3">
+      <rect x="250" y="96" width="20" height="20" rx="3"></rect>
+      <rect x="730" y="96" width="20" height="20" rx="3"></rect>
+    </g>
+    <text x="260" y="144" text-anchor="middle" font-size="18">图像 i · tᵢ</text>
+    <text x="740" y="144" text-anchor="middle" font-size="18">图像 j · tⱼ</text>
+    <text x="32" y="202" font-size="20">IMU · 200 Hz</text>
+    <path d="M210 196H888" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"></path>
+    <g fill="#c76b12" stroke="#fff" stroke-width="2">
+      <circle cx="212" cy="196" r="6"></circle>
+      <circle cx="260" cy="196" r="7"></circle>
+      <circle cx="308" cy="196" r="7"></circle>
+      <circle cx="356" cy="196" r="7"></circle>
+      <circle cx="404" cy="196" r="7"></circle>
+      <circle cx="452" cy="196" r="7"></circle>
+      <circle cx="500" cy="196" r="7"></circle>
+      <circle cx="548" cy="196" r="7"></circle>
+      <circle cx="596" cy="196" r="7"></circle>
+      <circle cx="644" cy="196" r="7"></circle>
+      <circle cx="692" cy="196" r="7"></circle>
+      <circle cx="740" cy="196" r="7"></circle>
+      <circle cx="788" cy="196" r="6"></circle>
+      <circle cx="836" cy="196" r="6"></circle>
+    </g>
+    <path d="M264 244H736" stroke="#64748b" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"></path>
+    <text x="500" y="273" text-anchor="middle" font-size="20">0.05 s 的测量 → 相邻图像之间的运动信息</text>
+    <text x="32" y="324" font-size="18" fill="#475569">图中包含区间端点；实际积分范围与边界处理由采样时间戳确定。</text>
+  </g>
+</svg>

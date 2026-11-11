@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" role="img" aria-labelledby="title desc">
+  <title id="title">移出旧状态并保留历史先验</title>
+  <desc id="desc">更新前，历史先验与状态 A、B、C 一起参与求解。边缘化 A 后，其相关历史信息转为对保留状态的近似先验，再加入新状态 D 和观测。更新后优化 B、C、D，计算规模保持有限。该图示意移出最早状态的情况。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0L8 4L0 8Z" fill="#64748b"></path>
+    </marker>
+  </defs>
+  <rect width="960" height="440" rx="12" fill="#fff"></rect>
+  <g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" fill="#1e293b">
+    <text x="32" y="38" font-size="24" font-weight="600">窗口向前移动，部分历史约束继续保留</text>
+    <text x="32" y="78" font-size="18" fill="#475569">更新前：联合估计 A、B、C</text>
+    <path d="M202 133H266M394 133H486M614 133H706" fill="none" stroke="#64748b" stroke-width="3"></path>
+    <rect x="32" y="103" width="170" height="60" rx="9" fill="#f1f5f9" stroke="#64748b" stroke-width="2"></rect>
+    <text x="117" y="140" text-anchor="middle" font-size="20">历史先验</text>
+    <rect x="266" y="103" width="128" height="60" rx="9" fill="#fff1f2" stroke="#be123c" stroke-width="2" stroke-dasharray="6 4"></rect>
+    <rect x="486" y="103" width="128" height="60" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"></rect>
+    <rect x="706" y="103" width="128" height="60" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"></rect>
+    <g text-anchor="middle" font-size="20">
+      <text x="330" y="140">状态 A</text>
+      <text x="550" y="140">状态 B</text>
+      <text x="770" y="140">状态 C</text>
+    </g>
+    <text x="330" y="191" text-anchor="middle" font-size="18" fill="#be123c">待移出</text>
+    <path d="M890 128V300" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"></path>
+    <rect x="32" y="211" width="802" height="43" rx="7" fill="#f8fafc"></rect>
+    <text x="433" y="239" text-anchor="middle" font-size="20">消去 A → 生成新的近似先验 → 加入 D 及其观测</text>
+    <text x="32" y="286" font-size="18" fill="#475569">更新后：联合估计 B、C、D</text>
+    <path d="M202 336H266M394 336H486M614 336H706" fill="none" stroke="#64748b" stroke-width="3"></path>
+    <rect x="32" y="306" width="170" height="60" rx="9" fill="#f1f5f9" stroke="#64748b" stroke-width="2"></rect>
+    <text x="117" y="343" text-anchor="middle" font-size="20">更新后的先验</text>
+    <rect x="266" y="306" width="128" height="60" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"></rect>
+    <rect x="486" y="306" width="128" height="60" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"></rect>
+    <rect x="706" y="306" width="128" height="60" rx="9" fill="#ecfdf5" stroke="#047857" stroke-width="2"></rect>
+    <g text-anchor="middle" font-size="20">
+      <text x="330" y="343">状态 B</text>
+      <text x="550" y="343">状态 C</text>
+      <text x="770" y="343">状态 D</text>
+    </g>
+    <text x="32" y="415" font-size="18" fill="#475569">图示为移出最早状态的情况；实际先验可同时连接多个保留变量。</text>
+  </g>
+</svg>

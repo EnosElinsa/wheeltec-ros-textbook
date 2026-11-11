@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 450" role="img" aria-labelledby="title desc">
+  <title id="title">滑动窗口中的状态、特征与约束</title>
+  <desc id="desc">三个图像时刻的状态通过相邻区间的 IMU 预积分连接，同一特征的图像观测连接特征深度和各时刻位姿。历史先验约束保留状态。联合优化同时调整状态和特征深度，使这些关系尽量一致。图中省略其他特征与先验连接。</desc>
+  <rect width="960" height="450" rx="12" fill="#fff"></rect>
+  <g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" fill="#1e293b">
+    <text x="32" y="38" font-size="24" font-weight="600">同一组状态，同时接受视觉和惯性约束</text>
+    <g fill="none" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="7 5">
+      <path d="M540 142L300 272M565 146L520 272M590 142L740 272"></path>
+    </g>
+    <rect x="427" y="76" width="276" height="70" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"></rect>
+    <text x="565" y="105" text-anchor="middle" font-size="20">同一个空间特征点</text>
+    <text x="565" y="131" text-anchor="middle" font-size="18">待调整：逆深度</text>
+    <rect x="128" y="174" width="300" height="36" rx="6" fill="#fff"></rect>
+    <text x="278" y="199" text-anchor="middle" font-size="18" fill="#2563eb">视觉：多次观测约束位姿和深度</text>
+    <path d="M178 312H230" stroke="#64748b" stroke-width="3"></path>
+    <rect x="32" y="279" width="146" height="66" rx="9" fill="#f1f5f9" stroke="#64748b" stroke-width="2"></rect>
+    <text x="105" y="307" text-anchor="middle" font-size="20">历史先验</text>
+    <text x="105" y="331" text-anchor="middle" font-size="18">来自旧观测</text>
+    <g stroke="#c76b12" stroke-width="4">
+      <path d="M370 312H450M590 312H670"></path>
+    </g>
+    <g fill="#fff7ed">
+      <rect x="230" y="272" width="140" height="80" rx="10" stroke="#334155" stroke-width="2"></rect>
+      <rect x="450" y="272" width="140" height="80" rx="10" stroke="#334155" stroke-width="2"></rect>
+      <rect x="670" y="272" width="140" height="80" rx="10" stroke="#334155" stroke-width="2"></rect>
+    </g>
+    <g text-anchor="middle" font-size="20">
+      <text x="300" y="307">状态 i</text>
+      <text x="520" y="307">状态 j</text>
+      <text x="740" y="307">状态 k</text>
+    </g>
+    <g text-anchor="middle" font-size="16" fill="#475569">
+      <text x="300" y="335">位姿、速度、偏置</text>
+      <text x="520" y="335">位姿、速度、偏置</text>
+      <text x="740" y="335">位姿、速度、偏置</text>
+    </g>
+    <g text-anchor="middle" font-size="18" fill="#9a4b08">
+      <text x="410" y="249">IMU 预积分</text>
+      <text x="630" y="249">IMU 预积分</text>
+    </g>
+    <text x="520" y="389" text-anchor="middle" font-size="18" fill="#9a4b08">惯性：两端状态的运动变化与区间测量一致</text>
+    <text x="32" y="428" font-size="18" fill="#475569">示意只画出一个特征；实际窗口包含多次视觉观测，先验也可连接多个保留变量。</text>
+  </g>
+</svg>
