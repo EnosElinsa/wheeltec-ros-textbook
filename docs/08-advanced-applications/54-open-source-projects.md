@@ -15,7 +15,7 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 
 ## 54.1 定位与传感器融合 {#localization}
 
-这一类项目估计机器人位姿，主要差别在于使用的传感器、优化方式和运动约束。Kalibr 提供标定参数，MOLA 提供模块框架，其余项目分别实现融合、里程计或 SLAM。
+这一类项目估计机器人位姿，主要差别在于使用的传感器、优化方式和运动约束。标定工具确定时空参数，监测工具判断参数是否仍然有效，融合与 SLAM 系统再使用这些参数估计运动；MOLA 提供可组合的模块框架。
 
 | 项目 | 主要算法或功能 | 输入与输出 |
 |---|---|---|
@@ -23,6 +23,8 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 | [VINS-Fusion](#vins-fusion) | 滑动窗口非线性优化、IMU 预积分、回环检测 | 图像、IMU → 视觉惯性里程计 |
 | [PL-VIWO](#pl-viwoimu) | 点线视觉惯性轮速联合优化 | 单目图像、IMU、轮速 → 位姿 |
 | [Kalibr](#kalibr-imu) | 批量时空参数标定 | 标定图像、IMU → 内外参与时间偏移 |
+| [Ts Online Optimization](#temporal-calibration) | 在线时间偏移估计、滑动窗口优化 | 图像、IMU → 时间偏移与运动状态 |
+| [MiscalibrationDetection](#miscalibration-detection) | 对比学习、双模态特征分类 | 图像、三维点云 → 标定状态判断 |
 | [AirSLAM](#airslam) | 学习点线特征、视觉 SLAM | 双目图像 → 位姿与地图 |
 | [SE2LIO](#se2lio) | 激光惯性融合、SE(2) 运动约束 | 三维点云、IMU → 里程计 |
 | [MOLA](#mola) | 模块化定位与建图优化框架 | 传感器与模块配置 → 定位与地图 |
@@ -51,6 +53,18 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 论文：[Unified Temporal and Spatial Calibration for Multi-Sensor Systems](https://doi.org/10.1109/IROS.2013.6696514)（IROS，2013）。
 {: .project-paper }
 
+[Ts Online Optimization](https://github.com/bytedance/Ts_Online_Optimization)：把相机与 IMU 的时间偏移作为优化变量，利用角速度和线速度将惯性状态对齐到图像时刻，与位姿和偏置共同估计。作者在 VINS-Mono 上提供实现与人为注入时间误差的配置，适合比较时间不同步对里程计的影响。代码基于 ROS Kinetic / Melodic 和 Ceres；迁入 Humble 时需要移植接口，并确认时间戳含义与硬件同步方式。
+{: #temporal-calibration .project-description }
+
+论文：[Universal Online Temporal Calibration for Optimization-Based Visual-Inertial Navigation Systems](https://ieeexplore.ieee.org/document/11127433/)（ICRA，2025）。
+{: .project-paper }
+
+[MiscalibrationDetection](https://github.com/TUMFTM/MiscalibrationDetection)：先用对比学习编码相机和激光观测，再训练分类器判断二者是否仍处于正确标定状态。它提供训练、推理、KITTI 数据配置和 Docker 环境，可参考其低开销标定监测方式。输入依赖图像与三维点云，检测结果用于发现外参失效，重新估计外参仍需标定算法。
+{: #miscalibration-detection .project-description }
+
+论文：[Cal or No Cal? - Real-Time Miscalibration Detection of LiDAR and Camera Sensors](https://ieeexplore.ieee.org/document/11246797/)（IROS，2025）。
+{: .project-paper }
+
 [AirSLAM](https://github.com/sair-lab/AirSLAM)：使用学习得到的点线特征进行双目视觉定位，关注光照变化下的特征提取与匹配。可参考其前端匹配与推理部署方式，分析跟踪中断、漂移和计算时间。实现依赖 ROS 1、CUDA 和 TensorRT，需要配套 NVIDIA GPU。
 {: #airslam .project-description }
 
@@ -77,6 +91,8 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 |---|---|---|
 | [RTAB-Map](#rtab-map) | 回环检测、位姿图优化 | 图像、深度等观测 → 轨迹、点云与占据地图 |
 | [slam_toolbox](#slam_toolbox) | 扫描匹配、回环检测、位姿图优化 | 二维雷达、里程计 → 地图与定位 |
+| [KISS-SLAM](#kiss-slam) | 点到点 ICP、局部地图回环、位姿图优化 | 三维点云 → 全局一致轨迹与地图 |
+| [Hier-SLAM](#hier-slam) | 分层语义编码、三维高斯表示 | RGB-D → 位姿、几何与语义地图 |
 | [NGD-SLAM](#ngd-slam-slam) | 异步目标检测、动态区域跟踪、视觉 SLAM | 图像等观测 → 轨迹与地图 |
 | [DynoSAM](#dynosam) | 动态物体关联、联合运动估计与平滑优化 | 图像、深度等观测 → 相机及物体运动 |
 | [NVMS-SLAM](#nvms-slam) | 法向量几何约束、多会话优化 | 多次三维雷达轨迹 → 一致地图 |
@@ -94,6 +110,18 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 {: #slam_toolbox .project-description }
 
 论文：[SLAM Toolbox: SLAM for the Dynamic World](https://doi.org/10.21105/joss.02783)（JOSS，2021）。
+{: .project-paper }
+
+[KISS-SLAM](https://github.com/PRBonn/kiss-slam)：在 KISS-ICP 激光里程计上增加局部地图、密度投影回环匹配与位姿图优化，用较少的参数构建全局一致地图。项目提供 Python 接口和命令行，论文实验对应 IROS25 标签，后续主分支仍在发展。它适合作为三维激光 SLAM 的几何基线；输入为三维点云，M10P 二维雷达需要选择其他方法，ROS 消息和地图接口也需另行衔接。
+{: #kiss-slam .project-description }
+
+论文：[KISS-SLAM: A Simple, Robust, and Accurate 3D LiDAR SLAM System With Enhanced Generalization Capabilities](https://ieeexplore.ieee.org/document/11246613/)（IROS，2025）。
+{: .project-paper }
+
+[Hier-SLAM](https://github.com/LeeBY68/Hier-SLAM)：将语义类别组织为层级树，在三维高斯表示中联合优化几何与语义信息，以紧凑编码支持较多类别。公开实现包含 RGB-D 序列处理、语义树、跟踪建图和评测，可用于比较类别表示对地图存储与语义查询的影响。代码依赖 CUDA、PyTorch 及高斯光栅化扩展；R680 的红外与深度组合需要另行验证图像表征和语义模型的适用性。
+{: #hier-slam .project-description }
+
+论文：[Hier-SLAM: Scaling-Up Semantics in SLAM with a Hierarchically Categorical Gaussian Splatting](https://ieeexplore.ieee.org/document/11127775/)（ICRA，2025）。
 {: .project-paper }
 
 [NGD-SLAM](https://github.com/YuhaoZhang7/NGD-SLAM)：结合异步目标检测与特征跟踪，将动态区域信息在相邻帧间传播，减少行人等运动物体对定位的干扰。检测和定位分开执行，可研究算力、掩码时效与跟踪稳定性的关系。检测代码使用 CPU 后端，实机示例采用彩色与深度输入，红外图像上的检测效果需要验证。
@@ -330,7 +358,7 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 
 协同定位解决不同机器人轨迹与地图的一致性，协作策略学习解决多台机器人怎样共同完成任务。两类方法对观测、通信和运动模型的要求不同。
 
-### 54.4.1 协同定位与建图
+### 54.4.1 协同定位、建图与通信
 
 | 项目 | 主要算法或功能 | 输入与输出 |
 |---|---|---|
@@ -340,6 +368,7 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 | [SlideSLAM](#slideslam) | 稀疏语义地标、跨机器人关联 | 感知与语义地标 → 协同地图 |
 | [LAMP](#lamp) | 多传感器融合、回环、协同图优化 | 多机器人传感器 → 大规模地图 |
 | [Kimera-Multi](#kimera-multi) | 分布式几何与语义建图 | 各机视觉惯性观测 → 稠密语义地图 |
+| [ReALM](#realm) | 视线连通约束、图代数连通性、势函数控制 | 激光扫描、团队状态 → 保持连通的导航动作 |
 
 [Swarm-SLAM](https://github.com/mistlab/Swarm-SLAM)：通过跨机器人回环与通信预算分配，将各自轨迹连接到共同参考系，是 ROS 2 协同 SLAM 的系统参考。它支持研究信息交换的内容、时机与带宽限制对地图精度的影响。用于 R680 时，需要选择匹配的视觉输入，并评价学习描述子在红外图像上的效果。
 {: #swarm-slam-slam .project-description }
@@ -375,6 +404,12 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 {: #kimera-multi .project-description }
 
 论文：[Kimera-Multi: Robust, Distributed, Dense Metric-Semantic SLAM for Multi-Robot Systems](https://doi.org/10.1109/TRO.2021.3137751)（IEEE T-RO，2022）。
+{: .project-paper }
+
+[ReALM](https://github.com/bairuofei/LoS_constrained_navigation)：从实时激光扫描判断机器人之间的视线是否会被障碍遮挡，用连通性势函数调整各机运动，在未知环境中兼顾探索与通信。代码提供多机器人导航和探索示例，依赖 ROS Noetic 与独立的导航仿真工作空间；当前主分支还包含论文之后的拓扑优化与可见区域扩展。可参考通信约束对路线选择的影响，Humble 接口、车辆转弯约束与真实无线链路模型需要适配。
+{: #realm .project-description }
+
+论文：[Realm: Real-Time Line-of-Sight Maintenance in Multi-Robot Navigation with Unknown Obstacles](https://ieeexplore.ieee.org/document/11128211/)（ICRA，2025）。
 {: .project-paper }
 
 ### 54.4.2 多机器人强化学习
@@ -414,6 +449,7 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 | [ViNT / NoMaD](#vint-nomad) | Transformer、目标掩码扩散策略 | 图像历史、目标图像 → 航点或动作 |
 | [HOV-SG](#hov-sg) | 开放词汇表征、分层三维场景图 | 带位姿 RGB-D → 语义检索位置 |
 | [ConceptGraphs](#conceptgraphs) | 跨帧物体关联、开放词汇场景图 | RGB-D → 三维物体图与语言查询结果 |
+| [Language as Cost](#language-as-cost) | VLM 风险推理、开放词汇分割、高斯代价传播 | RGB-D、障碍地图 → 风险代价栅格 |
 
 [VLFM](https://github.com/bdaiinstitute/vlfm)：根据图像与语言目标的相关性构建价值地图，引导前沿选择和未知区域搜索。语义模块可以提出地图目标，运动执行仍需几何规划与避障。实机实现面向 Spot，依赖 RGB 和 GPU 模型服务，已声明不再积极维护；与 Nav2 的组合需要适配。
 {: #vlfm .project-description }
@@ -445,6 +481,12 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 论文：[ConceptGraphs: Open-Vocabulary 3D Scene Graphs for Perception and Planning](https://doi.org/10.1109/ICRA57147.2024.10610243)（ICRA，2024）。
 {: .project-paper }
 
+[Language as Cost](https://github.com/Taekmino/LaC)：用视觉语言模型识别可能发生危险的区域，再通过 Grounded Edge SAM 定位相关物体，将风险等级投影到栅格并以高斯代价向周围传播，最后与几何障碍地图融合。它可参考为 Nav2 增加门口、湿滑区域等语义风险代价。原版基于 ROS Noetic，依赖 RGB-D、NVIDIA GPU 和模型 API；接入 R680 时需处理图像条件、推理延迟以及错误语义对路径的影响。
+{: #language-as-cost .project-description }
+
+论文：[Language as Cost: Proactive Hazard Mapping using VLM for Robot Navigation](https://ieeexplore.ieee.org/document/11246665/)（IROS，2025）。
+{: .project-paper }
+
 ## 54.6 仿真环境与评测工具 {#evaluation}
 
 仿真环境定义车辆、场景与任务，评测工具分析轨迹、传感器和运行状态。车辆动力学、任务目标和指标相同，算法结果才具有可比性。
@@ -470,10 +512,10 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 论文：[Habitat: A Platform for Embodied AI Research](https://openaccess.thecvf.com/content_ICCV_2019/html/Savva_Habitat_A_Platform_for_Embodied_AI_Research_ICCV_2019_paper.html)（ICCV，2019）。
 {: .project-paper }
 
-[Arena-Bench 2.0](https://github.com/Arena-Rosnav/arena-rosnav)：提供社会导航评测生态，可在共同场景下比较经典规划器与学习策略，统一地图、行人、任务种子和指标。Arena-Rosnav 入口仓库采用 MIT 许可证，组件与环境版本应以[官方安装文档](https://docs.arena-rosnav.org/en/latest/tutorials/installation/)为准；框架本身不代表某一种强化学习算法。
+[Arena-Bench 2.0 / Arena 4.0](https://github.com/Arena-Rosnav/arena-rosnav)：提供社会导航评测生态，可在共同场景下比较经典规划器与学习策略，统一地图、行人、任务种子和指标。Arena 4.0 将框架迁移到 ROS 2，并加入由文本或平面图生成场景的方法以及带语义标注的三维资产。Arena-Rosnav 入口仓库采用 MIT 许可证，组件与环境版本应以[官方安装文档](https://docs.arena-rosnav.org/en/latest/tutorials/installation/)为准；框架本身不代表某一种强化学习算法。
 {: #arena-bench .project-description }
 
-论文：[Arena-Bench 2.0: A Comprehensive Benchmark of Social Navigation Approaches in Collaborative Environments](https://doi.org/10.1109/iros60139.2025.11246895)（IROS，2025）。
+论文：[Arena-Bench 2.0: A Comprehensive Benchmark of Social Navigation Approaches in Collaborative Environments](https://doi.org/10.1109/iros60139.2025.11246895)（IROS，2025）；[Arena 4.0: a Comprehensive Ros2 Development and Benchmarking Platform for Human-Centric Navigation Using Generative-Model-Based Environment Generation](https://ieeexplore.ieee.org/document/11127635/)（ICRA，2025）。
 {: .project-paper }
 
 [DMRP-Bench](https://github.com/NKU-MobFly-Robotics/DMRP-Bench)：集成 CBS、ECBS、SIPP 等全局方法与 TEB、DWA、MPC 等局部规划，使用 Isaac Sim 动态场景研究阻塞、让行与多机交互，并提供录包分析脚本。README 基于 ROS Noetic、Isaac Sim 2022.2.1+，代码采用 MIT 许可证；Humble 迁移和场景资产完整性需要验证。
