@@ -1,0 +1,93 @@
+{
+  "review_date_local": "2026-11-11",
+  "timezone": "Asia/Shanghai",
+  "executor": {
+    "host": "codex"
+  },
+  "review_type": "Focused reference recheck and explanatory rewrite; targeted PDF reading, not whole-paper review or exhaustive search.",
+  "local_catalog_records": 613,
+  "local_catalog_sha256": "4e7f222d2f9abbeba3924fe60ba418b1318052b2f89d83bb2c4f9ece535e4838",
+  "local_screening_terms": [
+    "relocalization",
+    "global localization",
+    "place recognition",
+    "map representation",
+    "Monte Carlo localization",
+    "semantic localization",
+    "localization integrity"
+  ],
+  "sources_checked": {
+    "papers": 19,
+    "current_library_papers": 18,
+    "previously_verified_external_archive_papers": 1,
+    "software_sources": 3
+  },
+  "source_hashes_rechecked": [
+    "pdf",
+    "bibtex",
+    "markdown"
+  ],
+  "evidence_table": "docs/06-sensors-navigation/research/relocalization-evidence.csv",
+  "audit_note": "docs/06-sensors-navigation/research/relocalization-reference-audit.md",
+  "supplemental_reference": {
+    "reference": "P19",
+    "library_code": "H53",
+    "doi": "10.1109/TRO.2025.3585385",
+    "reason": "Direct evidence for planar pose assumptions, stored keyframe poses and descriptors, and composing retrieved and relative poses.",
+    "acquisition": "Already present in current library; publisher PDF and native BibTeX hashes verified.",
+    "extraction": "Reused existing OXR-1.0 transcription; relevant method passages checked against publisher PDF. No extraction run or service startup in this task.",
+    "historical_pending_record": "metadata/research/relocalization-search-log.json records an earlier download timeout; retained unchanged as a dated record."
+  },
+  "other_local_candidates": [
+    {
+      "code": "H42",
+      "decision": "not-added",
+      "reason": "Object-map alignment is adjacent; existing sources directly cover the chapter claim."
+    },
+    {
+      "code": "H37",
+      "decision": "not-added",
+      "reason": "Benchmark-oriented; not needed to establish reference-coordinate dependence."
+    },
+    {
+      "code": "H22",
+      "decision": "not-added",
+      "reason": "Distributed multirobot odometry is outside the primary single-robot recovery workflow."
+    }
+  ],
+  "external_discovery": "Not needed after current-library screening; no new acquisition or library mutation.",
+  "bibliographic_exception": {
+    "reference": "P06",
+    "library_code": "S26",
+    "citation_status": "Previously authorized publisher-RIS-derived BibTeX; original RIS and provenance retained unchanged."
+  },
+  "software": [
+    {
+      "reference": "S01",
+      "repository": "ros-navigation/navigation2",
+      "commit": "3c3db59d6969d8ecee8e68468693d006397f4a0c",
+      "file": "nav2_amcl/src/amcl_node.cpp",
+      "sha256": "29a6402bf643fc8ea0d2dcea29619d4cbdcaf7014c811332ed4e86e593d3f1af"
+    },
+    {
+      "reference": "S02",
+      "repository": "ros-navigation/navigation2",
+      "commit": "3c3db59d6969d8ecee8e68468693d006397f4a0c",
+      "file": "nav2_bringup/params/nav2_params.yaml",
+      "sha256": "21f6a890657da341a854efce403c895304a3ebc1a8f91f466348e720f2641380"
+    },
+    {
+      "reference": "S03",
+      "repository": "ros-infrastructure/rep",
+      "commit": "11ca24a41f31480dfb9562ba99f2a5b93d3ebda5",
+      "file": "rep-0105.rst",
+      "sha256": "6bca6ae2b392bbb8e95c283c672549b832c58128feaccc4d77b6bf65534f565e"
+    }
+  ],
+  "limitations": [
+    "Targeted passages establish only the claims and conditions recorded in the evidence table.",
+    "No field-wide completeness, present publisher-byte freshness, or target-hardware performance claim.",
+    "The archived OneShot publisher pair remains in its original private acquisition archive.",
+    "Existing literature-library working changes were preserved; no additional PDF or Markdown import was needed."
+  ]
+}
