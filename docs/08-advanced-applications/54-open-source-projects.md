@@ -82,6 +82,7 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 | [NVMS-SLAM](#nvms-slam) | 法向量几何约束、多会话优化 | 多次三维雷达轨迹 → 一致地图 |
 | [m-explore-ros2](#m-explore-ros2) | 前沿提取与目标选择、地图合并 | 占据栅格 → 探索目标与合并地图 |
 | [FIT-SLAM 2](#fit-slam-2) | 前沿探索、Fisher 信息、可通行性评价 | 地图与定位信息 → 探索路线与目标 |
+| [ARiADNE](#ariadne) | SAC、注意力图网络、信息增益 | 局部地图与前沿图 → 下一探索航点 |
 
 [RTAB-Map](https://github.com/introlab/rtabmap_ros)：提供视觉里程计、回环检测、地图保存和重定位。关键帧及其约束构成位姿图，回环后的图优化修正全局地图。它是 R680 视觉建图的直接参考，RGB-D 里程计支持灰度图像，可使用正确配准的红外与深度输入；局部里程计漂移和全局地图修正应分别分析。
 {: #rtab-map .project-description }
@@ -120,6 +121,12 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 {: #fit-slam-2 .project-description }
 
 论文：[FIT-SLAM 2: Efficient 3D Exploration with Fisher Information and Traversability-Based Adaptive Roadmap](https://doi.org/10.1016/j.robot.2025.105188)（Robotics and Autonomous Systems，2025）。
+{: .project-paper }
+
+[ARiADNE](https://github.com/marmotlab/ARiADNE)：在部分已知地图上建立带有前沿信息的图，用注意力网络与 SAC 学习长期覆盖效率，逐步选择下一探索航点。作者提供训练和模型，独立的 [ROS 实现](https://github.com/marmotlab/ARiADNE-ROS-Planner/tree/humble) 提供 Humble 分支，需与 SLAM 和航点跟随器配合。可用于比较学习选点与最近前沿；地图输入、传感器范围和车辆可达性仍需适配。
+{: #ariadne .project-description }
+
+论文：[ARiADNE: A Reinforcement learning approach using Attention-based Deep Networks for Exploration](https://doi.org/10.1109/icra48891.2023.10160565)（ICRA，2023）。
 {: .project-paper }
 
 ## 54.3 规划与运动控制 {#planning}
@@ -175,14 +182,21 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 
 ### 54.3.2 深度强化学习导航 {#drl-projects}
 
-深度强化学习（DRL）使用深度网络表示策略或价值函数，通过奖励学习行为。SAC 和 PPO 用于在线交互训练，SCALE 中的隐式 Q 学习使用离线轨迹；社会导航、车辆操控与失败恢复各有不同的观测和目标。
+深度强化学习（DRL）通过奖励训练策略或价值网络。下面按任务分为人群交互、未知环境与重规划、车辆驾驶三类：PPO 和 SAC 通过环境交互学习，DQN 学习离散决策，SCALE 的隐式 Q 学习使用离线轨迹。探索覆盖另见 [ARiADNE](#ariadne)，多机器人协作另见 [MAexp](#maexp)。
+
+#### 人群交互与社会导航 {#drl-social-navigation}
+
+这类方法主要研究行人交互、遮挡和行为不确定性。输入中的行人位置、速度或预测轨迹通常来自检测与跟踪模块，其误差会影响策略表现。
 
 | 项目 | 主要算法或功能 | 输入与输出 |
 |---|---|---|
 | [DRL-SFM](#drl-sfm) | SAC、社会力与局部代价地图 | 局部代价地图、目标、社会信息 → 线速度与角速度 |
 | [GenSafeNav](#gen-safe-nav) | PPO / PPO-Lagrangian、自适应共形推断 | 人群预测及不确定性 → 导航动作 |
-| [Wheeled Lab](#wheeled-lab) | PPO、域随机化、并行仿真 | 车辆状态或视觉观测 → 车辆控制 |
-| [ScaleNav](#scalenav) | 离线隐式 Q 学习、可供性模型、RND | 当前与目标图像 → 动作与恢复行为 |
+| [CrowdNav++](#crowdnav-plus-plus) | PPO、循环交互图、注意力与轨迹预测 | 人群历史、预测轨迹、目标 → 导航动作 |
+| [PaS](#pas-crowdnav) | VAE 遮挡推断、PPO | 局部占据栅格序列、机器人状态 → 导航动作 |
+| [NaviSTAR](#navistar) | 时空图 Transformer、偏好奖励学习、SAC | 人群与机器人动态特征 → 导航动作 |
+| [Stranger Danger](#stranger-danger) | SARL、行人不可预测性估计与奖励 | 人群状态、不可预测性特征 → 避障动作 |
+| [Hyp2Nav](#hyp2nav) | 双曲价值网络、树搜索、内在好奇心奖励 | 人群与机器人状态 → 离散运动动作 |
 
 [DRL-SFM](https://github.com/FAU-FAPS/DRL-SFM)：使用 Stable-Baselines3 SAC 学习社会导航，通过社会力相关观测和奖励描述人群交互。公开资源包含 HuNavSim / Gazebo 训练、预训练模型、固定路径及多环境评估，并提供输出 Twist 的 nav2_rl_controller 插件。环境基于 Ubuntu 22.04、ROS 2 Humble、PyTorch 和 CUDA，依赖特定 HuNavSim 分支。公开仓库采用 MIT 许可证，完整日志功能涉及私有分支。策略训练需要纳入 R680 的转弯半径、转向速率和低速行为，仅对输出限幅可能改变避障表现。
 {: #drl-sfm .project-description }
@@ -196,10 +210,56 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 论文：[Towards Generalizable Safety in Crowd Navigation via Conformal Uncertainty Handling](https://proceedings.mlr.press/v305/yao25a.html)（CoRL，2025）。
 {: .project-paper }
 
-[Wheeled Lab](https://github.com/UWRobotLearning/WheeledLab)：提供轮式平台资产、环境与训练代码，使用 RSL-RL 的 PPO，任务覆盖漂移、地形运动和视觉驾驶；视觉任务包含教师与学生学习。车辆模型、摩擦、延迟、执行器随机化可用于研究仿真到实机迁移。训练入口为 source/wheeledlab_rl/scripts/train_rl.py，环境推荐 Isaac Sim 4.5.0、Isaac Lab 2.0.2 和 Python 3.10，需要合适的 NVIDIA GPU。代码采用 BSD-3-Clause 许可证；独立的 [RealLab](https://github.com/UWRobotLearning/RealLab) 提供 HOUND / MuSHR 分支，F1TENTH 集成仍列为待提供。接入 R680 需要替换车辆参数与控制器，漂移表现不能直接代表低速室内导航能力。
-{: #wheeled-lab .project-description }
+[CrowdNav++](https://github.com/Shuijing725/CrowdNav_Prediction_AttnGraph)：用循环图网络区分人与人、人与机器人的交互，以注意力聚合信息，再将行人未来轨迹加入 PPO 的观测与奖励，减少机器人穿越行人预期路线的行为。作者提供训练、测试、预训练模型和独立的 TurtleBot 实机迁移示例；轨迹预测器的训练代码位于独立 GST 项目。主实现使用 PyTorch 与 Python-RVO2，车辆部署还需处理行人跟踪和 Ackermann 动作约束。
+{: #crowdnav-plus-plus .project-description }
 
-论文：[Wheeled Lab: Modern Sim2Real for Low-cost, Open-source Wheeled Robotics](https://proceedings.mlr.press/v305/han25a.html)（CoRL，2025）。
+论文：[Intention Aware Robot Crowd Navigation with Attention-Based Interaction Graph](https://doi.org/10.1109/icra48891.2023.10160660)（ICRA，2023）。
+{: .project-paper }
+
+[PaS](https://github.com/yejimun/PaS_CrowdNav)：把已观测行人的避让行为作为遮挡区域的间接线索，用变分自编码器（VAE）学习局部占据表示，再以 PPO 训练避障策略。公开实现包含数据采集、VAE 预训练和策略训练测试，论文在 TurtleBot 2i 上展示了迁移。它适合研究门口、拐角与人群遮挡；原版环境基于 Python-RVO2，感知栅格和车辆运动模型需要配套适配。
+{: #pas-crowdnav .project-description }
+
+论文：[Occlusion-Aware Crowd Navigation Using People as Sensors](https://doi.org/10.1109/icra48891.2023.10160715)（ICRA，2023）。
+{: .project-paper }
+
+[NaviSTAR](https://github.com/SMARTlab-Purdue/SAN-NaviSTAR)：用时空图 Transformer 编码人群交互，通过人工偏好学习奖励，再以 SAC 优化社会导航策略。代码提供 SAC、PPO 对照入口和预训练模型，依赖 PyTorch 与 Python-RVO2。可参考其交互编码、偏好奖励与社会评价指标；公开训练环境使用抽象行人状态，接入雷达或视觉检测后仍需处理状态估计误差。
+{: #navistar .project-description }
+
+论文：[NaviSTAR: Socially Aware Robot Navigation with Hybrid Spatio-Temporal Graph Transformer and Preference Learning](https://doi.org/10.1109/iros55552.2023.10341395)（IROS，2023）。
+{: .project-paper }
+
+[Stranger Danger](https://github.com/sarapohland/stranger-danger)：在社会注意力强化学习（SARL）中加入行人不可预测性特征，并通过行人行为扰动和奖励设计，让策略对陌生行为保持更大距离。代码包含行人数据生成、不确定性网络、导航策略训练及测试，基于 Python 3.6 与 Python-RVO2。可用于研究训练中少见的突然转向或异常行走；这是对 SARL 的扩展，移植时需要同时考虑特征估计与奖励。
+{: #stranger-danger .project-description }
+
+论文：[Stranger Danger! Identifying and Avoiding Unpredictable Pedestrians in RL-based Social Robot Navigation](https://doi.org/10.1109/icra57147.2024.10610413)（ICRA，2024）。
+{: .project-paper }
+
+[Hyp2Nav](https://github.com/GDam90/hyp2nav)：在双曲空间中表示状态价值与好奇心信号，结合树搜索选择避障动作，以较小的表示维度研究人群决策。官方 PyTorch 实现提供训练、测试和不同嵌入维度的配置，依赖 Geoopt、Python-RVO2 等组件。适合比较网络表示、内在奖励和计算开销；论文主要验证仿真人群导航，离散速度动作需要转换为车辆可执行控制。
+{: #hyp2nav .project-description }
+
+论文：[Hyp2Nav: Hyperbolic Planning and Curiosity for Crowd Navigation](https://doi.org/10.1109/iros58592.2024.10801513)（IROS，2024）。
+{: .project-paper }
+
+#### 未知环境导航与重规划 {#drl-mapless-navigation}
+
+未知环境中的远距离决策、路径更新时机和偏航恢复属于不同层次。航点策略需要局部控制器，重规划策略需要既有规划器，视觉恢复方法则依赖图像表征与历史数据。
+
+| 项目 | 主要算法或功能 | 输入与输出 |
+|---|---|---|
+| [Context-Aware Navigation](#context-aware-navigation) | SAC、注意力图网络、图稀疏化 | 局部已知地图、目标与图节点 → 下一航点 |
+| [When2Replan](#when2replan) | DQN、分层规划 | 当前观测与参考路径 → 是否重新全局规划 |
+| [ScaleNav](#scalenav) | 离线隐式 Q 学习、可供性模型、RND | 当前与目标图像 → 动作与恢复行为 |
+
+[Context-Aware Navigation](https://github.com/marmotlab/Context_Aware_Navigation)：在不断扩展的局部地图上构建图，用注意力网络汇集不同空间尺度的信息，以 SAC 学习下一航点；图稀疏化减少大范围导航的计算量。作者提供训练、测试、模型和地图，论文还包含 Gazebo 与实机验证。它面向已知目标位置的未知环境导航，可与 Nav2 局部控制配合，但仍需要从雷达、定位和地图构造一致的图表示。
+{: #context-aware-navigation .project-description }
+
+论文：[Context-Aware Deep Reinforcement Learning for Autonomous Robotic Navigation in Unknown Area](https://proceedings.mlr.press/v229/liang23a.html)（CoRL，2023）。
+{: .project-paper }
+
+[When2Replan](https://github.com/omron-sinicx/when2replan)：用深度 Q 网络（DQN）决定是否重新调用全局规划器，在环境变化时权衡保留路径与更新路径。作者提供二维仿真、训练、评估和预训练模型，示例组合 Dijkstra 与 DWA；项目使用 Stable-Baselines3。它适合参考 Nav2 行为树中的重规划触发逻辑，策略本身不生成底盘速度，学习结果与所配套的规划器和场景有关。
+{: #when2replan .project-description }
+
+论文：[When to Replan? An Adaptive Replanning Strategy for Autonomous Navigation using Deep Reinforcement Learning](https://doi.org/10.1109/icra57147.2024.10611474)（ICRA，2024）。
 {: .project-paper }
 
 [ScaleNav](https://github.com/KubeEdge4Robotics/ScaleNav)：是作者对 SCALE 的重新实现，结合视觉编码、离线 Implicit Q-Learning（IQL）、可供性模型和 RND 新颖度估计，在偏离已知可行路线后选择自纠正动作。此处 IQL 指隐式 Q 学习，与多智能体中的 Independent Q-Learning 含义不同。恢复成功率与误触发都影响导航质量。实现基于 ROS 1 和彩色相机，数据、模型路径需要配置，旋转动作需要按车辆约束适配。
@@ -209,6 +269,34 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 {: .project-paper }
 
 <span id="scale-drl"></span>
+
+#### 车辆驾驶与控制 {#drl-driving-control}
+
+车辆项目更直接涉及转向、速度、摩擦和执行延迟。高速赛车与 R680 的低速导航任务不同，但残差控制、数据利用和仿真到实机迁移方法仍可借鉴。
+
+| 项目 | 主要算法或功能 | 输入与输出 |
+|---|---|---|
+| [Wheeled Lab](#wheeled-lab) | PPO、域随机化、并行仿真 | 车辆状态或视觉观测 → 车辆控制 |
+| [FastRLAP](#fastrlap) | RLPD、视觉预训练、自主练习与恢复 | 相机图像、车辆状态与检查点 → 驾驶动作 |
+| [RLPP](#rlpp) | SAC 残差策略、Pure Pursuit | 轨迹相对状态、参考轨迹 → 转向与加速度修正 |
+
+[Wheeled Lab](https://github.com/UWRobotLearning/WheeledLab)：提供轮式平台资产、环境与训练代码，使用 RSL-RL 的 PPO，任务覆盖漂移、地形运动和视觉驾驶；视觉任务包含教师与学生学习。车辆模型、摩擦、延迟、执行器随机化可用于研究仿真到实机迁移。训练入口为 source/wheeledlab_rl/scripts/train_rl.py，环境推荐 Isaac Sim 4.5.0、Isaac Lab 2.0.2 和 Python 3.10，需要合适的 NVIDIA GPU。代码采用 BSD-3-Clause 许可证；独立的 [RealLab](https://github.com/UWRobotLearning/RealLab) 提供 HOUND / MuSHR 分支，F1TENTH 集成仍列为待提供。接入 R680 需要替换车辆参数与控制器，漂移表现不能直接代表低速室内导航能力。
+{: #wheeled-lab .project-description }
+
+论文：[Wheeled Lab: Modern Sim2Real for Low-cost, Open-source Wheeled Robotics](https://proceedings.mlr.press/v305/han25a.html)（CoRL，2025）。
+{: .project-paper }
+
+[FastRLAP](https://github.com/kylestach/fastrlap-release)：先用已有机器人数据初始化视觉表示，再将少量演示数据与在线经验用于 RLPD 强化学习，通过沿检查点自主练习和失败后重置，在真实遥控小车上学习驾驶。作者发布 ROS 实现、Gazebo 环境、MuJoCo 越野环境和 JAX 强化学习代码。可参考视觉表征复用、数据混合与自动恢复；实机练习依赖定位、路线检查点和可执行的恢复行为，RGB 输入也需匹配车辆相机。
+{: #fastrlap .project-description }
+
+论文：[FastRLAP: A System for Learning High-Speed Driving via Deep RL and Autonomous Practicing](https://proceedings.mlr.press/v229/stachowicz23a.html)（CoRL，2023）。
+{: .project-paper }
+
+[RLPP](https://github.com/ForzaETH/f1tenth_gym/tree/paper/rlpp)：保留 Pure Pursuit 的参考控制，以 SAC 学习转向和加速度残差，在 F1TENTH 平台研究从仿真直接部署到实机的赛车控制。原 RLPP 仓库已弃用，作者将实现迁至 F1TENTH Gym 的 paper/rlpp 分支，提供测试入口与预训练模型，专门的训练说明仍未补齐。它适合参考 Ackermann 底盘的控制器与残差策略组合，轮胎模型、转向延迟和速度范围需要按 R680 调整。
+{: #rlpp .project-description }
+
+论文：[RLPP: A Residual Method for Zero-Shot Real-World Autonomous Racing on Scaled Platforms](https://doi.org/10.1109/icra55743.2025.11127278)（ICRA，2025）。
+{: .project-paper }
 
 ### 54.3.3 其他学习方法 {#other-learning-projects}
 
@@ -295,6 +383,7 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 |---|---|---|
 | [JaxRobotarium](#jaxrobotarium) | IPPO、MAPPO、QMIX、PQN | 局部状态 → 航点或独轮车速度 |
 | [CASH](#cash) | 能力条件超网络；QMIX / MAPPO 或 DAgger | 局部观测、团队能力 → 个体策略或价值网络 |
+| [MAexp](#maexp) | IPPO、MAPPO 等 MARL、注意力目标生成 | 局部点云与团队观测 → 探索目标与连续运动 |
 
 [JaxRobotarium](https://github.com/GT-STAR-Lab/JaxRobotarium)：将 JAX 并行仿真、策略训练与 Robotarium 部署连接起来，提供八类协作场景和循环策略，支持 GPU / TPU。离散动作解释为航点，连续动作解释为独轮车速度；策略可与 CBF 避碰层组合。环境使用 Python 3.10、JAX、Flax、Robotarium 模拟器子模块及作者集成的 JaxMARL 分支，许可证为 MIT。论文报告了 Robotarium 实验，标题中的训练时间依赖任务与硬件条件。用于 R680 时需要替换运动模型与安全层。
 {: #jaxrobotarium .project-description }
@@ -306,6 +395,12 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 {: #cash .project-description }
 
 论文：[Capability-Aware Shared Hypernetworks for Flexible Heterogeneous Multi-Robot Coordination](https://proceedings.mlr.press/v305/fu25a.html)（CoRL，2025）。
+{: .project-paper }
+
+[MAexp](https://github.com/COAI-Lab/MAexp)：为多机器人探索提供连续场景、点云地图与 MARLlib 算法接口，可比较 IPPO、MAPPO 等方法在不同环境中的覆盖行为。框架将多机器人目标生成与单机器人运动规划分开，包含随机障碍、迷宫、室内和室外场景。公开代码依赖 Python、Ray、MARLlib 与 Open3D，安装需要修改部分依赖代码；它是训练与评测平台，实机通信、定位和车辆接口需另行实现。
+{: #maexp .project-description }
+
+论文：[MAexp: A Generic Platform for RL-based Multi-Agent Exploration](https://doi.org/10.1109/icra57147.2024.10611573)（ICRA，2024）。
 {: .project-paper }
 
 ## 54.5 语义地图与语言导航 {#semantic-navigation}
