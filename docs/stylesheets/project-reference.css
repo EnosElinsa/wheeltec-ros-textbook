@@ -1,37 +1,40 @@
-/* Chapter 54: compact method contracts and expandable project descriptions. */
-.md-typeset .project-overview {
-  --project-ink: #163c46;
-  --project-accent: #08756d;
-  margin: 1.8rem 0;
-  border-top: .22rem solid var(--project-ink);
-  padding: 1.15rem 1.3rem 1.3rem;
-  background: #eff4f1;
-  color: var(--project-ink);
+/* Chapter 54: method comparisons followed by continuous project references. */
+.md-typeset .project-navigation {
+  margin: 1.2rem 0 1.6rem;
+  padding: .65rem 0;
+  border-block: 1px solid var(--md-default-fg-color--lightest);
+  font-size: .72rem;
+  line-height: 2;
 }
-.md-typeset .project-kicker {
-  font-size: .64rem;
-  letter-spacing: .13em;
-  color: var(--project-accent);
-  font-weight: 700;
+.md-typeset .project-catalog h2 { margin-top: 2.4rem; }
+.md-typeset .project-catalog h3 { margin-top: 1.8rem; }
+.md-typeset .project-catalog .md-typeset__table { display: block; }
+.md-typeset .project-catalog table:not([class]) { display: table; width: 100%; font-size: .68rem; }
+.md-typeset .project-catalog table:not([class]) th { min-width: 0; }
+.md-typeset .project-catalog table:not([class]) :is(th, td) { padding: .65em .8em; }
+.md-typeset .project-catalog table:not([class]) td:first-child { width: 22%; }
+.md-typeset .project-catalog table:not([class]) td:nth-child(2) { width: 36%; }
+.md-typeset .project-description {
+  margin: 1.35rem 0 .4rem;
+  line-height: 1.85;
+  scroll-margin-top: 4rem;
 }
-.md-typeset .project-overview h3 { margin: .5rem 0 1rem; font-weight: 700; }
-.md-typeset .project-routes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
-.md-typeset .project-routes > div { border-top: 1px solid #baccc6; padding-top: .6rem; }
-.md-typeset .project-routes p { margin: .3rem 0; font-size: .72rem; }
-.md-typeset .project-routes strong { font-size: .65rem; letter-spacing: .04em; }
-.md-typeset .project-routes a { color: #075b56; text-decoration: underline; text-underline-offset: .15em; }
-.md-typeset .project-tags { display: flex; flex-wrap: wrap; gap: .3rem; margin: -.2rem 0 .65rem; }
-.md-typeset .project-tags span { border: 1px solid #c9d9d3; border-radius: .18rem; background: #f0f5f2; color: #255a51; padding: .15rem .4rem; font-size: .62rem; line-height: 1.6; }
-.md-typeset .project-tags + p { margin: .55rem 0; font-size: .76rem; }
-.md-typeset .project-tags + p + details { box-shadow: none; border-color: #c9d9d3; margin: .6rem 0 1.5rem; }
-.md-typeset .project-tags + p + details > summary { background: #f4f7f5; }
-.md-typeset .project-tags + p + details[open] { border-color: #1b7d71; }
-@media (max-width: 760px) {
-  .md-typeset .project-routes { grid-template-columns: 1fr; gap: .7rem; }
-  .md-typeset .project-overview { padding: 1rem; }
+.md-typeset .project-description > a:first-child { text-decoration: underline; text-underline-offset: .15em; }
+.md-typeset .project-paper {
+  margin: .35rem 0 1.2rem;
+  padding-left: .8rem;
+  border-left: 2px solid var(--md-default-fg-color--lightest);
+  color: var(--md-default-fg-color--light);
+  font-size: .68rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
 }
-[data-md-color-scheme="slate"] .md-typeset .project-overview { background: #233b3e; color: #e5efea; }
-[data-md-color-scheme="slate"] .md-typeset .project-kicker,
-[data-md-color-scheme="slate"] .md-typeset .project-routes a { color: #a7dfd0; }
-[data-md-color-scheme="slate"] .md-typeset .project-tags span { background: #283f3d; color: #c4e9dc; border-color: #49655e; }
-[data-md-color-scheme="slate"] .md-typeset .project-tags + p + details > summary { background: #283f3d; }
+@media (max-width: 600px) {
+  .md-typeset .project-catalog table:not([class]) { font-size: .64rem; }
+  .md-typeset .project-catalog table:not([class]) :is(th, td) { padding: .6em; }
+  .md-typeset .project-paper { padding-left: .6rem; }
+}
+@media print {
+  .md-typeset .project-navigation { display: none; }
+  .md-typeset .project-paper { break-before: avoid; }
+}
