@@ -60,7 +60,7 @@
 2. [第 30 章：里程计、TF 与时间](06-sensors-navigation/30-odometry-tf-time.md)
 3. [第 31 章：激光雷达与二维建图](06-sensors-navigation/31-lidar-and-mapping.md)
 4. [第 32 章：地图保存、定位与坐标验证](06-sensors-navigation/32-map-localization-tf.md)
-5. [第 33 章：重定位方案与全局地图依赖](06-sensors-navigation/33-relocalization-map-dependence.md)
+5. [第 33 章：导航与重定位的全局地图依赖](06-sensors-navigation/33-relocalization-map-dependence.md)
 6. [第 34 章：Nav2 导航](06-sensors-navigation/34-nav2-navigation.md)
 7. [第 35 章：多点、路径与探索](06-sensors-navigation/35-waypoints-path-exploration.md)
 

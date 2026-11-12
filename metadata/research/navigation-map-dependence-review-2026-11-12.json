@@ -1,0 +1,113 @@
+{
+  "review_date_local": "2026-11-12",
+  "timezone": "America/Denver",
+  "executor": {
+    "host": "codex"
+  },
+  "review_type": "Current-library screening, targeted full-text verification, and chapter-wide explanatory revision.",
+  "local_catalog_records": 650,
+  "local_catalog_sha256": "69881a36c3e51fe2696978261dff083e39d0f4d581d82d1ac30a7953b7f00a89",
+  "local_screening_terms": [
+    "unknown environment",
+    "online planning",
+    "local planning",
+    "reactive navigation",
+    "trajectory generation",
+    "FRTree",
+    "EGO-Planner",
+    "FAST-Planner",
+    "FASTER",
+    "microscale searching"
+  ],
+  "added_references": [
+    "P20",
+    "P21",
+    "P22"
+  ],
+  "sources": [
+    {
+      "code": "M05",
+      "pdf": "01-papers/T2-slam-mapping-exploration/2025-FRTree-Planner-M05/paper.pdf",
+      "bibtex": "01-papers/T2-slam-mapping-exploration/2025-FRTree-Planner-M05/citation.bib",
+      "markdown": "02-fulltext/T2-slam-mapping-exploration/2025-FRTree-Planner-M05/paper.md",
+      "pdf_sha256": "c8c8d1814696cb6abc15c996c478da89493fe7909ec6ff213470e3ca09db74b2",
+      "bibtex_sha256": "a3a55f78b76e671a8b1b943cc46696f4b1e944a98eeaa682059f858419f76480",
+      "markdown_sha256": "c98850541b1ddf4dffeed98c309a5d71f8b242584e4e2e5bd7f82ed152f32c81",
+      "citation_source": "existing-corpus-see-original-provenance",
+      "extraction_mode": ""
+    },
+    {
+      "code": "E26",
+      "pdf": "01-papers/T3-planning-control/2024-LiDAR-CBF-E26/paper.pdf",
+      "bibtex": "01-papers/T3-planning-control/2024-LiDAR-CBF-E26/citation.bib",
+      "markdown": "02-fulltext/T3-planning-control/2024-LiDAR-CBF-E26/paper.md",
+      "pdf_sha256": "ad2b3f045b929bf5135365861ba0dcf07e9a50d9b660ead47c3ab648ba199a03",
+      "bibtex_sha256": "f8587f977511b11207f859c8a6c9b004779105684e15cb95670ff4401921bd39",
+      "markdown_sha256": "83a31a59ccefe23f50e2bcbc4826f6fa394698cd235689352e401cbd90239384",
+      "citation_source": "existing-corpus-see-original-provenance",
+      "extraction_mode": ""
+    },
+    {
+      "code": "H47",
+      "pdf": "01-papers/T3-planning-control/2025-Physics-Informed-Neural-Mapping-and-Motion-Plann-H47/paper.pdf",
+      "bibtex": "01-papers/T3-planning-control/2025-Physics-Informed-Neural-Mapping-and-Motion-Plann-H47/citation.bib",
+      "markdown": "02-fulltext/T3-planning-control/2025-Physics-Informed-Neural-Mapping-and-Motion-Plann-H47/paper.md",
+      "pdf_sha256": "e7f142d609c56b49a816d8633451d00521eec0a52c9b5c786faacf8aad75e426",
+      "bibtex_sha256": "13af1f12801826a45f7f3cbe33e35f9a05cb59a2c625acdee8de1a4bba86c0aa",
+      "markdown_sha256": "ee4dea8bccf33efc94387c3715957059e0df7b1d248858c83f4339b6ed191119",
+      "citation_source": "publisher_export_api",
+      "extraction_mode": "oxr-1.0-vllm"
+    }
+  ],
+  "source_hashes_rechecked": [
+    "pdf",
+    "bibtex",
+    "markdown"
+  ],
+  "pair_identity_check": "ARP local verify completed for all three existing pairs; this check does not establish new official-acquisition provenance.",
+  "pdf_physical_pages_total": 29,
+  "reading_scope": "Targeted methods, inputs, relevant experiments and limitations; not every page read or audited.",
+  "rendered_evidence_pages": {
+    "M05": [
+      3,
+      5
+    ],
+    "E26": [
+      5,
+      6
+    ],
+    "H47": [
+      6,
+      9
+    ]
+  },
+  "other_candidates": [
+    {
+      "code": "H39",
+      "decision": "not-added",
+      "reason": "Adjacent current-observation safety control; no additional mechanism needed for this chapter."
+    },
+    {
+      "code": "S16",
+      "decision": "not-added",
+      "reason": "Planner infeasibility recovery does not establish original-map pose recovery or removal of all prior-map inputs."
+    }
+  ],
+  "external_discovery": "Not needed: existing full texts directly support the task, representation and position-source distinctions.",
+  "library_changes": "None; all selected sources were already organized in the library.",
+  "extraction": {
+    "reused_markdown_files": 3,
+    "new_pdfs": 0,
+    "new_markdown_files": 0,
+    "services_started": false,
+    "unresolved_extraction_items": 0
+  },
+  "evidence_table": "docs/06-sensors-navigation/research/online-navigation-evidence.csv",
+  "audit_note": "docs/06-sensors-navigation/research/online-navigation-reference-audit.md",
+  "limitations": [
+    "No exhaustive literature coverage claim.",
+    "No new publisher-byte freshness or acquisition-provenance claim.",
+    "Online navigation and planning results do not establish kidnapped-robot recovery.",
+    "Engineering transfer to WHEELTEC requires separate sensor, motion and localization validation."
+  ]
+}
