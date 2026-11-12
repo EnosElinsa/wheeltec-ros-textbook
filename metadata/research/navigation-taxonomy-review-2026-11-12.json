@@ -1,0 +1,99 @@
+{
+  "review_date_local": "2026-11-12",
+  "timezone": "America/Denver",
+  "executor": {
+    "host": "codex"
+  },
+  "scope": "Three-route chapter revision and targeted taxonomy-source verification; not a systematic literature review or whole-paper assessment.",
+  "added_references": [
+    "P23",
+    "P24",
+    "P25",
+    "P26"
+  ],
+  "new_library_ids": [
+    "TAX01"
+  ],
+  "sources": [
+    {
+      "code": "TAX01",
+      "title": "Vision for mobile robot navigation: a survey",
+      "doi": "10.1109/34.982903",
+      "pdf": "01-papers/T2-slam-mapping-exploration/2002-Vision-Navigation-Survey-TAX01/paper.pdf",
+      "bibtex": "01-papers/T2-slam-mapping-exploration/2002-Vision-Navigation-Survey-TAX01/citation.bib",
+      "markdown": "02-fulltext/T2-slam-mapping-exploration/2002-Vision-Navigation-Survey-TAX01/paper.md",
+      "pdf_pages_checked": [
+        2,
+        15,
+        17
+      ],
+      "pdf_sha256": "ea8aa03355fcdcfe0f95ff0a773edebdb6888636dd5f47e80a3df3e62af5d7a2",
+      "bibtex_sha256": "df65548d2fff2c58cd7095a112cd47d5a0f47c44220893ffeedcb041c9197d2f",
+      "markdown_sha256": "c0ee69fb7809126533d8adbaa341ca90187930b889dac4c2a364d745dda17759"
+    },
+    {
+      "code": "X04",
+      "title": "Deep reinforcement learning based mobile robot navigation: A review",
+      "doi": "10.26599/tst.2021.9010012",
+      "pdf": "01-papers/T3-planning-control/2021-DRL-nav-review-X04/paper.pdf",
+      "bibtex": "01-papers/T3-planning-control/2021-DRL-nav-review-X04/citation.bib",
+      "markdown": "02-fulltext/T3-planning-control/2021-DRL-nav-review-X04/paper.md",
+      "pdf_pages_checked": [
+        7
+      ],
+      "pdf_sha256": "ec8ebdfaedc903a8cc3b1952dd2a3252f7eb1beeee0eb0c7c157e1e04f2c785a",
+      "markdown_sha256": "d93e769ab513768ac941ef1bd57a22a0c4716104dfbf8b176e7929d6f307ad86",
+      "bibtex_sha256": "e48226eef7c979aa14f066fdc61d5c7cc6bcc668ee0ff227667a2b21dd05eef9"
+    },
+    {
+      "code": "J01",
+      "title": "Local Maps Are All You Need: A Review of Topometric Teach and Repeat Navigation",
+      "doi": "10.1146/annurev-control-032724-020548",
+      "pdf": "01-papers/T2-slam-mapping-exploration/2026-Local-Maps-Are-All-You-Need-J01/paper.pdf",
+      "bibtex": "01-papers/T2-slam-mapping-exploration/2026-Local-Maps-Are-All-You-Need-J01/citation.bib",
+      "markdown": "02-fulltext/T2-slam-mapping-exploration/2026-Local-Maps-Are-All-You-Need-J01/paper.md",
+      "pdf_pages_checked": [
+        3,
+        9
+      ],
+      "pdf_sha256": "d16c59cabf34cb893f49b751845d6d673f47422f4dd703a15fe040b00cc6ea01",
+      "markdown_sha256": "c43af27b8c1d9cb456bc5766e915cf201f833a28726e0997d0eea43e0419a258",
+      "bibtex_sha256": "d93518c21f0f79e0785925bf493880c979445bc97962885e365d88f5517c04a2"
+    },
+    {
+      "code": "SC-R073",
+      "title": "A Survey on Active Simultaneous Localization and Mapping: State of the Art and New Frontiers",
+      "doi": "10.1109/tro.2023.3248510",
+      "pdf": "01-papers/T2-slam-mapping-exploration/2023-A-Survey-on-Active-Simultaneous-Localization-and-Mapping-State-of-th-SC-R073/paper.pdf",
+      "bibtex": "01-papers/T2-slam-mapping-exploration/2023-A-Survey-on-Active-Simultaneous-Localization-and-Mapping-State-of-th-SC-R073/citation.bib",
+      "markdown": "02-fulltext/T2-slam-mapping-exploration/2023-A-Survey-on-Active-Simultaneous-Localization-and-Mapping-State-of-th-SC-R073/paper.md",
+      "pdf_pages_checked": [
+        5
+      ],
+      "pdf_sha256": "4ae5eef96e5d3427ce1cabb3889e32ced06a02533d99c5e4608267158b23d01c",
+      "markdown_sha256": "8a656a551f75e5d267711d99ab9a24b1f9ea843761561128ff2fe2a11860ebb2",
+      "bibtex_sha256": "2fbd6903fd8db5ae4c7e02772d58aa575ded92d5821b45d9ed836dffc013c788"
+    }
+  ],
+  "taxonomy_original_scope": "Indoor visual navigation in DeSouza and Kak (2002).",
+  "operational_rule": "Fix a runtime mode; test existing scene-reference dependence first, then online queryable spatial-model construction.",
+  "taxonomy_limit": "The operational disambiguation is stated by the chapter, not claimed as a universally adopted modern MECE taxonomy.",
+  "extraction_verification": {
+    "expected_papers": 1,
+    "papers": 1,
+    "pdf_pages": 31,
+    "referenced_images": 77,
+    "hashed_files_checked": 111,
+    "failures": [],
+    "warnings": [],
+    "status": "artifact-checks-passed",
+    "scope": "Artifact integrity and page coverage, not perfect OCR or scientific assessment."
+  },
+  "services_stopped": true,
+  "unresolved_truncation": [],
+  "reference_audit": "docs/06-sensors-navigation/research/navigation-taxonomy-reference-audit.md",
+  "prior_evidence_records": [
+    "metadata/research/relocalization-review-2026-11-11.json",
+    "metadata/research/navigation-map-dependence-review-2026-11-12.json"
+  ]
+}
