@@ -6,7 +6,7 @@ status: complete
 
 视觉导航需要同时检查定位算法和导航闭环。公开数据集提供固定观测与独立真值，适合检验 VINS 的初始化、轨迹误差和处理速度；Gazebo 接收车辆控制指令并生成后续观测，适合检验规划、避障、停车与故障恢复。两种实验各自回答不同的问题。
 
-本文配套代码位于 [wheeltec-ros-source-reference 的 vision-nav 目录](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/1e518ba923e6876254ae0eddddab5ac52d42798c/ros2/navigation/vision-nav)。运行包、依赖与实验脚本放在源码仓库；教材维护操作说明、指标解释和验证记录。[本轮实验报告](vision-simulation-results.md)保存实测结果、失败项与配置身份。当前实车运行基线仍是 RGB-D、轮速和 IMU EKF。VINS 输出位姿与速度，Nav2 生成行驶指令，最终指令通过安全看门狗进入执行器。
+本文配套代码位于 [wheeltec-ros-source-reference 的 vision-nav 目录](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/d6092f1a270ec64b24c11f8c1c9b1c8d5d473043/ros2/navigation/vision-nav)。运行包、依赖与实验脚本放在源码仓库；教材维护操作说明、指标解释和验证记录。[本轮实验报告](vision-simulation-results.md)保存实测结果、失败项与配置身份。当前实车运行基线仍是 RGB-D、轮速和 IMU EKF。VINS 输出位姿与速度，Nav2 生成行驶指令，最终指令通过安全看门狗进入执行器。
 
 ## 选择实验环境
 
@@ -186,15 +186,15 @@ sudo env WHEELTEC_SIM_ROOT="$SIM_ROOT" WHEELTEC_SIM_GPU=1 WHEELTEC_SIM_CPUS=16 \
 | 项目 | 当前证据 |
 | --- | --- |
 | NVIDIA 容器设备映射 | 一次性容器成功识别选定 GPU |
-| 既有保护链与新增仿真工具测试 | Windows 控制端复核：667 项通过、8 项按 ROS/POSIX 环境跳过；GitHub Linux/Windows Python 3.10、3.12 与 Humble CI 已通过 |
-| ROS 中间件保护集成测试 | 隔离 Humble 容器：4 项通过，9.30 s；POSIX 会话退出测试 7 项通过，原生执行器 CTest 1/1 通过 |
+| 既有保护链与新增仿真工具测试 | Windows 控制端复核：692 项通过、8 项按 ROS/POSIX 环境跳过；GitHub Linux/Windows Python 3.10、3.12 与 Humble CI 已通过 |
+| ROS 中间件保护集成测试 | 隔离 Humble 容器：5 项通过，19.23 s；独立轮速/IMU 停流分别约 338/340 ms 输出零速；POSIX 会话退出测试 7 项、原生执行器 CTest 1/1 通过 |
 | Humble/Fortress 实验镜像 | 已构建，Gazebo 6.18.0；五个本地 ROS 包编译通过，原生执行器 CTest 1/1 通过 |
 | 仿真传感器首轮检查 | 无界面图像、深度、IMU、关节、五路碰撞观测与独立真值已输出；最终速度出口和暂停时的墙钟保护已实测 |
 | EuRoC 数据完整性 | MH01、MH03、MH05 下载与 ZIP CRC、标定、图像和时序验证通过；MH05 VIO 记录一帧边界排除 |
-| EuRoC 正式 VO/VIO 回归 | 三个序列、两种模式、各三次，共 18 次运行及评分完成；双目 VO 可复现，VIO 出现明显漂移和发散，精度验收未通过 |
+| EuRoC 正式 VO/VIO 回归 | 原策略 18 次加新噪声策略 VIO 9 次，均保留；双目 VO 可复现，VIO 在 MH03 反复发散且有覆盖率缺失，未通过 |
 | Gazebo 建图与故障闭环 | RGB-D、双目 VO、VIO 在统一纹理房间各 24/24 通过，地图正常关闭 |
 | Gazebo 地图定位与 Nav2 | 三种模式各 24/24 通过，独立真值到点误差 0.170–0.192 m；范围限于当前房间和短路线 |
-| 30 分钟持续负载 | 已完成静止描述性记录；原记录器首样误报且缺连续证据，保留未通过。修正后 30 s 抽查通过，最终版本 30 分钟与行驶负载待测 |
+| 30 分钟持续负载 | 最终 schema 2 静止长测 1800.006 s 通过，无失败，安全指令间隔 P99 为 54.43 ms，正常退出；旧失败保留，行驶控制及实车负载待测 |
 | 实车标定、采样时序与制动 | 待实车测量 |
 
 实车操作与验收分别见[视觉建图与导航操作](../06-sensors-navigation/41-visual-operation.md)和[全系统验收清单](../10-deployment-maintenance/59-system-acceptance.md)。

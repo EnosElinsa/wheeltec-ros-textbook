@@ -1,0 +1,2439 @@
+{
+  "schema": 1,
+  "experiment": "new noise-policy VIO repetitions; separate from original 18-run density-as-parameter experiment",
+  "noise_policy_commit": "fb5d1324",
+  "runtime_image": "7d347 (parent-provided fixed experimental image for MH03/MH05)",
+  "meaning": "Measured execution, partial coverage, error and timing evidence. Missing/failed runs retained; no accuracy or driving acceptance implied.",
+  "groups": [
+    {
+      "group": "euroc-noise-ab-01",
+      "artifacts": {
+        "exit-codes.tsv": "fb04f78c6378de4da52a7a885988f29e9981cf34d224d07e1d7f22ed307ec6ae"
+      }
+    },
+    {
+      "group": "euroc-noise-mh03-01",
+      "artifacts": {
+        "suite.json": "9b63826b41d9317ea1abd4215344bb2bd0f9aec9e2d40688733c27ae2d042fa3",
+        "exit-codes.tsv": "2252216e88ba42bb52c0a897d22e5a4b2c8a4233b5b588874c05257c105380ff"
+      }
+    },
+    {
+      "group": "euroc-noise-mh05-01",
+      "artifacts": {
+        "suite.json": "f3f16cf97b3b80ed2a03ec7418ead2db6c7814aa2af5c6cf4e914115aad3ebbf",
+        "exit-codes.tsv": "ede4ec91ea18689ca51504aa4fef0071c9f9fce07d23bfddee307db450669ca7"
+      }
+    }
+  ],
+  "runs": [
+    {
+      "group": "euroc-noise-ab-01",
+      "run": "MH_01_easy-vio-1",
+      "exit_code": 0,
+      "outcome": "scored_partial",
+      "metrics": {
+        "schema_version": 1,
+        "status": "partial_output",
+        "expected_frames": 3682,
+        "estimate_samples": 1746,
+        "matched_samples": 1736,
+        "coverage": 0.4714828897338403,
+        "association_tolerance_ns": 10000000,
+        "alignment": "SE(3), scale fixed at 1",
+        "body_frame": "imu0/base_footprint",
+        "rpe_interval_s": 1.0,
+        "ate_translation_rmse_m": 0.03875158729501728,
+        "rpe_translation_rmse_m": 0.012124405480588303,
+        "rpe_rotation_rmse_rad": 0.019849450382315465,
+        "rpe_pairs": 1497,
+        "covered_frames": 1736,
+        "gt_supported_frames": 3638,
+        "first_estimate_ns": 1403636580363555584,
+        "last_estimate_ns": 1403636684763555584,
+        "ate_translation_median_m": 0.027309385668092642,
+        "ate_translation_max_m": 0.09771013644592941,
+        "alignment_rotation": [
+          [
+            -0.9751288162170748,
+            -0.2216235577710134,
+            0.0026058442018833806
+          ],
+          [
+            0.22163872027531917,
+            -0.9750747084230272,
+            0.010275732016122368
+          ],
+          [
+            0.00026354848723276174,
+            0.010597718370787539,
+            0.9999438078749868
+          ]
+        ],
+        "alignment_translation": [
+          4.70610002588109,
+          -1.7858235875244057,
+          0.7163532228484606
+        ],
+        "alignment_position_rank": 3,
+        "association_max_error_ns": 256,
+        "reference_interpretation": "EuRoC supplied reference; for MH sequences orientation is observed only by IMU in the Leica+IMU batch solution, not independent motion-capture orientation"
+      },
+      "artifacts": {
+        "config/left.yaml": "a885a752790370b3893f537dcea067196c4e54d697e31788f6b2ea6f13931065",
+        "config/right.yaml": "eaed0ea147fa904bf78df98ba91cd518f9d58de0ec6c2e01a1d2b2a5471bb0ca",
+        "config/solver_output/vio.csv": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "config/vins.yaml": "d7b31790582bca06f0d20f208911d644178ac2b6bef6a0c887d7a047cead494f",
+        "manifest.json": "8ac29f0b7b31adde055778096f186202011da37776eceff33c955d46a7fff092",
+        "metrics.json": "9b9b9aee284b97e652a992f07ff2f18f449d0c4f0f34deea8d56126120221d3f",
+        "playback.csv": "9a7a897cae84fa565eff2b69112edaea05d7e5705dd97feb05a88d81bf7d7f7f",
+        "runtime.json": "cc6127617d01ec05302a23ba0c03f9a34ec74076298dc5a43232e325d5393f91",
+        "trajectory.csv": "0d6d2d52ea5c8873407fdb1c522ef35ca1acbb833266e547c559b198231e8ce3",
+        "trajectory.png": "0d3ef141257df7aa0d6fdb7f184924caecccc57aacc44b03a2db432717ad4b77",
+        "visual_status.csv": "8ae19a13923858e66f9ef695744725e209451d9cafbc599a2d49329f97f66665",
+        "launch.log": "1bde3207889d84370305cea4f89ccf4cdbf71c5ddb534c7b20381c23ad3dd60a"
+      },
+      "runtime": {
+        "schema_version": 1,
+        "failure": null,
+        "invalid_output": [],
+        "playback_policy": {
+          "mode": "vio",
+          "expected_stereo_frames": 3682,
+          "playable_stereo_frames": 3682,
+          "excluded_stereo_frames": 0,
+          "excluded": [],
+          "imu_first_ns": 1403636579758555392,
+          "imu_last_ns": 1403636763853555456,
+          "policy": "VIO excludes images outside inclusive raw IMU time support; stereo VO keeps every image; no padding or retimestamping",
+          "coverage_denominator": "all original stereo timestamps, including excluded images"
+        },
+        "stereo_published": 3682,
+        "imu_published": 36820,
+        "odom_samples": 1746,
+        "visual_status_samples": 1757,
+        "visual_lost_samples": 10,
+        "estimator_enabled": true,
+        "imu_covariance": "orientation unavailable (-1); gyro/accel unknown (zeros, ROS convention)",
+        "timing": "monotonic dispatch lateness; receive data_age uses 1x replay epoch, includes queue delay",
+        "completion": "stream_complete"
+      },
+      "data_sha256": "4037f3f973f90bec5d8ebd4a0bb444e56298bd6a56d1a8519ff84d88a0558f56",
+      "noise_policy": {
+        "policy": "pinned_vins_midpoint_step_variance_v1",
+        "backend_revision": "72023bc5d2abb14faa4c02a5c040d84f996b587a",
+        "backend_model": "vins/src/factor/integration_base.h: independent endpoint noise, V measurement=dt/2, V bias=dt",
+        "calibrated_rate_hz": 200.0,
+        "stamped_interval_ns": {
+          "minimum": 4999936,
+          "maximum": 5000192,
+          "tolerance": 256
+        },
+        "continuous_densities": {
+          "accelerometer_noise_density": 0.002,
+          "gyroscope_noise_density": 0.00016968,
+          "accelerometer_random_walk": 0.003,
+          "gyroscope_random_walk": 1.9393e-05
+        },
+        "continuous_units": {
+          "accelerometer_noise_density": "m/s^2/sqrt(Hz)",
+          "gyroscope_noise_density": "rad/s/sqrt(Hz)",
+          "accelerometer_random_walk": "m/s^3/sqrt(Hz)",
+          "gyroscope_random_walk": "rad/s^2/sqrt(Hz)"
+        },
+        "formulas": {
+          "measurement": "density * sqrt(2 * rate_hz)",
+          "bias": "random_walk_density * sqrt(rate_hz)"
+        },
+        "derived_vins_parameters": {
+          "acc_n": 0.04,
+          "gyr_n": 0.0033935999999999997,
+          "acc_w": 0.042426406871192854,
+          "gyr_w": 0.00027425843615101433
+        },
+        "derived_units": {
+          "acc_n": "m/s^2",
+          "gyr_n": "rad/s",
+          "acc_w": "m/s^3",
+          "gyr_w": "rad/s^2"
+        },
+        "interpretation": "Leading per-step covariance match to continuous density squared times dt; independent midpoint endpoints; not an exact correlated multi-step noise model or tuned accuracy guarantee"
+      },
+      "source_files": {
+        "__init__.py": "be7b7b7dfb5e74f2707a33801512017b1248f734bf902154421fd5715a0a6025",
+        "config.py": "b58c233afadc556a966d1b3f1f32d8dc2740882c6e69660737a394d04b71f2cc",
+        "dataset.py": "a20b8f489cb95a7b6113e1fdc132ad41457d5ba96332f34ca43cee149d64195f",
+        "geometry.py": "3de67df5d2ef0566ae33c1789c34148e0301611005d90545509befb14a9d993c",
+        "player.py": "4b4acd8451a075c82344c136dc471d5a804aa8da83bdd550b382c470803cd29b",
+        "rectification.py": "6bef153b037451c82b386b11ef899b4145f267c5c6546279f8568eecc9ef3226",
+        "runtime.py": "9a6c52c0d91694d3cc82e09ff1bb040d72735062c4e2a7410656d88ebd467623",
+        "trajectory.py": "b80fd28acdb33cbffb3b826b6fc23a6c022ab8002b821f361697368dbf78db76",
+        "validate.py": "02619d31dd7db64b445ac7fc8a4ebadb537a44d709cf1eb6464e83a25088c0b5"
+      },
+      "estimator_parameters": [
+        {
+          "use_sim_time": true,
+          "frame_id": "base_footprint",
+          "odom_frame_id": "benchmark_odom",
+          "publish_tf": false,
+          "publish_null_when_lost": false,
+          "approx_sync": false,
+          "qos": 1,
+          "qos_imu": 1,
+          "topic_queue_size": 10,
+          "sync_queue_size": 10,
+          "output_queue_size": 10,
+          "imu_queue_size": 400,
+          "executor_threads": 2,
+          "wait_for_transform": 0.5,
+          "wait_imu_to_init": true,
+          "Odom/Strategy": "9",
+          "Reg/Force3DoF": "false",
+          "OdomVINSFusion/ConfigPath": "/work/results/euroc-noise-ab-01/MH_01_easy-vio-1/config/vins.yaml",
+          "Rtabmap/ImagesAlreadyRectified": "true",
+          "Odom/ResetCountdown": "0"
+        }
+      ],
+      "launch_log_path": "euroc-noise-ab-01/MH_01_easy-vio-1.log",
+      "odom_data_age_ms": {
+        "count": 1746,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 46.227506,
+        "p95": 65.30487099999999,
+        "p99": 70.74013375,
+        "maximum": 516.222366
+      },
+      "estimation_ms": {
+        "count": 1757,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 37.91093826293945,
+        "p95": 58.49275588989258,
+        "p99": 63.01263809204102,
+        "maximum": 82.9157829284668
+      },
+      "image_dispatch_lateness_ms": {
+        "count": 3682,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 6.094669,
+        "p95": 9.3438386,
+        "p99": 11.671991130000006,
+        "maximum": 17.637887
+      },
+      "image_rectification_ms": {
+        "count": 3682,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 4.9355805,
+        "p95": 7.737536499999999,
+        "p99": 8.09991387,
+        "maximum": 14.436181
+      },
+      "processing_update_ms": {
+        "count": 1757,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 38.010000000000005,
+        "p95": 58.62239999999999,
+        "p99": 63.14188,
+        "maximum": 83.093
+      },
+      "solver_ms": {
+        "count": 1746,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 27.500449500000002,
+        "p95": 47.156442,
+        "p99": 50.98648789999999,
+        "maximum": 55.407562
+      },
+      "raw_trajectory_geometry": {
+        "last_position_m": [
+          6.812488079071045,
+          -6.06032133102417,
+          -0.7860267162322998
+        ],
+        "max_position_norm_m": 12.619053484379886,
+        "max_consecutive_translation_m": 1.5632492628776924,
+        "max_consecutive_speed_m_s": 1.8391165029068
+      },
+      "tail": {
+        "original_frames": 3682,
+        "dispatched_frames": 3682,
+        "dispatched_imu": 36820,
+        "original_first_image_ns": 1403636579763555584,
+        "original_last_image_ns": 1403636763813555456,
+        "last_dispatched_image_ns": 1403636763813555456,
+        "last_dispatched_imu_ns": 1403636763853555456,
+        "last_estimate_ns": 1403636684763555584,
+        "estimate_gap_to_original_last_image_ns": 79049999872,
+        "original_images_after_last_estimate": 1581,
+        "max_estimate_interval_ns": 850000128
+      },
+      "processing_gaps": {
+        "log_timings_match_visual_status_rows": true,
+        "processing_frames_over_50_ms": 310,
+        "over_50ms_with_following_status_available": 309,
+        "over_50ms_followed_by_timestamp_skip": 302,
+        "missing_original_frames_between_status_samples": 344,
+        "individual_input_receive_counts": null,
+        "limitation": "Per-topic Image/CameraInfo receives were not counted; dispatch completion is not proof of DDS delivery. Processing-gap association does not establish the cause of sustained callback outages."
+      },
+      "log_signals": {
+        "imu_overflow_warnings": 14819,
+        "sync_no_data_warnings": 19,
+        "clean_process_exit_lines": [
+          "[INFO] [euroc_player-2]: process has finished cleanly [pid 33]",
+          "[INFO] [stereo_odometry-1]: process has finished cleanly [pid 31]"
+        ],
+        "abnormal_process_lines": []
+      },
+      "review": "partial coverage: accuracy on returned samples does not establish full-sequence success"
+    },
+    {
+      "group": "euroc-noise-ab-01",
+      "run": "MH_01_easy-vio-2",
+      "exit_code": 0,
+      "outcome": "scored_partial",
+      "metrics": {
+        "schema_version": 1,
+        "status": "partial_output",
+        "expected_frames": 3682,
+        "estimate_samples": 3232,
+        "matched_samples": 3200,
+        "coverage": 0.8690928843020098,
+        "association_tolerance_ns": 10000000,
+        "alignment": "SE(3), scale fixed at 1",
+        "body_frame": "imu0/base_footprint",
+        "rpe_interval_s": 1.0,
+        "ate_translation_rmse_m": 0.0871909242455587,
+        "rpe_translation_rmse_m": 0.014356859417865889,
+        "rpe_rotation_rmse_rad": 0.014297313293780431,
+        "rpe_pairs": 2811,
+        "covered_frames": 3200,
+        "gt_supported_frames": 3638,
+        "first_estimate_ns": 1403636580363555584,
+        "last_estimate_ns": 1403636763813555456,
+        "ate_translation_median_m": 0.06561382152161671,
+        "ate_translation_max_m": 0.23551369307288997,
+        "alignment_rotation": [
+          [
+            -0.9763920630433087,
+            -0.21596909100748837,
+            0.003986346125282496
+          ],
+          [
+            0.21599966673445556,
+            -0.9763376579314164,
+            0.010436554776414524
+          ],
+          [
+            0.001638046591350041,
+            0.01105121868375679,
+            0.9999375917370892
+          ]
+        ],
+        "alignment_translation": [
+          4.736556790668506,
+          -1.7214676272980118,
+          0.6856669870058644
+        ],
+        "alignment_position_rank": 3,
+        "association_max_error_ns": 256,
+        "reference_interpretation": "EuRoC supplied reference; for MH sequences orientation is observed only by IMU in the Leica+IMU batch solution, not independent motion-capture orientation"
+      },
+      "artifacts": {
+        "config/left.yaml": "a885a752790370b3893f537dcea067196c4e54d697e31788f6b2ea6f13931065",
+        "config/right.yaml": "eaed0ea147fa904bf78df98ba91cd518f9d58de0ec6c2e01a1d2b2a5471bb0ca",
+        "config/solver_output/vio.csv": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "config/vins.yaml": "772565c990506d273a674abb626818fd79f4204403e71fc764cbf9c29a0d5c95",
+        "manifest.json": "96f3cb553ade8a8a0383e89d5a691079fe09f2a4925e4dca8874a300c4ee81c9",
+        "metrics.json": "46e613e9dbc31481fdcbfa2217ad9eb0021b210a22783735924fb20af53fd421",
+        "playback.csv": "20b44b64f5ffdd4b053c30ed2264741304a5b3b1c3e7015dcd34bd57bd2e4fe7",
+        "runtime.json": "aa8ac7ae4e7d1e6a0a42ceaac4767a6c0ad079a4d5bce72c608976215a0e51de",
+        "trajectory.csv": "5047d41b5bae10b68ffc64b7fa9d3a5e2e428a2977aa4c6c1b7a1c0ebb03fa5f",
+        "trajectory.png": "d34bc2beec65625b9eb7b073f6a3666c862d4711c5a60253c69ce46bc5ade943",
+        "visual_status.csv": "de10c8e8093e7bb7b697e3143e7d724bf9b2e85e4af9a7621d7c5dd41893bf6d",
+        "launch.log": "1094d42f589fdab1ca23a73bc799487351ad7d87e49741f79e7d36837c9ad1b7"
+      },
+      "runtime": {
+        "schema_version": 1,
+        "failure": null,
+        "invalid_output": [],
+        "playback_policy": {
+          "mode": "vio",
+          "expected_stereo_frames": 3682,
+          "playable_stereo_frames": 3682,
+          "excluded_stereo_frames": 0,
+          "excluded": [],
+          "imu_first_ns": 1403636579758555392,
+          "imu_last_ns": 1403636763853555456,
+          "policy": "VIO excludes images outside inclusive raw IMU time support; stereo VO keeps every image; no padding or retimestamping",
+          "coverage_denominator": "all original stereo timestamps, including excluded images"
+        },
+        "stereo_published": 3682,
+        "imu_published": 36820,
+        "odom_samples": 3232,
+        "visual_status_samples": 3243,
+        "visual_lost_samples": 10,
+        "estimator_enabled": true,
+        "imu_covariance": "orientation unavailable (-1); gyro/accel unknown (zeros, ROS convention)",
+        "timing": "monotonic dispatch lateness; receive data_age uses 1x replay epoch, includes queue delay",
+        "completion": "stream_complete"
+      },
+      "data_sha256": "4037f3f973f90bec5d8ebd4a0bb444e56298bd6a56d1a8519ff84d88a0558f56",
+      "noise_policy": {
+        "policy": "pinned_vins_midpoint_step_variance_v1",
+        "backend_revision": "72023bc5d2abb14faa4c02a5c040d84f996b587a",
+        "backend_model": "vins/src/factor/integration_base.h: independent endpoint noise, V measurement=dt/2, V bias=dt",
+        "calibrated_rate_hz": 200.0,
+        "stamped_interval_ns": {
+          "minimum": 4999936,
+          "maximum": 5000192,
+          "tolerance": 256
+        },
+        "continuous_densities": {
+          "accelerometer_noise_density": 0.002,
+          "gyroscope_noise_density": 0.00016968,
+          "accelerometer_random_walk": 0.003,
+          "gyroscope_random_walk": 1.9393e-05
+        },
+        "continuous_units": {
+          "accelerometer_noise_density": "m/s^2/sqrt(Hz)",
+          "gyroscope_noise_density": "rad/s/sqrt(Hz)",
+          "accelerometer_random_walk": "m/s^3/sqrt(Hz)",
+          "gyroscope_random_walk": "rad/s^2/sqrt(Hz)"
+        },
+        "formulas": {
+          "measurement": "density * sqrt(2 * rate_hz)",
+          "bias": "random_walk_density * sqrt(rate_hz)"
+        },
+        "derived_vins_parameters": {
+          "acc_n": 0.04,
+          "gyr_n": 0.0033935999999999997,
+          "acc_w": 0.042426406871192854,
+          "gyr_w": 0.00027425843615101433
+        },
+        "derived_units": {
+          "acc_n": "m/s^2",
+          "gyr_n": "rad/s",
+          "acc_w": "m/s^3",
+          "gyr_w": "rad/s^2"
+        },
+        "interpretation": "Leading per-step covariance match to continuous density squared times dt; independent midpoint endpoints; not an exact correlated multi-step noise model or tuned accuracy guarantee"
+      },
+      "source_files": {
+        "__init__.py": "be7b7b7dfb5e74f2707a33801512017b1248f734bf902154421fd5715a0a6025",
+        "config.py": "b58c233afadc556a966d1b3f1f32d8dc2740882c6e69660737a394d04b71f2cc",
+        "dataset.py": "a20b8f489cb95a7b6113e1fdc132ad41457d5ba96332f34ca43cee149d64195f",
+        "geometry.py": "3de67df5d2ef0566ae33c1789c34148e0301611005d90545509befb14a9d993c",
+        "player.py": "4b4acd8451a075c82344c136dc471d5a804aa8da83bdd550b382c470803cd29b",
+        "rectification.py": "6bef153b037451c82b386b11ef899b4145f267c5c6546279f8568eecc9ef3226",
+        "runtime.py": "9a6c52c0d91694d3cc82e09ff1bb040d72735062c4e2a7410656d88ebd467623",
+        "trajectory.py": "b80fd28acdb33cbffb3b826b6fc23a6c022ab8002b821f361697368dbf78db76",
+        "validate.py": "02619d31dd7db64b445ac7fc8a4ebadb537a44d709cf1eb6464e83a25088c0b5"
+      },
+      "estimator_parameters": [
+        {
+          "use_sim_time": true,
+          "frame_id": "base_footprint",
+          "odom_frame_id": "benchmark_odom",
+          "publish_tf": false,
+          "publish_null_when_lost": false,
+          "approx_sync": false,
+          "qos": 1,
+          "qos_imu": 1,
+          "topic_queue_size": 10,
+          "sync_queue_size": 10,
+          "output_queue_size": 10,
+          "imu_queue_size": 400,
+          "executor_threads": 2,
+          "wait_for_transform": 0.5,
+          "wait_imu_to_init": true,
+          "Odom/Strategy": "9",
+          "Reg/Force3DoF": "false",
+          "OdomVINSFusion/ConfigPath": "/work/results/euroc-noise-ab-01/MH_01_easy-vio-2/config/vins.yaml",
+          "Rtabmap/ImagesAlreadyRectified": "true",
+          "Odom/ResetCountdown": "0"
+        }
+      ],
+      "launch_log_path": "euroc-noise-ab-01/MH_01_easy-vio-2.log",
+      "odom_data_age_ms": {
+        "count": 3232,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 48.59274549999999,
+        "p95": 63.671295799999996,
+        "p99": 68.86592085999999,
+        "maximum": 73.924354
+      },
+      "estimation_ms": {
+        "count": 3243,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 38.881778717041016,
+        "p95": 53.71191501617431,
+        "p99": 59.41811084747314,
+        "maximum": 82.77010917663574
+      },
+      "image_dispatch_lateness_ms": {
+        "count": 3682,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 8.798686,
+        "p95": 11.718847499999994,
+        "p99": 13.152869970000001,
+        "maximum": 23.864631
+      },
+      "image_rectification_ms": {
+        "count": 3682,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 7.427432,
+        "p95": 7.8353157499999995,
+        "p99": 7.975233899999999,
+        "maximum": 14.324783
+      },
+      "processing_update_ms": {
+        "count": 3243,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 38.981,
+        "p95": 53.817499999999995,
+        "p99": 59.51922,
+        "maximum": 82.95
+      },
+      "solver_ms": {
+        "count": 3232,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 28.302476,
+        "p95": 42.41981729999999,
+        "p99": 47.62533502,
+        "maximum": 53.773193
+      },
+      "raw_trajectory_geometry": {
+        "last_position_m": [
+          0.12685918807983398,
+          0.4010116159915924,
+          -0.05464616417884827
+        ],
+        "max_position_norm_m": 12.681498267501905,
+        "max_consecutive_translation_m": 0.20478320507089232,
+        "max_consecutive_speed_m_s": 2.047832050708923
+      },
+      "tail": {
+        "original_frames": 3682,
+        "dispatched_frames": 3682,
+        "dispatched_imu": 36820,
+        "original_first_image_ns": 1403636579763555584,
+        "original_last_image_ns": 1403636763813555456,
+        "last_dispatched_image_ns": 1403636763813555456,
+        "last_dispatched_imu_ns": 1403636763853555456,
+        "last_estimate_ns": 1403636763813555456,
+        "estimate_gap_to_original_last_image_ns": 0,
+        "original_images_after_last_estimate": 0,
+        "max_estimate_interval_ns": 100000000
+      },
+      "processing_gaps": {
+        "log_timings_match_visual_status_rows": true,
+        "processing_frames_over_50_ms": 367,
+        "over_50ms_with_following_status_available": 367,
+        "over_50ms_followed_by_timestamp_skip": 358,
+        "missing_original_frames_between_status_samples": 439,
+        "individual_input_receive_counts": null,
+        "limitation": "Per-topic Image/CameraInfo receives were not counted; dispatch completion is not proof of DDS delivery. Processing-gap association does not establish the cause of sustained callback outages."
+      },
+      "log_signals": {
+        "imu_overflow_warnings": 0,
+        "sync_no_data_warnings": 3,
+        "clean_process_exit_lines": [
+          "[INFO] [euroc_player-2]: process has finished cleanly [pid 4269]",
+          "[INFO] [stereo_odometry-1]: process has finished cleanly [pid 4267]"
+        ],
+        "abnormal_process_lines": []
+      },
+      "review": "partial coverage: accuracy on returned samples does not establish full-sequence success"
+    },
+    {
+      "group": "euroc-noise-ab-01",
+      "run": "MH_01_easy-vio-3",
+      "exit_code": 0,
+      "outcome": "scored_partial",
+      "metrics": {
+        "schema_version": 1,
+        "status": "partial_output",
+        "expected_frames": 3682,
+        "estimate_samples": 3290,
+        "matched_samples": 3259,
+        "coverage": 0.8851167843563281,
+        "association_tolerance_ns": 10000000,
+        "alignment": "SE(3), scale fixed at 1",
+        "body_frame": "imu0/base_footprint",
+        "rpe_interval_s": 1.0,
+        "ate_translation_rmse_m": 0.09516167010130877,
+        "rpe_translation_rmse_m": 0.013573518940634232,
+        "rpe_rotation_rmse_rad": 0.013085781485300962,
+        "rpe_pairs": 2914,
+        "covered_frames": 3259,
+        "gt_supported_frames": 3638,
+        "first_estimate_ns": 1403636580363555584,
+        "last_estimate_ns": 1403636763813555456,
+        "ate_translation_median_m": 0.07574079388129858,
+        "ate_translation_max_m": 0.25701924480534355,
+        "alignment_rotation": [
+          [
+            -0.9707061152532291,
+            -0.24026979526655054,
+            -0.0002515801156230773
+          ],
+          [
+            0.24026203319088202,
+            -0.9706821792655613,
+            0.007089588369198331
+          ],
+          [
+            -0.001947618280884349,
+            0.0068214616345187214,
+            0.9999748369055101
+          ]
+        ],
+        "alignment_translation": [
+          4.7586882122198855,
+          -1.7246121885203016,
+          0.6893171019541453
+        ],
+        "alignment_position_rank": 3,
+        "association_max_error_ns": 256,
+        "reference_interpretation": "EuRoC supplied reference; for MH sequences orientation is observed only by IMU in the Leica+IMU batch solution, not independent motion-capture orientation"
+      },
+      "artifacts": {
+        "config/left.yaml": "a885a752790370b3893f537dcea067196c4e54d697e31788f6b2ea6f13931065",
+        "config/right.yaml": "eaed0ea147fa904bf78df98ba91cd518f9d58de0ec6c2e01a1d2b2a5471bb0ca",
+        "config/solver_output/vio.csv": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "config/vins.yaml": "e3cc52255b451c4a4c3005aa80f914944481179b781d6b5bb6469993d584739c",
+        "manifest.json": "db7ad83779e39689f7bb4afe44d61e26b94310bfd26449c931a2c653c7098feb",
+        "metrics.json": "b726ff93a94f33d2b8ec0ec0d109e57fd754b616590a924e573f18526cbaedaf",
+        "playback.csv": "6853b4fb2d96f3370d5fc5d21f3c76d4d13863734b0e6e1ac2475f1d51ff9588",
+        "runtime.json": "c3443bb9d4866c2eb0e5f257fe06e40c60e2f90e04f81f74405792f7f7319cd0",
+        "trajectory.csv": "f70c4f248f7cbb1c8ef5fe74571355d0067213b92f97b1c8cefaf3f8929e0ecc",
+        "trajectory.png": "5859ecf4980697b0b23d48fe7e3520f7581ae7f7004063c7ed1cabef84ee9df3",
+        "visual_status.csv": "cf43b98fb42645c9463f9225bbd05dd2398b5c1fde8befad31b5a3cf0d0fd47d",
+        "launch.log": "bc5e98472b58110f7ac071da6c1d499dca3432c6c9be97a04854a45080b69557"
+      },
+      "runtime": {
+        "schema_version": 1,
+        "failure": null,
+        "invalid_output": [],
+        "playback_policy": {
+          "mode": "vio",
+          "expected_stereo_frames": 3682,
+          "playable_stereo_frames": 3682,
+          "excluded_stereo_frames": 0,
+          "excluded": [],
+          "imu_first_ns": 1403636579758555392,
+          "imu_last_ns": 1403636763853555456,
+          "policy": "VIO excludes images outside inclusive raw IMU time support; stereo VO keeps every image; no padding or retimestamping",
+          "coverage_denominator": "all original stereo timestamps, including excluded images"
+        },
+        "stereo_published": 3682,
+        "imu_published": 36820,
+        "odom_samples": 3290,
+        "visual_status_samples": 3301,
+        "visual_lost_samples": 10,
+        "estimator_enabled": true,
+        "imu_covariance": "orientation unavailable (-1); gyro/accel unknown (zeros, ROS convention)",
+        "timing": "monotonic dispatch lateness; receive data_age uses 1x replay epoch, includes queue delay",
+        "completion": "stream_complete"
+      },
+      "data_sha256": "4037f3f973f90bec5d8ebd4a0bb444e56298bd6a56d1a8519ff84d88a0558f56",
+      "noise_policy": {
+        "policy": "pinned_vins_midpoint_step_variance_v1",
+        "backend_revision": "72023bc5d2abb14faa4c02a5c040d84f996b587a",
+        "backend_model": "vins/src/factor/integration_base.h: independent endpoint noise, V measurement=dt/2, V bias=dt",
+        "calibrated_rate_hz": 200.0,
+        "stamped_interval_ns": {
+          "minimum": 4999936,
+          "maximum": 5000192,
+          "tolerance": 256
+        },
+        "continuous_densities": {
+          "accelerometer_noise_density": 0.002,
+          "gyroscope_noise_density": 0.00016968,
+          "accelerometer_random_walk": 0.003,
+          "gyroscope_random_walk": 1.9393e-05
+        },
+        "continuous_units": {
+          "accelerometer_noise_density": "m/s^2/sqrt(Hz)",
+          "gyroscope_noise_density": "rad/s/sqrt(Hz)",
+          "accelerometer_random_walk": "m/s^3/sqrt(Hz)",
+          "gyroscope_random_walk": "rad/s^2/sqrt(Hz)"
+        },
+        "formulas": {
+          "measurement": "density * sqrt(2 * rate_hz)",
+          "bias": "random_walk_density * sqrt(rate_hz)"
+        },
+        "derived_vins_parameters": {
+          "acc_n": 0.04,
+          "gyr_n": 0.0033935999999999997,
+          "acc_w": 0.042426406871192854,
+          "gyr_w": 0.00027425843615101433
+        },
+        "derived_units": {
+          "acc_n": "m/s^2",
+          "gyr_n": "rad/s",
+          "acc_w": "m/s^3",
+          "gyr_w": "rad/s^2"
+        },
+        "interpretation": "Leading per-step covariance match to continuous density squared times dt; independent midpoint endpoints; not an exact correlated multi-step noise model or tuned accuracy guarantee"
+      },
+      "source_files": {
+        "__init__.py": "be7b7b7dfb5e74f2707a33801512017b1248f734bf902154421fd5715a0a6025",
+        "config.py": "b58c233afadc556a966d1b3f1f32d8dc2740882c6e69660737a394d04b71f2cc",
+        "dataset.py": "a20b8f489cb95a7b6113e1fdc132ad41457d5ba96332f34ca43cee149d64195f",
+        "geometry.py": "3de67df5d2ef0566ae33c1789c34148e0301611005d90545509befb14a9d993c",
+        "player.py": "4b4acd8451a075c82344c136dc471d5a804aa8da83bdd550b382c470803cd29b",
+        "rectification.py": "6bef153b037451c82b386b11ef899b4145f267c5c6546279f8568eecc9ef3226",
+        "runtime.py": "9a6c52c0d91694d3cc82e09ff1bb040d72735062c4e2a7410656d88ebd467623",
+        "trajectory.py": "b80fd28acdb33cbffb3b826b6fc23a6c022ab8002b821f361697368dbf78db76",
+        "validate.py": "02619d31dd7db64b445ac7fc8a4ebadb537a44d709cf1eb6464e83a25088c0b5"
+      },
+      "estimator_parameters": [
+        {
+          "use_sim_time": true,
+          "frame_id": "base_footprint",
+          "odom_frame_id": "benchmark_odom",
+          "publish_tf": false,
+          "publish_null_when_lost": false,
+          "approx_sync": false,
+          "qos": 1,
+          "qos_imu": 1,
+          "topic_queue_size": 10,
+          "sync_queue_size": 10,
+          "output_queue_size": 10,
+          "imu_queue_size": 400,
+          "executor_threads": 2,
+          "wait_for_transform": 0.5,
+          "wait_imu_to_init": true,
+          "Odom/Strategy": "9",
+          "Reg/Force3DoF": "false",
+          "OdomVINSFusion/ConfigPath": "/work/results/euroc-noise-ab-01/MH_01_easy-vio-3/config/vins.yaml",
+          "Rtabmap/ImagesAlreadyRectified": "true",
+          "Odom/ResetCountdown": "0"
+        }
+      ],
+      "launch_log_path": "euroc-noise-ab-01/MH_01_easy-vio-3.log",
+      "odom_data_age_ms": {
+        "count": 3290,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 48.2578585,
+        "p95": 62.56554515,
+        "p99": 68.64334649000003,
+        "maximum": 73.76736
+      },
+      "estimation_ms": {
+        "count": 3301,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 38.36703300476074,
+        "p95": 52.76012420654297,
+        "p99": 58.59994888305664,
+        "maximum": 71.22397422790527
+      },
+      "image_dispatch_lateness_ms": {
+        "count": 3682,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 8.8217405,
+        "p95": 11.8571954,
+        "p99": 13.154218629999999,
+        "maximum": 21.228326
+      },
+      "image_rectification_ms": {
+        "count": 3682,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 7.415397,
+        "p95": 7.836713549999999,
+        "p99": 7.9633657300000005,
+        "maximum": 14.288891
+      },
+      "processing_update_ms": {
+        "count": 3301,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 38.462999999999994,
+        "p95": 52.878,
+        "p99": 58.711,
+        "maximum": 71.40199999999999
+      },
+      "solver_ms": {
+        "count": 3290,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 27.788647,
+        "p95": 41.2314487,
+        "p99": 46.95287129000001,
+        "maximum": 51.164138
+      },
+      "raw_trajectory_geometry": {
+        "last_position_m": [
+          0.19565801322460175,
+          0.41035470366477966,
+          -0.08034428209066391
+        ],
+        "max_position_norm_m": 12.68533356938638,
+        "max_consecutive_translation_m": 0.20381165223060765,
+        "max_consecutive_speed_m_s": 2.0483447749787405
+      },
+      "tail": {
+        "original_frames": 3682,
+        "dispatched_frames": 3682,
+        "dispatched_imu": 36820,
+        "original_first_image_ns": 1403636579763555584,
+        "original_last_image_ns": 1403636763813555456,
+        "last_dispatched_image_ns": 1403636763813555456,
+        "last_dispatched_imu_ns": 1403636763853555456,
+        "last_estimate_ns": 1403636763813555456,
+        "estimate_gap_to_original_last_image_ns": 0,
+        "original_images_after_last_estimate": 0,
+        "max_estimate_interval_ns": 100000000
+      },
+      "processing_gaps": {
+        "log_timings_match_visual_status_rows": true,
+        "processing_frames_over_50_ms": 331,
+        "over_50ms_with_following_status_available": 331,
+        "over_50ms_followed_by_timestamp_skip": 322,
+        "missing_original_frames_between_status_samples": 381,
+        "individual_input_receive_counts": null,
+        "limitation": "Per-topic Image/CameraInfo receives were not counted; dispatch completion is not proof of DDS delivery. Processing-gap association does not establish the cause of sustained callback outages."
+      },
+      "log_signals": {
+        "imu_overflow_warnings": 0,
+        "sync_no_data_warnings": 3,
+        "clean_process_exit_lines": [
+          "[INFO] [euroc_player-2]: process has finished cleanly [pid 12376]",
+          "[INFO] [stereo_odometry-1]: process has finished cleanly [pid 12374]"
+        ],
+        "abnormal_process_lines": []
+      },
+      "review": "partial coverage: accuracy on returned samples does not establish full-sequence success"
+    },
+    {
+      "group": "euroc-noise-mh03-01",
+      "run": "MH_03_medium-vio-1",
+      "exit_code": 0,
+      "outcome": "scored_partial",
+      "metrics": {
+        "schema_version": 1,
+        "status": "partial_output",
+        "expected_frames": 2700,
+        "estimate_samples": 2603,
+        "matched_samples": 2546,
+        "coverage": 0.942962962962963,
+        "association_tolerance_ns": 10000000,
+        "alignment": "SE(3), scale fixed at 1",
+        "body_frame": "imu0/base_footprint",
+        "rpe_interval_s": 1.0,
+        "ate_translation_rmse_m": 1143.3932125223844,
+        "rpe_translation_rmse_m": 36.66887382944043,
+        "rpe_rotation_rmse_rad": 0.10693487629364905,
+        "rpe_pairs": 2462,
+        "covered_frames": 2546,
+        "gt_supported_frames": 2631,
+        "first_estimate_ns": 1403637131088318976,
+        "last_estimate_ns": 1403637265488318976,
+        "ate_translation_median_m": 1255.8876545956064,
+        "ate_translation_max_m": 1364.949554904293,
+        "alignment_rotation": [
+          [
+            -0.5079026944315179,
+            0.835369034247375,
+            0.21022233375598412
+          ],
+          [
+            0.8546914375727576,
+            0.45827133972946593,
+            0.24390556722300022
+          ],
+          [
+            0.10741228760722613,
+            0.3035555234272116,
+            -0.9467400090139921
+          ]
+        ],
+        "alignment_translation": [
+          639.1049464456786,
+          -1202.7131478730355,
+          -118.05877496828776
+        ],
+        "alignment_position_rank": 3,
+        "association_max_error_ns": 256,
+        "reference_interpretation": "EuRoC supplied reference; for MH sequences orientation is observed only by IMU in the Leica+IMU batch solution, not independent motion-capture orientation"
+      },
+      "artifacts": {
+        "config/left.yaml": "a885a752790370b3893f537dcea067196c4e54d697e31788f6b2ea6f13931065",
+        "config/right.yaml": "eaed0ea147fa904bf78df98ba91cd518f9d58de0ec6c2e01a1d2b2a5471bb0ca",
+        "config/solver_output/vio.csv": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "config/vins.yaml": "8197d3e0658ecf05eabc81060c94ecb585ba3978e7274c53fc4031ce85062472",
+        "manifest.json": "1aa09815965a3eb3debb1e841fc608516e02dac6c9bcaea6283322844d93a977",
+        "metrics.json": "74969cd3a21184d91829381c764f247fb4da24c07c2a1e9beb6d9d2cd98040f2",
+        "playback.csv": "d9a7f093d8b5c83942949708af00ba3f4c6b42f26e5ffa6aa9d14b0d981c4bc0",
+        "runtime.json": "885b796532f294d26d7ff5f8c55c98e73050e196d3c45bce2c883afb41648803",
+        "trajectory.csv": "690c7ecfe5de973b3e60afd350331a6fb48e2a05eb17a480797c18a35348f30e",
+        "trajectory.png": "8a3dec1a4d49dd9ad57ea7699ad009a2dc334bab83f1d4072a99ffd029ca4a3f",
+        "visual_status.csv": "a09a2a8c7587396af5efacbb5dced058baddda3b1c41eca90397223179849056",
+        "launch.log": "9d0035442b1657dbf2648d9af33d720607c4fad451077904180d19881900608c"
+      },
+      "data_sha256": "4415d841a2e93d412a0d6b124783c006a041ad74da313d3a898cccfdbb81c135",
+      "odom_data_age_ms": {
+        "count": 2603,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 33.834882,
+        "p95": 59.802403,
+        "p99": 66.33420837999999,
+        "maximum": 74.095162
+      },
+      "estimation_ms": {
+        "count": 2614,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 24.908065795898438,
+        "p95": 45.13731002807617,
+        "p99": 56.33215427398681,
+        "maximum": 64.3618106842041
+      },
+      "image_dispatch_lateness_ms": {
+        "count": 2700,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 8.5026245,
+        "p95": 9.323248649999998,
+        "p99": 12.307769299999997,
+        "maximum": 21.043264
+      },
+      "runtime": {
+        "schema_version": 1,
+        "failure": null,
+        "invalid_output": [],
+        "playback_policy": {
+          "mode": "vio",
+          "expected_stereo_frames": 2700,
+          "playable_stereo_frames": 2700,
+          "excluded_stereo_frames": 0,
+          "excluded": [],
+          "imu_first_ns": 1403637130498319104,
+          "imu_last_ns": 1403637265533318912,
+          "policy": "VIO excludes images outside inclusive raw IMU time support; stereo VO keeps every image; no padding or retimestamping",
+          "coverage_denominator": "all original stereo timestamps, including excluded images"
+        },
+        "stereo_published": 2700,
+        "imu_published": 27008,
+        "odom_samples": 2603,
+        "visual_status_samples": 2614,
+        "visual_lost_samples": 10,
+        "estimator_enabled": true,
+        "imu_covariance": "orientation unavailable (-1); gyro/accel unknown (zeros, ROS convention)",
+        "timing": "monotonic dispatch lateness; receive data_age uses 1x replay epoch, includes queue delay",
+        "completion": "stream_complete"
+      },
+      "noise_policy": {
+        "policy": "pinned_vins_midpoint_step_variance_v1",
+        "backend_revision": "72023bc5d2abb14faa4c02a5c040d84f996b587a",
+        "backend_model": "vins/src/factor/integration_base.h: independent endpoint noise, V measurement=dt/2, V bias=dt",
+        "calibrated_rate_hz": 200.0,
+        "stamped_interval_ns": {
+          "minimum": 4999936,
+          "maximum": 5000192,
+          "tolerance": 256
+        },
+        "continuous_densities": {
+          "accelerometer_noise_density": 0.002,
+          "gyroscope_noise_density": 0.00016968,
+          "accelerometer_random_walk": 0.003,
+          "gyroscope_random_walk": 1.9393e-05
+        },
+        "continuous_units": {
+          "accelerometer_noise_density": "m/s^2/sqrt(Hz)",
+          "gyroscope_noise_density": "rad/s/sqrt(Hz)",
+          "accelerometer_random_walk": "m/s^3/sqrt(Hz)",
+          "gyroscope_random_walk": "rad/s^2/sqrt(Hz)"
+        },
+        "formulas": {
+          "measurement": "density * sqrt(2 * rate_hz)",
+          "bias": "random_walk_density * sqrt(rate_hz)"
+        },
+        "derived_vins_parameters": {
+          "acc_n": 0.04,
+          "gyr_n": 0.0033935999999999997,
+          "acc_w": 0.042426406871192854,
+          "gyr_w": 0.00027425843615101433
+        },
+        "derived_units": {
+          "acc_n": "m/s^2",
+          "gyr_n": "rad/s",
+          "acc_w": "m/s^3",
+          "gyr_w": "rad/s^2"
+        },
+        "interpretation": "Leading per-step covariance match to continuous density squared times dt; independent midpoint endpoints; not an exact correlated multi-step noise model or tuned accuracy guarantee"
+      },
+      "source_files": {
+        "__init__.py": "be7b7b7dfb5e74f2707a33801512017b1248f734bf902154421fd5715a0a6025",
+        "config.py": "b58c233afadc556a966d1b3f1f32d8dc2740882c6e69660737a394d04b71f2cc",
+        "dataset.py": "a20b8f489cb95a7b6113e1fdc132ad41457d5ba96332f34ca43cee149d64195f",
+        "geometry.py": "3de67df5d2ef0566ae33c1789c34148e0301611005d90545509befb14a9d993c",
+        "player.py": "4b4acd8451a075c82344c136dc471d5a804aa8da83bdd550b382c470803cd29b",
+        "rectification.py": "6bef153b037451c82b386b11ef899b4145f267c5c6546279f8568eecc9ef3226",
+        "runtime.py": "9a6c52c0d91694d3cc82e09ff1bb040d72735062c4e2a7410656d88ebd467623",
+        "trajectory.py": "b80fd28acdb33cbffb3b826b6fc23a6c022ab8002b821f361697368dbf78db76",
+        "validate.py": "02619d31dd7db64b445ac7fc8a4ebadb537a44d709cf1eb6464e83a25088c0b5"
+      },
+      "estimator_parameters": [
+        {
+          "use_sim_time": true,
+          "frame_id": "base_footprint",
+          "odom_frame_id": "benchmark_odom",
+          "publish_tf": false,
+          "publish_null_when_lost": false,
+          "approx_sync": false,
+          "qos": 1,
+          "qos_imu": 1,
+          "topic_queue_size": 10,
+          "sync_queue_size": 10,
+          "output_queue_size": 10,
+          "imu_queue_size": 400,
+          "executor_threads": 2,
+          "wait_for_transform": 0.5,
+          "wait_imu_to_init": true,
+          "Odom/Strategy": "9",
+          "Reg/Force3DoF": "false",
+          "OdomVINSFusion/ConfigPath": "/work/results/euroc-noise-mh03-01/MH_03_medium-vio-1/config/vins.yaml",
+          "Rtabmap/ImagesAlreadyRectified": "true",
+          "Odom/ResetCountdown": "0"
+        }
+      ],
+      "launch_log_path": "euroc-noise-mh03-01/MH_03_medium-vio-1.log",
+      "image_rectification_ms": {
+        "count": 2700,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 7.1281064999999995,
+        "p95": 7.779127,
+        "p99": 7.889338009999999,
+        "maximum": 14.908185
+      },
+      "processing_update_ms": {
+        "count": 2614,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 25.103500000000004,
+        "p95": 45.253750000000004,
+        "p99": 56.43098,
+        "maximum": 64.477
+      },
+      "solver_ms": {
+        "count": 2603,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 6.525338,
+        "p95": 33.963913600000005,
+        "p99": 44.43123338,
+        "maximum": 52.92457
+      },
+      "raw_trajectory_geometry": {
+        "last_position_m": [
+          2559.818115234375,
+          340.24334716796875,
+          292.5604248046875
+        ],
+        "max_position_norm_m": 2657.554203066962,
+        "max_consecutive_translation_m": 44.495051437078246,
+        "max_consecutive_speed_m_s": 889.8987506007633
+      },
+      "tail": {
+        "original_frames": 2700,
+        "dispatched_frames": 2700,
+        "dispatched_imu": 27008,
+        "original_first_image_ns": 1403637130538319104,
+        "original_last_image_ns": 1403637265488318976,
+        "last_dispatched_image_ns": 1403637265488318976,
+        "last_dispatched_imu_ns": 1403637265533318912,
+        "last_estimate_ns": 1403637265488318976,
+        "estimate_gap_to_original_last_image_ns": 0,
+        "original_images_after_last_estimate": 0,
+        "max_estimate_interval_ns": 100000000
+      },
+      "processing_gaps": {
+        "log_timings_match_visual_status_rows": true,
+        "processing_frames_over_50_ms": 76,
+        "over_50ms_with_following_status_available": 76,
+        "over_50ms_followed_by_timestamp_skip": 75,
+        "missing_original_frames_between_status_samples": 86,
+        "individual_input_receive_counts": null,
+        "limitation": "Per-topic Image/CameraInfo receives were not counted; dispatch completion is not proof of DDS delivery. Processing-gap association does not establish the cause of sustained callback outages."
+      },
+      "log_signals": {
+        "imu_overflow_warnings": 0,
+        "sync_no_data_warnings": 2,
+        "clean_process_exit_lines": [
+          "[INFO] [euroc_player-2]: process has finished cleanly [pid 33]",
+          "[INFO] [stereo_odometry-1]: process has finished cleanly [pid 31]"
+        ],
+        "abnormal_process_lines": []
+      },
+      "review": "partial coverage: accuracy on returned samples does not establish full-sequence success"
+    },
+    {
+      "group": "euroc-noise-mh03-01",
+      "run": "MH_03_medium-vio-2",
+      "exit_code": 0,
+      "outcome": "scored_partial",
+      "metrics": {
+        "schema_version": 1,
+        "status": "partial_output",
+        "expected_frames": 2700,
+        "estimate_samples": 2674,
+        "matched_samples": 2616,
+        "coverage": 0.9688888888888889,
+        "association_tolerance_ns": 10000000,
+        "alignment": "SE(3), scale fixed at 1",
+        "body_frame": "imu0/base_footprint",
+        "rpe_interval_s": 1.0,
+        "ate_translation_rmse_m": 1334.529206487742,
+        "rpe_translation_rmse_m": 45.006394438483696,
+        "rpe_rotation_rmse_rad": 0.10043771111156148,
+        "rpe_pairs": 2583,
+        "covered_frames": 2616,
+        "gt_supported_frames": 2631,
+        "first_estimate_ns": 1403637131088318976,
+        "last_estimate_ns": 1403637265488318976,
+        "ate_translation_median_m": 1253.3978980069319,
+        "ate_translation_max_m": 1986.7699308889294,
+        "alignment_rotation": [
+          [
+            -0.5456380808559012,
+            -0.1623974429194335,
+            -0.822135119827099
+          ],
+          [
+            0.8082243032287385,
+            -0.3612550793806224,
+            -0.4650464958389855
+          ],
+          [
+            -0.2214781262118419,
+            -0.9182166618804787,
+            0.3283680883623771
+          ]
+        ],
+        "alignment_translation": [
+          1017.0553674156603,
+          -1346.950467442164,
+          -216.20115174056224
+        ],
+        "alignment_position_rank": 3,
+        "association_max_error_ns": 256,
+        "reference_interpretation": "EuRoC supplied reference; for MH sequences orientation is observed only by IMU in the Leica+IMU batch solution, not independent motion-capture orientation"
+      },
+      "artifacts": {
+        "config/left.yaml": "a885a752790370b3893f537dcea067196c4e54d697e31788f6b2ea6f13931065",
+        "config/right.yaml": "eaed0ea147fa904bf78df98ba91cd518f9d58de0ec6c2e01a1d2b2a5471bb0ca",
+        "config/solver_output/vio.csv": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "config/vins.yaml": "cf3d711510a7af983e53b2452e35dd4b19e9ebf2fbd47d9540b9845295beb160",
+        "manifest.json": "dcb1aecffc78a1b65b11c2c26c3863001b51c08f649b00fdb9c3a80679f31160",
+        "metrics.json": "35c64a303cec8b269a2acfbfce74a32a6d584e1f8a1ec08c08dd0cac561c3130",
+        "playback.csv": "1c2a538da688f45607c5caaf04560396c4aa2c44604db84002bd2fc4f8773009",
+        "runtime.json": "8701758f4cce89b7b81ff22abb6c5ec223a63f61a491333c9e6fa53741388012",
+        "trajectory.csv": "9bf8e5f4761b324cf7b4023f79a5bde1411e6fe1e499573bb684b664863de472",
+        "trajectory.png": "bcca614f851f65cd3462a71aa6e3c31b4e74a6141715d227b34656f14bb6568e",
+        "visual_status.csv": "50b9a204b42baeb0f407f1b1d2ade9a006ef5a151c8fa6d99e741bb36512cb7b",
+        "launch.log": "a5bd438d88ff31697193e3881f326bce694bc03a3915b1c6e2e0825ca1c4559e"
+      },
+      "data_sha256": "4415d841a2e93d412a0d6b124783c006a041ad74da313d3a898cccfdbb81c135",
+      "odom_data_age_ms": {
+        "count": 2674,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 32.746948,
+        "p95": 46.88384225,
+        "p99": 59.857931969999996,
+        "maximum": 71.207488
+      },
+      "estimation_ms": {
+        "count": 2685,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 24.293184280395508,
+        "p95": 37.17288970947264,
+        "p99": 45.30041694641111,
+        "maximum": 61.640024185180664
+      },
+      "image_dispatch_lateness_ms": {
+        "count": 2700,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 8.328476,
+        "p95": 9.164551549999999,
+        "p99": 11.597113939999984,
+        "maximum": 19.607905
+      },
+      "runtime": {
+        "schema_version": 1,
+        "failure": null,
+        "invalid_output": [],
+        "playback_policy": {
+          "mode": "vio",
+          "expected_stereo_frames": 2700,
+          "playable_stereo_frames": 2700,
+          "excluded_stereo_frames": 0,
+          "excluded": [],
+          "imu_first_ns": 1403637130498319104,
+          "imu_last_ns": 1403637265533318912,
+          "policy": "VIO excludes images outside inclusive raw IMU time support; stereo VO keeps every image; no padding or retimestamping",
+          "coverage_denominator": "all original stereo timestamps, including excluded images"
+        },
+        "stereo_published": 2700,
+        "imu_published": 27008,
+        "odom_samples": 2674,
+        "visual_status_samples": 2685,
+        "visual_lost_samples": 10,
+        "estimator_enabled": true,
+        "imu_covariance": "orientation unavailable (-1); gyro/accel unknown (zeros, ROS convention)",
+        "timing": "monotonic dispatch lateness; receive data_age uses 1x replay epoch, includes queue delay",
+        "completion": "stream_complete"
+      },
+      "noise_policy": {
+        "policy": "pinned_vins_midpoint_step_variance_v1",
+        "backend_revision": "72023bc5d2abb14faa4c02a5c040d84f996b587a",
+        "backend_model": "vins/src/factor/integration_base.h: independent endpoint noise, V measurement=dt/2, V bias=dt",
+        "calibrated_rate_hz": 200.0,
+        "stamped_interval_ns": {
+          "minimum": 4999936,
+          "maximum": 5000192,
+          "tolerance": 256
+        },
+        "continuous_densities": {
+          "accelerometer_noise_density": 0.002,
+          "gyroscope_noise_density": 0.00016968,
+          "accelerometer_random_walk": 0.003,
+          "gyroscope_random_walk": 1.9393e-05
+        },
+        "continuous_units": {
+          "accelerometer_noise_density": "m/s^2/sqrt(Hz)",
+          "gyroscope_noise_density": "rad/s/sqrt(Hz)",
+          "accelerometer_random_walk": "m/s^3/sqrt(Hz)",
+          "gyroscope_random_walk": "rad/s^2/sqrt(Hz)"
+        },
+        "formulas": {
+          "measurement": "density * sqrt(2 * rate_hz)",
+          "bias": "random_walk_density * sqrt(rate_hz)"
+        },
+        "derived_vins_parameters": {
+          "acc_n": 0.04,
+          "gyr_n": 0.0033935999999999997,
+          "acc_w": 0.042426406871192854,
+          "gyr_w": 0.00027425843615101433
+        },
+        "derived_units": {
+          "acc_n": "m/s^2",
+          "gyr_n": "rad/s",
+          "acc_w": "m/s^3",
+          "gyr_w": "rad/s^2"
+        },
+        "interpretation": "Leading per-step covariance match to continuous density squared times dt; independent midpoint endpoints; not an exact correlated multi-step noise model or tuned accuracy guarantee"
+      },
+      "source_files": {
+        "__init__.py": "be7b7b7dfb5e74f2707a33801512017b1248f734bf902154421fd5715a0a6025",
+        "config.py": "b58c233afadc556a966d1b3f1f32d8dc2740882c6e69660737a394d04b71f2cc",
+        "dataset.py": "a20b8f489cb95a7b6113e1fdc132ad41457d5ba96332f34ca43cee149d64195f",
+        "geometry.py": "3de67df5d2ef0566ae33c1789c34148e0301611005d90545509befb14a9d993c",
+        "player.py": "4b4acd8451a075c82344c136dc471d5a804aa8da83bdd550b382c470803cd29b",
+        "rectification.py": "6bef153b037451c82b386b11ef899b4145f267c5c6546279f8568eecc9ef3226",
+        "runtime.py": "9a6c52c0d91694d3cc82e09ff1bb040d72735062c4e2a7410656d88ebd467623",
+        "trajectory.py": "b80fd28acdb33cbffb3b826b6fc23a6c022ab8002b821f361697368dbf78db76",
+        "validate.py": "02619d31dd7db64b445ac7fc8a4ebadb537a44d709cf1eb6464e83a25088c0b5"
+      },
+      "estimator_parameters": [
+        {
+          "use_sim_time": true,
+          "frame_id": "base_footprint",
+          "odom_frame_id": "benchmark_odom",
+          "publish_tf": false,
+          "publish_null_when_lost": false,
+          "approx_sync": false,
+          "qos": 1,
+          "qos_imu": 1,
+          "topic_queue_size": 10,
+          "sync_queue_size": 10,
+          "output_queue_size": 10,
+          "imu_queue_size": 400,
+          "executor_threads": 2,
+          "wait_for_transform": 0.5,
+          "wait_imu_to_init": true,
+          "Odom/Strategy": "9",
+          "Reg/Force3DoF": "false",
+          "OdomVINSFusion/ConfigPath": "/work/results/euroc-noise-mh03-01/MH_03_medium-vio-2/config/vins.yaml",
+          "Rtabmap/ImagesAlreadyRectified": "true",
+          "Odom/ResetCountdown": "0"
+        }
+      ],
+      "launch_log_path": "euroc-noise-mh03-01/MH_03_medium-vio-2.log",
+      "image_rectification_ms": {
+        "count": 2700,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 7.024227,
+        "p95": 7.724467,
+        "p99": 7.957584399999999,
+        "maximum": 8.496459999999999
+      },
+      "processing_update_ms": {
+        "count": 2685,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 24.453,
+        "p95": 37.272199999999984,
+        "p99": 45.39959999999997,
+        "maximum": 61.756
+      },
+      "solver_ms": {
+        "count": 2674,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 5.205576000000001,
+        "p95": 27.475958499999997,
+        "p99": 34.86288337999999,
+        "maximum": 50.57507
+      },
+      "raw_trajectory_geometry": {
+        "last_position_m": [
+          2922.650146484375,
+          -794.2261352539062,
+          1763.088134765625
+        ],
+        "max_position_norm_m": 3504.448430725843,
+        "max_consecutive_translation_m": 29.889384955150557,
+        "max_consecutive_speed_m_s": 597.7892294434386
+      },
+      "tail": {
+        "original_frames": 2700,
+        "dispatched_frames": 2700,
+        "dispatched_imu": 27008,
+        "original_first_image_ns": 1403637130538319104,
+        "original_last_image_ns": 1403637265488318976,
+        "last_dispatched_image_ns": 1403637265488318976,
+        "last_dispatched_imu_ns": 1403637265533318912,
+        "last_estimate_ns": 1403637265488318976,
+        "estimate_gap_to_original_last_image_ns": 0,
+        "original_images_after_last_estimate": 0,
+        "max_estimate_interval_ns": 100000000
+      },
+      "processing_gaps": {
+        "log_timings_match_visual_status_rows": true,
+        "processing_frames_over_50_ms": 14,
+        "over_50ms_with_following_status_available": 14,
+        "over_50ms_followed_by_timestamp_skip": 13,
+        "missing_original_frames_between_status_samples": 15,
+        "individual_input_receive_counts": null,
+        "limitation": "Per-topic Image/CameraInfo receives were not counted; dispatch completion is not proof of DDS delivery. Processing-gap association does not establish the cause of sustained callback outages."
+      },
+      "log_signals": {
+        "imu_overflow_warnings": 0,
+        "sync_no_data_warnings": 2,
+        "clean_process_exit_lines": [
+          "[INFO] [euroc_player-2]: process has finished cleanly [pid 8933]",
+          "[INFO] [stereo_odometry-1]: process has finished cleanly [pid 8931]"
+        ],
+        "abnormal_process_lines": []
+      },
+      "review": "partial coverage: accuracy on returned samples does not establish full-sequence success"
+    },
+    {
+      "group": "euroc-noise-mh03-01",
+      "run": "MH_03_medium-vio-3",
+      "exit_code": 0,
+      "outcome": "scored_partial",
+      "metrics": {
+        "schema_version": 1,
+        "status": "partial_output",
+        "expected_frames": 2700,
+        "estimate_samples": 2609,
+        "matched_samples": 2551,
+        "coverage": 0.9448148148148148,
+        "association_tolerance_ns": 10000000,
+        "alignment": "SE(3), scale fixed at 1",
+        "body_frame": "imu0/base_footprint",
+        "rpe_interval_s": 1.0,
+        "ate_translation_rmse_m": 3080.030650957139,
+        "rpe_translation_rmse_m": 133.41482061486778,
+        "rpe_rotation_rmse_rad": 0.1326520377068877,
+        "rpe_pairs": 2489,
+        "covered_frames": 2551,
+        "gt_supported_frames": 2631,
+        "first_estimate_ns": 1403637131088318976,
+        "last_estimate_ns": 1403637265488318976,
+        "ate_translation_median_m": 3028.9532728649315,
+        "ate_translation_max_m": 7304.8749582638975,
+        "alignment_rotation": [
+          [
+            0.2657116084039182,
+            -0.7600497794564033,
+            0.5930612733164052
+          ],
+          [
+            0.8239864157524968,
+            0.4983886337359294,
+            0.2695462046072758
+          ],
+          [
+            -0.500443531094924,
+            0.4170528773562256,
+            0.7586983390479621
+          ]
+        ],
+        "alignment_translation": [
+          2556.932812365755,
+          -1568.4045952822778,
+          -708.2264830818683
+        ],
+        "alignment_position_rank": 3,
+        "association_max_error_ns": 256,
+        "reference_interpretation": "EuRoC supplied reference; for MH sequences orientation is observed only by IMU in the Leica+IMU batch solution, not independent motion-capture orientation"
+      },
+      "artifacts": {
+        "config/left.yaml": "a885a752790370b3893f537dcea067196c4e54d697e31788f6b2ea6f13931065",
+        "config/right.yaml": "eaed0ea147fa904bf78df98ba91cd518f9d58de0ec6c2e01a1d2b2a5471bb0ca",
+        "config/solver_output/vio.csv": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "config/vins.yaml": "d677117f1e81faa4a1e92f5b87fbad3d4c08cc1760d7101cfcf265fcbd6933a1",
+        "manifest.json": "fcb0942a5bc7584112b5f8612f01f2241ef17e59961b76f31362c045c6141236",
+        "metrics.json": "4af729b68f56527ed923d113450256c0a4d094d4a938162e7771208e2271df56",
+        "playback.csv": "1a7051e3a2e71ebdfbd2ec71c19c7a650807a039e11f7599b76329ded01a3676",
+        "runtime.json": "c020511c8cc40b5fdc4c212e14ea57a31a781d946998530756ee447b8463313a",
+        "trajectory.csv": "af1ae8defb3e6c0631638d33448dfde5c32abb8d82a8aedc0ada00834b8681a6",
+        "trajectory.png": "579549f2fba461016e0bd8b6d366ed08d8cbf35abb0362ae40e5a8b53bb11470",
+        "visual_status.csv": "8d423ff87f77f5d6e5a3b6dc999ce147b8edaf14a917e684f96184b3fe4f5d14",
+        "launch.log": "4c2c0989262892830e173d26f9aea9872a137936116de7e93dfefdde3e2e446c"
+      },
+      "data_sha256": "4415d841a2e93d412a0d6b124783c006a041ad74da313d3a898cccfdbb81c135",
+      "odom_data_age_ms": {
+        "count": 2609,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 32.628848,
+        "p95": 47.502659599999994,
+        "p99": 59.964188199999995,
+        "maximum": 509.29157999999995
+      },
+      "estimation_ms": {
+        "count": 2620,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 24.129033088684082,
+        "p95": 37.885653972625725,
+        "p99": 46.72582387924194,
+        "maximum": 65.57393074035645
+      },
+      "image_dispatch_lateness_ms": {
+        "count": 2700,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 8.3529185,
+        "p95": 9.08849555,
+        "p99": 11.219026119999993,
+        "maximum": 20.281746
+      },
+      "runtime": {
+        "schema_version": 1,
+        "failure": null,
+        "invalid_output": [],
+        "playback_policy": {
+          "mode": "vio",
+          "expected_stereo_frames": 2700,
+          "playable_stereo_frames": 2700,
+          "excluded_stereo_frames": 0,
+          "excluded": [],
+          "imu_first_ns": 1403637130498319104,
+          "imu_last_ns": 1403637265533318912,
+          "policy": "VIO excludes images outside inclusive raw IMU time support; stereo VO keeps every image; no padding or retimestamping",
+          "coverage_denominator": "all original stereo timestamps, including excluded images"
+        },
+        "stereo_published": 2700,
+        "imu_published": 27008,
+        "odom_samples": 2609,
+        "visual_status_samples": 2620,
+        "visual_lost_samples": 10,
+        "estimator_enabled": true,
+        "imu_covariance": "orientation unavailable (-1); gyro/accel unknown (zeros, ROS convention)",
+        "timing": "monotonic dispatch lateness; receive data_age uses 1x replay epoch, includes queue delay",
+        "completion": "stream_complete"
+      },
+      "noise_policy": {
+        "policy": "pinned_vins_midpoint_step_variance_v1",
+        "backend_revision": "72023bc5d2abb14faa4c02a5c040d84f996b587a",
+        "backend_model": "vins/src/factor/integration_base.h: independent endpoint noise, V measurement=dt/2, V bias=dt",
+        "calibrated_rate_hz": 200.0,
+        "stamped_interval_ns": {
+          "minimum": 4999936,
+          "maximum": 5000192,
+          "tolerance": 256
+        },
+        "continuous_densities": {
+          "accelerometer_noise_density": 0.002,
+          "gyroscope_noise_density": 0.00016968,
+          "accelerometer_random_walk": 0.003,
+          "gyroscope_random_walk": 1.9393e-05
+        },
+        "continuous_units": {
+          "accelerometer_noise_density": "m/s^2/sqrt(Hz)",
+          "gyroscope_noise_density": "rad/s/sqrt(Hz)",
+          "accelerometer_random_walk": "m/s^3/sqrt(Hz)",
+          "gyroscope_random_walk": "rad/s^2/sqrt(Hz)"
+        },
+        "formulas": {
+          "measurement": "density * sqrt(2 * rate_hz)",
+          "bias": "random_walk_density * sqrt(rate_hz)"
+        },
+        "derived_vins_parameters": {
+          "acc_n": 0.04,
+          "gyr_n": 0.0033935999999999997,
+          "acc_w": 0.042426406871192854,
+          "gyr_w": 0.00027425843615101433
+        },
+        "derived_units": {
+          "acc_n": "m/s^2",
+          "gyr_n": "rad/s",
+          "acc_w": "m/s^3",
+          "gyr_w": "rad/s^2"
+        },
+        "interpretation": "Leading per-step covariance match to continuous density squared times dt; independent midpoint endpoints; not an exact correlated multi-step noise model or tuned accuracy guarantee"
+      },
+      "source_files": {
+        "__init__.py": "be7b7b7dfb5e74f2707a33801512017b1248f734bf902154421fd5715a0a6025",
+        "config.py": "b58c233afadc556a966d1b3f1f32d8dc2740882c6e69660737a394d04b71f2cc",
+        "dataset.py": "a20b8f489cb95a7b6113e1fdc132ad41457d5ba96332f34ca43cee149d64195f",
+        "geometry.py": "3de67df5d2ef0566ae33c1789c34148e0301611005d90545509befb14a9d993c",
+        "player.py": "4b4acd8451a075c82344c136dc471d5a804aa8da83bdd550b382c470803cd29b",
+        "rectification.py": "6bef153b037451c82b386b11ef899b4145f267c5c6546279f8568eecc9ef3226",
+        "runtime.py": "9a6c52c0d91694d3cc82e09ff1bb040d72735062c4e2a7410656d88ebd467623",
+        "trajectory.py": "b80fd28acdb33cbffb3b826b6fc23a6c022ab8002b821f361697368dbf78db76",
+        "validate.py": "02619d31dd7db64b445ac7fc8a4ebadb537a44d709cf1eb6464e83a25088c0b5"
+      },
+      "estimator_parameters": [
+        {
+          "use_sim_time": true,
+          "frame_id": "base_footprint",
+          "odom_frame_id": "benchmark_odom",
+          "publish_tf": false,
+          "publish_null_when_lost": false,
+          "approx_sync": false,
+          "qos": 1,
+          "qos_imu": 1,
+          "topic_queue_size": 10,
+          "sync_queue_size": 10,
+          "output_queue_size": 10,
+          "imu_queue_size": 400,
+          "executor_threads": 2,
+          "wait_for_transform": 0.5,
+          "wait_imu_to_init": true,
+          "Odom/Strategy": "9",
+          "Reg/Force3DoF": "false",
+          "OdomVINSFusion/ConfigPath": "/work/results/euroc-noise-mh03-01/MH_03_medium-vio-3/config/vins.yaml",
+          "Rtabmap/ImagesAlreadyRectified": "true",
+          "Odom/ResetCountdown": "0"
+        }
+      ],
+      "launch_log_path": "euroc-noise-mh03-01/MH_03_medium-vio-3.log",
+      "image_rectification_ms": {
+        "count": 2700,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 7.044897499999999,
+        "p95": 7.7040425,
+        "p99": 7.8595977999999995,
+        "maximum": 15.080070999999998
+      },
+      "processing_update_ms": {
+        "count": 2620,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 24.302500000000002,
+        "p95": 37.977000000000004,
+        "p99": 46.83396,
+        "maximum": 65.68
+      },
+      "solver_ms": {
+        "count": 2609,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 5.427343,
+        "p95": 28.200338,
+        "p99": 35.56293904000002,
+        "maximum": 52.410597
+      },
+      "raw_trajectory_geometry": {
+        "last_position_m": [
+          -5954.361328125,
+          6513.673828125,
+          -3272.53466796875
+        ],
+        "max_position_norm_m": 9412.324299455924,
+        "max_consecutive_translation_m": 645.5187768444389,
+        "max_consecutive_speed_m_s": 1129.3161759575394
+      },
+      "tail": {
+        "original_frames": 2700,
+        "dispatched_frames": 2700,
+        "dispatched_imu": 27008,
+        "original_first_image_ns": 1403637130538319104,
+        "original_last_image_ns": 1403637265488318976,
+        "last_dispatched_image_ns": 1403637265488318976,
+        "last_dispatched_imu_ns": 1403637265533318912,
+        "last_estimate_ns": 1403637265488318976,
+        "estimate_gap_to_original_last_image_ns": 0,
+        "original_images_after_last_estimate": 0,
+        "max_estimate_interval_ns": 2149999872
+      },
+      "processing_gaps": {
+        "log_timings_match_visual_status_rows": true,
+        "processing_frames_over_50_ms": 21,
+        "over_50ms_with_following_status_available": 21,
+        "over_50ms_followed_by_timestamp_skip": 20,
+        "missing_original_frames_between_status_samples": 80,
+        "individual_input_receive_counts": null,
+        "limitation": "Per-topic Image/CameraInfo receives were not counted; dispatch completion is not proof of DDS delivery. Processing-gap association does not establish the cause of sustained callback outages."
+      },
+      "log_signals": {
+        "imu_overflow_warnings": 0,
+        "sync_no_data_warnings": 2,
+        "clean_process_exit_lines": [
+          "[INFO] [euroc_player-2]: process has finished cleanly [pid 18326]",
+          "[INFO] [stereo_odometry-1]: process has finished cleanly [pid 18324]"
+        ],
+        "abnormal_process_lines": []
+      },
+      "review": "partial coverage: accuracy on returned samples does not establish full-sequence success"
+    },
+    {
+      "group": "euroc-noise-mh05-01",
+      "run": "MH_05_difficult-vio-1",
+      "exit_code": 0,
+      "outcome": "scored_partial",
+      "metrics": {
+        "schema_version": 1,
+        "status": "partial_output",
+        "expected_frames": 2273,
+        "estimate_samples": 2108,
+        "matched_samples": 2069,
+        "coverage": 0.9102507699076111,
+        "association_tolerance_ns": 10000000,
+        "alignment": "SE(3), scale fixed at 1",
+        "body_frame": "imu0/base_footprint",
+        "rpe_interval_s": 1.0,
+        "ate_translation_rmse_m": 0.23685487418509812,
+        "rpe_translation_rmse_m": 0.031378984526093945,
+        "rpe_rotation_rmse_rad": 0.02535216423147376,
+        "rpe_pairs": 1914,
+        "covered_frames": 2069,
+        "gt_supported_frames": 2221,
+        "first_estimate_ns": 1403638518727829504,
+        "last_estimate_ns": 1403638631677829376,
+        "ate_translation_median_m": 0.21593180994804656,
+        "ate_translation_max_m": 0.40902407119497536,
+        "alignment_rotation": [
+          [
+            0.7102567812395308,
+            -0.7039391794013184,
+            -0.0022218026596344193
+          ],
+          [
+            0.7039161353893055,
+            0.7102538675027178,
+            -0.00644344907755069
+          ],
+          [
+            0.006113840187998527,
+            0.003012540660134443,
+            0.9999767725087042
+          ]
+        ],
+        "alignment_translation": [
+          4.258289441743936,
+          -1.9046526038743248,
+          0.5365978880455025
+        ],
+        "alignment_position_rank": 3,
+        "association_max_error_ns": 256,
+        "reference_interpretation": "EuRoC supplied reference; for MH sequences orientation is observed only by IMU in the Leica+IMU batch solution, not independent motion-capture orientation"
+      },
+      "artifacts": {
+        "config/left.yaml": "a885a752790370b3893f537dcea067196c4e54d697e31788f6b2ea6f13931065",
+        "config/right.yaml": "eaed0ea147fa904bf78df98ba91cd518f9d58de0ec6c2e01a1d2b2a5471bb0ca",
+        "config/solver_output/vio.csv": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "config/vins.yaml": "747ab81b11c9f5d347ade356ab1c28836b2546b5ed89ef03148a025c32bb193b",
+        "manifest.json": "08eec7b28edb2c713fdb0e22c20a19503671c6eee8ae294fd71331243a4efab4",
+        "metrics.json": "d8420d33d68e045f9009801cc902d804c9271d674aad5485b9031e6cd17522ba",
+        "playback.csv": "efa383a48045003e891e8b8a8d2d6d9ffd7370ce2c0702a1dab8a07d22890446",
+        "runtime.json": "abef5c2b2d3ea22ae3a58e68ceb5e80ad8bddaf45452963375d5dc3cc96cfb56",
+        "trajectory.csv": "99f5c81a1eae368c940f4914344803723c40335e14c5f3cd994e5a375247dba9",
+        "trajectory.png": "7339ea551200ab90417bb78aa756ffcd52806d3f5e5986dda0e514f371edc2a5",
+        "visual_status.csv": "1f5a376560ad845a04263a645679942f29733d624f343009999fbf7a86aa43e8",
+        "launch.log": "f2387f0c035b76f07644e4156412bd6a4291aa1b54f767e9ba9a4e86166fb81a"
+      },
+      "data_sha256": "e7c7336f609192079265e5bcfb8bd34361f6a9e8d0bb236425f34a8d9e17bb67",
+      "odom_data_age_ms": {
+        "count": 2108,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 44.795544,
+        "p95": 60.33313974999999,
+        "p99": 67.01905002999999,
+        "maximum": 78.694746
+      },
+      "estimation_ms": {
+        "count": 2119,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 35.75301170349121,
+        "p95": 50.84109306335449,
+        "p99": 56.94177627563479,
+        "maximum": 64.208984375
+      },
+      "image_dispatch_lateness_ms": {
+        "count": 2272,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 8.3665455,
+        "p95": 11.008611149999997,
+        "p99": 13.16677558,
+        "maximum": 23.412298999999997
+      },
+      "runtime": {
+        "schema_version": 1,
+        "failure": null,
+        "invalid_output": [],
+        "playback_policy": {
+          "mode": "vio",
+          "expected_stereo_frames": 2273,
+          "playable_stereo_frames": 2272,
+          "excluded_stereo_frames": 1,
+          "excluded": [
+            {
+              "index": 0,
+              "timestamp_ns": 1403638518077829376,
+              "reason": "before_first_imu"
+            }
+          ],
+          "imu_first_ns": 1403638518097829376,
+          "imu_last_ns": 1403638631697829376,
+          "policy": "VIO excludes images outside inclusive raw IMU time support; stereo VO keeps every image; no padding or retimestamping",
+          "coverage_denominator": "all original stereo timestamps, including excluded images"
+        },
+        "stereo_published": 2272,
+        "imu_published": 22721,
+        "odom_samples": 2108,
+        "visual_status_samples": 2119,
+        "visual_lost_samples": 10,
+        "estimator_enabled": true,
+        "imu_covariance": "orientation unavailable (-1); gyro/accel unknown (zeros, ROS convention)",
+        "timing": "monotonic dispatch lateness; receive data_age uses 1x replay epoch, includes queue delay",
+        "completion": "stream_complete"
+      },
+      "noise_policy": {
+        "policy": "pinned_vins_midpoint_step_variance_v1",
+        "backend_revision": "72023bc5d2abb14faa4c02a5c040d84f996b587a",
+        "backend_model": "vins/src/factor/integration_base.h: independent endpoint noise, V measurement=dt/2, V bias=dt",
+        "calibrated_rate_hz": 200.0,
+        "stamped_interval_ns": {
+          "minimum": 4999936,
+          "maximum": 5000192,
+          "tolerance": 256
+        },
+        "continuous_densities": {
+          "accelerometer_noise_density": 0.002,
+          "gyroscope_noise_density": 0.00016968,
+          "accelerometer_random_walk": 0.003,
+          "gyroscope_random_walk": 1.9393e-05
+        },
+        "continuous_units": {
+          "accelerometer_noise_density": "m/s^2/sqrt(Hz)",
+          "gyroscope_noise_density": "rad/s/sqrt(Hz)",
+          "accelerometer_random_walk": "m/s^3/sqrt(Hz)",
+          "gyroscope_random_walk": "rad/s^2/sqrt(Hz)"
+        },
+        "formulas": {
+          "measurement": "density * sqrt(2 * rate_hz)",
+          "bias": "random_walk_density * sqrt(rate_hz)"
+        },
+        "derived_vins_parameters": {
+          "acc_n": 0.04,
+          "gyr_n": 0.0033935999999999997,
+          "acc_w": 0.042426406871192854,
+          "gyr_w": 0.00027425843615101433
+        },
+        "derived_units": {
+          "acc_n": "m/s^2",
+          "gyr_n": "rad/s",
+          "acc_w": "m/s^3",
+          "gyr_w": "rad/s^2"
+        },
+        "interpretation": "Leading per-step covariance match to continuous density squared times dt; independent midpoint endpoints; not an exact correlated multi-step noise model or tuned accuracy guarantee"
+      },
+      "source_files": {
+        "__init__.py": "be7b7b7dfb5e74f2707a33801512017b1248f734bf902154421fd5715a0a6025",
+        "config.py": "b58c233afadc556a966d1b3f1f32d8dc2740882c6e69660737a394d04b71f2cc",
+        "dataset.py": "a20b8f489cb95a7b6113e1fdc132ad41457d5ba96332f34ca43cee149d64195f",
+        "geometry.py": "3de67df5d2ef0566ae33c1789c34148e0301611005d90545509befb14a9d993c",
+        "player.py": "4b4acd8451a075c82344c136dc471d5a804aa8da83bdd550b382c470803cd29b",
+        "rectification.py": "6bef153b037451c82b386b11ef899b4145f267c5c6546279f8568eecc9ef3226",
+        "runtime.py": "9a6c52c0d91694d3cc82e09ff1bb040d72735062c4e2a7410656d88ebd467623",
+        "trajectory.py": "b80fd28acdb33cbffb3b826b6fc23a6c022ab8002b821f361697368dbf78db76",
+        "validate.py": "02619d31dd7db64b445ac7fc8a4ebadb537a44d709cf1eb6464e83a25088c0b5"
+      },
+      "estimator_parameters": [
+        {
+          "use_sim_time": true,
+          "frame_id": "base_footprint",
+          "odom_frame_id": "benchmark_odom",
+          "publish_tf": false,
+          "publish_null_when_lost": false,
+          "approx_sync": false,
+          "qos": 1,
+          "qos_imu": 1,
+          "topic_queue_size": 10,
+          "sync_queue_size": 10,
+          "output_queue_size": 10,
+          "imu_queue_size": 400,
+          "executor_threads": 2,
+          "wait_for_transform": 0.5,
+          "wait_imu_to_init": true,
+          "Odom/Strategy": "9",
+          "Reg/Force3DoF": "false",
+          "OdomVINSFusion/ConfigPath": "/work/results/euroc-noise-mh05-01/MH_05_difficult-vio-1/config/vins.yaml",
+          "Rtabmap/ImagesAlreadyRectified": "true",
+          "Odom/ResetCountdown": "0"
+        }
+      ],
+      "launch_log_path": "euroc-noise-mh05-01/MH_05_difficult-vio-1.log",
+      "image_rectification_ms": {
+        "count": 2272,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 6.9498750000000005,
+        "p95": 7.683561449999999,
+        "p99": 7.80830161,
+        "maximum": 13.904999
+      },
+      "processing_update_ms": {
+        "count": 2119,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 35.851,
+        "p95": 50.9364,
+        "p99": 57.04050000000002,
+        "maximum": 64.316
+      },
+      "solver_ms": {
+        "count": 2108,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 25.508233500000003,
+        "p95": 40.193706049999996,
+        "p99": 45.7762629,
+        "maximum": 51.902938
+      },
+      "raw_trajectory_geometry": {
+        "last_position_m": [
+          0.46048277616500854,
+          -0.056860022246837616,
+          -0.12526385486125946
+        ],
+        "max_position_norm_m": 13.899559001393998,
+        "max_consecutive_translation_m": 0.28612373579883976,
+        "max_consecutive_speed_m_s": 2.946954037843351
+      },
+      "tail": {
+        "original_frames": 2273,
+        "dispatched_frames": 2272,
+        "dispatched_imu": 22721,
+        "original_first_image_ns": 1403638518077829376,
+        "original_last_image_ns": 1403638631677829376,
+        "last_dispatched_image_ns": 1403638631677829376,
+        "last_dispatched_imu_ns": 1403638631697829376,
+        "last_estimate_ns": 1403638631677829376,
+        "estimate_gap_to_original_last_image_ns": 0,
+        "original_images_after_last_estimate": 0,
+        "max_estimate_interval_ns": 100000000
+      },
+      "processing_gaps": {
+        "log_timings_match_visual_status_rows": true,
+        "processing_frames_over_50_ms": 136,
+        "over_50ms_with_following_status_available": 136,
+        "over_50ms_followed_by_timestamp_skip": 132,
+        "missing_original_frames_between_status_samples": 153,
+        "individual_input_receive_counts": null,
+        "limitation": "Per-topic Image/CameraInfo receives were not counted; dispatch completion is not proof of DDS delivery. Processing-gap association does not establish the cause of sustained callback outages."
+      },
+      "log_signals": {
+        "imu_overflow_warnings": 0,
+        "sync_no_data_warnings": 2,
+        "clean_process_exit_lines": [
+          "[INFO] [euroc_player-2]: process has finished cleanly [pid 33]",
+          "[INFO] [stereo_odometry-1]: process has finished cleanly [pid 31]"
+        ],
+        "abnormal_process_lines": []
+      },
+      "review": "partial coverage: accuracy on returned samples does not establish full-sequence success"
+    },
+    {
+      "group": "euroc-noise-mh05-01",
+      "run": "MH_05_difficult-vio-2",
+      "exit_code": 0,
+      "outcome": "scored_partial",
+      "metrics": {
+        "schema_version": 1,
+        "status": "partial_output",
+        "expected_frames": 2273,
+        "estimate_samples": 2103,
+        "matched_samples": 2064,
+        "coverage": 0.9080510338759349,
+        "association_tolerance_ns": 10000000,
+        "alignment": "SE(3), scale fixed at 1",
+        "body_frame": "imu0/base_footprint",
+        "rpe_interval_s": 1.0,
+        "ate_translation_rmse_m": 0.229615849210213,
+        "rpe_translation_rmse_m": 0.03161287073000771,
+        "rpe_rotation_rmse_rad": 0.025245153664885552,
+        "rpe_pairs": 1909,
+        "covered_frames": 2064,
+        "gt_supported_frames": 2221,
+        "first_estimate_ns": 1403638518727829504,
+        "last_estimate_ns": 1403638631677829376,
+        "ate_translation_median_m": 0.20847877773385604,
+        "ate_translation_max_m": 0.38842915161377733,
+        "alignment_rotation": [
+          [
+            0.7085358875178684,
+            -0.7056745877638474,
+            -0.0005218080018069958
+          ],
+          [
+            0.7056668574957203,
+            0.7085312425263368,
+            -0.00421480678084643
+          ],
+          [
+            0.0033439993094586794,
+            0.0026181192503320107,
+            0.999990981519438
+          ]
+        ],
+        "alignment_translation": [
+          4.299109838470857,
+          -1.9255875750517426,
+          0.5274620989147347
+        ],
+        "alignment_position_rank": 3,
+        "association_max_error_ns": 256,
+        "reference_interpretation": "EuRoC supplied reference; for MH sequences orientation is observed only by IMU in the Leica+IMU batch solution, not independent motion-capture orientation"
+      },
+      "artifacts": {
+        "config/left.yaml": "a885a752790370b3893f537dcea067196c4e54d697e31788f6b2ea6f13931065",
+        "config/right.yaml": "eaed0ea147fa904bf78df98ba91cd518f9d58de0ec6c2e01a1d2b2a5471bb0ca",
+        "config/solver_output/vio.csv": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "config/vins.yaml": "ce1d1e3af1edbc4418a095d1ae1a4fd7e63eedde420187b4c3a22457651c974f",
+        "manifest.json": "023c239762ddf03bd3909685b5af4d82d2db5907f838d0fccef3264ba82988a5",
+        "metrics.json": "dc9c31c09fc16c569e03ebe23e7529c27d8add39b53f0fc004fbe93e2f69e55d",
+        "playback.csv": "d2e9130976486032e3328658757323f06b02f181cd516073835d766229013f95",
+        "runtime.json": "feaef698c0c631e10c59e315467d0fb22c83a0844fdabcb3c879bb33400cd094",
+        "trajectory.csv": "4795d3b291396a5b3a83ac13c24975a1c5c88b30ba796fe00b82a781b0275bf3",
+        "trajectory.png": "8c26e0634d9938763a2b8ed0fc6ab392dcd35c91c065045f77372581f2484006",
+        "visual_status.csv": "eafb9bf08ae8e861b4dc700f19413d462854415db82841a0c0cbd3c4e48d1b41",
+        "launch.log": "9c10b1d4af4f1e1cde37237b41fa7e8127feee36b285440824039977a5af9ebb"
+      },
+      "data_sha256": "e7c7336f609192079265e5bcfb8bd34361f6a9e8d0bb236425f34a8d9e17bb67",
+      "odom_data_age_ms": {
+        "count": 2103,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 45.618221,
+        "p95": 61.59074429999999,
+        "p99": 67.66594998000001,
+        "maximum": 75.02658699999999
+      },
+      "estimation_ms": {
+        "count": 2114,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 35.5755090713501,
+        "p95": 51.322031021118164,
+        "p99": 57.57849216461181,
+        "maximum": 63.9650821685791
+      },
+      "image_dispatch_lateness_ms": {
+        "count": 2272,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 8.9582725,
+        "p95": 11.859136549999995,
+        "p99": 13.883209989999997,
+        "maximum": 22.881306
+      },
+      "runtime": {
+        "schema_version": 1,
+        "failure": null,
+        "invalid_output": [],
+        "playback_policy": {
+          "mode": "vio",
+          "expected_stereo_frames": 2273,
+          "playable_stereo_frames": 2272,
+          "excluded_stereo_frames": 1,
+          "excluded": [
+            {
+              "index": 0,
+              "timestamp_ns": 1403638518077829376,
+              "reason": "before_first_imu"
+            }
+          ],
+          "imu_first_ns": 1403638518097829376,
+          "imu_last_ns": 1403638631697829376,
+          "policy": "VIO excludes images outside inclusive raw IMU time support; stereo VO keeps every image; no padding or retimestamping",
+          "coverage_denominator": "all original stereo timestamps, including excluded images"
+        },
+        "stereo_published": 2272,
+        "imu_published": 22721,
+        "odom_samples": 2103,
+        "visual_status_samples": 2114,
+        "visual_lost_samples": 10,
+        "estimator_enabled": true,
+        "imu_covariance": "orientation unavailable (-1); gyro/accel unknown (zeros, ROS convention)",
+        "timing": "monotonic dispatch lateness; receive data_age uses 1x replay epoch, includes queue delay",
+        "completion": "stream_complete"
+      },
+      "noise_policy": {
+        "policy": "pinned_vins_midpoint_step_variance_v1",
+        "backend_revision": "72023bc5d2abb14faa4c02a5c040d84f996b587a",
+        "backend_model": "vins/src/factor/integration_base.h: independent endpoint noise, V measurement=dt/2, V bias=dt",
+        "calibrated_rate_hz": 200.0,
+        "stamped_interval_ns": {
+          "minimum": 4999936,
+          "maximum": 5000192,
+          "tolerance": 256
+        },
+        "continuous_densities": {
+          "accelerometer_noise_density": 0.002,
+          "gyroscope_noise_density": 0.00016968,
+          "accelerometer_random_walk": 0.003,
+          "gyroscope_random_walk": 1.9393e-05
+        },
+        "continuous_units": {
+          "accelerometer_noise_density": "m/s^2/sqrt(Hz)",
+          "gyroscope_noise_density": "rad/s/sqrt(Hz)",
+          "accelerometer_random_walk": "m/s^3/sqrt(Hz)",
+          "gyroscope_random_walk": "rad/s^2/sqrt(Hz)"
+        },
+        "formulas": {
+          "measurement": "density * sqrt(2 * rate_hz)",
+          "bias": "random_walk_density * sqrt(rate_hz)"
+        },
+        "derived_vins_parameters": {
+          "acc_n": 0.04,
+          "gyr_n": 0.0033935999999999997,
+          "acc_w": 0.042426406871192854,
+          "gyr_w": 0.00027425843615101433
+        },
+        "derived_units": {
+          "acc_n": "m/s^2",
+          "gyr_n": "rad/s",
+          "acc_w": "m/s^3",
+          "gyr_w": "rad/s^2"
+        },
+        "interpretation": "Leading per-step covariance match to continuous density squared times dt; independent midpoint endpoints; not an exact correlated multi-step noise model or tuned accuracy guarantee"
+      },
+      "source_files": {
+        "__init__.py": "be7b7b7dfb5e74f2707a33801512017b1248f734bf902154421fd5715a0a6025",
+        "config.py": "b58c233afadc556a966d1b3f1f32d8dc2740882c6e69660737a394d04b71f2cc",
+        "dataset.py": "a20b8f489cb95a7b6113e1fdc132ad41457d5ba96332f34ca43cee149d64195f",
+        "geometry.py": "3de67df5d2ef0566ae33c1789c34148e0301611005d90545509befb14a9d993c",
+        "player.py": "4b4acd8451a075c82344c136dc471d5a804aa8da83bdd550b382c470803cd29b",
+        "rectification.py": "6bef153b037451c82b386b11ef899b4145f267c5c6546279f8568eecc9ef3226",
+        "runtime.py": "9a6c52c0d91694d3cc82e09ff1bb040d72735062c4e2a7410656d88ebd467623",
+        "trajectory.py": "b80fd28acdb33cbffb3b826b6fc23a6c022ab8002b821f361697368dbf78db76",
+        "validate.py": "02619d31dd7db64b445ac7fc8a4ebadb537a44d709cf1eb6464e83a25088c0b5"
+      },
+      "estimator_parameters": [
+        {
+          "use_sim_time": true,
+          "frame_id": "base_footprint",
+          "odom_frame_id": "benchmark_odom",
+          "publish_tf": false,
+          "publish_null_when_lost": false,
+          "approx_sync": false,
+          "qos": 1,
+          "qos_imu": 1,
+          "topic_queue_size": 10,
+          "sync_queue_size": 10,
+          "output_queue_size": 10,
+          "imu_queue_size": 400,
+          "executor_threads": 2,
+          "wait_for_transform": 0.5,
+          "wait_imu_to_init": true,
+          "Odom/Strategy": "9",
+          "Reg/Force3DoF": "false",
+          "OdomVINSFusion/ConfigPath": "/work/results/euroc-noise-mh05-01/MH_05_difficult-vio-2/config/vins.yaml",
+          "Rtabmap/ImagesAlreadyRectified": "true",
+          "Odom/ResetCountdown": "0"
+        }
+      ],
+      "launch_log_path": "euroc-noise-mh05-01/MH_05_difficult-vio-2.log",
+      "image_rectification_ms": {
+        "count": 2272,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 7.105642,
+        "p95": 8.217448,
+        "p99": 8.4107767,
+        "maximum": 14.034293
+      },
+      "processing_update_ms": {
+        "count": 2114,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 35.6705,
+        "p95": 51.433299999999996,
+        "p99": 57.67803,
+        "maximum": 64.082
+      },
+      "solver_ms": {
+        "count": 2103,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 25.433521,
+        "p95": 39.9281951,
+        "p99": 46.722236960000004,
+        "maximum": 52.672681
+      },
+      "raw_trajectory_geometry": {
+        "last_position_m": [
+          0.3982855975627899,
+          0.07386650145053864,
+          -0.06588102132081985
+        ],
+        "max_position_norm_m": 13.902698399285258,
+        "max_consecutive_translation_m": 0.29006766496507796,
+        "max_consecutive_speed_m_s": 2.947871987865906
+      },
+      "tail": {
+        "original_frames": 2273,
+        "dispatched_frames": 2272,
+        "dispatched_imu": 22721,
+        "original_first_image_ns": 1403638518077829376,
+        "original_last_image_ns": 1403638631677829376,
+        "last_dispatched_image_ns": 1403638631677829376,
+        "last_dispatched_imu_ns": 1403638631697829376,
+        "last_estimate_ns": 1403638631677829376,
+        "estimate_gap_to_original_last_image_ns": 0,
+        "original_images_after_last_estimate": 0,
+        "max_estimate_interval_ns": 100000000
+      },
+      "processing_gaps": {
+        "log_timings_match_visual_status_rows": true,
+        "processing_frames_over_50_ms": 138,
+        "over_50ms_with_following_status_available": 138,
+        "over_50ms_followed_by_timestamp_skip": 136,
+        "missing_original_frames_between_status_samples": 158,
+        "individual_input_receive_counts": null,
+        "limitation": "Per-topic Image/CameraInfo receives were not counted; dispatch completion is not proof of DDS delivery. Processing-gap association does not establish the cause of sustained callback outages."
+      },
+      "log_signals": {
+        "imu_overflow_warnings": 0,
+        "sync_no_data_warnings": 1,
+        "clean_process_exit_lines": [
+          "[INFO] [euroc_player-2]: process has finished cleanly [pid 5761]",
+          "[INFO] [stereo_odometry-1]: process has finished cleanly [pid 5759]"
+        ],
+        "abnormal_process_lines": []
+      },
+      "review": "partial coverage: accuracy on returned samples does not establish full-sequence success"
+    },
+    {
+      "group": "euroc-noise-mh05-01",
+      "run": "MH_05_difficult-vio-3",
+      "exit_code": 0,
+      "outcome": "scored_partial",
+      "metrics": {
+        "schema_version": 1,
+        "status": "partial_output",
+        "expected_frames": 2273,
+        "estimate_samples": 2145,
+        "matched_samples": 2106,
+        "coverage": 0.9265288165420149,
+        "association_tolerance_ns": 10000000,
+        "alignment": "SE(3), scale fixed at 1",
+        "body_frame": "imu0/base_footprint",
+        "rpe_interval_s": 1.0,
+        "ate_translation_rmse_m": 0.23453892645981422,
+        "rpe_translation_rmse_m": 0.029955997423668113,
+        "rpe_rotation_rmse_rad": 0.025938430547697247,
+        "rpe_pairs": 1985,
+        "covered_frames": 2106,
+        "gt_supported_frames": 2221,
+        "first_estimate_ns": 1403638518727829504,
+        "last_estimate_ns": 1403638631677829376,
+        "ate_translation_median_m": 0.21638747324785956,
+        "ate_translation_max_m": 0.3685099040759321,
+        "alignment_rotation": [
+          [
+            0.69785501820829,
+            -0.7162199025070317,
+            -0.005236870661514249
+          ],
+          [
+            0.7161926161535661,
+            0.6978743786878367,
+            -0.006283958798154327
+          ],
+          [
+            0.008155374216944993,
+            0.0006346840819783457,
+            0.9999665429640625
+          ]
+        ],
+        "alignment_translation": [
+          4.310521194520962,
+          -1.9233806617478133,
+          0.5531299948089694
+        ],
+        "alignment_position_rank": 3,
+        "association_max_error_ns": 256,
+        "reference_interpretation": "EuRoC supplied reference; for MH sequences orientation is observed only by IMU in the Leica+IMU batch solution, not independent motion-capture orientation"
+      },
+      "artifacts": {
+        "config/left.yaml": "a885a752790370b3893f537dcea067196c4e54d697e31788f6b2ea6f13931065",
+        "config/right.yaml": "eaed0ea147fa904bf78df98ba91cd518f9d58de0ec6c2e01a1d2b2a5471bb0ca",
+        "config/solver_output/vio.csv": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "config/vins.yaml": "a0572cdd607e61f5a05e45b99511f3f47e65b1fd91ce4359273a4dbe7470c489",
+        "manifest.json": "7a7cd0222022c7a7ce34da3c81a5d9337249b4e9b8530cbe66fd9b228fc8145a",
+        "metrics.json": "7a22e125c22c4c3a6039e64db3cdd3aa4b3dd75a4a951f5a96dbd4e7292a0f55",
+        "playback.csv": "fe5726693704f573a5857d25422fc9a1fb5c19b692a7e6906923aacc7a278138",
+        "runtime.json": "b48c7326fd9f3c43e677be3b22e4df546e16281c8f54c3d0c4b5ff6c4b2c747b",
+        "trajectory.csv": "1b11dc47c4e6e35788cc5a7fbc99969686b5b629ff04d88fe540d3111650c1f9",
+        "trajectory.png": "82002a5c459f4b214e774f5f93deb780be4caaf3b620ed1c94286a07c798796a",
+        "visual_status.csv": "8b0d62986e7ddbf407864f4c1515624224ea79106c42e326d90d444ccbdeb924",
+        "launch.log": "55ec828e0e9bb13d83fa711e29c0feec7991023be9b2ed58efa7dccbbb401f79"
+      },
+      "data_sha256": "e7c7336f609192079265e5bcfb8bd34361f6a9e8d0bb236425f34a8d9e17bb67",
+      "odom_data_age_ms": {
+        "count": 2145,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 43.267990999999995,
+        "p95": 59.9409376,
+        "p99": 66.02060544,
+        "maximum": 74.103016
+      },
+      "estimation_ms": {
+        "count": 2156,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 34.230947494506836,
+        "p95": 49.78114366531372,
+        "p99": 56.864905357360826,
+        "maximum": 64.23497200012207
+      },
+      "image_dispatch_lateness_ms": {
+        "count": 2272,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 8.291918500000001,
+        "p95": 11.132122399999993,
+        "p99": 12.927729179999998,
+        "maximum": 17.925491
+      },
+      "runtime": {
+        "schema_version": 1,
+        "failure": null,
+        "invalid_output": [],
+        "playback_policy": {
+          "mode": "vio",
+          "expected_stereo_frames": 2273,
+          "playable_stereo_frames": 2272,
+          "excluded_stereo_frames": 1,
+          "excluded": [
+            {
+              "index": 0,
+              "timestamp_ns": 1403638518077829376,
+              "reason": "before_first_imu"
+            }
+          ],
+          "imu_first_ns": 1403638518097829376,
+          "imu_last_ns": 1403638631697829376,
+          "policy": "VIO excludes images outside inclusive raw IMU time support; stereo VO keeps every image; no padding or retimestamping",
+          "coverage_denominator": "all original stereo timestamps, including excluded images"
+        },
+        "stereo_published": 2272,
+        "imu_published": 22721,
+        "odom_samples": 2145,
+        "visual_status_samples": 2156,
+        "visual_lost_samples": 10,
+        "estimator_enabled": true,
+        "imu_covariance": "orientation unavailable (-1); gyro/accel unknown (zeros, ROS convention)",
+        "timing": "monotonic dispatch lateness; receive data_age uses 1x replay epoch, includes queue delay",
+        "completion": "stream_complete"
+      },
+      "noise_policy": {
+        "policy": "pinned_vins_midpoint_step_variance_v1",
+        "backend_revision": "72023bc5d2abb14faa4c02a5c040d84f996b587a",
+        "backend_model": "vins/src/factor/integration_base.h: independent endpoint noise, V measurement=dt/2, V bias=dt",
+        "calibrated_rate_hz": 200.0,
+        "stamped_interval_ns": {
+          "minimum": 4999936,
+          "maximum": 5000192,
+          "tolerance": 256
+        },
+        "continuous_densities": {
+          "accelerometer_noise_density": 0.002,
+          "gyroscope_noise_density": 0.00016968,
+          "accelerometer_random_walk": 0.003,
+          "gyroscope_random_walk": 1.9393e-05
+        },
+        "continuous_units": {
+          "accelerometer_noise_density": "m/s^2/sqrt(Hz)",
+          "gyroscope_noise_density": "rad/s/sqrt(Hz)",
+          "accelerometer_random_walk": "m/s^3/sqrt(Hz)",
+          "gyroscope_random_walk": "rad/s^2/sqrt(Hz)"
+        },
+        "formulas": {
+          "measurement": "density * sqrt(2 * rate_hz)",
+          "bias": "random_walk_density * sqrt(rate_hz)"
+        },
+        "derived_vins_parameters": {
+          "acc_n": 0.04,
+          "gyr_n": 0.0033935999999999997,
+          "acc_w": 0.042426406871192854,
+          "gyr_w": 0.00027425843615101433
+        },
+        "derived_units": {
+          "acc_n": "m/s^2",
+          "gyr_n": "rad/s",
+          "acc_w": "m/s^3",
+          "gyr_w": "rad/s^2"
+        },
+        "interpretation": "Leading per-step covariance match to continuous density squared times dt; independent midpoint endpoints; not an exact correlated multi-step noise model or tuned accuracy guarantee"
+      },
+      "source_files": {
+        "__init__.py": "be7b7b7dfb5e74f2707a33801512017b1248f734bf902154421fd5715a0a6025",
+        "config.py": "b58c233afadc556a966d1b3f1f32d8dc2740882c6e69660737a394d04b71f2cc",
+        "dataset.py": "a20b8f489cb95a7b6113e1fdc132ad41457d5ba96332f34ca43cee149d64195f",
+        "geometry.py": "3de67df5d2ef0566ae33c1789c34148e0301611005d90545509befb14a9d993c",
+        "player.py": "4b4acd8451a075c82344c136dc471d5a804aa8da83bdd550b382c470803cd29b",
+        "rectification.py": "6bef153b037451c82b386b11ef899b4145f267c5c6546279f8568eecc9ef3226",
+        "runtime.py": "9a6c52c0d91694d3cc82e09ff1bb040d72735062c4e2a7410656d88ebd467623",
+        "trajectory.py": "b80fd28acdb33cbffb3b826b6fc23a6c022ab8002b821f361697368dbf78db76",
+        "validate.py": "02619d31dd7db64b445ac7fc8a4ebadb537a44d709cf1eb6464e83a25088c0b5"
+      },
+      "estimator_parameters": [
+        {
+          "use_sim_time": true,
+          "frame_id": "base_footprint",
+          "odom_frame_id": "benchmark_odom",
+          "publish_tf": false,
+          "publish_null_when_lost": false,
+          "approx_sync": false,
+          "qos": 1,
+          "qos_imu": 1,
+          "topic_queue_size": 10,
+          "sync_queue_size": 10,
+          "output_queue_size": 10,
+          "imu_queue_size": 400,
+          "executor_threads": 2,
+          "wait_for_transform": 0.5,
+          "wait_imu_to_init": true,
+          "Odom/Strategy": "9",
+          "Reg/Force3DoF": "false",
+          "OdomVINSFusion/ConfigPath": "/work/results/euroc-noise-mh05-01/MH_05_difficult-vio-3/config/vins.yaml",
+          "Rtabmap/ImagesAlreadyRectified": "true",
+          "Odom/ResetCountdown": "0"
+        }
+      ],
+      "launch_log_path": "euroc-noise-mh05-01/MH_05_difficult-vio-3.log",
+      "image_rectification_ms": {
+        "count": 2272,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 6.877546,
+        "p95": 7.679523999999999,
+        "p99": 7.798425699999999,
+        "maximum": 14.092704999999999
+      },
+      "processing_update_ms": {
+        "count": 2156,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 34.327,
+        "p95": 49.885,
+        "p99": 56.966799999999985,
+        "maximum": 64.351
+      },
+      "solver_ms": {
+        "count": 2145,
+        "nonfinite": 0,
+        "negative": 0,
+        "p50": 23.955915,
+        "p95": 39.022582,
+        "p99": 45.68726275999998,
+        "maximum": 51.214329
+      },
+      "raw_trajectory_geometry": {
+        "last_position_m": [
+          0.4294951260089874,
+          0.07369855046272278,
+          -0.11073735356330872
+        ],
+        "max_position_norm_m": 13.829948485323873,
+        "max_consecutive_translation_m": 0.2868304464905613,
+        "max_consecutive_speed_m_s": 2.9411214301496718
+      },
+      "tail": {
+        "original_frames": 2273,
+        "dispatched_frames": 2272,
+        "dispatched_imu": 22721,
+        "original_first_image_ns": 1403638518077829376,
+        "original_last_image_ns": 1403638631677829376,
+        "last_dispatched_image_ns": 1403638631677829376,
+        "last_dispatched_imu_ns": 1403638631697829376,
+        "last_estimate_ns": 1403638631677829376,
+        "estimate_gap_to_original_last_image_ns": 0,
+        "original_images_after_last_estimate": 0,
+        "max_estimate_interval_ns": 100000000
+      },
+      "processing_gaps": {
+        "log_timings_match_visual_status_rows": true,
+        "processing_frames_over_50_ms": 105,
+        "over_50ms_with_following_status_available": 105,
+        "over_50ms_followed_by_timestamp_skip": 100,
+        "missing_original_frames_between_status_samples": 116,
+        "individual_input_receive_counts": null,
+        "limitation": "Per-topic Image/CameraInfo receives were not counted; dispatch completion is not proof of DDS delivery. Processing-gap association does not establish the cause of sustained callback outages."
+      },
+      "log_signals": {
+        "imu_overflow_warnings": 0,
+        "sync_no_data_warnings": 1,
+        "clean_process_exit_lines": [
+          "[INFO] [euroc_player-2]: process has finished cleanly [pid 11450]",
+          "[INFO] [stereo_odometry-1]: process has finished cleanly [pid 11448]"
+        ],
+        "abnormal_process_lines": []
+      },
+      "review": "partial coverage: accuracy on returned samples does not establish full-sequence success"
+    }
+  ],
+  "original_experiment": {
+    "path": "/home/enos/wheeltec_vision_sim/results/euroc-summary-03.json",
+    "sha256": "a78e95e1a1f118161504abb6c95e37264a54a60ba16f8e4cb880ec9956acd500",
+    "replaced": false
+  }
+}

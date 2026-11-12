@@ -23,7 +23,9 @@ status: complete
 
 EuRoC 三个序列分别使用 8 个绑定 CPU；Gazebo 故障实验使用 32 个绑定 CPU、24 GiB 内存上限和独立 DDS 域。GPU 设备映射与无界面图像输出均实际验证。主机与容器软件版本、构建日志和补丁保存在实验目录；主机已有 ROS 与驱动保持原有安装。
 
-代码基线及 CI：[1e518ba9](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/1e518ba923e6876254ae0eddddab5ac52d42798c/ros2/navigation/vision-nav)、[通过的 GitHub Actions](https://github.com/EnosElinsa/wheeltec-ros-source-reference/actions/runs/43210363593)。后续导航与参数修正的版本在对应结果段补充。数据来自明确标注的公开镜像；本地 SHA256 和 ZIP CRC 验证不等同于官方真实性认证。
+首轮代码基线及 CI：[1e518ba9](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/1e518ba923e6876254ae0eddddab5ac52d42798c/ros2/navigation/vision-nav)、[通过的 GitHub Actions](https://github.com/EnosElinsa/wheeltec-ros-source-reference/actions/runs/43210363593)。最终实现见 [d6092f1a](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/d6092f1a270ec64b24c11f8c1c9b1c8d5d473043/ros2/navigation/vision-nav)，VIO 保护修正及实际中间件测试在下文单独记录。数据来自明确标注的公开镜像；本地 SHA256 和 ZIP CRC 验证不等同于官方真实性认证。
+
+实验镜像为 `sha256:7d3475065612914a4373817087fdd8c63ee653a63aee356adbdb9f28e559bc0b`。从提交的 Dockerfile 另行完整重建得到 `sha256:be84532f7ecd6f19cf5ff680fde22c2f1e7e51fc462ae8ea9969c61f38926125`：4 项 ROS 集成、CTest 1/1 和 30 s 无界面渲染会话均通过，正常关闭。两次镜像身份分别保留，重建通过不能替换原实验的软件身份；[构建、包清单与验证证据](simulation-results/final-image-2026-11-12.json)保存相关哈希。
 
 ## EuRoC 第一轮：18 次运行
 
@@ -57,6 +59,15 @@ MH05 VIO 首张图像早于首个 IMU 约 20 ms，只排除这一帧，不补造
 | 重复 3 | 0.0952 m | 0.0136 m | 88.51% | 覆盖最后图像 |
 
 三次播放器均发布全部 3682 对双目图像与 36820 个 IMU 样本，进程正常退出；第一轮尾部出现大量 IMU 缓冲溢出。误差下降与覆盖率不稳定同时存在，结论是噪声单位修正有效果，VIO 全程稳定性仍未通过。[逐次结果与原始产物哈希](simulation-results/euroc-noise-2026-11-12.json)与原 18 次实验分别保存。后端的失效标记不能可靠检测全部发散，也必须结合独立轨迹评分。
+
+相同新策略继续在中等、困难序列各运行三次，参数与算法源码哈希保持一致，原速、固定尺度评分和覆盖率分母保持不变：
+
+| 序列 | ATE RMSE：三次，m | 1 s 平移 RPE RMSE：三次，m | 关联覆盖率：三次 |
+| --- | --- | --- | --- |
+| MH03 VIO | 1143.393 / 1334.529 / 3080.031 | 36.669 / 45.006 / 133.415 | 94.30% / 96.89% / 94.48% |
+| MH05 VIO | 0.237 / 0.230 / 0.235 | 0.031 / 0.032 / 0.030 | 91.03% / 90.81% / 92.65% |
+
+这六次均到达原始最后图像，无 IMU 溢出。MH03 的原始估计终点已达到数千米，三次均严重发散，不能归因于评分对齐。新策略九次均为 `partial_output`，[完整摘要](simulation-results/euroc-noise-three-sequence-2026-11-12.json)保存数据年龄、处理分位数、缺失尾部、原始位姿异常及产物哈希。噪声单位修正没有解决整个 VIO 系统的问题，当前结论仍是不通过。
 
 ## Gazebo 建图与故障实验
 
@@ -102,6 +113,16 @@ MH05 VIO 首张图像早于首个 IMU 约 20 ms，只排除这一帧，不补造
 
 六次建图/导航会话的命令、CPU 亲和性、退出结果及日志和原始观测 SHA256 见[会话身份记录](simulation-results/sessions-2026-11-12.json)。完整图像数据、数据库、构建目录与日志保留在实验目录，Git 仓库只收录紧凑结果与必要图表。
 
+## VIO 关键输入保护的最终复测
+
+最终审计发现，VIO 禁止轮速降级的 `wheel_backup=false` 也连带关闭了看门狗对轮速和 IMU 的直接订阅。IMU 失流会经 VIO 停输出再触发保护，多等待一层超时。提交 [75026789](https://github.com/EnosElinsa/wheeltec-ros-source-reference/commit/750267894c90516f21debac62364c34753de3939)增加独立的 `require_wheel/require_imu`：VIO 必须直接监测这两个输入，仍禁止视觉降级，也仍删除 EKF 的全部 `imu0*` 参数。健康监测不等同于再次融合。
+
+修正后在新镜像复测，VIO 导航 `localization-vio-required-inputs-01` 为 24/24，三个路线终点误差 0.185 / 0.179 / 0.178 m。16 CPU 的建图 `mapping-vio-required-inputs-01` 为 23/24：执行器租约试验中车辆实际停住，但 VO 同时短暂断流、看门狗也输出零速，因此未能单独证明原生执行器超时，正确判失败。
+
+保留这次失败，改用 32 个绑定 CPU 后，`mapping-vio-required-inputs-02` 为 24/24。最终 VIO 建图与导航均正常 SIGINT 关闭；所有保护和判定门槛保持启用。原始结果：[失败建图](simulation-results/mapping-vio-required-inputs-failed-2026-11-12.json)、[32 CPU 建图](simulation-results/mapping-vio-required-inputs-2026-11-12.json)、[导航](simulation-results/localization-vio-required-inputs-2026-11-12.json)、[版本、资源和日志身份](simulation-results/vio-required-inputs-sessions-2026-11-12.json)。这说明资源配置需要随结果一起保存，也说明一次停车可能有多个原因，不能自动归功于被测保护层。
+
+随后新增真实 Humble 中间件测试，保持 VO 与其他关键输入正常，单独停止轮速或 IMU。从看门狗最后一次真实 DDS 接收至首条零速命令分别为 338.32 ms、340.32 ms，满足 0.3 s 输入期限加两个 50 ms 保护周期的响应范围。测试另外留出明确的 10 ms 调度容差；实际测量未用到这部分余量。测试同时验证取消目标、恢复后拒绝旧目标，以及新目标才恢复运动。[5 项测试结果与日志哈希](simulation-results/ros-critical-inputs-2026-11-12.json)单独保存；命令响应不是实车停车距离或时间。
+
 ![RGB-D 地图定位后的导航与故障轨迹](simulation-results/localization-baseline.png)
 
 ## 30 分钟静止负载与记录器验证
@@ -114,4 +135,10 @@ MH05 VIO 首张图像早于首个 IMU 约 20 ms，只排除这一帧，不补造
 
 schema 2 修正初始化和逐回调断流记录后，首次 30 s 抽查又暴露了旧健康快照外推的误判：实际快照中源仍有效，但监测器假设快照之间源没有更新。[这次失败](simulation-results/stationary-schema2-smoke-2026-11-12.json)同样保留。修正为按收到的健康快照判断源状态，并继续独立监测安全指令、轮速和时钟后，[新 30 s 抽查](simulation-results/stationary-schema2-smoke-corrected-2026-11-12.json)通过：600 条安全命令、1362 个轮速、130 个 READY 健康回调，无失败，含窗口首尾的最大安全命令覆盖间隔为 57.61 ms。
 
-尚未用最终 schema 2 重跑 30 分钟，也尚未完成 Nav2 行驶控制负载、目标车载平台温度与实时性、低纹理/遮挡/窄通道扩展场景和实车制动验收。通过的 144 项仿真检查与这些未通过或未测项分别维护。
+随后用 `run_soak_trial.py` 从头启动独立仿真，[新会话的 30 s 记录](simulation-results/stationary-session-schema2-smoke-2026-11-12.json)也通过，且启动进程始终存活，结束时仅发送 SIGINT，全部进程与地图正常关闭，无 TERM/KILL 升级。该入口可用于最终版本的长测复跑。
+
+最终使用修正后的正式入口另行完成 1800.006 s 长测，记录与会话均通过：35999 条安全零速指令、81382 个轮速回调、7871 个 READY 健康回调，无失败事件。安全指令间隔 P95/P99 为 52.25/54.43 ms，含窗口首尾的最大覆盖间隔 62.62 ms；结束时仅发送 SIGINT，所有进程和地图正常关闭。
+
+此轮忙碌 CPU 核数中位数 6.40、P99 为 6.66，RSS 前后 300 个快照中位数约 3.49/4.01 GiB。GPU 温度采集值为 39–61°C：来自主机所选整张 GPU，采集开始晚于实验启动，可能包含测量窗口外及其他进程负载，不能当作完整 CPU 温度或单进程归因。源健康快照中的视觉年龄 P95/P99 为 98.78/109.54 ms；它不代表逐帧处理年龄。[最终长测摘要、原始接收时间证据与哈希](simulation-results/stationary-final-2026-11-12.json)保留镜像、源码与统计范围。
+
+这一轮支持当前静止渲染、感知、估计负载及监测范围的通过结论。尚未完成 Nav2 行驶控制负载、逐帧有效视觉帧率、内存缓存稳定后的长期趋势、目标车载平台完整温度与实时性、低纹理/遮挡/窄通道扩展场景和实车制动验收。通过的仿真检查与这些未通过或未测项分别维护。

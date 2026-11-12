@@ -1,0 +1,304 @@
+{
+  "schema": 2,
+  "run": "stationary-session-schema2-30min-01",
+  "experiment_image": "sha256:7d3475065612914a4373817087fdd8c63ee653a63aee356adbdb9f28e559bc0b",
+  "source_at_launch": "678f5ac894864fd8494fa061c5f9c6f41163a323",
+  "source_note": "Final schema2 recorder; baseline with wheel_backup true. Later VIO-only input-monitoring flags were not loaded into this running process.",
+  "summary": {
+    "schema": 2,
+    "kind": "stationary sensor/estimation/rendering load; no navigation control load or vehicle acceptance",
+    "requested_wall_s": 1800.0,
+    "duration_wall_s": 1800.0057737771422,
+    "completed": true,
+    "safe_commands": 35999,
+    "wheel_callbacks": 81382,
+    "health_callbacks": 7871,
+    "health_callback_states": {
+      "READY": 7871
+    },
+    "safe_interval_s": {
+      "count": 35998,
+      "p95": 0.05225358605384827,
+      "p99": 0.0544342150259763,
+      "maximum": 0.06261987052857876
+    },
+    "safe_coverage_gap_s": {
+      "count": 36000,
+      "p95": 0.05225346013903617,
+      "p99": 0.05443419619463384,
+      "maximum": 0.06261987052857876
+    },
+    "safe_receipts_sha256": "ccfa4d4efa692f91c82af45e079e4e6853e8935ec81eafae0e892e0cc2ff3452",
+    "interval_note": "Interarrival statistics use measurement-window callbacks; coverage also includes window head and tail. Warmup receipt is retained for expiry checks.",
+    "safe_window_head_s": 0.04939788859337568,
+    "safe_window_tail_s": 0.048966809175908566,
+    "safe_intervals_over_100ms": 0,
+    "violations": {},
+    "violation_events": [],
+    "sample_count": 1793,
+    "monitoring": "every callback and main loop; gap check precedes receipt updates",
+    "thresholds_s": {
+      "receipt": 0.3,
+      "health_sources_default": 0.3,
+      "health_source_exceptions": {
+        "vo": 0.5,
+        "visual": 0.5,
+        "map_tf": 5.0,
+        "localization": 5.0
+      }
+    },
+    "health_source_observation": "Health callback snapshots only: reported valid/age are checked without extrapolation; no continuous direct source coverage is claimed.",
+    "measured_ros_seconds": 1627.65,
+    "first_window_rss_sum_median_bytes": 3751290880.0,
+    "last_window_rss_sum_median_bytes": 4310269952.0,
+    "memory_note": "RSS sums include shared pages; windows contain at most 300 observations, not guaranteed seconds.",
+    "sample_sha256": "6e602d583bdd57d48ba37696985bf97b4c8406838f942cf136f340502f2dfa54",
+    "recorder_sha256": "77bcac672e0d2812e0c390c1aa3f6e97bdde0f9108fbf45b545aafaf46be9a2f",
+    "schema1_note": "Legacy runs lack callback receipt/source/clock coverage; do not backfill schema 2 evidence.",
+    "limits": "Health/command/wheel/clock receipt gaps are monitored continuously. Other source validity/age are observed only in health snapshots; this is not continuous direct source validation, acquisition-to-actuator latency, or a moving/navigation soak.",
+    "error": null,
+    "passed": true
+  },
+  "session": {
+    "launch_command": [
+      "ros2",
+      "launch",
+      "wheeltec_vision_sim",
+      "sim.launch.py",
+      "output:=/work/results/stationary-session-schema2-30min-01/launch",
+      "database_path:=/work/results/stationary-session-schema2-30min-01/room.db",
+      "mode:=mapping",
+      "estimator:=baseline"
+    ],
+    "mission_command": [
+      "python3",
+      "/work/containers/record_soak.py",
+      "--output",
+      "/work/results/stationary-session-schema2-30min-01/observations",
+      "--launch-manifest",
+      "/work/results/stationary-session-schema2-30min-01/launch/manifest.json",
+      "--duration",
+      "1800.0"
+    ],
+    "unexpected_launch_exit": false,
+    "started_utc": "2026-11-12T11:47:38Z",
+    "environment": {
+      "ROS_DOMAIN_ID": "99",
+      "IGN_PARTITION": "wheeltec-vision-99",
+      "WHEELTEC_SIM_LEASE_ROOT": "/work/leases",
+      "OMP_NUM_THREADS": "2",
+      "OPENCV_FOR_THREADS_NUM": "2",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "cpu_affinity": [
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111
+    ],
+    "mission_exit_code": 0,
+    "mission_shutdown": {
+      "exited_before_teardown": true,
+      "signals": [],
+      "escalated": false,
+      "exit_code": 0
+    },
+    "launch_shutdown": {
+      "exited_before_teardown": false,
+      "signals": [
+        "SIGINT"
+      ],
+      "escalated": false,
+      "exit_code": 0
+    },
+    "launch_exit_code": 0,
+    "session_success": true,
+    "elapsed_wall_s": 1807.3868945809081
+  },
+  "cpu_busy_cores": {
+    "count": 1792,
+    "minimum": 5.495696430611527,
+    "median": 6.39859432321647,
+    "p95": 6.598414162027694,
+    "p99": 6.664738021172278,
+    "maximum": 6.732062367653127
+  },
+  "cpu_note": "Delta of cumulative ticks for PIDs present in two adjacent 1Hz snapshots / ticks per second / wall interval; exited processes and recorder excluded.",
+  "source_reported_age_s": {
+    "ownership": {
+      "count": 1793,
+      "minimum": 0.0,
+      "median": 0.0,
+      "p95": 0.0,
+      "p99": 0.0,
+      "maximum": 0.0
+    },
+    "tf": {
+      "count": 1793,
+      "minimum": 0.0,
+      "median": 0.011,
+      "p95": 0.031,
+      "p99": 0.036,
+      "maximum": 0.041
+    },
+    "tf_authority": {
+      "count": 1793,
+      "minimum": 0.030837448313832283,
+      "median": 0.039508902467787266,
+      "p95": 0.04147842805832624,
+      "p99": 0.04928479440510273,
+      "maximum": 0.05301191866397858
+    },
+    "imu": {
+      "count": 1793,
+      "minimum": 0.00018121115863323212,
+      "median": 0.0034356601536273956,
+      "p95": 0.010582398436963557,
+      "p99": 0.01286240719258785,
+      "maximum": 0.01686702948063612
+    },
+    "wheel": {
+      "count": 1793,
+      "minimum": 0.0003019515424966812,
+      "median": 0.011238586157560349,
+      "p95": 0.022840418480336654,
+      "p99": 0.026227326467633243,
+      "maximum": 0.028900467790663242
+    },
+    "odom": {
+      "count": 1793,
+      "minimum": 0.0011611059308052063,
+      "median": 0.019909932114183904,
+      "p95": 0.04102348971366882,
+      "p99": 0.04504787100851534,
+      "maximum": 0.04900274129956961
+    },
+    "depth": {
+      "count": 1793,
+      "minimum": 0.02056427212804556,
+      "median": 0.046248164311051373,
+      "p95": 0.07304713381826877,
+      "p99": 0.07815592704713345,
+      "maximum": 0.12284724070131779
+    },
+    "cloud": {
+      "count": 1793,
+      "minimum": 0.021416330993175508,
+      "median": 0.051689768716692924,
+      "p95": 0.07997509403526783,
+      "p99": 0.08651499925553796,
+      "maximum": 0.13719260907173156
+    },
+    "obstacles": {
+      "count": 1793,
+      "minimum": 0.021357392244040967,
+      "median": 0.05777821181714535,
+      "p95": 0.08471716618537901,
+      "p99": 0.09039561426639557,
+      "maximum": 0.14095714273303747
+    },
+    "visual": {
+      "count": 1793,
+      "minimum": 0.03122465083748102,
+      "median": 0.07393560188263654,
+      "p95": 0.0987776310443878,
+      "p99": 0.10953761335760352,
+      "maximum": 0.15706725957244635
+    },
+    "vo": {
+      "count": 1793,
+      "minimum": 0.031200150534510612,
+      "median": 0.07496192099899054,
+      "p95": 0.09971882628649471,
+      "p99": 0.11066435167938468,
+      "maximum": 0.1566402984634042
+    }
+  },
+  "health_receipt_age_s": {
+    "count": 1793,
+    "minimum": 0.0027243439108133316,
+    "median": 0.12323262449353933,
+    "p95": 0.2399335257709026,
+    "p99": 0.2527603031694889,
+    "maximum": 0.2596221072599292
+  },
+  "wheel_receipt_age_s": {
+    "count": 1793,
+    "minimum": 0.0023597916588187218,
+    "median": 0.018749657087028027,
+    "p95": 0.028130896762013434,
+    "p99": 0.03121801126748323,
+    "maximum": 0.03570088557898998
+  },
+  "clock_progress_age_s": {
+    "count": 1793,
+    "minimum": 0.002648185007274151,
+    "median": 0.013519548811018467,
+    "p95": 0.018565299920737743,
+    "p99": 0.021184120066463946,
+    "maximum": 0.03654294088482857
+  },
+  "ros_nonadvancing_snapshots": 0,
+  "gpu": {
+    "samples": 1840,
+    "first_timestamp": "2026/11/12 19:48:21.701",
+    "last_timestamp": "2026/11/12 20:19:01.236",
+    "temperature_c": {
+      "count": 1840,
+      "minimum": 39.0,
+      "median": 40.0,
+      "p95": 43.0,
+      "p99": 54.0,
+      "maximum": 61.0
+    },
+    "utilization_percent": {
+      "count": 1840,
+      "minimum": 0.0,
+      "median": 10.0,
+      "p95": 28.0,
+      "p99": 80.0,
+      "maximum": 99.0
+    },
+    "memory_used_mib": {
+      "count": 1840,
+      "minimum": 1226.0,
+      "median": 1471.0,
+      "p95": 17207.0,
+      "p99": 20063.0,
+      "maximum": 20067.0
+    },
+    "power_w": {
+      "count": 1840,
+      "minimum": 20.29,
+      "median": 22.4,
+      "p95": 42.12449999999986,
+      "p99": 261.7029999999998,
+      "maximum": 285.44
+    },
+    "scope": "Whole selected GPU from host nvidia-smi, collection begins after run startup and may include time outside measurement window; not per-process attribution or complete CPU temperature coverage."
+  },
+  "artifact_sha256": {
+    "observations/summary.json": "a54422bcbe069469aba8aa02a8c9369f7200acaa2fa3f773ac812f5c9f58a5e4",
+    "observations/samples.jsonl": "6e602d583bdd57d48ba37696985bf97b4c8406838f942cf136f340502f2dfa54",
+    "observations/safe-receipts.json": "ccfa4d4efa692f91c82af45e079e4e6853e8935ec81eafae0e892e0cc2ff3452",
+    "observations/events.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "observations/recorder.py": "77bcac672e0d2812e0c390c1aa3f6e97bdde0f9108fbf45b545aafaf46be9a2f",
+    "session.json": "cabbacfc211836f62faf3df34db225f18376f3999e147447bff01f5cd3d4ec1b",
+    "launch/manifest.json": "a4f7032543ff68b47fffbd7c096d5e3fbda60763cc37e433b3e7191236c34abd",
+    "launch.log": "faa2f0130a1721c70c287dd5e1d4afad3f6bab8acd16860e6919a9ac91c0931a"
+  },
+  "gpu_csv_sha256": "76fbf2e7c96862dd80e2a2a7a67f0183426f9e9bf7e3b158e5fd6b9aa2b2723e",
+  "limits": "Stationary rendering/sensing/estimation test, no moving Nav2 control, no real-vehicle qualification. Health source ages are periodic snapshots, not direct continuous input subscriptions. No per-frame valid-FPS or complete CPU temperature measurements; RSS includes shared pages and cache growth must be assessed separately."
+}

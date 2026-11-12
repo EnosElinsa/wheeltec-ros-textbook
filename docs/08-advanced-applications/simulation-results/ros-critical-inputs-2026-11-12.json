@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "source": "8587a4c5",
+  "image": "sha256:be84532f7ecd6f19cf5ff680fde22c2f1e7e51fc462ae8ea9969c61f38926125",
+  "passed": 5,
+  "duration_s": 19.23,
+  "direct_critical_input_tests": [
+    {
+      "source": "wheel",
+      "last_real_DDS_receipt_to_first_zero_s": 0.338318,
+      "test_limit_s": 0.41
+    },
+    {
+      "source": "imu",
+      "last_real_DDS_receipt_to_first_zero_s": 0.340317,
+      "test_limit_s": 0.41
+    }
+  ],
+  "limits": "Product sensor deadline .3s, two .05s protection periods plus explicit .01s test scheduler tolerance; healthy visual stream and other critical input remain active. This is ROS command response, not vehicle stopping time.",
+  "log_sha256": "ab2e722ddb866dbd4809c61c345c603b23f8dd382c897dffbd45b5dad12413e4"
+}

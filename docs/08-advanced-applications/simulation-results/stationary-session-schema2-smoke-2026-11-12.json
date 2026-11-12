@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "run": "stationary-session-schema2-smoke-01",
+  "summary": {
+    "schema": 2,
+    "kind": "stationary sensor/estimation/rendering load; no navigation control load or vehicle acceptance",
+    "requested_wall_s": 30.0,
+    "duration_wall_s": 30.001304373145103,
+    "completed": true,
+    "safe_commands": 600,
+    "wheel_callbacks": 1355,
+    "health_callbacks": 132,
+    "health_callback_states": {
+      "READY": 132
+    },
+    "safe_interval_s": {
+      "count": 599,
+      "p95": 0.05240781642496586,
+      "p99": 0.054711003229022025,
+      "maximum": 0.05599450785666704
+    },
+    "safe_coverage_gap_s": {
+      "count": 601,
+      "p95": 0.05240251496434212,
+      "p99": 0.05470578745007515,
+      "maximum": 0.05599450785666704
+    },
+    "safe_receipts_sha256": "2b7d4ee755fafb1019a8cceb5a8d067d194ae487b115825be7f40b4a6e22157a",
+    "interval_note": "Interarrival statistics use measurement-window callbacks; coverage also includes window head and tail. Warmup receipt is retained for expiry checks.",
+    "safe_window_head_s": 0.04609605763107538,
+    "safe_window_tail_s": 0.005365482531487942,
+    "safe_intervals_over_100ms": 0,
+    "violations": {},
+    "violation_events": [],
+    "sample_count": 30,
+    "monitoring": "every callback and main loop; gap check precedes receipt updates",
+    "thresholds_s": {
+      "receipt": 0.3,
+      "health_sources_default": 0.3,
+      "health_source_exceptions": {
+        "vo": 0.5,
+        "visual": 0.5,
+        "map_tf": 5.0,
+        "localization": 5.0
+      }
+    },
+    "health_source_observation": "Health callback snapshots only: reported valid/age are checked without extrapolation; no continuous direct source coverage is claimed.",
+    "measured_ros_seconds": 27.110000000000003,
+    "first_window_rss_sum_median_bytes": 2711388160.0,
+    "last_window_rss_sum_median_bytes": 2711388160.0,
+    "memory_note": "RSS sums include shared pages; windows contain at most 300 observations, not guaranteed seconds.",
+    "sample_sha256": "8859d5bed8c3839c05106c2ad95a1f620e411ca5cdad397a10ea3048bb79c060",
+    "recorder_sha256": "77bcac672e0d2812e0c390c1aa3f6e97bdde0f9108fbf45b545aafaf46be9a2f",
+    "schema1_note": "Legacy runs lack callback receipt/source/clock coverage; do not backfill schema 2 evidence.",
+    "limits": "Health/command/wheel/clock receipt gaps are monitored continuously. Other source validity/age are observed only in health snapshots; this is not continuous direct source validation, acquisition-to-actuator latency, or a moving/navigation soak.",
+    "error": null,
+    "passed": true
+  },
+  "session": {
+    "launch_command": [
+      "ros2",
+      "launch",
+      "wheeltec_vision_sim",
+      "sim.launch.py",
+      "output:=/work/results/stationary-session-schema2-smoke-01/launch",
+      "database_path:=/work/results/stationary-session-schema2-smoke-01/room.db",
+      "mode:=mapping",
+      "estimator:=baseline"
+    ],
+    "mission_command": [
+      "python3",
+      "/work/containers/record_soak.py",
+      "--output",
+      "/work/results/stationary-session-schema2-smoke-01/observations",
+      "--launch-manifest",
+      "/work/results/stationary-session-schema2-smoke-01/launch/manifest.json",
+      "--duration",
+      "30.0"
+    ],
+    "unexpected_launch_exit": false,
+    "started_utc": "2026-11-12T11:41:03Z",
+    "environment": {
+      "ROS_DOMAIN_ID": "98",
+      "IGN_PARTITION": "wheeltec-vision-98",
+      "WHEELTEC_SIM_LEASE_ROOT": "/work/leases",
+      "OMP_NUM_THREADS": "2",
+      "OPENCV_FOR_THREADS_NUM": "2",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "cpu_affinity": [
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111
+    ],
+    "mission_exit_code": 0,
+    "mission_shutdown": {
+      "exited_before_teardown": true,
+      "signals": [],
+      "escalated": false,
+      "exit_code": 0
+    },
+    "launch_shutdown": {
+      "exited_before_teardown": false,
+      "signals": [
+        "SIGINT"
+      ],
+      "escalated": false,
+      "exit_code": 0
+    },
+    "launch_exit_code": 0,
+    "session_success": true,
+    "elapsed_wall_s": 37.338928354904056
+  },
+  "artifact_sha256": {
+    "session.json": "0e5e2488e1aee8f0d2211f36e7300a9f7a817cbd0d88a60d9e6367589d4b4212",
+    "observations/summary.json": "f7b0eb48c29d62a7a9ae8aa097d3a8545b95a4d483209eb3f2116d293d03d2ba",
+    "observations/recorder.py": "77bcac672e0d2812e0c390c1aa3f6e97bdde0f9108fbf45b545aafaf46be9a2f",
+    "observations/samples.jsonl": "8859d5bed8c3839c05106c2ad95a1f620e411ca5cdad397a10ea3048bb79c060",
+    "observations/safe-receipts.json": "2b7d4ee755fafb1019a8cceb5a8d067d194ae487b115825be7f40b4a6e22157a",
+    "observations/events.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

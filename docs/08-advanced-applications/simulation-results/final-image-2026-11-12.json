@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "image_id": "sha256:be84532f7ecd6f19cf5ff680fde22c2f1e7e51fc462ae8ea9969c61f38926125",
+  "identity": "\"sha256:be84532f7ecd6f19cf5ff680fde22c2f1e7e51fc462ae8ea9969c61f38926125\" \"2026-11-12T11:54:54.844909066Z\" [\"wheeltec-vision-sim:humble-20261112\"]",
+  "previous_experiment_image_id": "sha256:7d3475065612914a4373817087fdd8c63ee653a63aee356adbdb9f28e559bc0b",
+  "build": "Dockerfile complete build success; independent new image",
+  "ros_integration": {
+    "passed": 4,
+    "duration_s": 8.88
+  },
+  "native_ctest": {
+    "passed": 1,
+    "total": 1
+  },
+  "gazebo": "6.18.0",
+  "render_smoke_summary": {
+    "schema": 2,
+    "kind": "stationary sensor/estimation/rendering load; no navigation control load or vehicle acceptance",
+    "requested_wall_s": 30.0,
+    "duration_wall_s": 30.009045496582985,
+    "completed": true,
+    "safe_commands": 600,
+    "wheel_callbacks": 1367,
+    "health_callbacks": 130,
+    "health_callback_states": {
+      "READY": 130
+    },
+    "safe_interval_s": {
+      "count": 599,
+      "p95": 0.05228180000558496,
+      "p99": 0.05436659669503569,
+      "maximum": 0.05566996801644564
+    },
+    "safe_coverage_gap_s": {
+      "count": 601,
+      "p95": 0.052276317961513996,
+      "p99": 0.054363620467484,
+      "maximum": 0.05566996801644564
+    },
+    "safe_receipts_sha256": "929452c9e934c584175fb086907c374e93db7fa0465251b487f72d66c6f12098",
+    "interval_note": "Interarrival statistics use measurement-window callbacks; coverage also includes window head and tail. Warmup receipt is retained for expiry checks.",
+    "safe_window_head_s": 0.03976876102387905,
+    "safe_window_tail_s": 0.018950605764985085,
+    "safe_intervals_over_100ms": 0,
+    "violations": {},
+    "violation_events": [],
+    "sample_count": 30,
+    "monitoring": "every callback and main loop; gap check precedes receipt updates",
+    "thresholds_s": {
+      "receipt": 0.3,
+      "health_sources_default": 0.3,
+      "health_source_exceptions": {
+        "vo": 0.5,
+        "visual": 0.5,
+        "map_tf": 5.0,
+        "localization": 5.0
+      }
+    },
+    "health_source_observation": "Health callback snapshots only: reported valid/age are checked without extrapolation; no continuous direct source coverage is claimed.",
+    "measured_ros_seconds": 27.340000000000003,
+    "first_window_rss_sum_median_bytes": 2705747968.0,
+    "last_window_rss_sum_median_bytes": 2705747968.0,
+    "memory_note": "RSS sums include shared pages; windows contain at most 300 observations, not guaranteed seconds.",
+    "sample_sha256": "65fc4781c1b4eac732d0edbb2db5a42dd25204c04edff5f7f83d34d5d0350a21",
+    "recorder_sha256": "77bcac672e0d2812e0c390c1aa3f6e97bdde0f9108fbf45b545aafaf46be9a2f",
+    "schema1_note": "Legacy runs lack callback receipt/source/clock coverage; do not backfill schema 2 evidence.",
+    "limits": "Health/command/wheel/clock receipt gaps are monitored continuously. Other source validity/age are observed only in health snapshots; this is not continuous direct source validation, acquisition-to-actuator latency, or a moving/navigation soak.",
+    "error": null,
+    "passed": true
+  },
+  "render_smoke_session": {
+    "launch_command": [
+      "ros2",
+      "launch",
+      "wheeltec_vision_sim",
+      "sim.launch.py",
+      "output:=/work/results/final-image-render-smoke-01/launch",
+      "database_path:=/work/results/final-image-render-smoke-01/room.db",
+      "mode:=mapping",
+      "estimator:=baseline"
+    ],
+    "mission_command": [
+      "python3",
+      "/work/containers/record_soak.py",
+      "--output",
+      "/work/results/final-image-render-smoke-01/observations",
+      "--launch-manifest",
+      "/work/results/final-image-render-smoke-01/launch/manifest.json",
+      "--duration",
+      "30.0"
+    ],
+    "unexpected_launch_exit": false,
+    "started_utc": "2026-11-12T11:57:42Z",
+    "environment": {
+      "ROS_DOMAIN_ID": "102",
+      "IGN_PARTITION": "wheeltec-vision-102",
+      "WHEELTEC_SIM_LEASE_ROOT": "/work/leases",
+      "OMP_NUM_THREADS": "2",
+      "OPENCV_FOR_THREADS_NUM": "2",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "cpu_affinity": [
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63
+    ],
+    "mission_exit_code": 0,
+    "mission_shutdown": {
+      "exited_before_teardown": true,
+      "signals": [],
+      "escalated": false,
+      "exit_code": 0
+    },
+    "launch_shutdown": {
+      "exited_before_teardown": false,
+      "signals": [
+        "SIGINT"
+      ],
+      "escalated": false,
+      "exit_code": 0
+    },
+    "launch_exit_code": 0,
+    "session_success": true,
+    "elapsed_wall_s": 37.22017390560359
+  },
+  "artifact_sha256": {
+    "image-final-build.log": "ba15dbd8e9e0490b65acfa39e63280e496e6bc781b20a76211c708302d297361",
+    "image-final-verification-02.log": "934de4e1b082b0cdcf431bb7cac5701d473fa9b5957599f68235822b1e81d875",
+    "final-image-packages.tsv": "61828f38aa0d0c7dd8cd4c66043a5fb6099a20fbbdf39a5b513d4ce81676969f",
+    "final-image-render-smoke-01/session.json": "f8db68d757f24b46e649e82a281b679970dd0e8eca5d7dd8a67647a7e96fd636",
+    "final-image-render-smoke-01/observations/summary.json": "389d163f5b4aa26afa12ff68f3ca9048f78043a75f9faf1531f16b9644650f1f",
+    "final-image-render-smoke-01/launch/manifest.json": "a4f7032543ff68b47fffbd7c096d5e3fbda60763cc37e433b3e7191236c34abd",
+    "final-image-render-smoke-01/launch.log": "d455d067018acd576a41fc6b586e9180a3d90730b71e31bcce17ea0a65e7f564"
+  },
+  "scope": "New image integration/rendering smoke only; earlier experiments and 30-minute repeat stay identified by their original image."
+}
