@@ -117,7 +117,7 @@ nav:
       - 30 里程计、TF 与时间: 06-sensors-navigation/30-odometry-tf-time.md
       - 31 激光雷达与二维建图: 06-sensors-navigation/31-lidar-and-mapping.md
       - 32 地图保存、定位与坐标验证: 06-sensors-navigation/32-map-localization-tf.md
-      - 33 移动机器人导航与重定位的全局地图依赖: 06-sensors-navigation/33-relocalization-map-dependence.md
+      - 33 移动机器人导航的地图依赖: 06-sensors-navigation/33-relocalization-map-dependence.md
       - 34 Nav2 导航: 06-sensors-navigation/34-nav2-navigation.md
       - 35 多点导航、路径跟踪与自主探索: 06-sensors-navigation/35-waypoints-path-exploration.md
       - 36 摄像头、OpenCV 与图像话题: 06-sensors-navigation/36-camera-opencv-images.md

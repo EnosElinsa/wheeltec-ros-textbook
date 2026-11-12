@@ -60,13 +60,13 @@
 2. [第 30 章：里程计、TF 与时间](06-sensors-navigation/30-odometry-tf-time.md)
 3. [第 31 章：激光雷达与二维建图](06-sensors-navigation/31-lidar-and-mapping.md)
 4. [第 32 章：地图保存、定位与坐标验证](06-sensors-navigation/32-map-localization-tf.md)
-5. [第 33 章：导航与重定位的全局地图依赖](06-sensors-navigation/33-relocalization-map-dependence.md)
+5. [第 33 章：导航的地图依赖](06-sensors-navigation/33-relocalization-map-dependence.md)
 6. [第 34 章：Nav2 导航](06-sensors-navigation/34-nav2-navigation.md)
 7. [第 35 章：多点、路径与探索](06-sensors-navigation/35-waypoints-path-exploration.md)
 
 R680 用 D435C 红外与深度建图导航时，读完第 29～30 章后阅读第 40 章 [运行过程](06-sensors-navigation/40-visual-runtime.md) 与第 41 章 [操作](06-sensors-navigation/41-visual-operation.md)。
 
-调研视觉惯性与三维导航时，按[第 39 章 VINS 原理](06-sensors-navigation/39-vins-principles.md) → [第 42 章 MID360 建图](06-sensors-navigation/42-mid360-fast-lio.md) → [第 43 章数据流](06-sensors-navigation/43-mid360-fast-lio-data-flow.md) → [第 44 章三维导航调研](06-sensors-navigation/44-mid360-3d-navigation-research.md)阅读，并结合第 33 章检查方案的全局参考与恢复能力。
+调研视觉惯性与三维导航时，按[第 39 章 VINS 原理](06-sensors-navigation/39-vins-principles.md) → [第 42 章 MID360 建图](06-sensors-navigation/42-mid360-fast-lio.md) → [第 43 章数据流](06-sensors-navigation/43-mid360-fast-lio-data-flow.md) → [第 44 章三维导航调研](06-sensors-navigation/44-mid360-3d-navigation-research.md)阅读，并结合第 33 章检查方案的地图需求、位置来源与恢复能力。
 
 ## STM32 固件开发
 

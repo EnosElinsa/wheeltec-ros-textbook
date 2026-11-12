@@ -28,7 +28,7 @@ ROS 2 是正文默认环境。使用 ROS 1 旧设备时，请查看[ROS 1 兼容
 - 第一次使用机器人：完成第二篇后，从[识别你的机器人配置](03-bringup/10-identify-configuration.md)开始。
 - 已经能连接主控，准备做 ROS 2 开发：进入[ROS 2 环境与源码版本选择](05-ros2-development/22-environment-and-source-selection.md)。
 - 准备建图和导航：先完成[传感器自检](06-sensors-navigation/29-sensor-checks.md)。
-- 理解未知环境导航与失效重定位的地图需求：[第 33 章：移动机器人导航与重定位的全局地图依赖](06-sensors-navigation/33-relocalization-map-dependence.md)。
+- 理解已有地图、在线建图与无显式地图三条导航路线：[第 33 章：移动机器人导航的地图依赖](06-sensors-navigation/33-relocalization-map-dependence.md)。
 - R680 视觉建图与导航：第 40 章 [运行过程](06-sensors-navigation/40-visual-runtime.md)、第 41 章 [操作](06-sensors-navigation/41-visual-operation.md)。
 - 视觉与 IMU 的联合运动估计：[VINS 视觉惯性里程计原理](06-sensors-navigation/39-vins-principles.md)。
 - 选择算法基线和可复用模块：[第 54 章：开源项目与参考价值](08-advanced-applications/54-open-source-projects.md)。

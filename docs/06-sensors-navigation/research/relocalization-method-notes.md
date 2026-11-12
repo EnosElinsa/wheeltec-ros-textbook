@@ -4,7 +4,7 @@ status: complete
 
 # 第 33 章补充说明：坐标计算与相关方法
 
-[第 33 章](../33-relocalization-map-dependence.md)分别讨论未知环境导航与失效重定位对全局地图的需求。本页补充位姿组合、导航坐标恢复的计算，并列出其他研究对正文的补充作用。参考编号与正文一致，重定位证据见[论文证据表](relocalization-evidence.csv)和[核查说明](relocalization-reference-audit.md)，在线导航证据见[补充核查](online-navigation-reference-audit.md)。
+[第 33 章](../33-relocalization-map-dependence.md)按使用已有地图、在线建立地图和无显式地图三条路线，讨论导航的地图需求及定位恢复条件。本页补充位姿组合、导航坐标恢复的计算，并列出其他研究对正文的补充作用。参考编号与正文一致，重定位证据见[论文证据表](relocalization-evidence.csv)和[核查说明](relocalization-reference-audit.md)，在线导航证据见[补充核查](online-navigation-reference-audit.md)。
 
 ## 位姿与坐标计算
 
@@ -77,13 +77,14 @@ $$
 
 ## 其他相关方法的作用与边界 {#related-methods}
 
-正文以少量代表工作解释主要机制。下表按它们补充的环节列出其余研究，便于按具体问题继续阅读。
+正文分别说明三条路线的运行流程。下表补充已有参考路线中的检索、求解和地图组织方法，便于按具体环节继续阅读。
 
 | 研究 | 补充哪项问题 | 做法与适用边界 |
 |---|---|---|
 | UniLGL [P03] | 检索之后如何恢复三维位姿 | 先定义查询点云与数据库之间的地点检索，再构建三维全局位姿恢复方法。数据库点云仍需与地图坐标关联。 |
 | LiteFT-PR [P10] | 传感器质量变化时如何改进候选检索 | 通过多模态特征、质量估计和蒸馏提高地点识别鲁棒性。PR、Recall@1、F1-max 评价检索表现，完整定位还需检查几何位姿。 |
 | CMRNext [P05] | 相机怎样使用 LiDAR 地图 | 根据初始位姿把地图投影为深度图，与当前图像匹配后求解。投影依赖内参和初值，未知位置启动需另有候选来源。 |
+| OneShot [P18] | 单次扫描怎样连接到地图坐标 | 保存参考片段描述子与质心位置，通过片段检索和几何一致性求解三维位姿。单次查询仍使用已有参考，论文定位率也不能直接视为本车任务恢复率。 |
 | 三维地图表示比较 [P06] | 地图存储形式能否替换 | 比较点云、网格和神经辐射场生成参考视图的方式。已知参考视图位姿与深度负责建立地图坐标联系。 |
 | 对象级语义关系 [P08] | 物体变化时怎样比较场景 | 用物体及其关系构成场景图，寻找相似场景。检索评价中使用位姿门限，不等于已经另行求解当前图像的完整连续位姿。 |
 | OMCL [P09] | 语言信息能帮助哪一环节 | 在具有空间位置的八叉树地图中保存视觉语言特征，用自然语言提示缩小粒子初始化范围，后续仍需地图尺度的里程计与观测更新。 |
@@ -114,6 +115,7 @@ $$
 [P10]: ../33-relocalization-map-dependence.md#p10
 [P16]: ../33-relocalization-map-dependence.md#p16
 [P17]: ../33-relocalization-map-dependence.md#p17
+[P18]: ../33-relocalization-map-dependence.md#p18
 [P19]: ../33-relocalization-map-dependence.md#p19
 [S01]: ../33-relocalization-map-dependence.md#s01
 [S02]: ../33-relocalization-map-dependence.md#s02
