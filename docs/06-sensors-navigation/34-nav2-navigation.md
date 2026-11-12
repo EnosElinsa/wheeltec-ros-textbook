@@ -151,4 +151,4 @@ Nav2 不只看机器人中心点。代价地图还要根据机器人的外形判
 
 ## 章节导航
 
-[上一章：移动机器人重定位方案与全局地图依赖](33-relocalization-map-dependence.md) · [返回本篇](index.md) · [下一章：多点导航、路径跟踪与自主探索](35-waypoints-path-exploration.md)
+[上一章：重定位的地图需求与替代方案](33-relocalization-map-dependence.md) · [返回本篇](index.md) · [下一章：多点导航、路径跟踪与自主探索](35-waypoints-path-exploration.md)

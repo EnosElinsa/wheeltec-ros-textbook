@@ -118,4 +118,4 @@ ros2 run tf2_tools view_frames
 
 ## 章节导航
 
-[上一章：激光雷达与二维建图](31-lidar-and-mapping.md) · [返回本篇](index.md) · [下一章：移动机器人重定位方案与全局地图依赖](33-relocalization-map-dependence.md)
+[上一章：激光雷达与二维建图](31-lidar-and-mapping.md) · [返回本篇](index.md) · [下一章：重定位的地图需求与替代方案](33-relocalization-map-dependence.md)
