@@ -31,7 +31,7 @@
 
 不知道从哪里开始时，可以查看[阅读路径](https://enoselinsa.github.io/wheeltec-ros-textbook/reading-paths/)；遇到术语问题，可以查[术语表](https://enoselinsa.github.io/wheeltec-ros-textbook/glossary/)。
 
-选择算法基线或可复用模块时，可查阅[第 54 章：开源项目与参考价值](docs/08-advanced-applications/54-open-source-projects.md)，按六个主题了解各项目的用途与借鉴方向。
+选择算法基线或可复用模块时，可查阅[第 54 章：开源项目与参考价值](docs/08-advanced-applications/54-open-source-projects.md)。章节覆盖 66 个项目，包括 17 个深度强化学习相关项目，分别说明算法、输入输出、运行环境与车辆适配条件。[论文与开源项目目录](https://github.com/EnosElinsa/wheeltec-smart-car-literature/blob/main/OPEN_SOURCE_PROJECTS.md)提供对应代码和论文阅读入口；论文库的 `INDEX.html` 支持组合筛选、项目对比与清单导出。
 
 ## 本地预览
 

@@ -8,6 +8,16 @@ status: complete
 
 R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外与深度图像，以及轮速和 IMU。依赖 RGB、三维雷达、ROS 1 或原地转向的项目需要相应适配；论文中的实验平台与硬件条件也会影响方法的适用范围。
 
+本章的 66 个项目也整理在[论文与开源项目目录](https://github.com/EnosElinsa/wheeltec-smart-car-literature/blob/main/OPEN_SOURCE_PROJECTS.md)，其中 17 个提供深度强化学习相关方法。论文库的 `INDEX.html` 支持按应用方向、算法方法、运行环境和论文年份筛选，以及 2—4 个项目的并排对比；已收录论文提供 PDF、全文和引用链接。
+
+| 关注的问题 | 项目与方法 |
+|---|---|
+| 二维雷达与红外深度建图 | [slam_toolbox](#slam_toolbox)、[RTAB-Map](#rtab-map)；比较扫描匹配、视觉里程计和回环优化 |
+| Ackermann 路径与控制 | [Nav2](#nav2)、[mpc_planner](#mpc_planner)、[RLPP](#rlpp)；比较 Hybrid-A*、MPC / MPPI 与残差强化学习 |
+| 人群避障与社会导航 | [DRL-SFM](#drl-sfm)、[GenSafeNav](#gen-safe-nav)、[CrowdNav++](#crowdnav-plus-plus)；比较 SAC、约束 PPO 与交互图预测 |
+| 未知环境与自主探索 | [Context-Aware Navigation](#context-aware-navigation)、[ARiADNE](#ariadne)、[When2Replan](#when2replan)；分别学习航点、探索目标与重规划时机 |
+| 多机器人策略 | [JaxRobotarium](#jaxrobotarium)、[CASH](#cash)、[MAexp](#maexp)；比较 MAPPO、QMIX 与能力条件策略 |
+
 [定位与融合](#localization) · [建图与探索](#mapping) · [规划与控制](#planning) · [多机器人](#multi-robot) · [语义与语言导航](#semantic-navigation) · [仿真与评测](#evaluation)
 {: .project-navigation }
 
