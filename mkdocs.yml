@@ -139,6 +139,7 @@ nav:
   - 第八篇 高级应用:
       - 本篇说明: 08-advanced-applications/index.md
       - 50 仿真与 Gazebo: 08-advanced-applications/50-gazebo-simulation.md
+      - 视觉导航仿真实验: 08-advanced-applications/vision-simulation-lab.md
       - 51 多机编队与 Qt 控制界面: 08-advanced-applications/51-multi-robot-and-qt.md
       - 52 毫米波雷达、人体跟踪与深度学习: 08-advanced-applications/52-mmwave-human-deep-learning.md
       - 53 语音、多模态 AI 与 OpenClaw: 08-advanced-applications/53-voice-ai-openclaw.md

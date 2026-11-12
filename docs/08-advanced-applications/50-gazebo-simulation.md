@@ -14,7 +14,9 @@ Gazebo Simulation Platform（Gazebo）是机器人仿真平台，可计算刚体
 
 ## 50.2 适用范围
 
-适用于已经具备 Gazebo 模型或仿真功能包的 WHEELTEC 机器人。本章以 ROS 2 为运行环境；ROS 1 模型需要先完成包结构、插件接口和启动方式的迁移。
+适用于使用 ROS 2 的 WHEELTEC 机器人。已有模型时先检查插件与版本；缺少整车模型时，可用参数化的简化 Ackermann 模型验证软件。ROS 1 模型需要先完成包结构、插件接口和启动方式的迁移。
+
+视觉导航的完整实验路径见[视觉导航仿真实验](vision-simulation-lab.md)：先用 EuRoC 验证 VINS，再用 Gazebo 验证可接受控制指令的导航闭环。模型与真实车体的差异需随实验配置保存。
 
 ## 50.3 操作前检查
 
