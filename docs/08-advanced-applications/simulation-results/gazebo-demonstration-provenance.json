@@ -1,0 +1,269 @@
+{
+  "date": "2026-11-12",
+  "kind": "fresh Gazebo RGB-D closed-loop demonstration",
+  "recording_script_sha256": "5a0c504d75952acffe744c1953129998907636328fd45330c42eaf5f9407bf67",
+  "rendering_script_sha256": "164a3f491463e2b88a49122c00abd955060ea043eb9c66880b261cc58abf149b",
+  "source_root": "/home/enos/wheeltec_vision_sim/results/presentation-<mode>-01",
+  "changes": [
+    "Two static observer cameras added; original world geometry and vehicle preserved.",
+    "Observer images only recorded for presentation; estimator uses original onboard images.",
+    "New mapping database reused in navigation demonstration.",
+    "Every second detail frame selected; overview matched within 80 ms simulation time.",
+    "Display 10 frames per second, uniform intervals, time labels are recorded wall time.",
+    "Resize and label recorded images; global palette quantization for GIF.",
+    "Navigation target from recorded expected_world_goal projected through observer SDF camera, overlaid as a yellow crosshair.",
+    "Demonstration sessions stored separately from the original comparison trials."
+  ],
+  "runs": [
+    {
+      "mode": "mapping",
+      "source_run": "presentation-mapping-01",
+      "mission": {
+        "schema": 1,
+        "seed": 17,
+        "repeats": 3,
+        "mode": "mapping",
+        "estimator": "baseline",
+        "results": [
+          {
+            "scenario": "motion",
+            "trial": 0,
+            "seed": 17,
+            "started_wall": 4842449.567735906,
+            "passed": true,
+            "complete_fresh_evidence": true,
+            "collision_events": 0,
+            "finished_wall": 4842458.436290523
+          },
+          {
+            "scenario": "motion",
+            "trial": 1,
+            "seed": 17,
+            "started_wall": 4842458.436556684,
+            "passed": true,
+            "complete_fresh_evidence": true,
+            "collision_events": 0,
+            "finished_wall": 4842468.090870125
+          },
+          {
+            "scenario": "motion",
+            "trial": 2,
+            "seed": 17,
+            "started_wall": 4842468.091140936,
+            "passed": true,
+            "complete_fresh_evidence": true,
+            "collision_events": 0,
+            "finished_wall": 4842477.44358665
+          }
+        ]
+      },
+      "mission_exit": {
+        "exit_code": 0
+      },
+      "frames": 78,
+      "displayed_seconds": 7.8,
+      "wall_window_s": [
+        -0.8734334334731102,
+        27.765176769346
+      ],
+      "source_sha256": {
+        "frames.jsonl": "198806d4effa0dbcb0e1aa339c89e7c8ef104bba11de1b8457aeb9af5cf96ec3",
+        "samples.jsonl": "c8ffcd9b0a6d714e004841b33a7920cd5ab45c67265c7b278ba75a5051d3908f",
+        "results.json": "a2a8319dc65ff756c3e670d4ac05bdfd1d3af10da9bc9bfaecd1ffb8c1cc2ea6",
+        "room.sdf": "014025d6561fafaf15f9320e7636e00d304ff53059ee898503400a6a71718915"
+      }
+    },
+    {
+      "mode": "navigation",
+      "source_run": "presentation-navigation-01",
+      "mission": {
+        "schema": 1,
+        "seed": 17,
+        "repeats": 3,
+        "mode": "localization",
+        "estimator": "baseline",
+        "results": [
+          {
+            "scenario": "route",
+            "trial": 0,
+            "seed": 17,
+            "started_wall": 4842517.031869603,
+            "passed": true,
+            "action_status": 4,
+            "expected_world_goal": [
+              -2.3499936469673584,
+              1.5776546320946957e-06,
+              0.10000242598302048
+            ],
+            "actual_world_endpoint": [
+              -2.5217526251348614,
+              0.016207352245892395,
+              0.07166362564507221
+            ],
+            "position_error_m": 0.17252180648036217,
+            "heading_error_rad": 0.028338800337948267,
+            "position_tolerance_m": 0.25,
+            "yaw_tolerance_rad": 0.25,
+            "requested_map_goal": [
+              0.650203269383772,
+              9.645905307048436e-05,
+              0.09998268031061663
+            ],
+            "fixed_map_to_world": [
+              -3.0001969143197273,
+              -0.00010772009917190702,
+              1.9745672403837286e-05
+            ],
+            "complete_fresh_evidence": true,
+            "collision_events": 0,
+            "finished_wall": 4842520.914910133
+          },
+          {
+            "scenario": "route",
+            "trial": 1,
+            "seed": 17,
+            "started_wall": 4842520.915157765,
+            "passed": true,
+            "action_status": 4,
+            "expected_world_goal": [
+              -1.8279614648056368,
+              0.06688034646625395,
+              0.1739821411153402
+            ],
+            "actual_world_endpoint": [
+              -2.0281354987223312,
+              0.05773446148506574,
+              0.1265162346262366
+            ],
+            "position_error_m": 0.20038286120966298,
+            "heading_error_rad": 0.0474659064891036,
+            "position_tolerance_m": 0.25,
+            "yaw_tolerance_rad": 0.25,
+            "requested_map_goal": [
+              1.1722367720099856,
+              0.06696491997520204,
+              0.17396239544293635
+            ],
+            "fixed_map_to_world": [
+              -3.0001969143197273,
+              -0.00010772009917190702,
+              1.9745672403837286e-05
+            ],
+            "complete_fresh_evidence": true,
+            "collision_events": 0,
+            "finished_wall": 4842525.163830986
+          },
+          {
+            "scenario": "route",
+            "trial": 2,
+            "seed": 17,
+            "started_wall": 4842525.164270768,
+            "passed": true,
+            "action_status": 4,
+            "expected_world_goal": [
+              -1.347134957467753,
+              0.1460421644266943,
+              0.23115515613789966
+            ],
+            "actual_world_endpoint": [
+              -1.520219140829539,
+              0.13973595028368718,
+              0.21394845671823423
+            ],
+            "position_error_m": 0.17319902674909526,
+            "heading_error_rad": 0.017206699419665433,
+            "position_tolerance_m": 0.25,
+            "yaw_tolerance_rad": 0.25,
+            "requested_map_goal": [
+              1.6530648423574588,
+              0.14611724367751378,
+              0.23113541046549582
+            ],
+            "fixed_map_to_world": [
+              -3.0001969143197273,
+              -0.00010772009917190702,
+              1.9745672403837286e-05
+            ],
+            "complete_fresh_evidence": true,
+            "collision_events": 0,
+            "finished_wall": 4842529.019327131
+          }
+        ]
+      },
+      "mission_exit": {
+        "exit_code": 0
+      },
+      "frames": 39,
+      "displayed_seconds": 3.9,
+      "wall_window_s": [
+        -0.8814843855798244,
+        12.086443115957081
+      ],
+      "source_sha256": {
+        "frames.jsonl": "632ef837342ac7fdd09162e60efb5d896991fa0da8c66659e3e03e8933293e94",
+        "samples.jsonl": "102abd6c352f876801bf15ee460f5c2a56c4db13c1f8b8700195bcf72a169f2f",
+        "results.json": "f0ba3f1b06509d4368ca3f42c099639396eb8084332ab4436102f0d4902c26c3",
+        "room.sdf": "918ddb21804b361b5363a6c9376793112b49fa4c314b5540afadfa6a04cf9524"
+      }
+    }
+  ],
+  "occupancy": {
+    "source": "presentation-mapping-01",
+    "raw_sha256": "1267a9bbe192e8a542460ab9f1fa0f73077e67f33195f8d6fb0de7616685273c",
+    "resolution_m": 0.05000000074505806,
+    "width": 132,
+    "height": 169
+  },
+  "outputs": [
+    {
+      "file": "gazebo-mapping-3d-poster.jpg",
+      "bytes": 272394,
+      "sha256": "4034b577ce7bbbbe3ac9c62d19a9d142789e2144a213e187b5ca2ffdb43b1d9d"
+    },
+    {
+      "file": "gazebo-mapping-3d.gif",
+      "bytes": 409831,
+      "sha256": "c4d8105daa2e0f8fc49255a0a7d7b34a692a1e6665038151fba5f9582845399c"
+    },
+    {
+      "file": "gazebo-mapping-3d.mp4",
+      "bytes": 303527,
+      "sha256": "7b429e422df4e8986372d9e48ced509ccdb735fbae5fbfdce20e1a450a9d8816"
+    },
+    {
+      "file": "gazebo-mapping-frames.json",
+      "bytes": 41289,
+      "sha256": "c616e53688e787e03132cec83e3bc41573562509b97f6078cbaf22f8b294ae94"
+    },
+    {
+      "file": "gazebo-mapping-grid.json",
+      "bytes": 80648,
+      "sha256": "1267a9bbe192e8a542460ab9f1fa0f73077e67f33195f8d6fb0de7616685273c"
+    },
+    {
+      "file": "gazebo-mapping-grid.png",
+      "bytes": 41574,
+      "sha256": "479f27d095e685e7d9c6e09ced000bbd392b72b9b56984a9ccd756268e754344"
+    },
+    {
+      "file": "gazebo-navigation-3d-poster.jpg",
+      "bytes": 277853,
+      "sha256": "560195a8fc22c8e6d252c36579aa1c6cabb739633feb82b2827563f57d5d34c5"
+    },
+    {
+      "file": "gazebo-navigation-3d.gif",
+      "bytes": 323372,
+      "sha256": "269a066d321148550932200a77d0bede1fb71af968848320207d178a0198d5c0"
+    },
+    {
+      "file": "gazebo-navigation-3d.mp4",
+      "bytes": 293800,
+      "sha256": "5a716be762cdeabb802ef11b1a11089652ae74d5c4b744b5a2bd29351b7b88fc"
+    },
+    {
+      "file": "gazebo-navigation-frames.json",
+      "bytes": 23686,
+      "sha256": "74ee738049d54860c538f80098b13b900f01084067d9ee3971d39bc7e9bda017"
+    }
+  ]
+}

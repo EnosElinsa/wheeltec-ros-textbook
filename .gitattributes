@@ -3,3 +3,6 @@ docs/08-advanced-applications/simulation-results/*-path.csv text eol=lf
 docs/08-advanced-applications/simulation-results/measured-*.svg text eol=lf
 docs/08-advanced-applications/simulation-results/path-figure-provenance.json text eol=lf
 tools/render_simulation_figures.py text eol=lf
+docs/08-advanced-applications/simulation-results/gazebo-*.json text eol=lf
+tools/record_gazebo_demonstration.py text eol=lf
+tools/render_gazebo_demonstration.py text eol=lf

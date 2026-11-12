@@ -12,7 +12,7 @@ status: draft
 
 第一次接触机器人仿真，可先阅读[第 50 章：仿真与 Gazebo](50-gazebo-simulation.md)，了解数据回放、闭环仿真与实车实验的分工，以及不同研究任务为什么选择不同平台。
 
-视觉导航部分按研究过程连续编排：[50.8 实验设计与评价方法](vision-simulation-lab.md)交代对照方案、场景和指标；[50.9 实验结果与分析](vision-simulation-results.md)解释实测结果与结论范围；[50.10 复现与证据附录](vision-simulation-reproducibility.md)保存运行命令、版本和原始记录。理解实验时可先读正文，需要复跑时再查附录。
+视觉导航部分按研究过程连续编排：[50.8 实验设计与评价方法](vision-simulation-lab.md)从三维场景、建图过程讲到起点、目标和评价指标；[50.9 实验结果与分析](vision-simulation-results.md)展示实际轨迹并分析导航与定位结果；[50.10 复现与证据附录](vision-simulation-reproducibility.md)保存运行命令、版本和原始记录。理解实验时可先读正文，需要复跑时再查附录。
 
 ## 8.2 开源项目参考
 

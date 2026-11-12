@@ -38,6 +38,20 @@ class EditorialScannerTests(unittest.TestCase):
         )
         self.assertEqual(issues, [])
 
+    def test_research_disclaimer_is_flagged_without_blocking_technical_constraints(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "chapter.md"
+            path.write_text(
+                "此表不表示使用量排名，也不构成性能测试。\n"
+                "不能把 RS-232 正负电压直接接到 MCU。\n"
+                "回放中的控制输出不改变下一张已记录的图像。\n"
+                "```text\n此表不表示使用量排名。\n```\n",
+                encoding="utf-8",
+            )
+            issues = editorial_audit.scan_markdown(path)
+            self.assertEqual([(i.line, i.category) for i in issues],
+                             [(1, "defensive research disclaimer")])
+
     def test_protected_content_comparison_detects_code_change(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             before_path = Path(temp_dir) / "before.md"

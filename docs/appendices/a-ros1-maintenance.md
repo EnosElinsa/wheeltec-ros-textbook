@@ -151,7 +151,7 @@ rostopic echo -n 1 "$TOPIC"
 
 激光扫描检查：消息类型、角度范围、角分辨率、`scan_time`、`time_increment`、量程上下限、数组长度、可选 intensities、有限值比例及 `frame_id`。验证数组长度与角度字段是否一致。`Inf` 或 `NaN` 可能表示超量程或无回波，不应自动判定为文件损坏。普通 `LaserScan` 的每个角度通常对应一个距离；`MultiEchoLaserScan` 的每个角度可以包含多个回波，不能直接按单回波数组处理。
 
-IMU 检查：角速度、线加速度、orientation 及三个协方差矩阵。三个 covariance 数组要分别判断：首元素为 `-1` 表示对应的 orientation、angular velocity 或 linear acceleration 未提供估计；全零矩阵表示协方差未知，不能解释为零不确定度。不能把默认四元数或全零 covariance 当作有效高精度测量。
+IMU 检查：角速度、线加速度、orientation 及三个协方差矩阵。三个 covariance 数组要分别判断：首元素为 `-1` 表示对应的 orientation、angular velocity 或 linear acceleration 未提供估计；全零矩阵表示协方差未知。接入估计器前，应确认姿态和各项协方差的实际来源及有效性。
 
 #### TF 与里程计
 
@@ -166,7 +166,7 @@ rosrun tf tf_echo "$PARENT_FRAME" "$CHILD_FRAME"
 rostopic echo -n 1 "$ODOM_TOPIC"
 ```
 
-在回放推进期间运行 `view_frames`；它可能需要 Graphviz 才能生成 PDF。分别记录里程计的 `header.frame_id`、`child_frame_id`、pose/twist covariance 和 TF 中的 parent/child。Odometry 的 pose 由 `header.frame_id` 表达，twist 以 `child_frame_id` 为参考；空 `child_frame_id` 会削弱消息语义，但不自动否定独立存在的 TF 链。
+在回放推进期间运行 `view_frames`；它可能需要 Graphviz 才能生成 PDF。分别记录里程计的 `header.frame_id`、`child_frame_id`、pose/twist covariance 和 TF 中的 parent/child。Odometry 的 pose 由 `header.frame_id` 表达，twist 以 `child_frame_id` 为参考；消息中的 `child_frame_id` 与 TF 发布分别检查：前者应填写速度参考坐标系，后者按实际的 parent/child 核对。
 
 检查 `/tf` 中的目标 frame 是否连通，并核对里程计字段。回放后的 `rostopic info /tf` 通常显示 rosbag player；追溯原始发布节点时，读取 Bag 的 connection header 与 `callerid`。出现 TF 冲突时，检查同一 child 的 parent 变化、重复变换和时间关系。
 

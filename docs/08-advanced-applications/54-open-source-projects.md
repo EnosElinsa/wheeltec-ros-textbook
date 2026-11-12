@@ -318,7 +318,7 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 | [FastRLAP](#fastrlap) | RLPD、视觉预训练、自主练习与恢复 | 相机图像、车辆状态与检查点 → 驾驶动作 |
 | [RLPP](#rlpp) | SAC 残差策略、Pure Pursuit | 轨迹相对状态、参考轨迹 → 转向与加速度修正 |
 
-[Wheeled Lab](https://github.com/UWRobotLearning/WheeledLab)：提供轮式平台资产、环境与训练代码，使用 RSL-RL 的 PPO，任务覆盖漂移、地形运动和视觉驾驶；视觉任务包含教师与学生学习。车辆模型、摩擦、延迟、执行器随机化可用于研究仿真到实机迁移。训练入口为 source/wheeledlab_rl/scripts/train_rl.py，环境推荐 Isaac Sim 4.5.0、Isaac Lab 2.0.2 和 Python 3.10，需要合适的 NVIDIA GPU。代码采用 BSD-3-Clause 许可证；独立的 [RealLab](https://github.com/UWRobotLearning/RealLab) 提供 HOUND / MuSHR 分支，F1TENTH 集成仍列为待提供。接入 R680 需要替换车辆参数与控制器，漂移表现不能直接代表低速室内导航能力。
+[Wheeled Lab](https://github.com/UWRobotLearning/WheeledLab)：提供轮式平台资产、环境与训练代码，使用 RSL-RL 的 PPO，任务覆盖漂移、地形运动和视觉驾驶；视觉任务包含教师与学生学习。车辆模型、摩擦、延迟、执行器随机化可用于研究仿真到实机迁移。训练入口为 source/wheeledlab_rl/scripts/train_rl.py，环境推荐 Isaac Sim 4.5.0、Isaac Lab 2.0.2 和 Python 3.10，需要合适的 NVIDIA GPU。代码采用 BSD-3-Clause 许可证；独立的 [RealLab](https://github.com/UWRobotLearning/RealLab) 提供 HOUND / MuSHR 分支，F1TENTH 集成仍列为待提供。接入 R680 时，应替换车辆参数与控制器，并按低速室内任务重新设置路线与评价指标。
 {: #wheeled-lab .project-description }
 
 论文：[Wheeled Lab: Modern Sim2Real for Low-cost, Open-source Wheeled Robotics](https://proceedings.mlr.press/v305/han25a.html)（CoRL，2025）。
@@ -358,7 +358,7 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 论文：[NavDP: Learning Sim-to-Real Navigation Diffusion Policy with Privileged Information Guidance](https://doi.org/10.1109/icra57385.2026.11696748)（ICRA，2026）。
 {: .project-paper }
 
-[STERLING](https://github.com/HareshKarnan/sterling_corl23)：从地形视觉、振动等交互经验学习地形表征，可用于研究视觉与地面颠簸、可通行偏好之间的联系。公开范围主要是表征训练脚本，ROS 预处理仍列为待提供，不能视为完整导航实现。RGB 输入要求与许可证条款需要进一步确认。
+[STERLING](https://github.com/HareshKarnan/sterling_corl23)：从地形视觉、振动等交互经验学习地形表征，可用于研究视觉与地面颠簸、可通行偏好之间的联系。公开范围主要为表征训练脚本，ROS 预处理列为待提供；接入导航系统时还需完成数据处理、规划与控制。RGB 输入要求与许可证条款需要进一步确认。
 {: #sterling .project-description }
 
 论文：[STERLING: Self-Supervised Terrain Representation Learning from Unconstrained Robot Experience](https://proceedings.mlr.press/v229/karnan23a.html)（CoRL，2023）。
@@ -436,7 +436,7 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 论文：[JaxRobotarium: Training and Deploying Multi-Robot Policies in 10 Minutes](https://proceedings.mlr.press/v305/jain25a.html)（CoRL，2025）。
 {: .project-paper }
 
-[CASH](https://github.com/GT-STAR-Lab/CASH)：根据局部观测和团队能力生成个体网络参数，用于传感器、速度或载荷不同的异构机器人团队。CASH 是网络架构，可配合 QMIX、MAPPO，也可使用 DAgger 模仿学习。公开资源包括 JaxMARL 分支、能力条件策略、消防与运输环境、训练和绘图代码，采用 Apache-2.0 许可证。论文另通过 MARBLER / EPyMARL 在 Robotarium 评价，JAX 仓库不能直接等同于完整实机软件。该方法可用于研究能力下降或未见团队组合下的协作。
+[CASH](https://github.com/GT-STAR-Lab/CASH)：根据局部观测和团队能力生成个体网络参数，用于传感器、速度或载荷不同的异构机器人团队。CASH 是网络架构，可配合 QMIX、MAPPO，也可使用 DAgger 模仿学习。公开资源包括 JaxMARL 分支、能力条件策略、消防与运输环境、训练和绘图代码，采用 Apache-2.0 许可证。论文另通过 MARBLER / EPyMARL 在 Robotarium 评价，实机接入需核对该部分的软件与接口。该方法可用于研究能力下降或未见团队组合下的协作。
 {: #cash .project-description }
 
 论文：[Capability-Aware Shared Hypernetworks for Flexible Heterogeneous Multi-Robot Coordination](https://proceedings.mlr.press/v305/fu25a.html)（CoRL，2025）。
@@ -510,7 +510,7 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 | [Arena-Bench 2.0](#arena-bench) | 社会导航场景与统一评测 | 地图、行人、导航方法 → 任务与交互指标 |
 | [DMRP-Bench](#dmrp-bench) | 多机器人全局与局部规划对比 | 动态场景、多机任务 → 规划与交互指标 |
 
-[F1TENTH Gym](https://github.com/f1tenth/f1tenth_gym)：提供车辆动力学、激光观测与赛道仿真，适合研究 Ackermann 车辆的路径跟踪、MPPI、MPC 和强化学习控制。车辆尺寸、转向限制和动力学参数需要按 R680 替换，赛道表现不能直接代表室内低速导航能力。
+[F1TENTH Gym](https://github.com/f1tenth/f1tenth_gym)：提供车辆动力学、激光观测与赛道仿真，适合研究 Ackermann 车辆的路径跟踪、MPPI、MPC 和强化学习控制。接入 R680 时，按车辆尺寸、转向限制和动力学参数调整模型，再用室内低速路线测试。
 {: #f1tenth-gymackermann .project-description }
 
 论文：[F1TENTH: An Open-Source Evaluation Environment for Continuous Control and Reinforcement Learning](https://proceedings.mlr.press/v123/o-kelly20a.html)（PMLR 123，2020）。
@@ -522,7 +522,7 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 论文：[Habitat: A Platform for Embodied AI Research](https://openaccess.thecvf.com/content_ICCV_2019/html/Savva_Habitat_A_Platform_for_Embodied_AI_Research_ICCV_2019_paper.html)（ICCV，2019）。
 {: .project-paper }
 
-[Arena-Bench 2.0 / Arena 4.0](https://github.com/Arena-Rosnav/arena-rosnav)：提供社会导航评测生态，可在共同场景下比较经典规划器与学习策略，统一地图、行人、任务种子和指标。Arena 4.0 将框架迁移到 ROS 2，并加入由文本或平面图生成场景的方法以及带语义标注的三维资产。Arena-Rosnav 入口仓库采用 MIT 许可证，组件与环境版本应以[官方安装文档](https://docs.arena-rosnav.org/en/latest/tutorials/installation/)为准；框架本身不代表某一种强化学习算法。
+[Arena-Bench 2.0 / Arena 4.0](https://github.com/Arena-Rosnav/arena-rosnav)：提供社会导航评测生态，可在共同场景下比较经典规划器与学习策略，统一地图、行人、任务种子和指标。Arena 4.0 将框架迁移到 ROS 2，并加入由文本或平面图生成场景的方法以及带语义标注的三维资产。Arena-Rosnav 入口仓库采用 MIT 许可证，组件与环境版本应以[官方安装文档](https://docs.arena-rosnav.org/en/latest/tutorials/installation/)为准。框架可以组织不同导航算法的共同评测。
 {: #arena-bench .project-description }
 
 论文：[Arena-Bench 2.0: A Comprehensive Benchmark of Social Navigation Approaches in Collaborative Environments](https://doi.org/10.1109/iros60139.2025.11246895)（IROS，2025）；[Arena 4.0: a Comprehensive Ros2 Development and Benchmarking Platform for Human-Centric Navigation Using Generative-Model-Based Environment Generation](https://ieeexplore.ieee.org/document/11127635/)（ICRA，2025）。
@@ -547,7 +547,7 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 [rosbag2](https://github.com/ros2/rosbag2)：按时间记录和回放 ROS 2 话题，可让多个算法处理相同的相机、雷达、IMU 与轮速消息。原始观测、标定信息和时间关系决定回放的可用性。QoS、丢帧和回放速度会影响数据完整性与算法负载。
 {: #rosbag2 .project-description }
 
-[evo](https://github.com/MichaelGrupp/evo)：提供轨迹时间关联、对齐、绝对位姿误差（APE）和相对位姿误差（RPE）计算，分别反映整体偏离与局部漂移。比较结果依赖统一的时间关联、对齐方式和尺度处理；精度评价需要独立参考轨迹，地图视觉重合不能替代轨迹误差。
+[evo](https://github.com/MichaelGrupp/evo)：提供轨迹时间关联、对齐、绝对位姿误差（APE）和相对位姿误差（RPE）计算，分别反映整体偏离与局部漂移。比较结果依赖统一的时间关联、对齐方式和尺度处理；精度评价使用独立参考轨迹计算误差，并结合地图重合情况观察空间结构。
 {: #evo .project-description }
 
 [slam-under-perturbation](https://github.com/xiaohao-xu/slam-under-perturbation)：对图像、深度和时间对应关系施加可控扰动，用于研究误差增大、跟踪失效和恢复条件。相同数据与随机种子可用于比较多个估计器的退化表现。时间偏移以帧为单位，分析延迟时需要结合实际时间戳换算。
@@ -556,7 +556,7 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 论文：[Scalable Benchmarking and Robust Learning for Noise-Free Ego-Motion and 3D Reconstruction from Noisy Video](https://openreview.net/forum?id=Pz9zFea4MQ)（ICLR，2025）。
 {: .project-paper }
 
-[diagnostics](https://github.com/ros/diagnostics)：为数据频率、消息时效和设备状态提供统一诊断接口，可汇总相机掉帧、IMU 停更和节点异常。消息仍在发布不等于估计仍然可靠，定位质量还需要算法指标；阈值与告警持续时间应结合任务设置。
+[diagnostics](https://github.com/ros/diagnostics)：为数据频率、消息时效和设备状态提供统一诊断接口，可汇总相机掉帧、IMU 停更和节点异常。定位质量可结合轨迹误差、跟踪状态和数据时效共同观察；阈值与告警持续时间应结合任务设置。
 {: #diagnostics .project-description }
 
 [PlotJuggler](https://github.com/facontidavide/PlotJuggler)：加载记录或实时数据，在同一时间轴上查看轮速、IMU、视觉里程计、控制指令和诊断状态。时序对齐与计算功能可用于判断跟踪抖动先出现在控制、执行还是定位环节。Humble 环境需要匹配的数据加载与流式插件。

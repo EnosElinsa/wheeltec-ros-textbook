@@ -1,0 +1,1308 @@
+{
+  "mode": "mapping",
+  "source_run": "presentation-mapping-01",
+  "mission": {
+    "schema": 1,
+    "seed": 17,
+    "repeats": 3,
+    "mode": "mapping",
+    "estimator": "baseline",
+    "results": [
+      {
+        "scenario": "motion",
+        "trial": 0,
+        "seed": 17,
+        "started_wall": 4842449.567735906,
+        "passed": true,
+        "complete_fresh_evidence": true,
+        "collision_events": 0,
+        "finished_wall": 4842458.436290523
+      },
+      {
+        "scenario": "motion",
+        "trial": 1,
+        "seed": 17,
+        "started_wall": 4842458.436556684,
+        "passed": true,
+        "complete_fresh_evidence": true,
+        "collision_events": 0,
+        "finished_wall": 4842468.090870125
+      },
+      {
+        "scenario": "motion",
+        "trial": 2,
+        "seed": 17,
+        "started_wall": 4842468.091140936,
+        "passed": true,
+        "complete_fresh_evidence": true,
+        "collision_events": 0,
+        "finished_wall": 4842477.44358665
+      }
+    ]
+  },
+  "mission_exit": {
+    "exit_code": 0
+  },
+  "frames": 78,
+  "displayed_seconds": 7.8,
+  "wall_window_s": [
+    -0.8734334334731102,
+    27.765176769346
+  ],
+  "source_sha256": {
+    "frames.jsonl": "198806d4effa0dbcb0e1aa339c89e7c8ef104bba11de1b8457aeb9af5cf96ec3",
+    "samples.jsonl": "c8ffcd9b0a6d714e004841b33a7920cd5ab45c67265c7b278ba75a5051d3908f",
+    "results.json": "a2a8319dc65ff756c3e670d4ac05bdfd1d3af10da9bc9bfaecd1ffb8c1cc2ea6",
+    "room.sdf": "014025d6561fafaf15f9320e7636e00d304ff53059ee898503400a6a71718915"
+  },
+  "selected_sources": [
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00003.jpg",
+        "sim_ns": 500000000,
+        "wall": 4842448.694302472
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00001.jpg",
+        "sim_ns": 500000000,
+        "wall": 4842448.685192764
+      },
+      "detail_sha256": "b9643d8f0ddd2704c1e06642f687b3c9f434f6de0ffe59ce3467a93bd34aa076",
+      "overview_sha256": "c14b21cfa0fc4d917454d8e10d41de2a2be9d87888daad5bed5e7d0be70aa6b7"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00005.jpg",
+        "sim_ns": 750000000,
+        "wall": 4842448.971409827
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00002.jpg",
+        "sim_ns": 750000000,
+        "wall": 4842448.960286649
+      },
+      "detail_sha256": "b9643d8f0ddd2704c1e06642f687b3c9f434f6de0ffe59ce3467a93bd34aa076",
+      "overview_sha256": "c14b21cfa0fc4d917454d8e10d41de2a2be9d87888daad5bed5e7d0be70aa6b7"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00007.jpg",
+        "sim_ns": 1000000000,
+        "wall": 4842449.249809289
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00004.jpg",
+        "sim_ns": 1000000000,
+        "wall": 4842449.237920817
+      },
+      "detail_sha256": "b9643d8f0ddd2704c1e06642f687b3c9f434f6de0ffe59ce3467a93bd34aa076",
+      "overview_sha256": "c14b21cfa0fc4d917454d8e10d41de2a2be9d87888daad5bed5e7d0be70aa6b7"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00009.jpg",
+        "sim_ns": 1250000000,
+        "wall": 4842449.513900067
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00006.jpg",
+        "sim_ns": 1250000000,
+        "wall": 4842449.505897945
+      },
+      "detail_sha256": "b9643d8f0ddd2704c1e06642f687b3c9f434f6de0ffe59ce3467a93bd34aa076",
+      "overview_sha256": "c14b21cfa0fc4d917454d8e10d41de2a2be9d87888daad5bed5e7d0be70aa6b7"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00013.jpg",
+        "sim_ns": 2000000000,
+        "wall": 4842450.335803315
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00011.jpg",
+        "sim_ns": 2000000000,
+        "wall": 4842450.327809623
+      },
+      "detail_sha256": "7c44c9fb6819d6d9c64d164af44cb319218a8edb5f630ace21f471c8d7bed04b",
+      "overview_sha256": "d35d1ba0138b86232919bbc0d700c29a75f84e0a4abf6f6c217f08eb1c81483e"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00015.jpg",
+        "sim_ns": 2250000000,
+        "wall": 4842450.610806859
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00012.jpg",
+        "sim_ns": 2250000000,
+        "wall": 4842450.602565507
+      },
+      "detail_sha256": "6621800ad4d324c1c939d29ca980fcfec2941770936414a4d7fcbb782bc4cd85",
+      "overview_sha256": "859fc5d102cf3db9dd13ebdbd503eefa2d38d5aa62a720479f42152017748782"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00017.jpg",
+        "sim_ns": 2625000000,
+        "wall": 4842451.03372956
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00015.jpg",
+        "sim_ns": 2625000000,
+        "wall": 4842451.028279432
+      },
+      "detail_sha256": "f8dfe88f5e4e72ee156903d48c1a229901a268e0f6cad833d577a08a01e39692",
+      "overview_sha256": "4adef526b423f979ca1203dff0774d8db0e1442ed78150f3c2d60709be3b5cbd"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00021.jpg",
+        "sim_ns": 3125000000,
+        "wall": 4842451.586246113
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00018.jpg",
+        "sim_ns": 3125000000,
+        "wall": 4842451.580688914
+      },
+      "detail_sha256": "e91829b7626b5cec9fc57230019b61f7c5f200d60d96a0886ef9d09d2a88e3c7",
+      "overview_sha256": "ce0bee7c83a5fc69d7506e897bd669381c6d42a7f7731dbbf2762fc74ed06388"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00023.jpg",
+        "sim_ns": 3375000000,
+        "wall": 4842451.867577851
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00020.jpg",
+        "sim_ns": 3375000000,
+        "wall": 4842451.858660685
+      },
+      "detail_sha256": "7ecc8da2e7459c4d33214787229f86a596996974f61d631872831d02cd4dddb2",
+      "overview_sha256": "fbdb263db166c22b94d58c6ccf9c33a1c97e1cdc78a23d6447df2e0cf28985de"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00025.jpg",
+        "sim_ns": 3625000000,
+        "wall": 4842452.13754873
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00022.jpg",
+        "sim_ns": 3625000000,
+        "wall": 4842452.127832759
+      },
+      "detail_sha256": "5f13796edbd23adb8c3675ba500f9542d336a4e79d72ab29b0db54322db815bd",
+      "overview_sha256": "300ec16ba530c798de6e49fee39e4e15cef4df082327a7943a2db08c110ed2a4"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00027.jpg",
+        "sim_ns": 3875000000,
+        "wall": 4842452.425523702
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00023.jpg",
+        "sim_ns": 3875000000,
+        "wall": 4842452.416468345
+      },
+      "detail_sha256": "11982f974f77792f15540c89e649050e0c349ad44933e39fa397e3fd918495f2",
+      "overview_sha256": "ed37237e7b7d7e9a95529bffade1b4bb30468f2e8f8d2c10f7eeae23c55790a1"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00029.jpg",
+        "sim_ns": 4125000000,
+        "wall": 4842452.691829282
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00025.jpg",
+        "sim_ns": 4125000000,
+        "wall": 4842452.684538354
+      },
+      "detail_sha256": "0579c6463217b35b67aa65bb7ce643179a6555d1377c6da92f9a9065ecfc4625",
+      "overview_sha256": "745a50d0a3897f258b12f44f44ec029aa41f77e762acde5e9de9b75d817916d5"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00031.jpg",
+        "sim_ns": 4375000000,
+        "wall": 4842452.971897064
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00027.jpg",
+        "sim_ns": 4375000000,
+        "wall": 4842452.964723576
+      },
+      "detail_sha256": "c2006a625a45cf977a9a4cb171213c691c428e120724d75643577deffa064607",
+      "overview_sha256": "d9131f4973f82daa05d31e97ac6c09bd97a282344057eb301b8aedc8df365978"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00033.jpg",
+        "sim_ns": 4625000000,
+        "wall": 4842453.247882154
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00028.jpg",
+        "sim_ns": 4625000000,
+        "wall": 4842453.241977673
+      },
+      "detail_sha256": "a5594b29925b4886a3ed6b4c9f8aa9db0aadbee7c5dd480f449ae3eac7989180",
+      "overview_sha256": "7cf920254a805f3c15a88b763c0d6434bef7ed99424080586df57651b6298134"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00037.jpg",
+        "sim_ns": 5125000000,
+        "wall": 4842453.812291189
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00030.jpg",
+        "sim_ns": 5125000000,
+        "wall": 4842453.806134767
+      },
+      "detail_sha256": "709decd6a5dd8b9f9d585660ee3e4c0dfa6e826f61260bf4b26f6942362fbb64",
+      "overview_sha256": "d62f6c429d1b5de0cc626cff45624d0abd80ea0d576eafad3e0a3ffdd3e771cb"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00039.jpg",
+        "sim_ns": 5375000000,
+        "wall": 4842454.080988792
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00032.jpg",
+        "sim_ns": 5375000000,
+        "wall": 4842454.073285152
+      },
+      "detail_sha256": "3405ffc462e6f88730ae19c0cb0be2ed4d84bb3e178c01aec1540796cb0bc38b",
+      "overview_sha256": "cc49523bfa072c422101cb443a4edd567bb89c0652bf405b3318f09e9610c8af"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00041.jpg",
+        "sim_ns": 5625000000,
+        "wall": 4842454.351331293
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00034.jpg",
+        "sim_ns": 5625000000,
+        "wall": 4842454.346277687
+      },
+      "detail_sha256": "984dfc41ed9df507fdd2671b7600bac46ce4178bf0c5dffe27c4eacceaba079a",
+      "overview_sha256": "fa44e7eb648086da3ccc341d9a8048871dd02bbdff3dbbc4c89f822fd2117789"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00043.jpg",
+        "sim_ns": 5875000000,
+        "wall": 4842454.62480108
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00036.jpg",
+        "sim_ns": 5875000000,
+        "wall": 4842454.617382502
+      },
+      "detail_sha256": "1413b3e84a083681a297eaf56d26ccf94e456ee8af858ffbfe5e20caccd2bffa",
+      "overview_sha256": "981ff107d81334d7018d52a66b57c4dfe07b206d9a50f2e8ed12619929fa837f"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00053.jpg",
+        "sim_ns": 7125000000,
+        "wall": 4842456.004635314
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00041.jpg",
+        "sim_ns": 7125000000,
+        "wall": 4842455.996770643
+      },
+      "detail_sha256": "380e612393bce9005a6aca7dc65f3126ce40152e4d929efda4a572c1ef94215c",
+      "overview_sha256": "f14d7d43b2a6d43a840c9a3665e1be8d4f17c502320c5ab6993faf7b72b3b4e3"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00055.jpg",
+        "sim_ns": 7375000000,
+        "wall": 4842456.286142973
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00043.jpg",
+        "sim_ns": 7375000000,
+        "wall": 4842456.278390433
+      },
+      "detail_sha256": "02b87aea455565cc6e1a63d21fa50ea4e8c776264d52fce4d71d6ba7df8bd763",
+      "overview_sha256": "8fae3391e2d6a030609c80e7eec197b9f8ec74e4b7edfe2d94fcc711e6d1c54b"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00059.jpg",
+        "sim_ns": 7875000000,
+        "wall": 4842456.834737107
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00046.jpg",
+        "sim_ns": 7875000000,
+        "wall": 4842456.826011882
+      },
+      "detail_sha256": "14b6c00b2a9db7fb5db26d5a34130e6081a3565666647260f4d9310b8432b856",
+      "overview_sha256": "aa3fe5e3a713c2e57eebba9a08a9ad223778a62cabe3d576f066323ad195e6fe"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00061.jpg",
+        "sim_ns": 8125000000,
+        "wall": 4842457.099739652
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00048.jpg",
+        "sim_ns": 8125000000,
+        "wall": 4842457.092667995
+      },
+      "detail_sha256": "329dae90c76695734a1d4cea77189c31970dddc16119fabc70f3bce199978417",
+      "overview_sha256": "b780cd762f6efe83aeb2b5e5d4d89cfcd65e34899cfc7c5000ec6fa63a77d736"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00063.jpg",
+        "sim_ns": 8625000000,
+        "wall": 4842457.66063397
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00051.jpg",
+        "sim_ns": 8625000000,
+        "wall": 4842457.652665639
+      },
+      "detail_sha256": "ce0825013282cd56108671d1c4089ee6152b301f6284f8081fba3010d7d35d35",
+      "overview_sha256": "0c057934c4d48a2843c0e4bbcd216e10e8dddaf338ed2bb93c2422041931ab38"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00069.jpg",
+        "sim_ns": 9375000000,
+        "wall": 4842458.488870455
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00055.jpg",
+        "sim_ns": 9375000000,
+        "wall": 4842458.483418727
+      },
+      "detail_sha256": "fd102d97f4bec1e59e04f95f35b7f2f0e99eaef8ed373e4c2c4bd04b3199621c",
+      "overview_sha256": "bb5e8341b442f970caa0a5fc08fadc087c73d3695dd24a7078a4aba1a7432880"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00071.jpg",
+        "sim_ns": 9625000000,
+        "wall": 4842458.775577742
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00056.jpg",
+        "sim_ns": 9625000000,
+        "wall": 4842458.762293723
+      },
+      "detail_sha256": "fd102d97f4bec1e59e04f95f35b7f2f0e99eaef8ed373e4c2c4bd04b3199621c",
+      "overview_sha256": "bb5e8341b442f970caa0a5fc08fadc087c73d3695dd24a7078a4aba1a7432880"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00073.jpg",
+        "sim_ns": 9875000000,
+        "wall": 4842459.059790956
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00058.jpg",
+        "sim_ns": 9875000000,
+        "wall": 4842459.047920595
+      },
+      "detail_sha256": "fd102d97f4bec1e59e04f95f35b7f2f0e99eaef8ed373e4c2c4bd04b3199621c",
+      "overview_sha256": "bb5e8341b442f970caa0a5fc08fadc087c73d3695dd24a7078a4aba1a7432880"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00079.jpg",
+        "sim_ns": 10625000000,
+        "wall": 4842459.889833462
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00062.jpg",
+        "sim_ns": 10625000000,
+        "wall": 4842459.883190467
+      },
+      "detail_sha256": "0eb3d047fa7ffe1f64afe984e16aff1413a86b40dbc8d108b9170489111c6253",
+      "overview_sha256": "389fa764e8fc1868edafc812f34f16bd4d098f204538025bca573c90a5bee9fc"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00081.jpg",
+        "sim_ns": 10875000000,
+        "wall": 4842460.161853653
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00064.jpg",
+        "sim_ns": 10875000000,
+        "wall": 4842460.155159298
+      },
+      "detail_sha256": "6f1433634ff0dd4208fb660a1cdef63a9c24dbeecffc41c17c324d1f06b2077b",
+      "overview_sha256": "f51797e427cc811ca916c0f24d08cb1fdddd4ca6ecfba6aad4c3151bb3157e15"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00087.jpg",
+        "sim_ns": 11625000000,
+        "wall": 4842460.992922994
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00067.jpg",
+        "sim_ns": 11625000000,
+        "wall": 4842460.985166154
+      },
+      "detail_sha256": "e819a5666fda88899bad3875d2b8b286e30a2f4b72f7c878cb7bfb8b9d0ef00a",
+      "overview_sha256": "afc6d314c321d7612897190cd09c594e411fe6ea251609fb0cd8d2130853234f"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00089.jpg",
+        "sim_ns": 12000000000,
+        "wall": 4842461.423357237
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00068.jpg",
+        "sim_ns": 12000000000,
+        "wall": 4842461.412465691
+      },
+      "detail_sha256": "408b530cbfa756926ec23d5b34a2c14ce6efae7071ba4fa2ea6da364db0df3dd",
+      "overview_sha256": "6ecd3951d90edda44abe7057a2a60bfe3439221deefe483bf4df5ee8b5948b17"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00091.jpg",
+        "sim_ns": 12250000000,
+        "wall": 4842461.69178352
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00070.jpg",
+        "sim_ns": 12250000000,
+        "wall": 4842461.682833993
+      },
+      "detail_sha256": "6042da24eac60caca867eafd7f744c93f36d01be60da3065959c3397e09e63c5",
+      "overview_sha256": "f3511d28c6e2a44b30c0cab47650d24770cb1964ed52bd404ad47c64cd214715"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00093.jpg",
+        "sim_ns": 12500000000,
+        "wall": 4842461.979749894
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00072.jpg",
+        "sim_ns": 12500000000,
+        "wall": 4842461.968691186
+      },
+      "detail_sha256": "52cb59325b1a9b6415ae72035b2ca8552e67e95ddae33918f9a2e03f7af4dddd",
+      "overview_sha256": "d4126c5c245df414f87f6669abb2258bc33519ff980602d14fc359cda4a87a30"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00095.jpg",
+        "sim_ns": 12750000000,
+        "wall": 4842462.255642895
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00074.jpg",
+        "sim_ns": 12750000000,
+        "wall": 4842462.246232636
+      },
+      "detail_sha256": "baed861e2d421860c5c4e11d4e5e458c6d1af069993f858202a94c97d98f69c9",
+      "overview_sha256": "df362c4f2b5a59e054129ea42be1c347e59701a1e1b313d9be0d8c5cbe3a7128"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00097.jpg",
+        "sim_ns": 13000000000,
+        "wall": 4842462.52241028
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00075.jpg",
+        "sim_ns": 13000000000,
+        "wall": 4842462.515720685
+      },
+      "detail_sha256": "76c7d4309e68c5ed367ab943846d111b79a3f466488fe293f257d8c2533ef634",
+      "overview_sha256": "54e706bf72cc55a150e3103282980d65e1f23f9655e638701944efc05ae5e5a6"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00099.jpg",
+        "sim_ns": 13250000000,
+        "wall": 4842462.798335981
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00077.jpg",
+        "sim_ns": 13250000000,
+        "wall": 4842462.787758807
+      },
+      "detail_sha256": "cfc08ec19aea82cb3cadbb14f12c4556f778fdde3590ad8b98985558eca9618b",
+      "overview_sha256": "5abf4d6aec01ff12e6363a6a371729125098a7b5fc1a3fb5951fecea73bb465b"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00101.jpg",
+        "sim_ns": 13500000000,
+        "wall": 4842463.078691296
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00079.jpg",
+        "sim_ns": 13500000000,
+        "wall": 4842463.069523949
+      },
+      "detail_sha256": "8b84c2881fe916437c54c57101787661cb07b494f29f1c0d7efa77dd974f5858",
+      "overview_sha256": "ebe93488e686095df33f3c2950808c63eb2556eaae54a76a2b7f29a4d1a473cc"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00105.jpg",
+        "sim_ns": 14000000000,
+        "wall": 4842463.643857529
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00082.jpg",
+        "sim_ns": 14000000000,
+        "wall": 4842463.633092013
+      },
+      "detail_sha256": "653fba882a07ab22f7547ad4a6c1fca6bb43684d6d8b2c5ef474f97057a6508d",
+      "overview_sha256": "8f2393ba48ff2a84ad675fad506dbeb56186a3adc967d39dea0c467c971e42a1"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00107.jpg",
+        "sim_ns": 14375000000,
+        "wall": 4842464.06416619
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00085.jpg",
+        "sim_ns": 14375000000,
+        "wall": 4842464.053665876
+      },
+      "detail_sha256": "0b933fdc1ca186b4e7ed7d941c4a6b97f2c9c9ac94add499ef84cc6c8ee91e5b",
+      "overview_sha256": "730b8c7782611f14873ee17586fafa46126c07f738cf27fe2b69d2f69be39cab"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00109.jpg",
+        "sim_ns": 14625000000,
+        "wall": 4842464.329500418
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00087.jpg",
+        "sim_ns": 14625000000,
+        "wall": 4842464.323492006
+      },
+      "detail_sha256": "b096735295f7b8ae85316543c1bb516aba431b6efeb2b4b535ad16c8693c4220",
+      "overview_sha256": "0de8724650dfd351da5c0f8c1a2dec59b2308a7a1d88d8991271423b8800bd94"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00115.jpg",
+        "sim_ns": 15500000000,
+        "wall": 4842465.290353255
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00092.jpg",
+        "sim_ns": 15500000000,
+        "wall": 4842465.280980736
+      },
+      "detail_sha256": "a2ba480aae02990b3bdc810cb940f7efa61f297473f6597b5e712f2eef9a8536",
+      "overview_sha256": "2f693d695d8062795a4e10adb72339508afdd20a451e2c1397ab38ebb9ecf081"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00117.jpg",
+        "sim_ns": 15750000000,
+        "wall": 4842465.570850791
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00094.jpg",
+        "sim_ns": 15750000000,
+        "wall": 4842465.56296513
+      },
+      "detail_sha256": "34cc4301c37dc5a10410d4a171c1aba3b092a7b98035f0aa0d277fc32c7b2ddd",
+      "overview_sha256": "c788c18592d93da75fb89739d6ad646583d423f4017a31c6c37c0be15c36c5b3"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00119.jpg",
+        "sim_ns": 16000000000,
+        "wall": 4842465.848761214
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00096.jpg",
+        "sim_ns": 16000000000,
+        "wall": 4842465.838204539
+      },
+      "detail_sha256": "3a930c91639350aac42209467e3f22632d84ab294b37b8fc67869b4fca2fea4d",
+      "overview_sha256": "8bb5a539084ac5378f96d28d4d79605e57a7b11515a90e43506d47b41aaa581d"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00121.jpg",
+        "sim_ns": 16250000000,
+        "wall": 4842466.121379999
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00097.jpg",
+        "sim_ns": 16250000000,
+        "wall": 4842466.113098086
+      },
+      "detail_sha256": "1110943beb898c41e046cbaa5ec9b3847b458543ea8759ef4d309ece90c3a59b",
+      "overview_sha256": "9f86e0115f759dab55b9cd5456b82e6d5f5d5a7b0df58231294fbc7aa54e2141"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00123.jpg",
+        "sim_ns": 16500000000,
+        "wall": 4842466.399435542
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00098.jpg",
+        "sim_ns": 16500000000,
+        "wall": 4842466.391708332
+      },
+      "detail_sha256": "d5b4e2bc43a70d67608c9b0f70b52214ffaf016463089db6cdd19da928df94e9",
+      "overview_sha256": "daeb1dd1d93ee0a3fd992da2c9dce32184e2872c43142a8df9b9d8ba82e08aa5"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00125.jpg",
+        "sim_ns": 16750000000,
+        "wall": 4842466.684421442
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00100.jpg",
+        "sim_ns": 16750000000,
+        "wall": 4842466.673647766
+      },
+      "detail_sha256": "5f6d74f664482a03a05d3d9d248f385919ba8cbe34499a2ed9cee9488f8622fc",
+      "overview_sha256": "ad2e4bbb623e7f887f95eee122af60fe371abc62a2f147b66ab62c68bb14f92b"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00127.jpg",
+        "sim_ns": 17000000000,
+        "wall": 4842466.949468288
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00102.jpg",
+        "sim_ns": 17000000000,
+        "wall": 4842466.943417437
+      },
+      "detail_sha256": "6d5ec312aa10e6f7c26772ed8e0f81424003e2fbc64b8a8d5f7538b7c954087a",
+      "overview_sha256": "5026374c6bf938be8c4f50d32bb20dd698e98bf48f6401398fda2cc890943a7f"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00129.jpg",
+        "sim_ns": 17250000000,
+        "wall": 4842467.236979121
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00104.jpg",
+        "sim_ns": 17250000000,
+        "wall": 4842467.22524585
+      },
+      "detail_sha256": "3e42d2dcd361bf614a977fe647284095ccda4ebf74fdd30287134981b18f06cc",
+      "overview_sha256": "77798e38c0f37a5514b2cf6dfed10f19624ee54c5b66302c5662c922756f3e13"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00131.jpg",
+        "sim_ns": 17500000000,
+        "wall": 4842467.510908553
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00106.jpg",
+        "sim_ns": 17500000000,
+        "wall": 4842467.498870211
+      },
+      "detail_sha256": "3f9daa24092ae032efbe12d811f94ac0ead1841117a5fed96a8afd09a23dd226",
+      "overview_sha256": "2483073bbc1f6a8f5b7402e66ab4a0e412494d26f6ef986150887970ce32e15e"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00135.jpg",
+        "sim_ns": 18000000000,
+        "wall": 4842468.070622779
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00108.jpg",
+        "sim_ns": 18000000000,
+        "wall": 4842468.059743303
+      },
+      "detail_sha256": "e47fc40a8da398dc62c602425a935e2efe85b284bee8cbbeab3e83b41ac8f42c",
+      "overview_sha256": "2483073bbc1f6a8f5b7402e66ab4a0e412494d26f6ef986150887970ce32e15e"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00137.jpg",
+        "sim_ns": 18250000000,
+        "wall": 4842468.345021814
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00110.jpg",
+        "sim_ns": 18250000000,
+        "wall": 4842468.335645376
+      },
+      "detail_sha256": "e47fc40a8da398dc62c602425a935e2efe85b284bee8cbbeab3e83b41ac8f42c",
+      "overview_sha256": "2483073bbc1f6a8f5b7402e66ab4a0e412494d26f6ef986150887970ce32e15e"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00139.jpg",
+        "sim_ns": 18500000000,
+        "wall": 4842468.619720681
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00111.jpg",
+        "sim_ns": 18500000000,
+        "wall": 4842468.609815299
+      },
+      "detail_sha256": "e47fc40a8da398dc62c602425a935e2efe85b284bee8cbbeab3e83b41ac8f42c",
+      "overview_sha256": "2483073bbc1f6a8f5b7402e66ab4a0e412494d26f6ef986150887970ce32e15e"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00141.jpg",
+        "sim_ns": 18750000000,
+        "wall": 4842468.900342218
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00112.jpg",
+        "sim_ns": 18750000000,
+        "wall": 4842468.890710748
+      },
+      "detail_sha256": "e47fc40a8da398dc62c602425a935e2efe85b284bee8cbbeab3e83b41ac8f42c",
+      "overview_sha256": "2483073bbc1f6a8f5b7402e66ab4a0e412494d26f6ef986150887970ce32e15e"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00143.jpg",
+        "sim_ns": 19000000000,
+        "wall": 4842469.16649233
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00113.jpg",
+        "sim_ns": 19000000000,
+        "wall": 4842469.159583455
+      },
+      "detail_sha256": "e47fc40a8da398dc62c602425a935e2efe85b284bee8cbbeab3e83b41ac8f42c",
+      "overview_sha256": "2483073bbc1f6a8f5b7402e66ab4a0e412494d26f6ef986150887970ce32e15e"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00145.jpg",
+        "sim_ns": 19250000000,
+        "wall": 4842469.441944261
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00115.jpg",
+        "sim_ns": 19250000000,
+        "wall": 4842469.43591926
+      },
+      "detail_sha256": "9a8af0f0f1aa06f8cb93681a67ad78653a362ee6717bac19fa851b8a791245fe",
+      "overview_sha256": "83b4012abe01e8f8d0813827df143fbfc656d6f0a3a063ddce01abcf27726d0a"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00147.jpg",
+        "sim_ns": 19500000000,
+        "wall": 4842469.726846621
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00116.jpg",
+        "sim_ns": 19500000000,
+        "wall": 4842469.715392111
+      },
+      "detail_sha256": "9a093760ff8ed3974f8a78daf704709b2ac599d072f3fd276b871e54bdfbde52",
+      "overview_sha256": "52b2a676fac536fe35a0b34967decef0471be841988973a9df1bc4db2737738d"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00149.jpg",
+        "sim_ns": 19750000000,
+        "wall": 4842470.010091242
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00118.jpg",
+        "sim_ns": 19750000000,
+        "wall": 4842469.997694277
+      },
+      "detail_sha256": "51a1b9b226632c66d700bd4f72939c8236b47bf69ad2f3817fa7200cd510f998",
+      "overview_sha256": "0cb407b1df2162f1a1c91ce07997acd131eb43eeae71179bb04a0b1c7dd9ceb5"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00151.jpg",
+        "sim_ns": 20000000000,
+        "wall": 4842470.280866078
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00120.jpg",
+        "sim_ns": 20000000000,
+        "wall": 4842470.273093388
+      },
+      "detail_sha256": "822eb8fc512c88c6fe2560f31062d65a30072c4e9b743e9f772413a501a074d3",
+      "overview_sha256": "65d2ed5e0f115f071056c2b8b38ab01a14c7eb254ef6b7638e4b3ee714d4621f"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00155.jpg",
+        "sim_ns": 20500000000,
+        "wall": 4842470.833988311
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00123.jpg",
+        "sim_ns": 20500000000,
+        "wall": 4842470.822887904
+      },
+      "detail_sha256": "9a036ae4825781a5599ab5385c1676eab5dadc20de746dd5e294261f8ff964e1",
+      "overview_sha256": "428df667f0f0628b727b3fc81d92b1e851daa1e6bc7c93aeef7c2cfec6f983a3"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00157.jpg",
+        "sim_ns": 20750000000,
+        "wall": 4842471.100848038
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00124.jpg",
+        "sim_ns": 20750000000,
+        "wall": 4842471.092119542
+      },
+      "detail_sha256": "249d7f501e255a679ec5b5c542a7d48717159c9810a946bd794e4cb8c39c630c",
+      "overview_sha256": "bf047e456db7e984d83a31f3c36b9f8b3ead9a7189ca69f12d21199ee80f1d4d"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00159.jpg",
+        "sim_ns": 21000000000,
+        "wall": 4842471.36881096
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00126.jpg",
+        "sim_ns": 21000000000,
+        "wall": 4842471.361430861
+      },
+      "detail_sha256": "6641d5e12d8e6eb8c44c80bbc7f4a1eed3014a6a45738b6eae6efe23cd4b1046",
+      "overview_sha256": "3a8aa3ae236a2370c66f9060ae80e1fa13a4d0299a65af21042a5a02a84e7755"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00161.jpg",
+        "sim_ns": 21250000000,
+        "wall": 4842471.666253045
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00127.jpg",
+        "sim_ns": 21250000000,
+        "wall": 4842471.654144352
+      },
+      "detail_sha256": "66c49a1466bad7093163e2a8bb8f0b26ba9035d0d737adda1dbf2613d59d233c",
+      "overview_sha256": "ae7df7f162387d029b9464eed8069006d27e2d3776af05584818389131224512"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00163.jpg",
+        "sim_ns": 21500000000,
+        "wall": 4842471.927836344
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00129.jpg",
+        "sim_ns": 21500000000,
+        "wall": 4842471.918879677
+      },
+      "detail_sha256": "99d7c3a467c1f40c7baf67572f568c97a4dbb9c7f781e1ebb833c5d3e55119f6",
+      "overview_sha256": "a6a6c6ab12684071a2e91549b7c32803d91544b13298a887719c6b1b18faa036"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00165.jpg",
+        "sim_ns": 21750000000,
+        "wall": 4842472.208736493
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00131.jpg",
+        "sim_ns": 21750000000,
+        "wall": 4842472.199432415
+      },
+      "detail_sha256": "4a56909661be1b97a72fc94d4bb9353c27aee514e322ac08683e73867d095dc7",
+      "overview_sha256": "ebf38c5ec9b97ebd373f155fab1e6fdb46377097829225f74af5690d7b4da92f"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00167.jpg",
+        "sim_ns": 22000000000,
+        "wall": 4842472.491885674
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00133.jpg",
+        "sim_ns": 22000000000,
+        "wall": 4842472.47951351
+      },
+      "detail_sha256": "629b3b0ccc1992c9037eb6f7b436020df70bb80195b4fcd6e37c94769983e745",
+      "overview_sha256": "eb44835cd023b80cd87af63a299d18d387e667bff76e7c00edae4d7baf0590bc"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00169.jpg",
+        "sim_ns": 22250000000,
+        "wall": 4842472.758060707
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00134.jpg",
+        "sim_ns": 22250000000,
+        "wall": 4842472.750130956
+      },
+      "detail_sha256": "60ee40bc1cfae3202f0effd0ea42ae04314ff44b1a6682c0699d16efc1d0c30e",
+      "overview_sha256": "41130bcd530b3e3246ed8839f796f4a0097eec4f09f9ea978925f36695a571ed"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00171.jpg",
+        "sim_ns": 22500000000,
+        "wall": 4842473.038032132
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00136.jpg",
+        "sim_ns": 22500000000,
+        "wall": 4842473.028489982
+      },
+      "detail_sha256": "b3a6209af6118cade894635fc8515b88e5153eb426dde65b694edf985e733ee4",
+      "overview_sha256": "9c3c56954027b87a435e3ccae4106802a79f923b50d747ec93a7bb6e3b9abf29"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00173.jpg",
+        "sim_ns": 22750000000,
+        "wall": 4842473.322895012
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00138.jpg",
+        "sim_ns": 22750000000,
+        "wall": 4842473.312328817
+      },
+      "detail_sha256": "eaffbc19e5f093aad97efb6602ce12f223a1aae7ede73ccc5a0a91d90ab9eec3",
+      "overview_sha256": "44d9c01fe5e6706863f87598b670155b3bacd8a8dedd0688ebd63ec782571f6d"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00175.jpg",
+        "sim_ns": 23000000000,
+        "wall": 4842473.599434339
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00140.jpg",
+        "sim_ns": 23000000000,
+        "wall": 4842473.594286853
+      },
+      "detail_sha256": "8b082a6463dcff4efeecc51ff254f7f82bdcea27f4e69eaa36ca556094d558b6",
+      "overview_sha256": "600255db5eb9fba72c90ab3a0439113d27333c64c86639495c749b723174674b"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00179.jpg",
+        "sim_ns": 23500000000,
+        "wall": 4842474.160554975
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00143.jpg",
+        "sim_ns": 23500000000,
+        "wall": 4842474.149563118
+      },
+      "detail_sha256": "7ac3dab346440d1b67986f7477adc314e0bc9a35e087c3bf4b07ea200ae66543",
+      "overview_sha256": "d994149d942c0592cc7312e7355177930e7c3c640b6f09a1f72d55820a21e7a5"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00181.jpg",
+        "sim_ns": 23750000000,
+        "wall": 4842474.424832839
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00145.jpg",
+        "sim_ns": 23750000000,
+        "wall": 4842474.417219429
+      },
+      "detail_sha256": "8e73b3f2cb65931ef955b1c5bc221c0ad68128e2470b58e6e3faec17ccc20f83",
+      "overview_sha256": "a1d840eae3034c31810fc87a6a76b7626b3ed85f63848571e642a13fc70fa7c3"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00185.jpg",
+        "sim_ns": 24250000000,
+        "wall": 4842474.981360571
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00148.jpg",
+        "sim_ns": 24250000000,
+        "wall": 4842474.973330869
+      },
+      "detail_sha256": "951b8138a5136878c11fc04196272828ad6e7bf1b21344681c9cfaf14ffeb435",
+      "overview_sha256": "82ecefe1d6cfac72d31ae76a26b14e3f1bacc6f470a40ba6313cd5517e0516da"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00187.jpg",
+        "sim_ns": 24500000000,
+        "wall": 4842475.261109425
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00150.jpg",
+        "sim_ns": 24500000000,
+        "wall": 4842475.249409954
+      },
+      "detail_sha256": "a24971cd32d849c669614a76f4e4f5f666814ce3cb396e9cc70c7d4ba35694d8",
+      "overview_sha256": "5fe6e2fc95a30912b0ed0c6fb9394d07190a37a177b9403caabf634231eace4b"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00191.jpg",
+        "sim_ns": 25000000000,
+        "wall": 4842475.81231427
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00153.jpg",
+        "sim_ns": 25000000000,
+        "wall": 4842475.804804831
+      },
+      "detail_sha256": "750cde4af8ca05b22f466a65c9fe33e44a0df2ba629d255ec34b030eeeb2be53",
+      "overview_sha256": "ec7bf2530813ba9d46d9ff7edef8283474dc979519cb582e9ae83b35f7649623"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00193.jpg",
+        "sim_ns": 25250000000,
+        "wall": 4842476.090651727
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00155.jpg",
+        "sim_ns": 25250000000,
+        "wall": 4842476.080270723
+      },
+      "detail_sha256": "749b5810cc4b9a69dbe74bf3333d378f9651f666edb959054aa698ee6eca327c",
+      "overview_sha256": "6c19364e04f7128f2f5e0be4cf6337e40cfc6e3d2f0f3bf73327b0c03d2edd71"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00195.jpg",
+        "sim_ns": 25500000000,
+        "wall": 4842476.374798504
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00157.jpg",
+        "sim_ns": 25500000000,
+        "wall": 4842476.364059708
+      },
+      "detail_sha256": "46f19e9bea27cc32e64efab953a1038404237c22d703356d3eca7b92ea6bc60b",
+      "overview_sha256": "5bdfb5160352c87b50f002354046ddc8a2c0c9323b2700ecc77cb843583b4708"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00197.jpg",
+        "sim_ns": 25875000000,
+        "wall": 4842476.770827663
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00160.jpg",
+        "sim_ns": 25875000000,
+        "wall": 4842476.765611795
+      },
+      "detail_sha256": "224eaff8b4b981825f1e00a94ef86cbd90b075522a1a9424efdaeb2b0aa2f8c9",
+      "overview_sha256": "1e34182fd911b79e888408f20237a6f1daa9ed16e1a29cc595afc3ed624c4baf"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00199.jpg",
+        "sim_ns": 26125000000,
+        "wall": 4842477.048105204
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00162.jpg",
+        "sim_ns": 26125000000,
+        "wall": 4842477.043141918
+      },
+      "detail_sha256": "e410d9a1fbf639f6b2e4157b83845cf9f050f1b638a463d0b10f535de75df0c9",
+      "overview_sha256": "1e34182fd911b79e888408f20237a6f1daa9ed16e1a29cc595afc3ed624c4baf"
+    },
+    {
+      "detail": {
+        "view": "detail",
+        "file": "detail/00201.jpg",
+        "sim_ns": 26375000000,
+        "wall": 4842477.332912675
+      },
+      "overview": {
+        "view": "overview",
+        "file": "overview/00164.jpg",
+        "sim_ns": 26375000000,
+        "wall": 4842477.325057354
+      },
+      "detail_sha256": "e410d9a1fbf639f6b2e4157b83845cf9f050f1b638a463d0b10f535de75df0c9",
+      "overview_sha256": "1e34182fd911b79e888408f20237a6f1daa9ed16e1a29cc595afc3ed624c4baf"
+    }
+  ]
+}

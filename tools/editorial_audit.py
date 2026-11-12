@@ -19,6 +19,10 @@ PROHIBITED_EDITORIAL_PATTERNS = {
     "source-material framing": re.compile(
         r"(?:资料中|资料包中|当前资料|随货资料|本机资料中|用户资料|原始资料)"
     ),
+    "defensive research disclaimer": re.compile(
+        r"不(?:表示|代表|构成)[^。！？\n]*"
+        r"(?:使用量排名|性能测试|系统性文献综述|领域完整性|全文.*精读)"
+    ),
 }
 
 
