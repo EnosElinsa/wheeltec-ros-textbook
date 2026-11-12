@@ -1,0 +1,96 @@
+{
+  "date": "2026-11-12",
+  "scope": "Beginner-oriented chapter revision; targeted official platform documentation checks, not a systematic review or platform popularity survey.",
+  "verification_method": "Tool-assisted retrieval and inspection of official pages or official repository sources; no human verification or new experiment claimed.",
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Gazebo ROS pairing",
+      "retrieved_url": "https://gazebosim.org/docs/latest/ros_installation/",
+      "http_status": 200,
+      "supports": "ROS release pairing; fixed Humble/Fortress is a project reproduction choice."
+    },
+    {
+      "id": "S2",
+      "title": "Gazebo releases",
+      "retrieved_url": "https://gazebosim.org/docs/latest/releases/",
+      "http_status": 200,
+      "supports": "Release maintenance and support periods; no unsupported latest-release claim."
+    },
+    {
+      "id": "S3",
+      "title": "Webots introduction",
+      "retrieved_url": "https://raw.githubusercontent.com/cyberbotics/webots/master/docs/guide/introduction-to-webots.md",
+      "http_status": 200,
+      "supports": "Mobile robot research, education, integrated models and controllers."
+    },
+    {
+      "id": "S4",
+      "title": "Isaac Sim documentation",
+      "retrieved_url": "https://docs.isaacsim.omniverse.nvidia.com/latest/index.html",
+      "http_status": 200,
+      "supports": "Physics, visual simulation, synthetic data and ROS interfaces."
+    },
+    {
+      "id": "S5",
+      "title": "Isaac Lab introduction",
+      "retrieved_url": "https://isaac-sim.github.io/IsaacLab/main/index.html",
+      "http_status": 200,
+      "supports": "Robot learning framework; distinguish Lab workflows from Sim."
+    },
+    {
+      "id": "S6",
+      "title": "MuJoCo overview",
+      "retrieved_url": "https://mujoco.readthedocs.io/en/stable/overview.html",
+      "http_status": 200,
+      "supports": "Articulated dynamics, contact, control and learning."
+    },
+    {
+      "id": "S7",
+      "title": "Habitat-Sim README",
+      "retrieved_url": "https://raw.githubusercontent.com/facebookresearch/habitat-sim/main/README.md",
+      "http_status": 200,
+      "supports": "Simulator and Habitat-Lab task/benchmark roles; indoor datasets."
+    },
+    {
+      "id": "S8",
+      "title": "CARLA introduction",
+      "retrieved_url": "https://carla.org/",
+      "http_status": 200,
+      "supports": "Autonomous driving, traffic actors, sensors and weather."
+    },
+    {
+      "id": "S9",
+      "title": "Gazebo robot tutorial",
+      "retrieved_url": "https://gazebosim.org/docs/fortress/building_robot/",
+      "http_status": 200,
+      "supports": "World, links, inertia, collision and visual geometry."
+    }
+  ],
+  "experimental_evidence": {
+    "revision": "d6092f1a270ec64b24c11f8c1c9b1c8d5d473043",
+    "scene": [
+      "wheeltec_vision_sim/wheeltec_vision_sim/model.py",
+      "wheeltec_vision_sim/worlds/room.sdf"
+    ],
+    "tasks": "wheeltec_vision_sim/wheeltec_vision_sim/mission_runner.py",
+    "numeric_sources": "docs/08-advanced-applications/simulation-results/*.json",
+    "checked": [
+      "27 EuRoC run ATE/RPE/coverage values",
+      "Gazebo check denominators and endpoint values",
+      "Final soak timing, resource and source-age statistics",
+      "Direct wheel/IMU DDS-to-zero command timing"
+    ]
+  },
+  "editorial_changes": [
+    "Number chapter subpages as 50.8, 50.9 and 50.10 without renumbering the book.",
+    "Separate background, methods, results, interpretation and reproduction details.",
+    "Retain failed runs, protocol changes, partial coverage and resource changes.",
+    "Add room layout schematic from fixed scene geometry; it is not an observed trajectory."
+  ],
+  "limitations": [
+    "No population-level platform usage ranking.",
+    "No new simulation, algorithm acceptance or real-vehicle experiment in this documentation revision.",
+    "Existing repeated checks within a session are not independent trials."
+  ]
+}
