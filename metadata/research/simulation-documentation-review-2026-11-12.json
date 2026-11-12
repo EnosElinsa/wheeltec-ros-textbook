@@ -83,7 +83,7 @@
     ]
   },
   "editorial_changes": [
-    "Number chapter subpages as 50.8, 50.9 and 50.10 without renumbering the book.",
+    "Use integer chapters 50–53 for platform, design, results and reproduction; match filenames and shift following chapters through 62.",
     "Separate background, methods, results, interpretation and reproduction details.",
     "Retain failed runs, protocol changes, partial coverage and resource changes.",
     "Add room layout schematic from fixed scene geometry; it is not an observed trajectory."

@@ -14,7 +14,7 @@
 
 ## 教材结构
 
-正文按第 1～59 章连续编排。第六篇新增[重定位方案与地图依赖](https://enoselinsa.github.io/wheeltec-ros-textbook/06-sensors-navigation/33-relocalization-map-dependence/)，并将 VINS 原理、MID360 建图、数据流与三维导航调研依次纳入第 39～44 章。
+正文按第 1～62 章连续编排。第六篇介绍[重定位方案与地图依赖](https://enoselinsa.github.io/wheeltec-ros-textbook/06-sensors-navigation/33-relocalization-map-dependence/)、VINS 原理和 MID360 三维建图导航；第八篇的第 50～53 章依次介绍仿真平台、视觉导航实验设计、结果分析与操作复现。
 
 | 部分 | 主要内容 |
 |---|---|
@@ -31,7 +31,7 @@
 
 不知道从哪里开始时，可以查看[阅读路径](https://enoselinsa.github.io/wheeltec-ros-textbook/reading-paths/)；遇到术语问题，可以查[术语表](https://enoselinsa.github.io/wheeltec-ros-textbook/glossary/)。
 
-选择算法基线或可复用模块时，可查阅[第 54 章：开源项目与参考价值](docs/08-advanced-applications/54-open-source-projects.md)。章节覆盖 66 个项目，包括 17 个深度强化学习相关项目，分别说明算法、输入输出、运行环境与车辆适配条件。[论文与开源项目目录](https://github.com/EnosElinsa/wheeltec-smart-car-literature/blob/main/OPEN_SOURCE_PROJECTS.md)提供对应代码和论文阅读入口；论文库的 `INDEX.html` 支持组合筛选、项目对比与清单导出。
+选择算法基线或可复用模块时，可查阅[第 57 章：开源项目与参考价值](docs/08-advanced-applications/57-open-source-projects.md)。章节覆盖 66 个项目，包括 17 个深度强化学习相关项目，分别说明算法、输入输出、运行环境与车辆适配条件。[论文与开源项目目录](https://github.com/EnosElinsa/wheeltec-smart-car-literature/blob/main/OPEN_SOURCE_PROJECTS.md)提供对应代码和论文阅读入口；论文库的 `INDEX.html` 支持组合筛选、项目对比与清单导出。
 
 ## 本地预览
 

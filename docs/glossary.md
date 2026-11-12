@@ -49,10 +49,10 @@
 | Kernelized Correlation Filter（KCF） | 根据初始目标框在连续图像中跟踪目标的算法。 | 第 38 章 |
 | 增强现实标签（Augmented Reality Tag, AR Tag） | 在图像中识别带编码图案并估计其位姿的标记。 | 第 38 章 |
 | Gazebo Simulation Platform（Gazebo） | 用物理模型计算机器人、环境和虚拟传感器行为的平台。 | 第 50 章 |
-| Qt Application Framework（Qt） | 用于开发桌面图形界面的跨平台软件框架。 | 第 51 章 |
-| 网络文件系统（Network File System, NFS） | 通过网络把远程计算机目录挂载到本地的文件系统协议。 | 第 57 章 |
+| Qt Application Framework（Qt） | 用于开发桌面图形界面的跨平台软件框架。 | 第 54 章 |
+| 网络文件系统（Network File System, NFS） | 通过网络把远程计算机目录挂载到本地的文件系统协议。 | 第 60 章 |
 | Docker Container Platform（Docker） | 用镜像隔离运行进程、文件和依赖的软件平台。 | 第 22 章 |
-| 应用程序编程接口（Application Programming Interface, API） | 程序之间调用功能和交换数据时遵循的接口约定。 | 第 53 章 |
+| 应用程序编程接口（Application Programming Interface, API） | 程序之间调用功能和交换数据时遵循的接口约定。 | 第 56 章 |
 | 互联网协议地址（Internet Protocol Address, IP Address） | 标识网络中设备的地址，常简称 IP。 | 第 13 章 |
 | 虚拟网络计算（Virtual Network Computing, VNC） | 通过网络传输远程计算机图形桌面的协议和工具。 | 第 13 章 |
 | 扩展卡尔曼滤波器（Extended Kalman Filter, EKF） | 在线融合带噪声测量并估计系统状态的滤波方法。 | 第 30 章 |
@@ -74,7 +74,7 @@
 | YAML 配置格式（YAML Ain't Markup Language, YAML） | 用缩进表示层次结构的文本配置格式。 | 第 25 章 |
 | 世界（World） | Gazebo 仿真中描述地面、墙体和障碍物的场景文件。 | 第 50 章 |
 | 插件（Plugin） | 在宿主程序中加载、扩展特定功能的软件模块。 | 第 50 章 |
-| 哈希值（Hash Value） | 根据文件内容计算出的固定长度结果，用于校验复制前后是否一致。 | 第 58 章 |
+| 哈希值（Hash Value） | 根据文件内容计算出的固定长度结果，用于校验复制前后是否一致。 | 第 61 章 |
 | 数据分发服务（Data Distribution Service, DDS） | ROS 2 使用的通信中间件标准，负责发现参与者并传递数据。 | 第 24 章 |
 | 服务质量（Quality of Service, QoS） | 描述消息可靠性、持久性和时延等通信策略的配置。 | 第 24 章 |
 | 统一机器人描述格式（Unified Robot Description Format, URDF） | 用 XML 描述机器人连杆、关节、几何外观和坐标关系的格式。 | 第 26 章 |
@@ -94,7 +94,7 @@
 | odom | 表示局部连续里程计坐标系的名称。 | 第 9 章 |
 | map | 建图和定位使用的全局坐标系名称。 | 第 32 章 |
 | TF | ROS 中维护坐标系变换关系的机制。 | 第 26 章 |
-| 人工智能（Artificial Intelligence, AI） | 用于理解语音、图像或文字并生成高层任务意图的技术集合。 | 第 53 章 |
-| 文本转语音（Text-to-Speech, TTS） | 把文字转换为可播放语音的技术。 | 第 53 章 |
+| 人工智能（Artificial Intelligence, AI） | 用于理解语音、图像或文字并生成高层任务意图的技术集合。 | 第 56 章 |
+| 文本转语音（Text-to-Speech, TTS） | 把文字转换为可播放语音的技术。 | 第 56 章 |
 
 若某个术语只在单个章节中出现，正文会直接给出中文含义，不为它额外引入缩写。

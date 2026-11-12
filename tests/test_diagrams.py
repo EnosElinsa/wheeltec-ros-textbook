@@ -29,7 +29,7 @@ DIAGRAMS = {
         "ROS 2 与 STM32 的闭环链路",
     ),
     "system-acceptance-pipeline.svg": (
-        "docs/10-deployment-maintenance/59-system-acceptance.md",
+        "docs/10-deployment-maintenance/62-system-acceptance.md",
         "WHEELTEC 全系统验收流程",
     ),
 }

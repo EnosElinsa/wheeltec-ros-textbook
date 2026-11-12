@@ -31,7 +31,8 @@ ROS 2 是正文默认环境。使用 ROS 1 旧设备时，请查看[ROS 1 兼容
 - 理解已有地图、在线建图与无显式地图三条导航路线：[第 33 章：移动机器人导航的地图依赖](06-sensors-navigation/33-relocalization-map-dependence.md)。
 - R680 视觉建图与导航：第 40 章 [运行过程](06-sensors-navigation/40-visual-runtime.md)、第 41 章 [操作](06-sensors-navigation/41-visual-operation.md)。
 - 视觉与 IMU 的联合运动估计：[VINS 视觉惯性里程计原理](06-sensors-navigation/39-vins-principles.md)。
-- 选择算法基线和可复用模块：[第 54 章：开源项目与参考价值](08-advanced-applications/54-open-source-projects.md)。
-- 维护 R680：先查看[R680 硬件、接线与 OLED 状态](09-r680-platform/55-r680-hardware-wiring-oled.md)。
+- 先在仿真中学习建图与导航：[第 50～53 章：平台、实验、结果与复现](08-advanced-applications/50-gazebo-simulation.md)。
+- 选择算法基线和可复用模块：[第 57 章：开源项目与参考价值](08-advanced-applications/57-open-source-projects.md)。
+- 维护 R680：先查看[R680 硬件、接线与 OLED 状态](09-r680-platform/58-r680-hardware-wiring-oled.md)。
 
 完整的章节组合见[阅读路径](reading-paths.md)。术语不清楚时可查[术语表](glossary.md)。

@@ -49,15 +49,18 @@ chapter,47,07-stm32-firmware,docs/07-stm32-firmware/47-motor-control-pid.md,电�
 chapter,48,07-stm32-firmware,docs/07-stm32-firmware/48-build-flash-rollback.md,修改、编译、烧录与回滚固件,complete,150000
 chapter,49,07-stm32-firmware,docs/07-stm32-firmware/49-ros2-stm32-integration.md,ROS 2 与 STM32 联调,complete,150000
 chapter,50,08-advanced-applications,docs/08-advanced-applications/50-gazebo-simulation.md,仿真与 Gazebo,complete,150000
-chapter,51,08-advanced-applications,docs/08-advanced-applications/51-multi-robot-and-qt.md,多机编队与 Qt 控制界面,complete,150000
-chapter,52,08-advanced-applications,docs/08-advanced-applications/52-mmwave-human-deep-learning.md,毫米波雷达、人体跟踪与深度学习,complete,150000
-chapter,53,08-advanced-applications,docs/08-advanced-applications/53-voice-ai-openclaw.md,语音、多模态 AI 与 OpenClaw,complete,150000
-chapter,54,08-advanced-applications,docs/08-advanced-applications/54-open-source-projects.md,开源项目与参考价值,complete,150000
-chapter,55,09-r680-platform,docs/09-r680-platform/55-r680-hardware-wiring-oled.md,R680 硬件、接线与 OLED 状态,complete,150000
-chapter,56,09-r680-platform,docs/09-r680-platform/56-r680-debug-source-firmware.md,R680 底盘调试、源码与固件维护,complete,150000
-chapter,57,10-deployment-maintenance,docs/10-deployment-maintenance/57-network-docker-images.md,网络、Docker、系统镜像与主控差异,complete,150000
-chapter,58,10-deployment-maintenance,docs/10-deployment-maintenance/58-logs-backup-upgrade-recovery.md,日志、备份、升级与恢复,complete,150000
-chapter,59,10-deployment-maintenance,docs/10-deployment-maintenance/59-system-acceptance.md,全系统验收清单,complete,150000
+chapter,51,08-advanced-applications,docs/08-advanced-applications/51-vision-simulation-lab.md,视觉导航实验设计与评价方法,complete,150000
+chapter,52,08-advanced-applications,docs/08-advanced-applications/52-vision-simulation-results.md,视觉导航实验结果与分析,complete,150000
+chapter,53,08-advanced-applications,docs/08-advanced-applications/53-vision-simulation-reproducibility.md,视觉导航实验操作与复现,complete,150000
+chapter,54,08-advanced-applications,docs/08-advanced-applications/54-multi-robot-and-qt.md,多机编队与 Qt 控制界面,complete,150000
+chapter,55,08-advanced-applications,docs/08-advanced-applications/55-mmwave-human-deep-learning.md,毫米波雷达、人体跟踪与深度学习,complete,150000
+chapter,56,08-advanced-applications,docs/08-advanced-applications/56-voice-ai-openclaw.md,语音、多模态 AI 与 OpenClaw,complete,150000
+chapter,57,08-advanced-applications,docs/08-advanced-applications/57-open-source-projects.md,开源项目与参考价值,complete,150000
+chapter,58,09-r680-platform,docs/09-r680-platform/58-r680-hardware-wiring-oled.md,R680 硬件、接线与 OLED 状态,complete,150000
+chapter,59,09-r680-platform,docs/09-r680-platform/59-r680-debug-source-firmware.md,R680 底盘调试、源码与固件维护,complete,150000
+chapter,60,10-deployment-maintenance,docs/10-deployment-maintenance/60-network-docker-images.md,网络、Docker、系统镜像与主控差异,complete,150000
+chapter,61,10-deployment-maintenance,docs/10-deployment-maintenance/61-logs-backup-upgrade-recovery.md,日志、备份、升级与恢复,complete,150000
+chapter,62,10-deployment-maintenance,docs/10-deployment-maintenance/62-system-acceptance.md,全系统验收清单,complete,150000
 appendix,A,appendices,docs/appendices/a-ros1-maintenance.md,ROS 1 兼容与旧设备维护,complete,150000
 appendix,B,appendices,docs/appendices/b-platform-matrix.md,车型、主控与控制板矩阵,complete,150000
 appendix,C,appendices,docs/appendices/c-software-tools.md,软件、驱动与工具索引,complete,150000

@@ -2,7 +2,7 @@
 status: complete
 ---
 
-# 54. 开源项目与参考价值
+# 57. 开源项目与参考价值
 
 定位与建图项目提供运动估计和环境表示，规划控制项目生成路径与动作，多机器人和语义导航项目进一步处理协作、物体与语言目标。算法库、完整系统与仿真工具的使用条件不同，下面分别列出其方法、输入输出、实现依赖和相关论文。
 
@@ -23,7 +23,7 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 
 <div class="project-catalog" markdown="1">
 
-## 54.1 定位与传感器融合 {#localization}
+## 57.1 定位与传感器融合 {#localization}
 
 这一类项目估计机器人位姿，主要差别在于使用的传感器、优化方式和运动约束。标定工具确定时空参数，监测工具判断参数是否仍然有效，融合与 SLAM 系统再使用这些参数估计运动；MOLA 提供可组合的模块框架。
 
@@ -93,7 +93,7 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 论文：[A Modular Optimization Framework for Localization and Mapping](https://doi.org/10.15607/RSS.2019.XV.043)（RSS，2019）。
 {: .project-paper }
 
-## 54.2 建图与自主探索 {#mapping}
+## 57.2 建图与自主探索 {#mapping}
 
 建图组织已经观测到的环境，自主探索选择下一处观测位置。动态场景中，剔除运动区域与显式估计物体运动是两种不同处理方式；多次采集的地图还涉及跨时段对齐。
 
@@ -167,11 +167,11 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 论文：[ARiADNE: A Reinforcement learning approach using Attention-based Deep Networks for Exploration](https://doi.org/10.1109/icra48891.2023.10160565)（ICRA，2023）。
 {: .project-paper }
 
-## 54.3 规划与运动控制 {#planning}
+## 57.3 规划与运动控制 {#planning}
 
 规划控制方法需要同时满足避障与车辆运动约束。优化方法显式定义模型和代价，强化学习通过奖励训练策略，扩散策略与自监督表征使用另外的学习方式。
 
-### 54.3.1 几何规划与优化控制
+### 57.3.1 几何规划与优化控制
 
 | 项目 | 主要算法或功能 | 输入与输出 |
 |---|---|---|
@@ -218,7 +218,7 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 论文：[Accelerated Reeds–Shepp and Underspecified Reeds–Shepp Algorithms for Mobile Robot Path Planning](https://doi.org/10.1109/TRO.2025.3554406)（IEEE T-RO，2025）。
 {: .project-paper }
 
-### 54.3.2 深度强化学习导航 {#drl-projects}
+### 57.3.2 深度强化学习导航 {#drl-projects}
 
 深度强化学习（DRL）通过奖励训练策略或价值网络。下面按任务分为人群交互、未知环境与重规划、车辆驾驶三类：PPO 和 SAC 通过环境交互学习，DQN 学习离散决策，SCALE 的隐式 Q 学习使用离线轨迹。探索覆盖另见 [ARiADNE](#ariadne)，多机器人协作另见 [MAexp](#maexp)。
 
@@ -336,7 +336,7 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 论文：[RLPP: A Residual Method for Zero-Shot Real-World Autonomous Racing on Scaled Platforms](https://doi.org/10.1109/icra55743.2025.11127278)（ICRA，2025）。
 {: .project-paper }
 
-### 54.3.3 其他学习方法 {#other-learning-projects}
+### 57.3.3 其他学习方法 {#other-learning-projects}
 
 模型驱动学习、扩散策略和自监督表征不宜统一称为强化学习。下面三个项目分别处理控制优化、局部轨迹生成和地形表征。
 
@@ -364,11 +364,11 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 论文：[STERLING: Self-Supervised Terrain Representation Learning from Unconstrained Robot Experience](https://proceedings.mlr.press/v229/karnan23a.html)（CoRL，2023）。
 {: .project-paper }
 
-## 54.4 多机器人定位与协作 {#multi-robot}
+## 57.4 多机器人定位与协作 {#multi-robot}
 
 协同定位解决不同机器人轨迹与地图的一致性，协作策略学习解决多台机器人怎样共同完成任务。两类方法对观测、通信和运动模型的要求不同。
 
-### 54.4.1 协同定位、建图与通信
+### 57.4.1 协同定位、建图与通信
 
 | 项目 | 主要算法或功能 | 输入与输出 |
 |---|---|---|
@@ -422,7 +422,7 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 论文：[Realm: Real-Time Line-of-Sight Maintenance in Multi-Robot Navigation with Unknown Obstacles](https://ieeexplore.ieee.org/document/11128211/)（ICRA，2025）。
 {: .project-paper }
 
-### 54.4.2 多机器人强化学习
+### 57.4.2 多机器人强化学习
 
 | 项目 | 主要算法或功能 | 输入与输出 |
 |---|---|---|
@@ -448,7 +448,7 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 论文：[MAexp: A Generic Platform for RL-based Multi-Agent Exploration](https://doi.org/10.1109/icra57147.2024.10611573)（ICRA，2024）。
 {: .project-paper }
 
-## 54.5 语义地图与语言导航 {#semantic-navigation}
+## 57.5 语义地图与语言导航 {#semantic-navigation}
 
 语义地图将物体、房间和语言描述与空间位置关联。视觉导航策略则根据图像目标或语言生成航点与动作。语义查询结果仍需转换为可到达的导航目标。
 
@@ -497,11 +497,11 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 论文：[Language as Cost: Proactive Hazard Mapping using VLM for Robot Navigation](https://ieeexplore.ieee.org/document/11246665/)（IROS，2025）。
 {: .project-paper }
 
-## 54.6 仿真环境与评测工具 {#evaluation}
+## 57.6 仿真环境与评测工具 {#evaluation}
 
 仿真环境定义车辆、场景与任务，评测工具分析轨迹、传感器和运行状态。车辆动力学、任务目标和指标相同，算法结果才具有可比性。
 
-### 54.6.1 仿真与导航基准 {#navigation-benchmarks}
+### 57.6.1 仿真与导航基准 {#navigation-benchmarks}
 
 | 项目 | 主要算法或功能 | 输入与输出 |
 |---|---|---|
@@ -534,7 +534,7 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 论文：[DMRP-Bench: An Integrated, Unified Multi-Robot Motion Planning Benchmark in Dynamic Environments](https://doi.org/10.1109/icra57385.2026.11696793)（ICRA，2026）。
 {: .project-paper }
 
-### 54.6.2 数据记录与结果分析
+### 57.6.2 数据记录与结果分析
 
 | 项目 | 主要算法或功能 | 输入与输出 |
 |---|---|---|
@@ -568,4 +568,4 @@ R680 使用 ROS 2 Humble、Ackermann 底盘、M10P 二维雷达、D435C 红外�
 
 ## 章节导航
 
-[上一章：语音、多模态 AI 与 OpenClaw](53-voice-ai-openclaw.md) · [返回本篇](index.md) · [下一章：R680 硬件、接线与 OLED 状态](../09-r680-platform/55-r680-hardware-wiring-oled.md)
+[上一章：语音、多模态 AI 与 OpenClaw](56-voice-ai-openclaw.md) · [返回本篇](index.md) · [下一章：R680 硬件、接线与 OLED 状态](../09-r680-platform/58-r680-hardware-wiring-oled.md)

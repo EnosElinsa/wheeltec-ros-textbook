@@ -68,6 +68,8 @@ R680 用 D435C 红外与深度建图导航时，读完第 29～30 章后阅读�
 
 调研视觉惯性与三维导航时，按[第 39 章 VINS 原理](06-sensors-navigation/39-vins-principles.md) → [第 42 章 MID360 建图](06-sensors-navigation/42-mid360-fast-lio.md) → [第 43 章数据流](06-sensors-navigation/43-mid360-fast-lio-data-flow.md) → [第 44 章三维导航调研](06-sensors-navigation/44-mid360-3d-navigation-research.md)阅读，并结合第 33 章检查方案的地图需求、位置来源与恢复能力。
 
+在实车测试前学习视觉导航仿真，可按[第 50 章：平台与基本过程](08-advanced-applications/50-gazebo-simulation.md) → [第 51 章：实验设计](08-advanced-applications/51-vision-simulation-lab.md) → [第 52 章：结果分析](08-advanced-applications/52-vision-simulation-results.md)阅读；复跑实验时查[第 53 章：操作与复现](08-advanced-applications/53-vision-simulation-reproducibility.md)。
+
 ## STM32 固件开发
 
 前置知识：完成第 10～14 章，确认控制板型号和底盘基线；烧录前必须准备恢复方式。
@@ -83,11 +85,11 @@ R680 用 D435C 红外与深度建图导航时，读完第 29～30 章后阅读�
 前置知识：完成第 10 章的配置识别和第 21 章的底盘标定；涉及固件时，先确认控制板、编码器和车型。
 
 ```text
-10 → 21 → 54 → 55 → 57
+10 → 21 → 58 → 59 → 61
 ```
 
 1. [第 10 章：识别机器人配置](03-bringup/10-identify-configuration.md)
 2. [第 21 章：标定与底盘故障](04-chassis-control/21-calibration-and-faults.md)
-3. [第 55 章：R680 硬件、接线与 OLED](09-r680-platform/55-r680-hardware-wiring-oled.md)
-4. [第 56 章：R680 调试、源码与固件](09-r680-platform/56-r680-debug-source-firmware.md)
-5. [第 58 章：日志、备份、升级与恢复](10-deployment-maintenance/58-logs-backup-upgrade-recovery.md)
+3. [第 58 章：R680 硬件、接线与 OLED](09-r680-platform/58-r680-hardware-wiring-oled.md)
+4. [第 59 章：R680 调试、源码与固件](09-r680-platform/59-r680-debug-source-firmware.md)
+5. [第 61 章：日志、备份、升级与恢复](10-deployment-maintenance/61-logs-backup-upgrade-recovery.md)

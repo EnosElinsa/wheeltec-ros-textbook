@@ -32,7 +32,7 @@ class NavigationTests(unittest.TestCase):
         numbered = [
             row for row in rows if row["kind"] in {"foundation", "chapter"}
         ]
-        self.assertEqual(len(numbered), 59)
+        self.assertEqual(len(numbered), 62)
         for index, row in enumerate(numbered):
             path = ROOT / row["path"]
             links = linked_markdown_paths(path)
@@ -67,11 +67,16 @@ class NavigationTests(unittest.TestCase):
                 offenders.append(path.relative_to(ROOT).as_posix())
         self.assertEqual(offenders, [])
 
-    def test_mkdocs_has_ten_parts_and_59_numbered_entries(self) -> None:
+    def test_mkdocs_has_ten_parts_and_62_numbered_entries(self) -> None:
         config = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")
         self.assertEqual(len(re.findall(r"^  - 第(?:[一二三四五六七八九]|十)篇 ", config, re.MULTILINE)), 10)
-        numbers = [int(value) for value in re.findall(r"^      - (\d+) ", config, re.MULTILINE)]
-        self.assertEqual(numbers, list(range(1, 60)))
+        entries = re.findall(r"^      - ([\d.]+) [^:\n]+: (\S+\.md)$", config, re.MULTILINE)
+        rows = quality.load_manifest(ROOT / "metadata" / "chapter-manifest.csv")
+        expected = [
+            (row["number"], row["path"].removeprefix("docs/"))
+            for row in rows if row["kind"] in {"foundation", "chapter"}
+        ]
+        self.assertEqual(entries, expected)
 
     def test_r680_vision_chapters_are_numbered_in_part_six(self) -> None:
         config = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")
@@ -143,7 +148,7 @@ class NavigationTests(unittest.TestCase):
             "1 → 4 → 5 → 22",
             "10 → 11 → 12 → 13 → 14",
             "29 → 30 → 31 → 32 → 33 → 34 → 35",
-            "10 → 21 → 54 → 55 → 57",
+            "10 → 21 → 58 → 59 → 61",
         ):
             self.assertIn(sequence, text)
         self.assertGreaterEqual(text.count("前置能力"), 3)

@@ -28,23 +28,35 @@ plugins:
         07-stm32-firmware/43-build-flash-rollback.md: 07-stm32-firmware/48-build-flash-rollback.md
         07-stm32-firmware/44-ros2-stm32-integration.md: 07-stm32-firmware/49-ros2-stm32-integration.md
         08-advanced-applications/45-gazebo-simulation.md: 08-advanced-applications/50-gazebo-simulation.md
-        08-advanced-applications/46-multi-robot-and-qt.md: 08-advanced-applications/51-multi-robot-and-qt.md
-        08-advanced-applications/47-mmwave-human-deep-learning.md: 08-advanced-applications/52-mmwave-human-deep-learning.md
-        08-advanced-applications/48-voice-ai-openclaw.md: 08-advanced-applications/53-voice-ai-openclaw.md
-        09-r680-platform/49-r680-hardware-wiring-oled.md: 09-r680-platform/55-r680-hardware-wiring-oled.md
-        09-r680-platform/50-r680-debug-source-firmware.md: 09-r680-platform/56-r680-debug-source-firmware.md
-        10-deployment-maintenance/51-network-docker-images.md: 10-deployment-maintenance/57-network-docker-images.md
-        10-deployment-maintenance/52-logs-backup-upgrade-recovery.md: 10-deployment-maintenance/58-logs-backup-upgrade-recovery.md
-        10-deployment-maintenance/53-system-acceptance.md: 10-deployment-maintenance/59-system-acceptance.md
+        08-advanced-applications/46-multi-robot-and-qt.md: 08-advanced-applications/54-multi-robot-and-qt.md
+        08-advanced-applications/47-mmwave-human-deep-learning.md: 08-advanced-applications/55-mmwave-human-deep-learning.md
+        08-advanced-applications/48-voice-ai-openclaw.md: 08-advanced-applications/56-voice-ai-openclaw.md
+        09-r680-platform/49-r680-hardware-wiring-oled.md: 09-r680-platform/58-r680-hardware-wiring-oled.md
+        09-r680-platform/50-r680-debug-source-firmware.md: 09-r680-platform/59-r680-debug-source-firmware.md
+        10-deployment-maintenance/51-network-docker-images.md: 10-deployment-maintenance/60-network-docker-images.md
+        10-deployment-maintenance/52-logs-backup-upgrade-recovery.md: 10-deployment-maintenance/61-logs-backup-upgrade-recovery.md
+        10-deployment-maintenance/53-system-acceptance.md: 10-deployment-maintenance/62-system-acceptance.md
         06-sensors-navigation/vins-principles.md: 06-sensors-navigation/39-vins-principles.md
         06-sensors-navigation/mid360-fast-lio-data-flow.md: 06-sensors-navigation/43-mid360-fast-lio-data-flow.md
         06-sensors-navigation/mid360-3d-navigation-research.md: 06-sensors-navigation/44-mid360-3d-navigation-research.md
-        08-advanced-applications/open-source-projects.md: 08-advanced-applications/54-open-source-projects.md
-        09-r680-platform/54-r680-hardware-wiring-oled.md: 09-r680-platform/55-r680-hardware-wiring-oled.md
-        09-r680-platform/55-r680-debug-source-firmware.md: 09-r680-platform/56-r680-debug-source-firmware.md
-        10-deployment-maintenance/56-network-docker-images.md: 10-deployment-maintenance/57-network-docker-images.md
-        10-deployment-maintenance/57-logs-backup-upgrade-recovery.md: 10-deployment-maintenance/58-logs-backup-upgrade-recovery.md
-        10-deployment-maintenance/58-system-acceptance.md: 10-deployment-maintenance/59-system-acceptance.md
+        08-advanced-applications/open-source-projects.md: 08-advanced-applications/57-open-source-projects.md
+        09-r680-platform/54-r680-hardware-wiring-oled.md: 09-r680-platform/58-r680-hardware-wiring-oled.md
+        09-r680-platform/55-r680-debug-source-firmware.md: 09-r680-platform/59-r680-debug-source-firmware.md
+        10-deployment-maintenance/56-network-docker-images.md: 10-deployment-maintenance/60-network-docker-images.md
+        10-deployment-maintenance/57-logs-backup-upgrade-recovery.md: 10-deployment-maintenance/61-logs-backup-upgrade-recovery.md
+        10-deployment-maintenance/58-system-acceptance.md: 10-deployment-maintenance/62-system-acceptance.md
+        08-advanced-applications/vision-simulation-lab.md: 08-advanced-applications/51-vision-simulation-lab.md
+        08-advanced-applications/vision-simulation-results.md: 08-advanced-applications/52-vision-simulation-results.md
+        08-advanced-applications/vision-simulation-reproducibility.md: 08-advanced-applications/53-vision-simulation-reproducibility.md
+        08-advanced-applications/51-multi-robot-and-qt.md: 08-advanced-applications/54-multi-robot-and-qt.md
+        08-advanced-applications/52-mmwave-human-deep-learning.md: 08-advanced-applications/55-mmwave-human-deep-learning.md
+        08-advanced-applications/53-voice-ai-openclaw.md: 08-advanced-applications/56-voice-ai-openclaw.md
+        08-advanced-applications/54-open-source-projects.md: 08-advanced-applications/57-open-source-projects.md
+        09-r680-platform/55-r680-hardware-wiring-oled.md: 09-r680-platform/58-r680-hardware-wiring-oled.md
+        09-r680-platform/56-r680-debug-source-firmware.md: 09-r680-platform/59-r680-debug-source-firmware.md
+        10-deployment-maintenance/57-network-docker-images.md: 10-deployment-maintenance/60-network-docker-images.md
+        10-deployment-maintenance/58-logs-backup-upgrade-recovery.md: 10-deployment-maintenance/61-logs-backup-upgrade-recovery.md
+        10-deployment-maintenance/59-system-acceptance.md: 10-deployment-maintenance/62-system-acceptance.md
   - search:
       lang:
         - zh
@@ -139,22 +151,22 @@ nav:
   - 第八篇 高级应用:
       - 本篇说明: 08-advanced-applications/index.md
       - 50 仿真与 Gazebo: 08-advanced-applications/50-gazebo-simulation.md
-      - 50.8 视觉导航实验设计与评价方法: 08-advanced-applications/vision-simulation-lab.md
-      - 50.9 视觉导航实验结果与分析: 08-advanced-applications/vision-simulation-results.md
-      - 50.10 实验复现与证据附录: 08-advanced-applications/vision-simulation-reproducibility.md
-      - 51 多机编队与 Qt 控制界面: 08-advanced-applications/51-multi-robot-and-qt.md
-      - 52 毫米波雷达、人体跟踪与深度学习: 08-advanced-applications/52-mmwave-human-deep-learning.md
-      - 53 语音、多模态 AI 与 OpenClaw: 08-advanced-applications/53-voice-ai-openclaw.md
-      - 54 开源项目与参考价值: 08-advanced-applications/54-open-source-projects.md
+      - 51 视觉导航实验设计与评价方法: 08-advanced-applications/51-vision-simulation-lab.md
+      - 52 视觉导航实验结果与分析: 08-advanced-applications/52-vision-simulation-results.md
+      - 53 视觉导航实验操作与复现: 08-advanced-applications/53-vision-simulation-reproducibility.md
+      - 54 多机编队与 Qt 控制界面: 08-advanced-applications/54-multi-robot-and-qt.md
+      - 55 毫米波雷达、人体跟踪与深度学习: 08-advanced-applications/55-mmwave-human-deep-learning.md
+      - 56 语音、多模态 AI 与 OpenClaw: 08-advanced-applications/56-voice-ai-openclaw.md
+      - 57 开源项目与参考价值: 08-advanced-applications/57-open-source-projects.md
   - 第九篇 R680 平台:
       - 本篇说明: 09-r680-platform/index.md
-      - 55 R680 硬件、接线与 OLED 状态: 09-r680-platform/55-r680-hardware-wiring-oled.md
-      - 56 R680 底盘调试、源码与固件维护: 09-r680-platform/56-r680-debug-source-firmware.md
+      - 58 R680 硬件、接线与 OLED 状态: 09-r680-platform/58-r680-hardware-wiring-oled.md
+      - 59 R680 底盘调试、源码与固件维护: 09-r680-platform/59-r680-debug-source-firmware.md
   - 第十篇 部署、备份与维护:
       - 本篇说明: 10-deployment-maintenance/index.md
-      - 57 网络、Docker、系统镜像与主控差异: 10-deployment-maintenance/57-network-docker-images.md
-      - 58 日志、备份、升级与恢复: 10-deployment-maintenance/58-logs-backup-upgrade-recovery.md
-      - 59 全系统验收清单: 10-deployment-maintenance/59-system-acceptance.md
+      - 60 网络、Docker、系统镜像与主控差异: 10-deployment-maintenance/60-network-docker-images.md
+      - 61 日志、备份、升级与恢复: 10-deployment-maintenance/61-logs-backup-upgrade-recovery.md
+      - 62 全系统验收清单: 10-deployment-maintenance/62-system-acceptance.md
       - 验收记录表: 10-deployment-maintenance/system-acceptance-checklist.md
   - 附录:
       - A ROS 1 兼容与旧设备维护: appendices/a-ros1-maintenance.md

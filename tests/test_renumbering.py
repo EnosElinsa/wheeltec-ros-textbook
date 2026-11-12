@@ -45,14 +45,14 @@ class RenumberingTests(unittest.TestCase):
             ],
         )
 
-    def test_manifest_has_contiguous_chapters_1_to_59(self) -> None:
+    def test_manifest_has_contiguous_chapters_1_to_62(self) -> None:
         rows = quality.load_manifest(ROOT / "metadata" / "chapter-manifest.csv")
         numbered = [
             int(row["number"])
             for row in rows
             if row["kind"] in {"foundation", "chapter"}
         ]
-        self.assertEqual(numbered, list(range(1, 60)))
+        self.assertEqual(numbered, list(range(1, 63)))
         self.assertEqual(quality.check_manifest(rows), [])
 
     def test_final_part_directories_exist(self) -> None:
@@ -88,6 +88,21 @@ class RenumberingTests(unittest.TestCase):
                 for heading in re.findall(r"^##\s+(.+?)\s*$", text, re.MULTILINE)
             ]
             self.assertEqual(headings, quality.expected_engineering_headings(number))
+
+    def test_simulation_sections_use_their_own_chapter_number(self) -> None:
+        rows = quality.load_manifest(ROOT / "metadata" / "chapter-manifest.csv")
+        for row in rows:
+            if row["number"] not in {"50", "51", "52", "53"}:
+                continue
+            text = (ROOT / row["path"]).read_text(encoding="utf-8")
+            sections = re.findall(r"^(#{2,}) ([\d.]+) ", text, re.MULTILINE)
+            self.assertTrue(sections, row["path"])
+            for level, number in sections:
+                self.assertEqual(number.split(".")[0], row["number"], row["path"])
+                self.assertEqual(len(number.split(".")), len(level), row["path"])
+                self.assertLessEqual(len(level), 3, row["path"])
+            top_level = [int(number.split(".")[1]) for level, number in sections if len(level) == 2]
+            self.assertEqual(top_level, list(range(1, len(top_level) + 1)), row["path"])
 
     def test_no_engineering_page_remains_in_old_part_directories(self) -> None:
         old_directories = (

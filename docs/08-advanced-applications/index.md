@@ -10,12 +10,17 @@ status: draft
 
 ## 8.1 仿真学习与实验
 
-第一次接触机器人仿真，可先阅读[第 50 章：仿真与 Gazebo](50-gazebo-simulation.md)，了解数据回放、闭环仿真与实车实验的分工，以及不同研究任务为什么选择不同平台。
+第 50～53 章围绕同一套视觉导航实验展开：
 
-视觉导航部分按研究过程连续编排：[50.8 实验设计与评价方法](vision-simulation-lab.md)从三维场景、建图过程讲到起点、目标和评价指标；[50.9 实验结果与分析](vision-simulation-results.md)展示实际轨迹并分析导航与定位结果；[50.10 复现与证据附录](vision-simulation-reproducibility.md)保存运行命令、版本和原始记录。理解实验时可先读正文，需要复跑时再查附录。
+| 章节 | 内容 |
+| --- | --- |
+| [50 仿真与 Gazebo](50-gazebo-simulation.md) | 实验方式、平台选择与建图导航的基本过程 |
+| [51 视觉导航实验设计与评价方法](51-vision-simulation-lab.md) | 房间、车辆与传感器，建图动作，导航起点与目标，评价指标 |
+| [52 视觉导航实验结果与分析](52-vision-simulation-results.md) | 实际轨迹、到点结果与 EuRoC 定位比较 |
+| [53 视觉导航实验操作与复现](53-vision-simulation-reproducibility.md) | 运行步骤、原始数据、图表来源和补充测试 |
 
 ## 8.2 开源项目参考
 
-[第 54 章：开源项目与参考价值](54-open-source-projects.md)：按定位、建图、规划、多机器人、语义导航和评测介绍 66 个项目，列出算法、输入输出和运行条件。其中 17 个提供深度强化学习相关方法，覆盖人群避障、未知环境、车辆控制与多机器人协作。
+[第 57 章：开源项目与参考价值](57-open-source-projects.md)：按定位、建图、规划、多机器人、语义导航和评测介绍 66 个项目，列出算法、输入输出和运行条件。其中 17 个提供深度强化学习相关方法，覆盖人群避障、未知环境、车辆控制与多机器人协作。
 
 [论文与开源项目目录](https://github.com/EnosElinsa/wheeltec-smart-car-literature/blob/main/OPEN_SOURCE_PROJECTS.md)提供代码和相关论文入口。论文库的 `INDEX.html` 支持按任务、方法、环境和年份筛选，并可对比 2—4 个项目。

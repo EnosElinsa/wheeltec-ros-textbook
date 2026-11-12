@@ -51,7 +51,7 @@ status: complete
 ### 人体消息与跟随节点
 
 - 代码目录：[`ros1/maintenance/bodyreader`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/62aacaed782091b06060ace276c64e9aaf84ae6b/ros1/maintenance/bodyreader)
-- 正文入口：[人体消息与跟随节点](../08-advanced-applications/52-mmwave-human-deep-learning.md#bodyreader-code-resource)
+- 正文入口：[人体消息与跟随节点](../08-advanced-applications/55-mmwave-human-deep-learning.md#bodyreader-code-resource)
 - 关键文件：`launch/bodyfollow.launch`、`msg/body.msg`、`package.xml`、`src/bodydata_process.cpp`、`src/follower.cpp`
 
 ## 视觉与应用
@@ -101,5 +101,5 @@ status: complete
 ### R680 串口与 CAN 固件
 
 - 代码目录：[`r680/firmware/c50c/f407-mecanum-hall-single-serial-can-b01`](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/62aacaed782091b06060ace276c64e9aaf84ae6b/r680/firmware/c50c/f407-mecanum-hall-single-serial-can-b01)
-- 正文入口：[R680 串口与 CAN 固件](../09-r680-platform/56-r680-debug-source-firmware.md#r680-code-resource)
+- 正文入口：[R680 串口与 CAN 固件](../09-r680-platform/59-r680-debug-source-firmware.md#r680-code-resource)
 - 关键文件：`HARDWARE/can.c`、`HARDWARE/usartx.c`、`USER/WHEELTEC.uvprojx`、`USER/main.c`

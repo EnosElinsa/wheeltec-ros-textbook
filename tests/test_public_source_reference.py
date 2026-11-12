@@ -66,11 +66,11 @@ class PublicSourceReferenceTests(unittest.TestCase):
             "docs/07-stm32-firmware/47-motor-control-pid.md",
             "docs/07-stm32-firmware/49-ros2-stm32-integration.md",
             "docs/08-advanced-applications/50-gazebo-simulation.md",
-            "docs/08-advanced-applications/51-multi-robot-and-qt.md",
-            "docs/08-advanced-applications/52-mmwave-human-deep-learning.md",
-            "docs/08-advanced-applications/53-voice-ai-openclaw.md",
-            "docs/09-r680-platform/56-r680-debug-source-firmware.md",
-            "docs/10-deployment-maintenance/58-logs-backup-upgrade-recovery.md",
+            "docs/08-advanced-applications/54-multi-robot-and-qt.md",
+            "docs/08-advanced-applications/55-mmwave-human-deep-learning.md",
+            "docs/08-advanced-applications/56-voice-ai-openclaw.md",
+            "docs/09-r680-platform/59-r680-debug-source-firmware.md",
+            "docs/10-deployment-maintenance/61-logs-backup-upgrade-recovery.md",
             "docs/appendices/a-ros1-maintenance.md",
         )
         generic = [
