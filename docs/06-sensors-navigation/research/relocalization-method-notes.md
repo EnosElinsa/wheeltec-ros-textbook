@@ -4,7 +4,7 @@ status: complete
 
 # 第 33 章补充说明：坐标计算与相关方法
 
-[第 33 章](../33-relocalization-map-dependence.md)围绕完整全局地图是否必要展开解释。本页补充位姿组合、导航坐标恢复的计算，并列出其他研究对正文的补充作用。参考编号与正文一致，具体原文页码和适用限制见[论文证据表](relocalization-evidence.csv)和[核查说明](relocalization-reference-audit.md)。
+[第 33 章](../33-relocalization-map-dependence.md)分别讨论未知环境导航与失效重定位对全局地图的需求。本页补充位姿组合、导航坐标恢复的计算，并列出其他研究对正文的补充作用。参考编号与正文一致，重定位证据见[论文证据表](relocalization-evidence.csv)和[核查说明](relocalization-reference-audit.md)，在线导航证据见[补充核查](online-navigation-reference-audit.md)。
 
 ## 位姿与坐标计算
 
