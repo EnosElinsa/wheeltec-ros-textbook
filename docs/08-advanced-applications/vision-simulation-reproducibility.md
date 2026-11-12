@@ -157,6 +157,23 @@ Git 仓库收录紧凑 JSON 与必要图表，完整图像、数据库、构建�
 
 RGB-D/VIO 首轮建图的安全指令接收年龄 P95 分别为 45.9/46.8 ms，P99 为 51.0/52.4 ms，实时因子中位数约 0.895。故障注入期旧观测也进入年龄统计，不能将其作为健康状态传感器延迟。场景布局来自固定版本的 [model.py](https://github.com/EnosElinsa/wheeltec-ros-source-reference/blob/d6092f1a270ec64b24c11f8c1c9b1c8d5d473043/ros2/navigation/vision-nav/wheeltec_vision_sim/wheeltec_vision_sim/model.py)，任务与临时障碍来自 [mission_runner.py](https://github.com/EnosElinsa/wheeltec-ros-source-reference/blob/d6092f1a270ec64b24c11f8c1c9b1c8d5d473043/ros2/navigation/vision-nav/wheeltec_vision_sim/wheeltec_vision_sim/mission_runner.py)。图 50.1 据模型几何绘制，是场景示意图。
 
+### 50.10.5.1 轨迹图、回放与数据下载 {#path-data}
+
+图 50.3、50.4、50.6、50.7 根据已有会话的原始记录绘制，没有新增仿真试验。导入时核对原始 JSONL 的 SHA256，确认与相应已发布摘要一致。CSV 保留全部记录行，包括启动、无真值与过期观测；绘图时将无有效真值的位置留为空缺，不平滑、拟合或插值路径。
+
+| 图示用途 | 会话 | 可下载数据 |
+| --- | --- | --- |
+| 房间中的实测路径与二维回放 | `mapping-all-05` | [RGB-D 建图轨迹 CSV](simulation-results/mapping-baseline-path.csv) |
+| 三个短程任务：RGB-D | `localization-baseline-04` | [导航轨迹 CSV](simulation-results/localization-baseline-path.csv) |
+| 三个短程任务：双目 VO | `localization-stereo-01` | [导航轨迹 CSV](simulation-results/localization-stereo-path.csv) |
+| 三个短程任务：VIO 首轮配置 | `localization-vio-05` | [导航轨迹 CSV](simulation-results/localization-vio-path.csv) |
+
+CSV 的时间以首条记录为墙钟零点，世界 x、y 以米计；车体朝向由原始四元数换算。记录约每 0.1 s 采一次，不能以该频率替代高频指令接收日志进行精确响应评分。图 50.6 的目标、终点与容差直接取相应结果 JSON，未重新对齐或缩放轨迹。图 50.7 的直线距离相对于所展示时间窗口的起点，不作为实车制动距离。
+
+[来源与变换清单](simulation-results/path-figure-provenance.json)记录原始哈希、CSV 哈希、绘图版本与输出身份。动图取每十条记录中的一条并补入末条，按固定显示间隔加速播放，显示的时间仍为实际记录时间。缺少新鲜真值时不显示推测车体位置；图中的灰色完整轨迹只提供回放参照。
+
+图可由教材仓库的 `tools/render_simulation_figures.py` 使用已发布 CSV 重新生成，需要 NumPy、Matplotlib、Pillow 及可用的中文字体。原有全会话诊断图继续保留：[RGB-D 建图轨迹与速度](simulation-results/mapping-baseline.png)、[RGB-D 导航轨迹与速度](simulation-results/localization-baseline.png)、[VIO 导航诊断](simulation-results/localization-vio.png)。
+
 ## 50.10.6 软件检查与实车待验项目
 
 代码与工具的既有本地复核为 692 项通过、8 项按 ROS/POSIX 环境跳过；Linux/Windows Python 3.10、3.12 及 Humble CI 已通过。隔离 Humble 环境的关键输入集成测试为 5 项通过、耗时 19.23 s；POSIX 会话退出测试 7 项、原生执行器 CTest 1/1 通过。五个本地 ROS 包已构建，无界面图像、深度、IMU、关节、五路接触与独立真值均实际输出。

@@ -1,0 +1,151 @@
+{
+  "schema": 1,
+  "experiment_date": "2026-11-12",
+  "runs": [
+    {
+      "name": "mapping-baseline",
+      "run": "mapping-all-05",
+      "raw_sha256": "2ab9315c1067bbb25ec0e2f7e3987f6bc454651ec18d4c3779a775e2e203e058",
+      "rows": 1295,
+      "first_wall": 4833588.240401969,
+      "csv": "mapping-baseline-path.csv",
+      "csv_sha256": "ca4d345ef1a8f2f734d1c1b16988988352b85d15f0ba899f12303b447510a489"
+    },
+    {
+      "name": "localization-baseline",
+      "run": "localization-baseline-04",
+      "raw_sha256": "6a98fb002c181c3a71738d6cea4f2f0b7e42492f1b49eab005b4c00e0a018e0d",
+      "rows": 1413,
+      "first_wall": 4835238.459716503,
+      "csv": "localization-baseline-path.csv",
+      "csv_sha256": "4e80f2d6cfa8c21b92a80694fae3f9ac9fefc431ce68b016d11d9db89d7cc263"
+    },
+    {
+      "name": "localization-stereo",
+      "run": "localization-stereo-01",
+      "raw_sha256": "e2e3eb868bd56097b9ae1374bc45a7f58e993254004736323aa27e424b68d033",
+      "rows": 1348,
+      "first_wall": 4835572.666814684,
+      "csv": "localization-stereo-path.csv",
+      "csv_sha256": "8e78726ae028b9b4d0117935c8c80dc64cc420a94f1f29bbc36339e3c5c402bd"
+    },
+    {
+      "name": "localization-vio",
+      "run": "localization-vio-05",
+      "raw_sha256": "a942110ebf189c8c8e32d289b25f99169fddf84476b540ec08bb4feee39b97a2",
+      "rows": 1344,
+      "first_wall": 4835238.529719315,
+      "csv": "localization-vio-path.csv",
+      "csv_sha256": "e3dc36907a807557e8437cd523902fe09214b0eac7e5ec6906af79ebbe40d84e"
+    }
+  ],
+  "source_root": "/home/enos/wheeltec_vision_sim/results/<run>/mission/samples.jsonl",
+  "transformations": [
+    "All JSONL rows retained in CSV, including missing/stale truth and startup.",
+    "Wall time is relative to the first JSONL row; simulation nanoseconds converted to seconds.",
+    "World x/y copied without fitting, scaling, smoothing or path interpolation.",
+    "Yaw derived from recorded xyzw quaternion with atan2.",
+    "Missing or nonfresh truth is drawn as a gap. Plot lines link adjacent valid observations only.",
+    "Animation selects every 10th row plus the last, no interpolated vehicle positions; uniform 100 ms display intervals compress time approximately."
+  ],
+  "scene": {
+    "revision": "d6092f1a270ec64b24c11f8c1c9b1c8d5d473043",
+    "source": "wheeltec_vision_sim/worlds/room.sdf",
+    "room_floor_m": [
+      12,
+      10
+    ],
+    "wall_thickness_m": 0.15,
+    "landmarks_xy_m": [
+      [
+        2,
+        1.8
+      ],
+      [
+        0,
+        3.5
+      ],
+      [
+        -2,
+        -1.8
+      ],
+      [
+        3.8,
+        -2.2
+      ],
+      [
+        -4,
+        2
+      ]
+    ],
+    "landmark_size_m": [
+      0.45,
+      0.55,
+      1.1
+    ],
+    "chassis_length_width_m": [
+      0.46,
+      0.32
+    ],
+    "wheelbase_m": 0.34
+  },
+  "scope": "Derived visualization of existing measured sessions, not new trials or planner reference paths.",
+  "rendering": {
+    "generator": "tools/render_simulation_figures.py",
+    "generator_sha256": "1a884e60fed754c7db5513a10ff3fc86b4d3c3d75e8521be8aa960ac2a3b9686",
+    "matplotlib": "3.10.8",
+    "numpy": "2.4.3",
+    "pillow": "12.1.1",
+    "font": "Microsoft YaHei"
+  },
+  "outputs": [
+    {
+      "file": "measured-fault-stop.png",
+      "bytes": 130538,
+      "sha256": "25353f1a28aca9ea305ea892fd5c3c4fc0177716a0c5ba69321fb64d68c55856",
+      "width_px": 1785,
+      "height_px": 1037,
+      "frames": 1
+    },
+    {
+      "file": "measured-fault-stop.svg",
+      "bytes": 119425,
+      "sha256": "eb57fa41b1c5a6add0806584cdbcaabc24327e02b9fdbf53c3ffd752582d164f"
+    },
+    {
+      "file": "measured-mapping-replay.gif",
+      "bytes": 1396324,
+      "sha256": "22c5a967a3ca2a7e12e7e7519f5a58469dbb202fd7ad8c5f2b65c36f4d92ff0a",
+      "width_px": 1071,
+      "height_px": 525,
+      "frames": 131,
+      "display_duration_s": 13.1
+    },
+    {
+      "file": "measured-navigation-routes.png",
+      "bytes": 225090,
+      "sha256": "83b5657b833c17972a25f569639da6234f05f05fba40e62fce9c5340cfca29dc",
+      "width_px": 1326,
+      "height_px": 1547,
+      "frames": 1
+    },
+    {
+      "file": "measured-navigation-routes.svg",
+      "bytes": 117603,
+      "sha256": "fb0a7d0c0ea85371a932066cbc12c2acb08a973a9e15c6c64b6163c8b0697150"
+    },
+    {
+      "file": "measured-room-path.png",
+      "bytes": 148807,
+      "sha256": "e2bbbbb2fe9312ef05aad11572072d696ba555aea60f4bd8ee72050284bed909",
+      "width_px": 2040,
+      "height_px": 1122,
+      "frames": 1
+    },
+    {
+      "file": "measured-room-path.svg",
+      "bytes": 118092,
+      "sha256": "dc069ed7733c0e6609b4c0f7b3e2d5658d12bcc2c2ff914137051c8b521e52e6"
+    }
+  ]
+}
