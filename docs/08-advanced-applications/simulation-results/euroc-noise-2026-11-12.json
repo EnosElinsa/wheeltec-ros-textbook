@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "group": "euroc-noise-ab-01",
+  "purpose": "Retain new noise-policy MH01 repetitions alongside the original 18-run benchmark. Coverage failures remain failures.",
+  "runs": [
+    {
+      "status": "partial_output",
+      "expected_frames": 3682,
+      "estimate_samples": 1746,
+      "matched_samples": 1736,
+      "coverage": 0.4714828897338403,
+      "ate_translation_rmse_m": 0.03875158729501728,
+      "rpe_translation_rmse_m": 0.012124405480588303,
+      "rpe_rotation_rmse_rad": 0.019849450382315465,
+      "first_estimate_ns": 1403636580363555584,
+      "last_estimate_ns": 1403636684763555584,
+      "name": "MH_01_easy-vio-1",
+      "runtime_failure": null,
+      "completion": "stream_complete",
+      "stereo_published": 3682,
+      "imu_published": 36820,
+      "visual_status_samples": 1757,
+      "visual_lost_samples": 10,
+      "first_stereo_ns": 1403636579763555584,
+      "last_stereo_ns": 1403636763813555456,
+      "last_imu_ns": 1403636763853555456,
+      "estimate_tail_gap_to_last_stereo_ns": 79049999872,
+      "estimate_tail_gap_to_last_imu_ns": 79089999872,
+      "max_estimate_interval_ns": 850000128,
+      "imu_overflow_warnings": 14819,
+      "raw_artifact_sha256": {
+        "MH_01_easy-vio-1/config/left.yaml": "a885a752790370b3893f537dcea067196c4e54d697e31788f6b2ea6f13931065",
+        "MH_01_easy-vio-1/config/right.yaml": "eaed0ea147fa904bf78df98ba91cd518f9d58de0ec6c2e01a1d2b2a5471bb0ca",
+        "MH_01_easy-vio-1/config/solver_output/vio.csv": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "MH_01_easy-vio-1/config/vins.yaml": "d7b31790582bca06f0d20f208911d644178ac2b6bef6a0c887d7a047cead494f",
+        "MH_01_easy-vio-1/manifest.json": "8ac29f0b7b31adde055778096f186202011da37776eceff33c955d46a7fff092",
+        "MH_01_easy-vio-1/metrics.json": "9b9b9aee284b97e652a992f07ff2f18f449d0c4f0f34deea8d56126120221d3f",
+        "MH_01_easy-vio-1/playback.csv": "9a7a897cae84fa565eff2b69112edaea05d7e5705dd97feb05a88d81bf7d7f7f",
+        "MH_01_easy-vio-1/runtime.json": "cc6127617d01ec05302a23ba0c03f9a34ec74076298dc5a43232e325d5393f91",
+        "MH_01_easy-vio-1/trajectory.csv": "0d6d2d52ea5c8873407fdb1c522ef35ca1acbb833266e547c559b198231e8ce3",
+        "MH_01_easy-vio-1/trajectory.png": "0d3ef141257df7aa0d6fdb7f184924caecccc57aacc44b03a2db432717ad4b77",
+        "MH_01_easy-vio-1/visual_status.csv": "8ae19a13923858e66f9ef695744725e209451d9cafbc599a2d49329f97f66665",
+        "MH_01_easy-vio-1.log": "1bde3207889d84370305cea4f89ccf4cdbf71c5ddb534c7b20381c23ad3dd60a"
+      },
+      "processing_evidence": {
+        "update_time_ms": {
+          "median": 38.010000000000005,
+          "maximum": 83.093
+        },
+        "processing_frames_over_50_ms": 310,
+        "over_50ms_with_following_status_available": 309,
+        "over_50ms_followed_by_timestamp_skip": 302,
+        "timestamp_gaps_with_missing_original_frames": 320,
+        "missing_original_frames_between_status_samples": 344,
+        "published_before_first_status": 0,
+        "published_after_last_status": 1581,
+        "examples_over_50ms_followed_by_skip": [
+          {
+            "stamp_ns": 1403636580263555584,
+            "update_time_ms": 83.093,
+            "next_status_stamp_ns": 1403636580363555584,
+            "skipped_original_frames": 1
+          },
+          {
+            "stamp_ns": 1403636582863555584,
+            "update_time_ms": 51.659,
+            "next_status_stamp_ns": 1403636582963555584,
+            "skipped_original_frames": 1
+          },
+          {
+            "stamp_ns": 1403636583363555584,
+            "update_time_ms": 50.416000000000004,
+            "next_status_stamp_ns": 1403636583463555584,
+            "skipped_original_frames": 1
+          },
+          {
+            "stamp_ns": 1403636584663555584,
+            "update_time_ms": 50.527,
+            "next_status_stamp_ns": 1403636584763555584,
+            "skipped_original_frames": 1
+          },
+          {
+            "stamp_ns": 1403636595763555584,
+            "update_time_ms": 51.135,
+            "next_status_stamp_ns": 1403636595863555584,
+            "skipped_original_frames": 1
+          },
+          {
+            "stamp_ns": 1403636625113555456,
+            "update_time_ms": 71.20700000000001,
+            "next_status_stamp_ns": 1403636625213555456,
+            "skipped_original_frames": 1
+          }
+        ],
+        "individual_input_receive_counts": null,
+        "input_count_limitation": "playback.csv records publisher dispatch completion, not DDS delivery; no counters for independent left/right Image or CameraInfo receives exist in these runs. Exact-sync tick stopped in run1; the missing input or scheduling boundary cannot be identified from existing logs."
+      }
+    },
+    {
+      "status": "partial_output",
+      "expected_frames": 3682,
+      "estimate_samples": 3232,
+      "matched_samples": 3200,
+      "coverage": 0.8690928843020098,
+      "ate_translation_rmse_m": 0.0871909242455587,
+      "rpe_translation_rmse_m": 0.014356859417865889,
+      "rpe_rotation_rmse_rad": 0.014297313293780431,
+      "first_estimate_ns": 1403636580363555584,
+      "last_estimate_ns": 1403636763813555456,
+      "name": "MH_01_easy-vio-2",
+      "runtime_failure": null,
+      "completion": "stream_complete",
+      "stereo_published": 3682,
+      "imu_published": 36820,
+      "visual_status_samples": 3243,
+      "visual_lost_samples": 10,
+      "first_stereo_ns": 1403636579763555584,
+      "last_stereo_ns": 1403636763813555456,
+      "last_imu_ns": 1403636763853555456,
+      "estimate_tail_gap_to_last_stereo_ns": 0,
+      "estimate_tail_gap_to_last_imu_ns": 40000000,
+      "max_estimate_interval_ns": 100000000,
+      "imu_overflow_warnings": 0,
+      "raw_artifact_sha256": {
+        "MH_01_easy-vio-2/config/left.yaml": "a885a752790370b3893f537dcea067196c4e54d697e31788f6b2ea6f13931065",
+        "MH_01_easy-vio-2/config/right.yaml": "eaed0ea147fa904bf78df98ba91cd518f9d58de0ec6c2e01a1d2b2a5471bb0ca",
+        "MH_01_easy-vio-2/config/solver_output/vio.csv": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "MH_01_easy-vio-2/config/vins.yaml": "772565c990506d273a674abb626818fd79f4204403e71fc764cbf9c29a0d5c95",
+        "MH_01_easy-vio-2/manifest.json": "96f3cb553ade8a8a0383e89d5a691079fe09f2a4925e4dca8874a300c4ee81c9",
+        "MH_01_easy-vio-2/metrics.json": "46e613e9dbc31481fdcbfa2217ad9eb0021b210a22783735924fb20af53fd421",
+        "MH_01_easy-vio-2/playback.csv": "20b44b64f5ffdd4b053c30ed2264741304a5b3b1c3e7015dcd34bd57bd2e4fe7",
+        "MH_01_easy-vio-2/runtime.json": "aa8ac7ae4e7d1e6a0a42ceaac4767a6c0ad079a4d5bce72c608976215a0e51de",
+        "MH_01_easy-vio-2/trajectory.csv": "5047d41b5bae10b68ffc64b7fa9d3a5e2e428a2977aa4c6c1b7a1c0ebb03fa5f",
+        "MH_01_easy-vio-2/trajectory.png": "d34bc2beec65625b9eb7b073f6a3666c862d4711c5a60253c69ce46bc5ade943",
+        "MH_01_easy-vio-2/visual_status.csv": "de10c8e8093e7bb7b697e3143e7d724bf9b2e85e4af9a7621d7c5dd41893bf6d",
+        "MH_01_easy-vio-2.log": "1094d42f589fdab1ca23a73bc799487351ad7d87e49741f79e7d36837c9ad1b7"
+      },
+      "processing_evidence": {
+        "update_time_ms": {
+          "median": 38.981,
+          "maximum": 82.95
+        },
+        "processing_frames_over_50_ms": 367,
+        "over_50ms_with_following_status_available": 367,
+        "over_50ms_followed_by_timestamp_skip": 358,
+        "timestamp_gaps_with_missing_original_frames": 439,
+        "missing_original_frames_between_status_samples": 439,
+        "published_before_first_status": 0,
+        "published_after_last_status": 0,
+        "examples_over_50ms_followed_by_skip": [
+          {
+            "stamp_ns": 1403636580263555584,
+            "update_time_ms": 82.95,
+            "next_status_stamp_ns": 1403636580363555584,
+            "skipped_original_frames": 1
+          },
+          {
+            "stamp_ns": 1403636582863555584,
+            "update_time_ms": 50.658,
+            "next_status_stamp_ns": 1403636582963555584,
+            "skipped_original_frames": 1
+          },
+          {
+            "stamp_ns": 1403636583363555584,
+            "update_time_ms": 53.813,
+            "next_status_stamp_ns": 1403636583463555584,
+            "skipped_original_frames": 1
+          },
+          {
+            "stamp_ns": 1403636583513555456,
+            "update_time_ms": 51.924,
+            "next_status_stamp_ns": 1403636583613555456,
+            "skipped_original_frames": 1
+          },
+          {
+            "stamp_ns": 1403636583613555456,
+            "update_time_ms": 50.15,
+            "next_status_stamp_ns": 1403636583713555456,
+            "skipped_original_frames": 1
+          },
+          {
+            "stamp_ns": 1403636583713555456,
+            "update_time_ms": 50.04,
+            "next_status_stamp_ns": 1403636583813555456,
+            "skipped_original_frames": 1
+          }
+        ],
+        "individual_input_receive_counts": null,
+        "input_count_limitation": "playback.csv records publisher dispatch completion, not DDS delivery; no counters for independent left/right Image or CameraInfo receives exist in these runs. Exact-sync tick stopped in run1; the missing input or scheduling boundary cannot be identified from existing logs."
+      }
+    },
+    {
+      "status": "partial_output",
+      "expected_frames": 3682,
+      "estimate_samples": 3290,
+      "matched_samples": 3259,
+      "coverage": 0.8851167843563281,
+      "ate_translation_rmse_m": 0.09516167010130877,
+      "rpe_translation_rmse_m": 0.013573518940634232,
+      "rpe_rotation_rmse_rad": 0.013085781485300962,
+      "first_estimate_ns": 1403636580363555584,
+      "last_estimate_ns": 1403636763813555456,
+      "name": "MH_01_easy-vio-3",
+      "runtime_failure": null,
+      "completion": "stream_complete",
+      "stereo_published": 3682,
+      "imu_published": 36820,
+      "visual_status_samples": 3301,
+      "visual_lost_samples": 10,
+      "first_stereo_ns": 1403636579763555584,
+      "last_stereo_ns": 1403636763813555456,
+      "last_imu_ns": 1403636763853555456,
+      "estimate_tail_gap_to_last_stereo_ns": 0,
+      "estimate_tail_gap_to_last_imu_ns": 40000000,
+      "max_estimate_interval_ns": 100000000,
+      "imu_overflow_warnings": 0,
+      "raw_artifact_sha256": {
+        "MH_01_easy-vio-3/config/left.yaml": "a885a752790370b3893f537dcea067196c4e54d697e31788f6b2ea6f13931065",
+        "MH_01_easy-vio-3/config/right.yaml": "eaed0ea147fa904bf78df98ba91cd518f9d58de0ec6c2e01a1d2b2a5471bb0ca",
+        "MH_01_easy-vio-3/config/solver_output/vio.csv": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "MH_01_easy-vio-3/config/vins.yaml": "e3cc52255b451c4a4c3005aa80f914944481179b781d6b5bb6469993d584739c",
+        "MH_01_easy-vio-3/manifest.json": "db7ad83779e39689f7bb4afe44d61e26b94310bfd26449c931a2c653c7098feb",
+        "MH_01_easy-vio-3/metrics.json": "b726ff93a94f33d2b8ec0ec0d109e57fd754b616590a924e573f18526cbaedaf",
+        "MH_01_easy-vio-3/playback.csv": "6853b4fb2d96f3370d5fc5d21f3c76d4d13863734b0e6e1ac2475f1d51ff9588",
+        "MH_01_easy-vio-3/runtime.json": "c3443bb9d4866c2eb0e5f257fe06e40c60e2f90e04f81f74405792f7f7319cd0",
+        "MH_01_easy-vio-3/trajectory.csv": "f70c4f248f7cbb1c8ef5fe74571355d0067213b92f97b1c8cefaf3f8929e0ecc",
+        "MH_01_easy-vio-3/trajectory.png": "5859ecf4980697b0b23d48fe7e3520f7581ae7f7004063c7ed1cabef84ee9df3",
+        "MH_01_easy-vio-3/visual_status.csv": "cf43b98fb42645c9463f9225bbd05dd2398b5c1fde8befad31b5a3cf0d0fd47d",
+        "MH_01_easy-vio-3.log": "bc5e98472b58110f7ac071da6c1d499dca3432c6c9be97a04854a45080b69557"
+      },
+      "processing_evidence": {
+        "update_time_ms": {
+          "median": 38.462999999999994,
+          "maximum": 71.40199999999999
+        },
+        "processing_frames_over_50_ms": 331,
+        "over_50ms_with_following_status_available": 331,
+        "over_50ms_followed_by_timestamp_skip": 322,
+        "timestamp_gaps_with_missing_original_frames": 381,
+        "missing_original_frames_between_status_samples": 381,
+        "published_before_first_status": 0,
+        "published_after_last_status": 0,
+        "examples_over_50ms_followed_by_skip": [
+          {
+            "stamp_ns": 1403636580263555584,
+            "update_time_ms": 71.40199999999999,
+            "next_status_stamp_ns": 1403636580363555584,
+            "skipped_original_frames": 1
+          },
+          {
+            "stamp_ns": 1403636582063555584,
+            "update_time_ms": 51.235,
+            "next_status_stamp_ns": 1403636582163555584,
+            "skipped_original_frames": 1
+          },
+          {
+            "stamp_ns": 1403636582913555456,
+            "update_time_ms": 51.427,
+            "next_status_stamp_ns": 1403636583013555456,
+            "skipped_original_frames": 1
+          },
+          {
+            "stamp_ns": 1403636583013555456,
+            "update_time_ms": 55.364999999999995,
+            "next_status_stamp_ns": 1403636583113555456,
+            "skipped_original_frames": 1
+          },
+          {
+            "stamp_ns": 1403636583113555456,
+            "update_time_ms": 56.131,
+            "next_status_stamp_ns": 1403636583213555456,
+            "skipped_original_frames": 1
+          },
+          {
+            "stamp_ns": 1403636583463555584,
+            "update_time_ms": 51.765,
+            "next_status_stamp_ns": 1403636583563555584,
+            "skipped_original_frames": 1
+          }
+        ],
+        "individual_input_receive_counts": null,
+        "input_count_limitation": "playback.csv records publisher dispatch completion, not DDS delivery; no counters for independent left/right Image or CameraInfo receives exist in these runs. Exact-sync tick stopped in run1; the missing input or scheduling boundary cannot be identified from existing logs."
+      }
+    }
+  ],
+  "transport_probe": {
+    "result": "passed_short_synthetic_transport",
+    "publisher": {
+      "published_each_image_info": 400,
+      "imu_published": 4000,
+      "maximum_lateness_ns": 1226487,
+      "duration_ns": 21006445342
+    },
+    "receiver": {
+      "received": [
+        400,
+        400,
+        400,
+        400,
+        4000,
+        400,
+        4000
+      ],
+      "last_stamp_ns": [
+        1403636599708555392,
+        1403636599708555392,
+        1403636599708555392,
+        1403636599708555392,
+        1403636599753555392
+      ],
+      "nonmonotonic": 0
+    },
+    "counter_order": [
+      "left_image",
+      "right_image",
+      "left_camera_info",
+      "right_camera_info",
+      "imu",
+      "exact_sync",
+      "clock"
+    ],
+    "limitation": "20s synthetic transport only; does not reproduce or exclude the 104.5s outage under VINS processing load",
+    "sha256": {
+      "CMakeLists.txt": "90b0dd9f3960d0561bce499d9c281ad88ecaedf7f2270f6348349a05bb356fdb",
+      "receiver.cpp": "82f3acd4690b046b9c636b6bc5eea22c10d2e9dc19052996168859826b5b899a",
+      "publisher.py": "2f19cb17fb7ecdfdbf3a6fc9929c9691fb965295df159ff91ecc385ce99e5d29",
+      "run_probe.sh": "631599ecd973469bf8c30a8802861dd497eabf108091412cd48c795d0e2c1576",
+      "receiver.log": "b39b039bac54ffbc745faf19130133213ecc7da26a35235b9f15622a4c13c934",
+      "publisher.json": "6bd0c65adbf699e93aba9ee9001c90914d54147fa86176cde7a62ec4d27bc1ec",
+      "run-02.log": "c6f8fda121867ac02e2d7f276c7cb4c180b81b034f097503f57c2fb045731a1c"
+    }
+  }
+}

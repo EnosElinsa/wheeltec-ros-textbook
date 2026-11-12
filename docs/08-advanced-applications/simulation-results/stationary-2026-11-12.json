@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "scope": "Posthoc descriptive analysis of legacy 1 Hz snapshots; no continuous health/wheel or navigation-load acceptance.",
+  "original_summary": {
+    "schema": 1,
+    "kind": "stationary sensor/estimation/rendering load; no navigation control load or vehicle acceptance",
+    "duration_wall_s": 1800.0012373840436,
+    "requested_wall_s": 1800.0,
+    "safe_commands": 35999,
+    "safe_interval_s": {
+      "count": 35998,
+      "p95": 0.05207771002314985,
+      "p99": 0.05418037451803684,
+      "maximum": 0.06075150705873966
+    },
+    "safe_intervals_over_100ms": 0,
+    "safe_receipt_age_s": {
+      "count": 1792,
+      "p95": 0.04824384935200214,
+      "p99": 0.05093025574460625,
+      "maximum": 0.05631382390856743
+    },
+    "states": {
+      "READY": 1793
+    },
+    "violations": {
+      "missing_safe_command": 1
+    },
+    "first_window_rss_sum_median_bytes": 3747192832.0,
+    "last_window_rss_sum_median_bytes": 4371273728.0,
+    "memory_note": "Sum of process RSS includes shared pages; map/feature caches may grow. Inspect raw per-process cumulative CPU ticks.",
+    "sample_sha256": "9b2b32488e6daa00e5bed5ae6df2092221728df60cff06192673cf8a34abcd90",
+    "passed": false
+  },
+  "raw_samples_sha256": "9b2b32488e6daa00e5bed5ae6df2092221728df60cff06192673cf8a34abcd90",
+  "samples": 1793,
+  "cpu_busy_cores": {
+    "count": 1792,
+    "median": 6.329200903788319,
+    "p95": 6.5197371946365354,
+    "p99": 6.579760289821974,
+    "maximum": 6.660862181732871
+  },
+  "cpu_note": "Per-interval cumulative CPU tick deltas for PIDs present at both boundaries, divided by clock tick frequency and wall interval; excludes exited processes and recorder.",
+  "source_reported_age_s": {
+    "tf_authority": {
+      "count": 1793,
+      "median": 0.031753783114254475,
+      "p95": 0.03446304425597191,
+      "p99": 0.04149562139064074,
+      "maximum": 0.08167874906212091
+    },
+    "ownership": {
+      "count": 1793,
+      "median": 0.0,
+      "p95": 0.0,
+      "p99": 0.0,
+      "maximum": 0.10003161709755659
+    },
+    "tf": {
+      "count": 1793,
+      "median": 0.011,
+      "p95": 0.031,
+      "p99": 0.036,
+      "maximum": 0.11603161709755659
+    },
+    "imu": {
+      "count": 1793,
+      "median": 0.0033718962222337723,
+      "p95": 0.010055070118606091,
+      "p99": 0.012964256033301352,
+      "maximum": 0.11215333733707666
+    },
+    "wheel": {
+      "count": 1793,
+      "median": 0.01158619299530983,
+      "p95": 0.023204266652464865,
+      "p99": 0.02628934808075428,
+      "maximum": 0.11485894303768873
+    },
+    "odom": {
+      "count": 1793,
+      "median": 0.019892066553235055,
+      "p95": 0.040070296287536604,
+      "p99": 0.0456346815302968,
+      "maximum": 0.1354055860489607
+    },
+    "depth": {
+      "count": 1793,
+      "median": 0.04630129626393319,
+      "p95": 0.07314075557887555,
+      "p99": 0.0782348453477025,
+      "maximum": 0.14705353537946939
+    },
+    "cloud": {
+      "count": 1793,
+      "median": 0.0501438065469265,
+      "p95": 0.07746427184343337,
+      "p99": 0.08575195005536078,
+      "maximum": 0.14578074338287114
+    },
+    "obstacles": {
+      "count": 1793,
+      "median": 0.055262347258627414,
+      "p95": 0.0834387152865529,
+      "p99": 0.08877423039078712,
+      "maximum": 0.14333493965119123
+    },
+    "visual": {
+      "count": 1793,
+      "median": 0.07193849029392005,
+      "p95": 0.09745561729371548,
+      "p99": 0.10804654779285189,
+      "maximum": 0.1572263935059309
+    },
+    "vo": {
+      "count": 1793,
+      "median": 0.07355600016564132,
+      "p95": 0.09898307670652864,
+      "p99": 0.10867881730645892,
+      "maximum": 0.1567436592131853
+    }
+  },
+  "ros_clock_nonadvancing_snapshots": 0,
+  "nonadvancing_source_stamp_snapshots": {
+    "tf_authority": 0,
+    "ownership": 0,
+    "tf": 0,
+    "imu": 0,
+    "wheel": 0,
+    "odom": 0,
+    "depth": 0,
+    "cloud": 0,
+    "obstacles": 0,
+    "visual": 0,
+    "vo": 0
+  },
+  "missing_safe_samples": [
+    {
+      "elapsed_wall_s": 0.00028594397008419037,
+      "safe_receipt_age_s": null
+    }
+  ],
+  "temperature_observations": 0,
+  "memory_note": "RSS sum double-counts shared pages; last-vs-first 300-observation median increase is descriptive, not a leak diagnosis.",
+  "acceptance_status": "not_qualified: original recorder reports failure at first measurement sample, lacks callback coverage and temperature/valid-frame/control-load measurements"
+}

@@ -1,0 +1,625 @@
+{
+  "schema": 1,
+  "runs": [
+    {
+      "run": "mapping-all-05",
+      "session": {
+        "launch_command": [
+          "ros2",
+          "launch",
+          "wheeltec_vision_sim",
+          "sim.launch.py",
+          "output:=/work/results/mapping-all-05/launch",
+          "database_path:=/work/results/mapping-all-05.db",
+          "mode:=mapping",
+          "estimator:=baseline"
+        ],
+        "mission_command": [
+          "ros2",
+          "run",
+          "wheeltec_vision_sim",
+          "mission_runner",
+          "run",
+          "--output",
+          "/work/results/mapping-all-05/mission",
+          "--mode",
+          "mapping",
+          "--estimator",
+          "baseline",
+          "--scenario",
+          "all",
+          "--repeats",
+          "3",
+          "--launch-manifest",
+          "/work/results/mapping-all-05/launch/manifest.json",
+          "--ros-args",
+          "-p",
+          "use_sim_time:=true"
+        ],
+        "unexpected_launch_exit": false,
+        "started_utc": "2026-11-12T10:49:15Z",
+        "environment": {
+          "ROS_DOMAIN_ID": "88",
+          "IGN_PARTITION": "wheeltec-vision-88",
+          "WHEELTEC_SIM_LEASE_ROOT": "/work/leases",
+          "OMP_NUM_THREADS": "2",
+          "OPENCV_FOR_THREADS_NUM": "2",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "cpu_affinity": [
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79
+        ],
+        "mission_exit_code": 0,
+        "mission_shutdown": {
+          "exited_before_teardown": true,
+          "signals": [],
+          "escalated": false,
+          "exit_code": 0
+        },
+        "launch_shutdown": {
+          "exited_before_teardown": false,
+          "signals": [
+            "SIGINT"
+          ],
+          "escalated": false,
+          "exit_code": 0
+        },
+        "launch_exit_code": 0,
+        "session_success": true,
+        "elapsed_wall_s": 138.94871162064373
+      },
+      "artifact_sha256": {
+        "session.json": "e19413959539167e11dfc7562779206d6f82669c9d873cda7304e1626de5bc27",
+        "launch/manifest.json": "a4f7032543ff68b47fffbd7c096d5e3fbda60763cc37e433b3e7191236c34abd",
+        "mission/results.json": "d308354bd462ce3755d94e5cf4a6dea25c29398811f39c0da58adec535944869",
+        "mission/samples.jsonl": "2ab9315c1067bbb25ec0e2f7e3987f6bc454651ec18d4c3779a775e2e203e058",
+        "launch.log": "70d3e26f2315a5d4368f923e196862d4cc7495e0dd33aadc0574083a1dfdb338"
+      }
+    },
+    {
+      "run": "mapping-vio-02",
+      "session": {
+        "launch_command": [
+          "ros2",
+          "launch",
+          "wheeltec_vision_sim",
+          "sim.launch.py",
+          "output:=/work/results/mapping-vio-02/launch",
+          "database_path:=/work/results/mapping-vio-02.db",
+          "mode:=mapping",
+          "estimator:=vio"
+        ],
+        "mission_command": [
+          "ros2",
+          "run",
+          "wheeltec_vision_sim",
+          "mission_runner",
+          "run",
+          "--output",
+          "/work/results/mapping-vio-02/mission",
+          "--mode",
+          "mapping",
+          "--estimator",
+          "vio",
+          "--scenario",
+          "all",
+          "--repeats",
+          "3",
+          "--launch-manifest",
+          "/work/results/mapping-vio-02/launch/manifest.json",
+          "--ros-args",
+          "-p",
+          "use_sim_time:=true"
+        ],
+        "unexpected_launch_exit": false,
+        "started_utc": "2026-11-12T10:50:08Z",
+        "environment": {
+          "ROS_DOMAIN_ID": "90",
+          "IGN_PARTITION": "wheeltec-vision-90",
+          "WHEELTEC_SIM_LEASE_ROOT": "/work/leases",
+          "OMP_NUM_THREADS": "2",
+          "OPENCV_FOR_THREADS_NUM": "2",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "cpu_affinity": [
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111
+        ],
+        "mission_exit_code": 0,
+        "mission_shutdown": {
+          "exited_before_teardown": true,
+          "signals": [],
+          "escalated": false,
+          "exit_code": 0
+        },
+        "launch_shutdown": {
+          "exited_before_teardown": false,
+          "signals": [
+            "SIGINT"
+          ],
+          "escalated": false,
+          "exit_code": 0
+        },
+        "launch_exit_code": 0,
+        "session_success": true,
+        "elapsed_wall_s": 136.30952166952193
+      },
+      "artifact_sha256": {
+        "session.json": "7e0f50a443fb413801970252b27600864f66c0b9e355bd09187483be62040392",
+        "launch/manifest.json": "845248e4ec1119497e17c66f2c40e1c1ca85636d1fcb88dc7ab02c0da0e2cf00",
+        "mission/results.json": "2ae585d28551687f34e4773f650a5d5fbf21774311bcb4c49a0ccdb5529b1381",
+        "mission/samples.jsonl": "05bac7315aeb2eb2b8f864d21527d85a78a3fa1d732cee227e1f23acfdbd97df",
+        "launch.log": "d926ead8acafa72495ff5ef09defb06d1d2e75b4b48a921634ea7df0a9135592"
+      }
+    },
+    {
+      "run": "mapping-stereo-02",
+      "session": {
+        "launch_command": [
+          "ros2",
+          "launch",
+          "wheeltec_vision_sim",
+          "sim.launch.py",
+          "output:=/work/results/mapping-stereo-02/launch",
+          "database_path:=/work/results/mapping-stereo-02.db",
+          "mode:=mapping",
+          "estimator:=stereo"
+        ],
+        "mission_command": [
+          "ros2",
+          "run",
+          "wheeltec_vision_sim",
+          "mission_runner",
+          "run",
+          "--output",
+          "/work/results/mapping-stereo-02/mission",
+          "--mode",
+          "mapping",
+          "--estimator",
+          "stereo",
+          "--scenario",
+          "all",
+          "--repeats",
+          "3",
+          "--launch-manifest",
+          "/work/results/mapping-stereo-02/launch/manifest.json",
+          "--ros-args",
+          "-p",
+          "use_sim_time:=true"
+        ],
+        "unexpected_launch_exit": false,
+        "started_utc": "2026-11-12T11:19:16Z",
+        "environment": {
+          "ROS_DOMAIN_ID": "94",
+          "IGN_PARTITION": "wheeltec-vision-94",
+          "WHEELTEC_SIM_LEASE_ROOT": "/work/leases",
+          "OMP_NUM_THREADS": "2",
+          "OPENCV_FOR_THREADS_NUM": "2",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "cpu_affinity": [
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47
+        ],
+        "mission_exit_code": 0,
+        "mission_shutdown": {
+          "exited_before_teardown": true,
+          "signals": [],
+          "escalated": false,
+          "exit_code": 0
+        },
+        "launch_shutdown": {
+          "exited_before_teardown": false,
+          "signals": [
+            "SIGINT"
+          ],
+          "escalated": false,
+          "exit_code": 0
+        },
+        "launch_exit_code": 0,
+        "session_success": true,
+        "elapsed_wall_s": 156.27822845056653
+      },
+      "artifact_sha256": {
+        "session.json": "4095f18354ea4d0691f134b225e035375a4f94613ec2e8567f4d464bc150b18a",
+        "launch/manifest.json": "2439a5feea29bdbb4f0e2b9cf82cce53e641671c32d87d2bcf653653b4bf39e4",
+        "mission/results.json": "7dc6d1af0f6e6b293735ca95383421723d97b862b5402b34d4b3f784d4f9608b",
+        "mission/samples.jsonl": "127aeed6eb279b3554a81227de5f2cebfc9ca25aef54292a2eb2b5326d1d6ee2",
+        "launch.log": "32dc10124b258eb2b592bc47785027d4676c384b56f1ebe5326a04939a10341c"
+      }
+    },
+    {
+      "run": "localization-baseline-04",
+      "session": {
+        "launch_command": [
+          "ros2",
+          "launch",
+          "wheeltec_vision_sim",
+          "sim.launch.py",
+          "output:=/work/results/localization-baseline-04/launch",
+          "database_path:=/work/results/mapping-all-05.db",
+          "mode:=localization",
+          "estimator:=baseline"
+        ],
+        "mission_command": [
+          "ros2",
+          "run",
+          "wheeltec_vision_sim",
+          "mission_runner",
+          "run",
+          "--output",
+          "/work/results/localization-baseline-04/mission",
+          "--mode",
+          "localization",
+          "--estimator",
+          "baseline",
+          "--scenario",
+          "all",
+          "--repeats",
+          "3",
+          "--launch-manifest",
+          "/work/results/localization-baseline-04/launch/manifest.json",
+          "--ros-args",
+          "-p",
+          "use_sim_time:=true"
+        ],
+        "unexpected_launch_exit": false,
+        "started_utc": "2026-11-12T11:16:45Z",
+        "environment": {
+          "ROS_DOMAIN_ID": "88",
+          "IGN_PARTITION": "wheeltec-vision-88",
+          "WHEELTEC_SIM_LEASE_ROOT": "/work/leases",
+          "OMP_NUM_THREADS": "2",
+          "OPENCV_FOR_THREADS_NUM": "2",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "cpu_affinity": [
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79
+        ],
+        "mission_exit_code": 0,
+        "mission_shutdown": {
+          "exited_before_teardown": true,
+          "signals": [],
+          "escalated": false,
+          "exit_code": 0
+        },
+        "launch_shutdown": {
+          "exited_before_teardown": false,
+          "signals": [
+            "SIGINT"
+          ],
+          "escalated": false,
+          "exit_code": 0
+        },
+        "launch_exit_code": 0,
+        "session_success": true,
+        "elapsed_wall_s": 146.20676817465574
+      },
+      "artifact_sha256": {
+        "session.json": "5b1a4db63f3690836e701b748951233606414a47719f2c0c32d8f5261dcef749",
+        "launch/manifest.json": "754d3498275ed0882dacbaddc7f096f3ebd5ab418bce7117d43c91110a17f167",
+        "mission/results.json": "930d94f5cf1b754d25b35cc1613972c503ffae7fb2dd880de819b93354c2c85b",
+        "mission/samples.jsonl": "6a98fb002c181c3a71738d6cea4f2f0b7e42492f1b49eab005b4c00e0a018e0d",
+        "launch.log": "b391928cf6259920a655b1e11a0f8b833e3977fc90bca901e47e2d152d7e935c"
+      }
+    },
+    {
+      "run": "localization-vio-05",
+      "session": {
+        "launch_command": [
+          "ros2",
+          "launch",
+          "wheeltec_vision_sim",
+          "sim.launch.py",
+          "output:=/work/results/localization-vio-05/launch",
+          "database_path:=/work/results/mapping-vio-02.db",
+          "mode:=localization",
+          "estimator:=vio"
+        ],
+        "mission_command": [
+          "ros2",
+          "run",
+          "wheeltec_vision_sim",
+          "mission_runner",
+          "run",
+          "--output",
+          "/work/results/localization-vio-05/mission",
+          "--mode",
+          "localization",
+          "--estimator",
+          "vio",
+          "--scenario",
+          "all",
+          "--repeats",
+          "3",
+          "--launch-manifest",
+          "/work/results/localization-vio-05/launch/manifest.json",
+          "--ros-args",
+          "-p",
+          "use_sim_time:=true"
+        ],
+        "unexpected_launch_exit": false,
+        "started_utc": "2026-11-12T11:16:45Z",
+        "environment": {
+          "ROS_DOMAIN_ID": "90",
+          "IGN_PARTITION": "wheeltec-vision-90",
+          "WHEELTEC_SIM_LEASE_ROOT": "/work/leases",
+          "OMP_NUM_THREADS": "2",
+          "OPENCV_FOR_THREADS_NUM": "2",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "cpu_affinity": [
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95
+        ],
+        "mission_exit_code": 0,
+        "mission_shutdown": {
+          "exited_before_teardown": true,
+          "signals": [],
+          "escalated": false,
+          "exit_code": 0
+        },
+        "launch_shutdown": {
+          "exited_before_teardown": false,
+          "signals": [
+            "SIGINT"
+          ],
+          "escalated": false,
+          "exit_code": 0
+        },
+        "launch_exit_code": 0,
+        "session_success": true,
+        "elapsed_wall_s": 138.93980659078807
+      },
+      "artifact_sha256": {
+        "session.json": "b080853ad5d85ddc57068779e95d1d50b0b8bac959648733ed15d627f30c6ea7",
+        "launch/manifest.json": "bfd3ff3e0d29b5efe937c845a5c1335ff0475bba78bd373a5cef9a56b570d25f",
+        "mission/results.json": "96c73a704c15947a12284d7f35af4bcaae6765ee36034458d3de10035f9e8a29",
+        "mission/samples.jsonl": "a942110ebf189c8c8e32d289b25f99169fddf84476b540ec08bb4feee39b97a2",
+        "launch.log": "859a155af5ec2b93f3c026b54e2f41f4a46b8c11be77070746ad275440bea211"
+      }
+    },
+    {
+      "run": "localization-stereo-01",
+      "session": {
+        "launch_command": [
+          "ros2",
+          "launch",
+          "wheeltec_vision_sim",
+          "sim.launch.py",
+          "output:=/work/results/localization-stereo-01/launch",
+          "database_path:=/work/results/mapping-stereo-02.db",
+          "mode:=localization",
+          "estimator:=stereo"
+        ],
+        "mission_command": [
+          "ros2",
+          "run",
+          "wheeltec_vision_sim",
+          "mission_runner",
+          "run",
+          "--output",
+          "/work/results/localization-stereo-01/mission",
+          "--mode",
+          "localization",
+          "--estimator",
+          "stereo",
+          "--scenario",
+          "all",
+          "--repeats",
+          "3",
+          "--launch-manifest",
+          "/work/results/localization-stereo-01/launch/manifest.json",
+          "--ros-args",
+          "-p",
+          "use_sim_time:=true"
+        ],
+        "unexpected_launch_exit": false,
+        "started_utc": "2026-11-12T11:22:19Z",
+        "environment": {
+          "ROS_DOMAIN_ID": "94",
+          "IGN_PARTITION": "wheeltec-vision-94",
+          "WHEELTEC_SIM_LEASE_ROOT": "/work/leases",
+          "OMP_NUM_THREADS": "2",
+          "OPENCV_FOR_THREADS_NUM": "2",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "cpu_affinity": [
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47
+        ],
+        "mission_exit_code": 0,
+        "mission_shutdown": {
+          "exited_before_teardown": true,
+          "signals": [],
+          "escalated": false,
+          "exit_code": 0
+        },
+        "launch_shutdown": {
+          "exited_before_teardown": false,
+          "signals": [
+            "SIGINT"
+          ],
+          "escalated": false,
+          "exit_code": 0
+        },
+        "launch_exit_code": 0,
+        "session_success": true,
+        "elapsed_wall_s": 139.92266392428428
+      },
+      "artifact_sha256": {
+        "session.json": "6fbe2508a4322cb7d94f7b3c167a59c09662837a5427f8e09fe7debf4fe671a1",
+        "launch/manifest.json": "4ea1bbb667d40bf23a5282a60e4405aa77cdccedf9585ac6120341a454e0116f",
+        "mission/results.json": "6815548f43c2605683798a91defe15cf8960fa3c1d4b75ccf02c6d34375370ab",
+        "mission/samples.jsonl": "e2e3eb868bd56097b9ae1374bc45a7f58e993254004736323aa27e424b68d033",
+        "launch.log": "dc949b755c019c2fbf4288ae5bd3d646630f2d4cc85ceacf9239f561fac56bce"
+      }
+    }
+  ]
+}

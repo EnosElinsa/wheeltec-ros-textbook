@@ -1,0 +1,611 @@
+{
+  "schema": 2,
+  "kind": "stationary sensor/estimation/rendering load; no navigation control load or vehicle acceptance",
+  "requested_wall_s": 30.0,
+  "duration_wall_s": 30.000791455619037,
+  "completed": true,
+  "safe_commands": 600,
+  "wheel_callbacks": 1363,
+  "health_callbacks": 130,
+  "health_callback_states": {
+    "READY": 130
+  },
+  "safe_interval_s": {
+    "count": 599,
+    "p95": 0.05233529442921281,
+    "p99": 0.054410682115703816,
+    "maximum": 0.05648646783083677
+  },
+  "safe_coverage_gap_s": {
+    "count": 601,
+    "p95": 0.052335070446133614,
+    "p99": 0.05440922919660807,
+    "maximum": 0.05648646783083677
+  },
+  "safe_receipts_sha256": "70ad039c8ef1279c08e436a6b63364e8cca3e93c506e8151c6097b4fbde0a0eb",
+  "interval_note": "Interarrival statistics use measurement-window callbacks; coverage also includes window head and tail. Warmup receipt is retained for expiry checks.",
+  "safe_window_head_s": 0.04680572357028723,
+  "safe_window_tail_s": 0.004136255010962486,
+  "safe_intervals_over_100ms": 0,
+  "violations": {
+    "health_source_stale_or_invalid:cloud": 40,
+    "health_source_stale_or_invalid:depth": 39,
+    "health_source_stale_or_invalid:obstacles": 59
+  },
+  "violation_events": [
+    {
+      "elapsed_wall_s": 1.0888134641572833,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 1.10027573723346,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 1.10027573723346,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 1.3335054516792297,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 1.5835917070508003,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 1.5951931793242693,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 1.5951931793242693,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 1.8171506021171808,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 2.5368090299889445,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 2.5368090299889445,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 2.547233421355486,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 3.0478178495541215,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 3.0478178495541215,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 3.0478178495541215,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 3.2703089080750942,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 3.7469181390479207,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 3.972879096865654,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 3.972879096865654,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 3.9831584682688117,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 5.01626100204885,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 5.294227274134755,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 5.294227274134755,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 5.294227274134755,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 5.731231641024351,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 5.731231641024351,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 5.731231641024351,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 6.171140238642693,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 6.184723990038037,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 7.3407314866781235,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 7.343261109665036,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 7.346437489613891,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 7.7908205995336175,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 7.7908205995336175,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 7.7908205995336175,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 8.282278816215694,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 8.283961945213377,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 8.283961945213377,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 8.719038647599518,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 8.995016748085618,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 8.995016748085618,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 8.996469299308956,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 9.427390394732356,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 9.427390394732356,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 9.427390394732356,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 9.871185502037406,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 9.886344593949616,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 10.321105234324932,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 10.9743965966627,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 12.067379657179117,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 12.333657384850085,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 12.343802309595048,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 12.343802309595048,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 12.596351858228445,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 12.596351858228445,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 13.032264729961753,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 13.032264729961753,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 13.035707927308977,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 13.479709604755044,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 13.74170655850321,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 13.74170655850321,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 13.973626726306975,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 14.89117898605764,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 14.89117898605764,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 14.89117898605764,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 15.33720073942095,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 15.33720073942095,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 15.33720073942095,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 15.780476746149361,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 15.780476746149361,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 15.790656682103872,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 16.494647713378072,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 16.494647713378072,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 16.9882857427001,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 16.9882857427001,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 16.994712692685425,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 17.424456803128123,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 17.696385260671377,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 17.91985988430679,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 17.926353993825614,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 17.926353993825614,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 18.370356364175677,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 19.03089256118983,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 19.03089256118983,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 19.03493702597916,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 19.526687301695347,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 19.526687301695347,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 19.52684166096151,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 19.802307290025055,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 19.802307290025055,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 19.802307290025055,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 20.027554952539504,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 20.731178233399987,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 20.740689023397863,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 20.740689023397863,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 21.389714490622282,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 21.389714490622282,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 21.39064019639045,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 21.831001916900277,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 21.834996841847897,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 22.268677878193557,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 22.53062181081623,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 22.53250613901764,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 22.542804245837033,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 22.97665282804519,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 23.627728001214564,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 24.54003079328686,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 24.55032993014902,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 24.55032993014902,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 24.77569266036153,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 25.03989644162357,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 25.050094639882445,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 25.050094639882445,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 25.279587257653475,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 25.721339103765786,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 25.992751038633287,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 25.992751038633287,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 25.992751038633287,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 26.217594819143414,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 26.48171342536807,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 26.48171342536807,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 26.482496899552643,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 26.97929199319333,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 26.97929199319333,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 26.97929199319333,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 27.417460408061743,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 27.69300005119294,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 27.69300005119294,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 27.697542392648757,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 28.186742804944515,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 28.186742804944515,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 28.191002558916807,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 29.025362132117152,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 29.291818119585514,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 29.291818119585514,
+      "reason": "health_source_stale_or_invalid:depth"
+    },
+    {
+      "elapsed_wall_s": 29.291818119585514,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 29.522956673055887,
+      "reason": "health_source_stale_or_invalid:obstacles"
+    },
+    {
+      "elapsed_wall_s": 29.79245405551046,
+      "reason": "health_source_stale_or_invalid:cloud"
+    },
+    {
+      "elapsed_wall_s": 29.79245405551046,
+      "reason": "health_source_stale_or_invalid:depth"
+    }
+  ],
+  "sample_count": 30,
+  "monitoring": "every callback and main loop; gap check precedes receipt updates",
+  "thresholds_s": {
+    "receipt": 0.3,
+    "health_sources_default": 0.3,
+    "health_source_exceptions": {
+      "vo": 0.5,
+      "visual": 0.5,
+      "map_tf": 5.0,
+      "localization": 5.0
+    }
+  },
+  "measured_ros_seconds": 27.270000000000003,
+  "first_window_rss_sum_median_bytes": 4323796992.0,
+  "last_window_rss_sum_median_bytes": 4323796992.0,
+  "memory_note": "RSS sums include shared pages; windows contain at most 300 observations, not guaranteed seconds.",
+  "sample_sha256": "4a27843f988db768b18794c9538f6eb38373cc678567e73345403221ef18b256",
+  "recorder_sha256": "52cd906b13b7fe8e417a23efbdd5cede44474e7b100f386caa9d0dd4c059e8a7",
+  "schema1_note": "Legacy runs lack callback receipt/source/clock coverage; do not backfill schema 2 evidence.",
+  "limits": "Receipt gaps and health-reported source age are observed locally; this is not acquisition-to-actuator latency or a moving/navigation soak.",
+  "error": null,
+  "passed": false
+}

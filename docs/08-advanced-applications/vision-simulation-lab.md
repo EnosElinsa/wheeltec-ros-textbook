@@ -6,7 +6,7 @@ status: complete
 
 视觉导航需要同时检查定位算法和导航闭环。公开数据集提供固定观测与独立真值，适合检验 VINS 的初始化、轨迹误差和处理速度；Gazebo 接收车辆控制指令并生成后续观测，适合检验规划、避障、停车与故障恢复。两种实验各自回答不同的问题。
 
-本文配套代码位于 [wheeltec-ros-source-reference 的 vision-nav 目录](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/55bc02e4dfada82c84f59161884d12a029766987/ros2/navigation/vision-nav)。运行包、依赖与实验脚本放在源码仓库；教材维护操作说明、指标解释和验证记录。[本轮实验报告](vision-simulation-results.md)保存实测结果、失败项与配置身份。当前实车运行基线仍是 RGB-D、轮速和 IMU EKF。VINS 输出位姿与速度，Nav2 生成行驶指令，最终指令通过安全看门狗进入执行器。
+本文配套代码位于 [wheeltec-ros-source-reference 的 vision-nav 目录](https://github.com/EnosElinsa/wheeltec-ros-source-reference/tree/1e518ba923e6876254ae0eddddab5ac52d42798c/ros2/navigation/vision-nav)。运行包、依赖与实验脚本放在源码仓库；教材维护操作说明、指标解释和验证记录。[本轮实验报告](vision-simulation-results.md)保存实测结果、失败项与配置身份。当前实车运行基线仍是 RGB-D、轮速和 IMU EKF。VINS 输出位姿与速度，Nav2 生成行驶指令，最终指令通过安全看门狗进入执行器。
 
 ## 选择实验环境
 
@@ -84,6 +84,8 @@ sudo env WHEELTEC_SIM_ROOT="$SIM_ROOT" WHEELTEC_SIM_GPU=1 bash run.sh \
 
 `mode:=stereo` 使用纯双目 VO。结果包括 `manifest.json`、`trajectory.csv`、`visual_status.csv`、`playback.csv`、`metrics.json` 和轨迹图。`metrics.json` 中的覆盖率、无输出标记和延迟必须与误差同时阅读。单次成功后再运行 `run_euroc_suite.sh`，分别对三个序列、两种模式各重复三次，失败日志同样保留。
 
+EuRoC YAML 中的 IMU 噪声是连续时间密度，不能直接当作 VINS 积分器每步使用的标准差。当前固定移植版采用中点积分：基准配置生成器根据实际 IMU 频率转换测量噪声和零偏随机游走，并在 manifest 保存原始数值、单位、转换策略与派生参数。程序同时检查原始 IMU 采样间隔，保持时间戳不变。这是特定积分实现的近似离散模型，仍需重复实验评估精度与全程覆盖率；配置生成成功不代表 VIO 通过。
+
 ## 再验证导航：简化 Ackermann 车辆
 
 首轮模型使用方形车体、四轮和前轮转向。配置中保存车长宽、轴距、轮距、轮径、转向限位、质量、摩擦和传感器安装位姿。近似尺寸适合检查软件链路，实测尺寸决定窄通道、转弯半径与碰撞结论的适用范围。房间的地面、四面墙和地标使用固定种子生成的角点纹理；纹理只影响图像，碰撞几何保持固定。相同地图的建图和定位须使用相同纹理版本。
@@ -127,12 +129,17 @@ sudo env WHEELTEC_SIM_ROOT="$SIM_ROOT" WHEELTEC_SIM_GPU=1 bash run.sh \
 
 ```bash
 sudo env WHEELTEC_SIM_ROOT="$SIM_ROOT" WHEELTEC_SIM_GPU=1 WHEELTEC_SIM_CPUS=32 \
+  WHEELTEC_SIM_CPUSET=0-31 ROS_DOMAIN_ID=88 \
   bash run.sh python3 /work/containers/run_sim_trial.py \
   --output /work/results/mapping-suite-001 --database /work/results/room-suite.db \
   --mode mapping --estimator baseline --scenario all
 ```
 
 一组实验内的三次试验沿用正在演化的车辆位置。需要独立起点的统计时，应重新启动仿真并使用新的结果目录。会话的日志、命令、退出码与实际断言分别保存在 `launch.log`、`mission.log`、`session.json` 和 `mission/results.json`。仅有零速命令不足以证明停车，运行器还检查新鲜轮速与独立真值位移；路线到达同时检查 Nav2 状态与固定初始坐标对齐下的真值终点。
+
+CPU 编号按主机可用核心调整。CPU 配额控制总计算用量，CPU 亲和性限制进程可见的核心，二者分别配置；在多核服务器上只设配额，图像库仍可能建立过多工作线程。并行实验使用不同 CPU 集合、DDS 域和地图数据库，同时记录实际亲和性与线程限制。
+
+导航开始前，运行器等待七个 Nav2 生命周期节点全部 ACTIVE。每个试验还需连续 0.5 s 获得新鲜健康状态、轮速、真值、五路接触观测和清空的前向观测走廊，45 s 内未满足则失败。准备阶段单独记录；进入故障测试后持续检查全部证据，不通过等待或过滤删除失效样本。Gazebo 创建、移除障碍与暂停服务等待期间继续处理 ROS 回调。
 
 ## 时间、暂停与停车
 
@@ -161,6 +168,17 @@ EuRoC Machine Hall 的参考轨迹来自 Leica 位置与 IMU 的批量优化，�
 
 没有独立同步真值的实车实验，可以报告闭环端点误差、重复性、丢失率与恢复时间。地图自洽、轮速轨迹和回到起点本身不能替代独立真值。
 
+静止负载可通过专用会话入口记录，默认创建新地图、持续 1800 s，并在结束时关闭整组进程：
+
+```bash
+sudo env WHEELTEC_SIM_ROOT="$SIM_ROOT" WHEELTEC_SIM_GPU=1 WHEELTEC_SIM_CPUS=16 \
+  WHEELTEC_SIM_CPUSET=0-15 ROS_DOMAIN_ID=92 \
+  bash run.sh python3 /work/containers/run_soak_trial.py \
+  --output /work/results/stationary-load-001 --duration 1800 --estimator baseline
+```
+
+该入口不发送运动指令。逐回调保存安全指令收流、轮速与时钟证据，每秒保存资源快照，并保留异常和提前退出的失败摘要。健康话题中的源状态是周期快照；判断连续源覆盖还需原始输入的独立接收记录。静止负载不能代替 Nav2 行驶负载或实车实时性验收。
+
 ## 实施与验证记录
 
 2026-11-12 开始实现以下配套模块。表中只列实际验证层级，后续运行结果在此维护。
@@ -168,15 +186,15 @@ EuRoC Machine Hall 的参考轨迹来自 Leica 位置与 IMU 的批量优化，�
 | 项目 | 当前证据 |
 | --- | --- |
 | NVIDIA 容器设备映射 | 一次性容器成功识别选定 GPU |
-| 既有保护链与新增仿真工具测试 | Windows 控制端复核：607 项通过、8 项按 ROS/POSIX 环境跳过；GitHub Linux/Windows Python 3.10、3.12 与 Humble CI 已通过 |
+| 既有保护链与新增仿真工具测试 | Windows 控制端复核：667 项通过、8 项按 ROS/POSIX 环境跳过；GitHub Linux/Windows Python 3.10、3.12 与 Humble CI 已通过 |
 | ROS 中间件保护集成测试 | 隔离 Humble 容器：4 项通过，9.30 s；POSIX 会话退出测试 7 项通过，原生执行器 CTest 1/1 通过 |
 | Humble/Fortress 实验镜像 | 已构建，Gazebo 6.18.0；五个本地 ROS 包编译通过，原生执行器 CTest 1/1 通过 |
 | 仿真传感器首轮检查 | 无界面图像、深度、IMU、关节、五路碰撞观测与独立真值已输出；最终速度出口和暂停时的墙钟保护已实测 |
 | EuRoC 数据完整性 | MH01、MH03、MH05 下载与 ZIP CRC、标定、图像和时序验证通过；MH05 VIO 记录一帧边界排除 |
 | EuRoC 正式 VO/VIO 回归 | 三个序列、两种模式、各三次，共 18 次运行及评分完成；双目 VO 可复现，VIO 出现明显漂移和发散，精度验收未通过 |
-| Gazebo 建图与故障闭环 | RGB-D 基线与 VIO 在新纹理房间各 24/24 通过；双目 VO 在旧纹理房间 24/24 通过。三者场景版本不同，不能据此排名 |
-| Gazebo 地图定位与 Nav2 | 已验证新纹理地图可重定位；导航启动与目标执行仍在验收，未宣告闭环通过 |
-| 30 分钟持续负载 | 尚未完成；约两分钟故障测试不能替代持续负载验收 |
+| Gazebo 建图与故障闭环 | RGB-D、双目 VO、VIO 在统一纹理房间各 24/24 通过，地图正常关闭 |
+| Gazebo 地图定位与 Nav2 | 三种模式各 24/24 通过，独立真值到点误差 0.170–0.192 m；范围限于当前房间和短路线 |
+| 30 分钟持续负载 | 已完成静止描述性记录；原记录器首样误报且缺连续证据，保留未通过。修正后 30 s 抽查通过，最终版本 30 分钟与行驶负载待测 |
 | 实车标定、采样时序与制动 | 待实车测量 |
 
 实车操作与验收分别见[视觉建图与导航操作](../06-sensors-navigation/41-visual-operation.md)和[全系统验收清单](../10-deployment-maintenance/59-system-acceptance.md)。

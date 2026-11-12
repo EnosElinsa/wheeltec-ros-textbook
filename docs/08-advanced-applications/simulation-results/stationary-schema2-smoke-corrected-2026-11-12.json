@@ -1,0 +1,55 @@
+{
+  "schema": 2,
+  "kind": "stationary sensor/estimation/rendering load; no navigation control load or vehicle acceptance",
+  "requested_wall_s": 30.0,
+  "duration_wall_s": 30.000210042111576,
+  "completed": true,
+  "safe_commands": 600,
+  "wheel_callbacks": 1362,
+  "health_callbacks": 130,
+  "health_callback_states": {
+    "READY": 130
+  },
+  "safe_interval_s": {
+    "count": 599,
+    "p95": 0.05243174349889159,
+    "p99": 0.05473530733957886,
+    "maximum": 0.05760536249727011
+  },
+  "safe_coverage_gap_s": {
+    "count": 601,
+    "p95": 0.05243159458041191,
+    "p99": 0.054728010669350624,
+    "maximum": 0.05760536249727011
+  },
+  "safe_receipts_sha256": "73f04736c7c91b568e79be369825bad5b9b06c466cc1eff3322f43450c00cfb1",
+  "interval_note": "Interarrival statistics use measurement-window callbacks; coverage also includes window head and tail. Warmup receipt is retained for expiry checks.",
+  "safe_window_head_s": 0.0361879076808691,
+  "safe_window_tail_s": 0.014116124249994755,
+  "safe_intervals_over_100ms": 0,
+  "violations": {},
+  "violation_events": [],
+  "sample_count": 30,
+  "monitoring": "every callback and main loop; gap check precedes receipt updates",
+  "thresholds_s": {
+    "receipt": 0.3,
+    "health_sources_default": 0.3,
+    "health_source_exceptions": {
+      "vo": 0.5,
+      "visual": 0.5,
+      "map_tf": 5.0,
+      "localization": 5.0
+    }
+  },
+  "health_source_observation": "Health callback snapshots only: reported valid/age are checked without extrapolation; no continuous direct source coverage is claimed.",
+  "measured_ros_seconds": 27.240000000000002,
+  "first_window_rss_sum_median_bytes": 4384061440.0,
+  "last_window_rss_sum_median_bytes": 4384061440.0,
+  "memory_note": "RSS sums include shared pages; windows contain at most 300 observations, not guaranteed seconds.",
+  "sample_sha256": "7350f5dee989106a02e85373404bfaedf292d0a42888d0540bc4b9b2cfaa2581",
+  "recorder_sha256": "531df097bcf1ddbb185ac46b6934b40354aba3e636148c40b0db25d018ec4e0e",
+  "schema1_note": "Legacy runs lack callback receipt/source/clock coverage; do not backfill schema 2 evidence.",
+  "limits": "Health/command/wheel/clock receipt gaps are monitored continuously. Other source validity/age are observed only in health snapshots; this is not continuous direct source validation, acquisition-to-actuator latency, or a moving/navigation soak.",
+  "error": null,
+  "passed": true
+}
