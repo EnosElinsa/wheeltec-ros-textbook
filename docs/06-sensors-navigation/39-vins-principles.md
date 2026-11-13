@@ -4,15 +4,25 @@ status: complete
 
 # 39. VINS：视觉惯性里程计的工作原理
 
-视觉里程计利用同一空间点在连续图像中的观测变化，估计相机的位置和朝向。位置与朝向合称为位姿。连续估计相对出发处的位姿，就是里程计要完成的任务。
+VINS 是视觉惯性导航系统（Visual-Inertial Navigation System）的缩写。本章讨论的是香港科技大学团队开发的 VINS-Mono 和 VINS-Fusion 两个开源定位系统，后者下文简称 Fusion。它们的核心任务是利用相机图像和惯性测量单元（IMU），连续估计设备的位置、朝向与速度。位置和朝向合称为位姿，按时间排列的位姿构成运动轨迹。[VINS-Mono 论文][s1]、[Fusion 官方说明][s3]
 
-只用图像时，图像中缺少可区分的细节、运动造成图像模糊，或场景被遮挡，都可能使有效的对应点不足。惯性测量单元（IMU）提供角速度和加速度计测量，可以补充两帧图像之间的运动信息，但由这些测量逐步累加得到的轨迹也会不断积累误差。**视觉惯性里程计**（Visual-Inertial Odometry，VIO）结合两类测量：利用图像核对场景与运动的关系，利用 IMU 描述相邻时刻之间的运动，再共同调整估计结果。
+例如，小车从出发处向前行驶并转弯，VINS 根据车载相机和 IMU 的观测估计它走了多远、转过多少角度，以及当前相对出发处的位置。这种能力可以为移动机器人的定位、飞行器的反馈控制，以及增强现实中虚拟物体与真实场景的对齐提供运动信息。在缺少 GPS 的室内，也可以从当前观测开始估计运动；需要地理位置参考时，Fusion 另提供 GPS 与里程计融合的示例。[VINS-Mono 官方介绍][mono-overview]、[Fusion 官方介绍][s3]
 
-本章以香港科技大学团队的 VINS-Mono 和 VINS-Fusion 为例，解释这一过程。VINS 是视觉惯性导航系统（Visual-Inertial Navigation System）的缩写。VINS-Mono 使用单目相机与 IMU，VINS-Fusion 还支持双目与 IMU、纯双目视觉里程计（Visual Odometry，VO），并提供可选的视觉回环与 GPS 融合模块。下文将 VINS-Fusion 简称为 Fusion。[VINS-Mono 论文][s1]、[Fusion 官方说明][s3]
+VO、VIO 和 SLAM 描述的是不同范围的任务与方法，VINS-Mono、VINS-Fusion 则是实现这些功能的具体软件系统。它们之间的关系如下：
 
-第 39.1～39.7 节依次介绍输入、视觉处理、惯性处理、初始化、联合优化、结果输出和回环。第 39.8 节再将这些原理对应到 R680。涉及加权、偏置修正和矩阵消元的进一步说明集中放在文末的[补充说明](#vins-math-details)。整套建图与导航的运行过程见[第 40 章][textbook]。
+| 名称 | 主要任务 | 在 VINS 中的对应功能 |
+| --- | --- | --- |
+| 视觉里程计（Visual Odometry，VO） | 利用连续图像估计相机的运动 | Fusion 的纯双目模式，只使用左右图像 |
+| **视觉惯性里程计**（Visual-Inertial Odometry，VIO） | 联合图像与 IMU，估计位姿、速度和惯性偏置 | VINS-Mono 使用单目与 IMU；Fusion 支持单目与 IMU、双目与 IMU |
+| SLAM：同步定位与建图 | 一边估计自身位姿，一边建立并维护环境地图 | VINS-Mono 的完整框架包含视觉惯性估计、回环与全局位姿图；Fusion 也提供可选的视觉回环模块 |
 
-配套的[视觉导航实验](../08-advanced-applications/51-vision-simulation-lab.md#euroc-replay)分别使用 EuRoC 真实飞行记录检查运动估计，并在虚拟小车中运行建图导航。两项实验共用估计器实现，分别使用各自的观测与标定；EuRoC 评分按固定尺度对齐轨迹。
+因此，单独运行 VINS 的运动估计器时，使用的是 VO 或 VIO 功能；使用包含地图维护、回环与全局轨迹校正的完整系统时，可以从视觉 SLAM 的角度理解它。VINS-Mono 官方将完整项目称为实时 SLAM 框架，Fusion 官方将核心称为多传感器状态估计器。这两种表述分别强调了整套系统和其中的运动估计部分。[VINS-Mono 官方介绍][mono-overview]、[Fusion 官方说明][s3]
+
+图像与 IMU 的结合，是 VINS 解决运动估计问题的主要方法。图像通过跟踪门框、墙角等特征，核对场景与运动的关系；IMU 提供更密集的角速度与加速度计测量，补充两帧图像之间的运动信息。两者共同约束同一条轨迹。长时间运动仍会使误差逐渐累积，形成漂移；再次经过旧地点时，回环模块可利用历史观测校正轨迹。
+
+VINS 中的地图主要保存视觉特征、关键帧及其位置关系，服务于定位和轨迹校正。机器人要绕开桌子并到达房间另一端，还需要障碍物、可通行区域、目标和路径控制。在本项目的双目 VO/VIO 实验中，Fusion 负责运动估计，后续融合环节加入轮速，RTAB-Map 负责导航地图和地图定位，Nav2 负责路径规划与行驶控制。
+
+下面先概括 VINS 的处理过程，再依次介绍输入、特征处理、惯性处理、初始化、联合优化、输出和回环；第 39.8 节将这些原理对应到 R680。计算细节集中在文末的[补充说明](#vins-math-details)，整套建图导航过程见[第 40 章][textbook]。配套的[视觉导航实验](../08-advanced-applications/51-vision-simulation-lab.md#euroc-replay)分别通过 EuRoC 真实数据回放检查运动估计，并在虚拟小车中验证建图导航。
 
 ---
 
@@ -480,6 +490,7 @@ $$
 [s12]: https://github.com/HKUST-Aerial-Robotics/VINS-Fusion/blob/be55a937a57436548ddfb1bd324bc1e9a9e828e0/vins_estimator/src/utility/visualization.cpp
 [s13]: https://github.com/HKUST-Aerial-Robotics/VINS-Fusion/blob/be55a937a57436548ddfb1bd324bc1e9a9e828e0/loop_fusion/src/keyframe.cpp
 [s14]: https://github.com/HKUST-Aerial-Robotics/VINS-Fusion/blob/be55a937a57436548ddfb1bd324bc1e9a9e828e0/config/euroc/euroc_stereo_imu_config.yaml
+[mono-overview]: https://github.com/HKUST-Aerial-Robotics/VINS-Mono#vins-mono
 [mono-device]: https://github.com/HKUST-Aerial-Robotics/VINS-Mono#5-run-with-your-device
 [project]: https://github.com/EnosElinsa/wheeltec-smart-car-literature/blob/99302be/04-analysis/vins-principles.md
 [textbook]: 40-visual-runtime.md
