@@ -71,6 +71,8 @@ sudo env WHEELTEC_SIM_ROOT="$SIM_ROOT" WHEELTEC_SIM_GPU=1 WHEELTEC_SIM_CPUS=32 \
 
 ## 53.3 EuRoC 回放与评分
 
+此入口启动数据播放器和 VINS 运动估计器，播放器按时间发布图像与 IMU，并记录估计轨迹供评分。它与第 53.2 节的 Gazebo 会话分别运行；从回放切换到小车闭环时，结束回放，按小车入口加载对应的传感器配置，再建图和导航。两类实验的完整数据流见第 [51.5 节](51-vision-simulation-lab.md#euroc-replay)。
+
 数据保留 `mav0/cam0`、`cam1`、`imu0` 和 `state_groundtruth_estimate0` 的原始结构，通过 SHA256、ZIP CRC 和文件检查核对完整性。下面以 MH01 的 VIO 为例：
 
 ```bash

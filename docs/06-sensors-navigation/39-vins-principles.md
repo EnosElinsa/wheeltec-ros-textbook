@@ -12,7 +12,7 @@ status: complete
 
 第 39.1～39.7 节依次介绍输入、视觉处理、惯性处理、初始化、联合优化、结果输出和回环。第 39.8 节再将这些原理对应到 R680。涉及加权、偏置修正和矩阵消元的进一步说明集中放在文末的[补充说明](#vins-math-details)。整套建图与导航的运行过程见[第 40 章][textbook]。
 
-配套的[视觉导航仿真实验](../08-advanced-applications/51-vision-simulation-lab.md)提供 EuRoC 双目 VO/VIO 的整流、播放和无尺度拟合评分流程，并说明如何进一步接入简化车辆的导航闭环。
+配套的[视觉导航实验](../08-advanced-applications/51-vision-simulation-lab.md#euroc-replay)分别使用 EuRoC 真实飞行记录检查运动估计，并在虚拟小车中运行建图导航。两项实验共用估计器实现，分别使用各自的观测与标定；EuRoC 评分按固定尺度对齐轨迹。
 
 ---
 
