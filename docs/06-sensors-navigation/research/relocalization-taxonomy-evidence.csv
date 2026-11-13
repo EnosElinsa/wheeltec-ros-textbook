@@ -1,0 +1,9 @@
+reference,doi,read_source,source_url,section,claim,exact_excerpt,source_sha256
+P28,10.1007/s11263-024-02019-5,author-version HTML,https://arxiv.org/html/2302.07433v5#S1.SS2,§1.2.2,重定位用于跟踪失效后的恢复和启动初始化,recovering when there is a failure in pose tracking,47476f512afa3e6fe2cf35d6442404b3c5008bf3a53b31caadc33b7417a5b06c
+P28,10.1007/s11263-024-02019-5,author-version HTML,https://arxiv.org/html/2302.07433v5#S2,§2,地图组织的三种常用形式,"keyframe-based submap, global feature map, and global metric map",47476f512afa3e6fe2cf35d6442404b3c5008bf3a53b31caadc33b7417a5b06c
+P28,10.1007/s11263-024-02019-5,author-version HTML,https://arxiv.org/html/2302.07433v5#S3,§3,按地点识别与位姿估计的衔接组织四类流程,considering their degree of place recognition and relative pose estimation,47476f512afa3e6fe2cf35d6442404b3c5008bf3a53b31caadc33b7417a5b06c
+P28,10.1007/s11263-024-02019-5,author-version HTML,https://arxiv.org/html/2302.07433v5#S4,§4,连续观测参与全局定位,Sequential Global Localization,47476f512afa3e6fe2cf35d6442404b3c5008bf3a53b31caadc33b7417a5b06c
+P29,10.1109/TNNLS.2023.3309809,existing library PDF,https://doi.org/10.1109/TNNLS.2023.3309809,§II-B; PDF p.3,全局重定位利用地图或空间参考恢复位姿,a prebuilt map or other spatial,1915f37ad995415fc4bff97081b14c0d964325b6c234b440d07d8f66e9c37334
+P29,10.1109/TNNLS.2023.3309809,existing library PDF,https://doi.org/10.1109/TNNLS.2023.3309809,§IV-A1; PDF pp.7–8,显式二维参考可保存为图像数据库,a database of geotagged images,1915f37ad995415fc4bff97081b14c0d964325b6c234b440d07d8f66e9c37334
+P29,10.1109/TNNLS.2023.3309809,existing library PDF,https://doi.org/10.1109/TNNLS.2023.3309809,§IV-A2; PDF p.8,场景信息可由网络隐式保存并用于预测位姿,implicitly representing a 2-D map inside a,1915f37ad995415fc4bff97081b14c0d964325b6c234b440d07d8f66e9c37334
+P29,10.1109/TNNLS.2023.3309809,existing library PDF,https://doi.org/10.1109/TNNLS.2023.3309809,§IV-B2; PDF p.10,预测三维场景坐标再求解相机位姿,learn an implicit transformation from 2-D pixel,1915f37ad995415fc4bff97081b14c0d964325b6c234b440d07d8f66e9c37334

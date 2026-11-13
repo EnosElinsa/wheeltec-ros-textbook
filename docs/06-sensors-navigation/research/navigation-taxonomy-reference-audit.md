@@ -4,7 +4,7 @@ status: complete
 
 # 第 33 章地图依赖分类核查说明
 
-本记录对应 2026 年 11 月 12 日按三条导航路线重写的[第 33 章](../33-relocalization-map-dependence.md)。[分类证据表](navigation-taxonomy-evidence.csv)保留原文位置、短引文和文件哈希。此前的[重定位核查](relocalization-reference-audit.md)与[在线导航核查](online-navigation-reference-audit.md)保留各自日期和范围。
+本记录保留 2026 年 11 月 12 日按三条导航路线组织[第 33 章](../33-relocalization-map-dependence.md)时的核查过程。2026 年 11 月 13 日，正文改为围绕重定位的参考信息与求解流程展开，当前依据见[重定位分类核查](relocalization-taxonomy-reference-audit.md)。下文对章节结构的描述对应此前版本。[分类证据表](navigation-taxonomy-evidence.csv)保留原文位置、短引文和文件哈希；此前的[重定位核查](relocalization-reference-audit.md)与[在线导航核查](online-navigation-reference-audit.md)保留各自日期和范围。
 
 ## 分类依据与本章判据
 
