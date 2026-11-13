@@ -4,7 +4,7 @@ status: complete
 
 # 39. VINS：视觉惯性里程计的工作原理
 
-VINS 是视觉惯性导航系统（Visual-Inertial Navigation System）的缩写，这里介绍的是香港科技大学开发的 VINS-Mono、VINS-Fusion 等开源定位系统。它的核心是**视觉惯性里程计**（VIO）：利用相机图像与 IMU，估计相对出发处的位置、自身朝向和速度。VINS-Fusion（下文简称 Fusion）也支持只用双目图像的视觉里程计（VO）；配合视觉地图、回环检测与全局轨迹校正，完整系统具备同步定位与建图（SLAM）功能。在本车的双目 VO/VIO 实验中，VINS 负责估计运动，RTAB-Map 负责导航地图与地图定位，Nav2 负责规划和控制车辆驶向目标。[VINS-Mono 官方介绍][mono-overview]、[Fusion 官方说明][s3]
+VINS 是视觉惯性导航系统（Visual-Inertial Navigation System）的缩写，这里介绍的是香港科技大学开发的 VINS-Mono、VINS-Fusion 等开源定位系统。它以**视觉惯性里程计**（VIO）为核心，特点是将图像特征与 IMU 测量放在同一滑动窗口中联合优化：利用视觉校正惯性积分的累积误差，用高频惯性测量补充两帧图像之间的运动信息，并将主要计算限定在近期状态内，兼顾运动估计的精度与实时性。由此，系统能够持续估计相对出发处的位置、自身朝向和速度，为机器人定位与运动控制提供依据。VINS-Fusion（下文简称 Fusion）也支持只用双目图像的视觉里程计（VO）；配合视觉地图、回环检测与全局轨迹校正，完整系统具备同步定位与建图（SLAM）功能。在本车的双目 VO/VIO 实验中，VINS 负责估计运动，RTAB-Map 负责导航地图与地图定位，Nav2 负责规划和控制车辆驶向目标。[VINS-Mono 论文][s1]、[Fusion 官方说明][s3]
 
 ---
 
